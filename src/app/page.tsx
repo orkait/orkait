@@ -1,12 +1,13 @@
-import OrkaitReflection from "@/src/components/sections/home/hero";
-import Navbar from "@/src/components/sections/home/Navbar";
-import Layout from "@/src/components/layout/page-wrapper";
+import { ChatbotWidget } from "@/components/chatbot/chatbot-widget";
+import OrkaitReflection from "@/components/sections/home/hero";
+import Navbar from "@/components/sections/home/Navbar";
 
 export default function Home() {
 	return (
-		<Layout>
+		<main>
 			<Navbar />
 			<OrkaitReflection />
-		</Layout>
+			<ChatbotWidget />
+		</main>
 	);
 }
