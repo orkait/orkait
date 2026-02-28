@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------- */
+/* ORKAIT DESIGN SYSTEM               */
+/* ---------------------------------- */
+
+@theme inline {
+  /* ------------------------------- */
+  /* Typography Scale               */
+  /* ------------------------------- */
+
+  --font-sans: var(--font-satoshi), sans-serif;
+
+  --text-heading: 72px;
+  --leading-heading: 80px;
+
+  --text-title-1: 64px;
+  --leading-title-1: 72px;
+
+  --text-title-2: 48px;
+  --leading-title-2: 56px;
+
+  --text-title-3: 32px;
+  --leading-title-3: 40px;
+
+  --text-subtitle: 24px;
+  --leading-subtitle: 36px;
+
+  --text-body-lg: 20px;
+  --leading-body-lg: 30px;
+
+  --text-body: 16px;
+  --leading-body: 24px;
+
+  /* ------------------------------- */
+  /* Spacing System (4px Grid)      */
+  /* ------------------------------- */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+  --space-56: 224px;
+  --space-64: 256px;
+
+  /* ------------------------------- */
+  /* Radius System                  */
+  /* ------------------------------- */
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+
+  /* ------------------------------- */
+  /* Color Tokens (Slate-Based)     */
+  /* ------------------------------- */
+
+  --color-background: theme(colors.slate.50);
+  --color-foreground: theme(colors.slate.900);
+
+  --color-muted: theme(colors.slate.100);
+  --color-muted-foreground: theme(colors.slate.500);
+
+  --color-border: theme(colors.slate.200);
+  --color-input: theme(colors.slate.200);
+
+  --color-primary: theme(colors.slate.900);
+  --color-primary-foreground: theme(colors.slate.50);
+
+  --color-secondary: theme(colors.slate.100);
+  --color-secondary-foreground: theme(colors.slate.900);
+
+  --color-accent: theme(colors.slate.200);
+  --color-accent-foreground: theme(colors.slate.900);
+
+  --color-ring: theme(colors.slate.400);
+
+  --color-destructive: theme(colors.red.600);
+}
+
+/* ---------------------------------- */
+/* Dark Mode                         */
+/* ---------------------------------- */
+
+.dark {
+  --color-background: theme(colors.slate.900);
+  --color-foreground: theme(colors.slate.50);
+
+  --color-muted: theme(colors.slate.800);
+  --color-muted-foreground: theme(colors.slate.400);
+
+  --color-border: theme(colors.slate.700);
+  --color-input: theme(colors.slate.700);
+
+  --color-primary: theme(colors.slate.50);
+  --color-primary-foreground: theme(colors.slate.900);
+
+  --color-secondary: theme(colors.slate.800);
+  --color-secondary-foreground: theme(colors.slate.50);
+
+  --color-accent: theme(colors.slate.700);
+  --color-accent-foreground: theme(colors.slate.50);
+
+  --color-ring: theme(colors.slate.500);
+
+  --color-destructive: theme(colors.red.500);
+}
+
+/* ---------------------------------- */
+/* Base Layer                        */
+/* ---------------------------------- */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
