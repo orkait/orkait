@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/layout/navbar";
 import { ContactForm } from "@/components/contact/ContactForm";
 import Link from "next/link";
 import { Section } from "@/components/shared/section";
@@ -10,16 +9,10 @@ export const metadata = {
 
 export default function ContactPage() {
     return (
-        <Section className="bg-white text-foreground flex flex-col test" horizontalMargin verticalMargin>
+        <Section className="bg-background text-foreground flex flex-col" horizontalMargin verticalMargin>
             <section className="flex">
                 <div className="flex-1">
-                    <h1
-                        className="font-bold text-foreground tracking-tight"
-                        style={{
-                            fontSize: "var(--text-title-1)",
-                            lineHeight: "var(--leading-title-1)",
-                        }}
-                    >
+                    <h1 className="text-title-1 leading-title-1 font-bold tracking-tight text-foreground">
                         Always ready to
                         <br />
                         help you and
@@ -30,12 +23,8 @@ export default function ContactPage() {
                     </h1>
 
                     <Link
-                        href="#"
-                        className="text-foreground font-medium hover:opacity-70 transition-opacity"
-                        style={{
-                            fontSize: "var(--text-body)",
-                            lineHeight: "var(--leading-body)",
-                        }}
+                        href="/contact"
+                        className="text-body leading-body text-foreground font-medium hover:opacity-70 transition-opacity"
                     >
                         Social Network
                     </Link>

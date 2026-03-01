@@ -11,5 +11,15 @@ export function Section({
     horizontalMargin?: boolean;
     verticalMargin?: boolean;
 }) {
-    return <section className={cn(horizontalMargin && "mx-16", verticalMargin && "py-16 md:py-24", className)}>{children}</section>;
+    return (
+        <section
+            className={cn(
+                horizontalMargin ? "px-4 phone:px-8 tablet:px-16" : "",
+                verticalMargin ? "py-12 phone:py-16 tablet:py-20" : "",
+                className
+            )}
+        >
+            {children}
+        </section>
+    );
 }

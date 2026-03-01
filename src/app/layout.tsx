@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { satoshi, poppins } from "@/config/fonts";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
-import { MessagesSquare } from "lucide-react";
+import Footer from "@/components/layout/footer";
+import { ChatWidget } from "@/components/layout/chat-widget";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { ScrollToTop } from "@/components/layout/scroll-to-top";
 
 export const metadata: Metadata = {
     title: "Orkait",
@@ -16,18 +19,22 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${satoshi.variable} ${poppins.variable} antialiased realtive`}>
-                <Navbar />
-                {children}
-                <div
-                    className="absolute bottom-8 right-8 z-20 flex items-center justify-center size-16 bg-black rounded-full cursor-pointer hover:scale-105 transition-transform"
-                    role="button"
-                    aria-label="Open chat"
-                >
-                    <div className="flex items-center justify-center size-14 rounded-full border border-white/30">
-                        <MessagesSquare size={26} className="text-white" strokeWidth={1.5} />
-                    </div>
-                </div>
+            <body className={`${satoshi.variable} ${poppins.variable} antialiased relative`}>
+                <SmoothScrollProvider>
+                    <section className="mx-auto w-full max-w-[1440px]">
+                        <Navbar />
+                    </section>
+                    <main className="mx-auto w-full max-w-[1440px]">
+                        {children}
+                    </main>
+
+                    <ChatWidget />
+                    <ScrollToTop />
+
+                    <section className="mx-auto w-full max-w-[1440px]">
+                        <Footer />
+                    </section>
+                </SmoothScrollProvider>
             </body>
         </html>
     );

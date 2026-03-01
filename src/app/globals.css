@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -18,10 +19,6 @@
     --breakpoint-laptop: 1440px;
     --breakpoint-desktop: 1920px;
 }
-
-@custom-variant below-watch (@media (max-width: 478px));
-@custom-variant below-phone (@media (max-width: 859px));
-@custom-variant below-tablet (@media (max-width: 1023px));
 
 
 @theme inline {
@@ -93,7 +90,7 @@
     --color-background: theme(colors.slate.50);
     --color-foreground: theme(colors.slate.900);
 
-    --color-muted: theme(colors.slate.100);
+    --color-muted: theme(colors.slate.200);
     --color-muted-foreground: theme(colors.slate.500);
 
     --color-border: theme(colors.slate.200);
@@ -107,6 +104,13 @@
 
     --color-accent: theme(colors.slate.200);
     --color-accent-foreground: theme(colors.slate.900);
+
+    --color-pricing-active-start: #3b3b3b;
+    --color-pricing-active-end: #000000;
+    --color-pricing-inactive-start: #f4f4f4;
+    --color-pricing-inactive-end: #b9b9b9;
+
+    --color-success: theme(colors.emerald.500);
 
     --color-ring: theme(colors.slate.400);
 
@@ -136,6 +140,13 @@
     --color-accent: theme(colors.slate.700);
     --color-accent-foreground: theme(colors.slate.50);
 
+    --color-pricing-active-start: #3b3b3b;
+    --color-pricing-active-end: #000000;
+    --color-pricing-inactive-start: #f4f4f4;
+    --color-pricing-inactive-end: #b9b9b9;
+
+    --color-success: theme(colors.emerald.400);
+
     --color-ring: theme(colors.slate.500);
 
     --color-destructive: theme(colors.red.500);
@@ -155,6 +166,99 @@
     }
 }
 
-.test {
-    border: 1px solid red;
+/* ---------------------------------- */
+/* Lenis                              */
+/* ---------------------------------- */
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* ---------------------------------- */
+/* Fade Edge Utilities                */
+/* ---------------------------------- */
+
+@utility fade-edge-right {
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: 33.333333%;
+    background: linear-gradient(to right, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+@utility fade-edge-left {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: 25%;
+    background: linear-gradient(to left, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+@utility fade-edge-bottom {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 33.333333%;
+    background: linear-gradient(to bottom, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+@utility fade-edge-top {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 25%;
+    background: linear-gradient(to top, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+/* ---------------------------------- */
+/* Named Grid Layouts                */
+/* ---------------------------------- */
+
+@utility process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "card1 card2 tagline"
+        "card3 card4 tagline"
+        "card5 card6 card7";
+}
+
+/* ---------------------------------- */
+/* Marquee / Infinite Scroll          */
+/* ---------------------------------- */
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@utility marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+}
+
+@utility marquee-track-paused {
+    animation-play-state: paused;
 }
