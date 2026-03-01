@@ -19,7 +19,7 @@ const STARTER_PLAN: Omit<PricingPlan, "id"> = {
 
 const PRO_PLAN: Omit<PricingPlan, "id"> = {
 	title: "Pro",
-	description: "Full-featured applications for growing businesses",
+	description: "Full-featured applications",
 	pricePrefix: "Starting from",
 	price: "$7500",
 	paymentType: "One-time payment",
@@ -27,8 +27,6 @@ const PRO_PLAN: Omit<PricingPlan, "id"> = {
 		"Cross-platform (iOS + Android or Web)",
 		"Up to 15 screens/pages",
 		"Custom UI/UX design",
-		"Full backend integration",
-		"User authentication & authorization",
 		"Push notifications",
 		"90 days post-launch support",
 	],
