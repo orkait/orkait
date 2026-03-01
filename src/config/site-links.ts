@@ -1,26 +1,24 @@
-export type SiteLink = {
-	label: string;
-	href: string;
-};
+import type { SiteLink } from "@/types";
+import { routes } from "@/config/routes";
 
 export const HEADER_LINKS: SiteLink[] = [
-	{ label: "About", href: "/about" },
-	{ label: "Projects", href: "/projects" },
-	{ label: "Services", href: "/services" },
+	{ label: "About", href: routes.about },
+	{ label: "Projects", href: routes.projects },
+	{ label: "Services", href: routes.services },
 ];
 
 export const FOOTER_NAV_LINKS: SiteLink[] = [
-	{ label: "Home", href: "/" },
-	{ label: "About", href: "/about" },
-	{ label: "Projects", href: "/projects" },
-	{ label: "Services", href: "/services" },
+	{ label: "Home", href: routes.home },
+	{ label: "About", href: routes.about },
+	{ label: "Projects", href: routes.projects },
+	{ label: "Services", href: routes.services },
 ];
 
 export const FOOTER_LEGAL_LINKS: SiteLink[] = [
-	{ label: "Pricing", href: "/pricing" },
-	{ label: "Privacy Policy", href: "/privacy-policy" },
-	{ label: "Terms & Conditions", href: "/terms" },
-	{ label: "Contact", href: "/contact" },
+	{ label: "Pricing", href: routes.pricing },
+	{ label: "Privacy Policy", href: routes.privacyPolicy },
+	{ label: "Terms & Conditions", href: routes.terms },
+	{ label: "Contact", href: routes.contact },
 ];
 
 export const FOOTER_SOCIAL_LINKS: SiteLink[] = [

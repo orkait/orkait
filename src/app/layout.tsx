@@ -8,8 +8,11 @@ import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provi
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 
 export const metadata: Metadata = {
-    title: "Orkait",
-    description: "",
+    title: {
+        default: "Orkait",
+        template: "%s | Orkait",
+    },
+    description: "High-performance software solutions for modern businesses.",
 };
 
 export default function RootLayout({

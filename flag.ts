@@ -1,7 +1,9 @@
-export type flag = {
+export type Flag = {
     PROJECTS_LAYOUT: "story" | "masonry";
 };
 
-export const flag: flag = {
+export type flag = Flag;
+
+export const flag: Flag = {
     PROJECTS_LAYOUT: "masonry",
 };

@@ -1,3 +1,4 @@
 import type { Testimonial } from "@/types";
 
-export const testimonials: Testimonial[] = [];
+export const TESTIMONIALS: Testimonial[] = [];
+export const testimonials = TESTIMONIALS;

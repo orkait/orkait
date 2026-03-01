@@ -1,7 +1,4 @@
 import Image from "next/image";
-import { MessagesSquare } from "lucide-react";
-import { Section } from "../shared/section";
-
 
 export const Hero = () => {
     return (

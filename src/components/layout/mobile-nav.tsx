@@ -12,6 +12,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { HEADER_LINKS } from "@/config/site-links";
+import { routes } from "@/config/routes";
 
 export function MobileNav() {
 	return (
@@ -40,7 +41,7 @@ export function MobileNav() {
 					))}
 					<SheetClose asChild>
 						<Button asChild className="mt-2">
-							<Link href="/contact">Contact Us</Link>
+							<Link href={routes.contact}>Contact Us</Link>
 						</Button>
 					</SheetClose>
 				</nav>

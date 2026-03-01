@@ -10,7 +10,7 @@ import { ContactUs } from "@/components/home/ContactUs";
 import { ProjectsGrid } from "@/components/sections/projects/projects-grid";
 import { ProjectsMasonryGrid } from "@/components/sections/projects/projects-masonry-grid";
 import { PricingTable } from "@/components/sections/pricing/pricing-table";
-import { flag } from "../../flag";
+import { flag } from "@/config/feature-flag";
 
 export default function Home() {
     const ProjectsSection =

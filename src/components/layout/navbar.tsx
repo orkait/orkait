@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HEADER_LINKS } from "@/config/site-links";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { routes } from "@/config/routes";
 
 export function Navbar() {
     return (
@@ -32,7 +33,7 @@ export function Navbar() {
                         </Link>
                     ))}
                     <Button asChild size="sm">
-                        <Link href="/contact">Contact Us</Link>
+                        <Link href={routes.contact}>Contact Us</Link>
                     </Button>
                 </div>
 

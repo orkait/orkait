@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessagesSquare, X, Send, Smile } from "lucide-react";
+import { MessagesSquare, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -54,7 +54,7 @@ export const ChatWidget = () => {
         };
 
         playScript();
-    }, [isOpen]);
+    }, [isOpen, messages.length]);
 
     // Auto-scroll to bottom
     useEffect(() => {

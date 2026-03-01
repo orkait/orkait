@@ -1,3 +1,4 @@
 import type { Service } from "@/types";
 
-export const services: Service[] = [];
+export const SERVICES: Service[] = [];
+export const services = SERVICES;

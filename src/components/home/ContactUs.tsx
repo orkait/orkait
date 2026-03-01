@@ -28,7 +28,8 @@ export const ContactUs = () => {
     });
 
     const onSubmit = (data: FormValues) => {
-        console.log(data);
+        void data;
+        form.reset();
     };
 
     return (
