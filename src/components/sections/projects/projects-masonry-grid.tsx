@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PROJECTS } from "./projects-data";
+import { ProjectMasonryCard } from "./project-masonry-card";
 
 export function ProjectsMasonryGrid() {
 	return (
@@ -18,7 +19,10 @@ export function ProjectsMasonryGrid() {
 
 			<section className="mx-auto mt-16 max-w-7xl columns-1 gap-6 phone:columns-2 tablet:columns-3 tablet:gap-8">
 				{PROJECTS.map((project, index) => (
-					<article key={project.id} className="mb-6 break-inside-avoid phone:mb-8">
+					<ProjectMasonryCard
+						key={project.id}
+						className="mb-6 transform-gpu will-change-transform break-inside-avoid phone:mb-8"
+					>
 						<Card className="overflow-hidden border border-border bg-background p-3 shadow-sm transition-all duration-300 hover:shadow-md phone:p-4">
 							<div className="overflow-hidden rounded-sm">
 								<Image
@@ -48,7 +52,7 @@ export function ProjectsMasonryGrid() {
 								</Button>
 							</div>
 						</Card>
-					</article>
+					</ProjectMasonryCard>
 				))}
 			</section>
 		</main>
