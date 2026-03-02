@@ -2,6 +2,7 @@
 
 import { ReactLenis } from "lenis/react";
 import { useEffect, useState } from "react";
+import { LENIS_SCROLL_OFFSET } from "@/config/scroll";
 
 type SmoothScrollProviderProps = {
 	children: React.ReactNode;
@@ -32,6 +33,9 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 				smoothWheel: true,
 				syncTouch: false,
 				gestureOrientation: "vertical",
+				anchors: {
+					offset: LENIS_SCROLL_OFFSET,
+				},
 			}}
 		>
 			{children}

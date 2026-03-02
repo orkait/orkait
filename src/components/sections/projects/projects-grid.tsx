@@ -7,6 +7,7 @@ import { useLenis } from "lenis/react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { LENIS_SCROLL_OFFSET } from "@/config/scroll";
 import { PROJECTS } from "./projects-data";
 
 export function ProjectsGrid() {
@@ -69,7 +70,7 @@ export function ProjectsGrid() {
 
 			if (lenis) {
 				lenis.scrollTo(section, {
-					offset: -96,
+					offset: LENIS_SCROLL_OFFSET,
 					duration: 1.1,
 				});
 				return;

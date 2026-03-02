@@ -6,6 +6,7 @@ import Footer from "@/components/layout/footer";
 import { ChatWidget } from "@/components/layout/chat-widget";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
 
 export const metadata: Metadata = {
     title: {
@@ -24,6 +25,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${satoshi.variable} ${poppins.variable} antialiased relative`}>
                 <SmoothScrollProvider>
+                    <ScrollProgress />
                     <section className="mx-auto w-full max-w-[1440px]">
                         <Navbar />
                     </section>
