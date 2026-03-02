@@ -262,3 +262,8 @@ html.lenis body {
 @utility marquee-track-paused {
     animation-play-state: paused;
 }
+
+
+.test{
+    border: 1px solid red;
+}
