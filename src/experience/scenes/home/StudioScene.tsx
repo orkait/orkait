@@ -4,6 +4,7 @@ import { useCallback, useRef } from "react";
 import { StudioView } from "@/components/home/StudioView";
 import { type LenisTimelineFrame, useLenisTimeline } from "@/hooks/use-lenis-timeline";
 import { getStudioTimelineStyles, STUDIO_EFFECTS } from "@/experience/timeline/home/studio.timeline";
+import { TIMELINE_MAIN_ENTER, TIMELINE_MAIN_EXIT } from "@/config/timeline";
 
 export function StudioScene() {
     const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -32,42 +33,47 @@ export function StudioScene() {
         copyRightRef.current = node;
     }, []);
 
-    const updateTimeline = useCallback(({ progress, effectIndex }: LenisTimelineFrame) => {
-        const styles = getStudioTimelineStyles(progress);
+    const updateTimeline = useCallback(
+        ({ progress, effectIndex, direction, momentum, anticipation }: LenisTimelineFrame) => {
+            const styles = getStudioTimelineStyles(progress, direction);
+            const physicsY = momentum + anticipation;
 
-        if (sectionRef.current) {
-            sectionRef.current.dataset.studioEffect = String(effectIndex + 1);
-            sectionRef.current.style.transform = `translate3d(0, ${styles.sectionLift.toFixed(2)}px, 0)`;
-            sectionRef.current.style.opacity = styles.sectionOpacity.toFixed(3);
-        }
+            if (sectionRef.current) {
+                sectionRef.current.dataset.studioEffect = String(effectIndex + 1);
+                sectionRef.current.dataset.studioDirection = direction;
+                sectionRef.current.style.transform = `translate3d(0, ${(styles.sectionLift + physicsY).toFixed(2)}px, 0)`;
+                sectionRef.current.style.opacity = styles.sectionOpacity.toFixed(3);
+            }
 
-        if (headerRef.current) {
-            headerRef.current.style.transform = `translate3d(0, ${styles.headerY.toFixed(2)}px, 0)`;
-            headerRef.current.style.opacity = styles.headerOpacity.toFixed(3);
-        }
+            if (headerRef.current) {
+                headerRef.current.style.transform = `translate3d(0, ${styles.headerY.toFixed(2)}px, 0)`;
+                headerRef.current.style.opacity = styles.headerOpacity.toFixed(3);
+            }
 
-        if (imageRef.current) {
-            imageRef.current.style.transform =
-                `translate3d(${styles.imageX.toFixed(2)}px, 0, 0) scale(${styles.imageScale.toFixed(4)})`;
-            imageRef.current.style.opacity = styles.imageOpacity.toFixed(3);
-        }
+            if (imageRef.current) {
+                imageRef.current.style.transform =
+                    `translate3d(${styles.imageX.toFixed(2)}px, 0, 0) scale(${styles.imageScale.toFixed(4)})`;
+                imageRef.current.style.opacity = styles.imageOpacity.toFixed(3);
+            }
 
-        if (copyLeftRef.current) {
-            copyLeftRef.current.style.transform = `translate3d(0, ${styles.copyLeftY.toFixed(2)}px, 0)`;
-            copyLeftRef.current.style.opacity = styles.copyLeftOpacity.toFixed(3);
-        }
+            if (copyLeftRef.current) {
+                copyLeftRef.current.style.transform = `translate3d(0, ${styles.copyLeftY.toFixed(2)}px, 0)`;
+                copyLeftRef.current.style.opacity = styles.copyLeftOpacity.toFixed(3);
+            }
 
-        if (copyRightRef.current) {
-            copyRightRef.current.style.transform = `translate3d(0, ${styles.copyRightY.toFixed(2)}px, 0)`;
-            copyRightRef.current.style.opacity = styles.copyRightOpacity.toFixed(3);
-        }
-    }, []);
+            if (copyRightRef.current) {
+                copyRightRef.current.style.transform = `translate3d(0, ${styles.copyRightY.toFixed(2)}px, 0)`;
+                copyRightRef.current.style.opacity = styles.copyRightOpacity.toFixed(3);
+            }
+        },
+        []
+    );
 
     useLenisTimeline({
         sectionRef,
         effects: STUDIO_EFFECTS,
-        enter: 0.92,
-        exit: 0.14,
+        enter: TIMELINE_MAIN_ENTER,
+        exit: TIMELINE_MAIN_EXIT,
         onUpdate: updateTimeline,
     });
 
@@ -81,4 +87,3 @@ export function StudioScene() {
         />
     );
 }
-

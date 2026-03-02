@@ -24,17 +24,9 @@ export function HomeExperience() {
                 {/* <Flash /> */}
                 <StudioText />
                 <ServicesText />
-
-                <LenisSection distance={56} scaleDepth={0.06}>
-                    <Advance />
-                </LenisSection>
-
-                <LenisSection distance={58} scaleDepth={0.06}>
-                    <Process />
-                </LenisSection>
-                <LenisSection distance={54} scaleDepth={0.05}>
-                    <Feedback />
-                </LenisSection>
+                <Advance />
+                <Process />
+                <Feedback />
 
                 <LenisSection distance={52} scaleDepth={0.05}>
                     <PricingTable />
