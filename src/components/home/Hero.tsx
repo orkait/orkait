@@ -11,7 +11,7 @@ export const Hero = () => {
                 </div>
             </div>
             <div className="w-full h-full laptop:mt-32">
-                <div className="relative inline-block test">
+                <div className="relative inline-block">
                     <Image
                         className="absolute -rotate-4"
                         src="/orkait.svg"
