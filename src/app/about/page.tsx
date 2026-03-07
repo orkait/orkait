@@ -17,6 +17,7 @@ export default function AboutPage() {
 			links={[
 				{ label: "View Services", href: routes.services },
 				{ label: "Contact Us", href: routes.contact },
+				{ label: "Our Team", href: routes.team },
 			]}
 		/>
 	);

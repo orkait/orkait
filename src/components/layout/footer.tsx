@@ -2,49 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { routes } from "@/config/routes";
-
-type FooterLink = {
-    label: string;
-    href: string;
-    isExternal?: boolean;
-};
-
-type FooterColumn = {
-    ariaLabel: string;
-    heading?: string;
-    links: FooterLink[];
-};
-
-const FOOTER_COLUMNS: FooterColumn[] = [
-    {
-        ariaLabel: "Primary navigation",
-        links: [
-            { label: "Home", href: routes.home },
-            { label: "About", href: routes.about },
-            { label: "Our Work", href: routes.projects },
-            { label: "Services", href: routes.services },
-        ],
-    },
-    {
-        ariaLabel: "Legal navigation",
-        links: [
-            { label: "Cookie settings", href: `${routes.privacyPolicy}#cookie-settings` },
-            { label: "Pricing", href: routes.pricing },
-            { label: "Privacy Policy", href: routes.privacyPolicy },
-            { label: "Terms & Condition", href: routes.terms },
-        ],
-    },
-    {
-        ariaLabel: "Social navigation",
-        heading: "Social Media",
-        links: [
-            { label: "Youtube", href: "https://www.youtube.com", isExternal: true },
-            { label: "Intsagram", href: "https://www.instagram.com", isExternal: true },
-            { label: "Twitter", href: "https://x.com", isExternal: true },
-        ],
-    },
-];
+import { FOOTER_COLUMNS, type FooterColumn } from "@/constants";
 
 const footerLinkClassName =
     "text-body-lg leading-body-lg font-medium text-foreground transition-opacity hover:opacity-70";
@@ -73,7 +31,7 @@ const Footer = () => {
         <footer className="relative ">
             {/* Absolute layers are required to recreate the diagonal cut and stripe artwork. */}
             <div
-                className="pointer-events-none absolute inset-y-0 right-0 hidden w-3/5 laptop:block "
+                className="pointer-events-none absolute inset-y-0 right-[calc(50%-50vw)] hidden w-[55vw] laptop:block"
                 aria-hidden
             >
                 <Image
@@ -81,7 +39,7 @@ const Footer = () => {
                     alt=""
                     fill
                     sizes="(min-width: 1440px) 55vw, 0px"
-                    className="object-cover object-right "
+                    className="object-cover object-right"
                 />
             </div>
 

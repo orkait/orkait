@@ -1,63 +1,6 @@
-type FeatureCard = {
-    num: string;
-    title: string;
-    description: string;
-    area: string;
-};
+import { FEATURES, type FeatureCardProps } from "@/constants";
 
-const FEATURES: FeatureCard[] = [
-    {
-        num: "(01)",
-        title: "Secure",
-        description:
-            "Orkait follows industry best practices and security standards. Rest easy knowing your digital solutions are built with security as a priority.",
-        area: "card1",
-    },
-    {
-        num: "(02)",
-        title: "High-Performance",
-        description:
-            "Engineered for speed and efficiency. We build systems that handle millions of requests with sub-millisecond latency, ensuring zero compromises.",
-        area: "card2",
-    },
-    {
-        num: "(03)",
-        title: "Quality Assured",
-        description:
-            "Orkait ensures quality through rigorous testing and verification processes. Deploy new solutions with confidence and reliability.",
-        area: "card3",
-    },
-    {
-        num: "(04)",
-        title: "Simple",
-        description:
-            "Orkait simplifies complex development processes. Get started quickly with our streamlined approach to web apps and software solutions.",
-        area: "card4",
-    },
-    {
-        num: "(05)",
-        title: "Customizable",
-        description:
-            "Tailored solutions to meet your specific requirements. Orkait customizes every aspect of your project to satisfy your unique needs.",
-        area: "card5",
-    },
-    {
-        num: "(06)",
-        title: "Plug and Play",
-        description:
-            "Seamless integration and deployment solutions. Get started quickly and easily with Orkait's streamlined service delivery.",
-        area: "card6",
-    },
-    {
-        num: "(07)",
-        title: "Enterprise Ready",
-        description:
-            "Orkait provides enterprise-grade solutions for scaling and deployment. Trusted by small enterprises for reliable digital transformation.",
-        area: "card7",
-    },
-];
-
-const FeatureCard = ({ num, title, description, area }: FeatureCard) => (
+const FeatureCard = ({ num, title, description, area }: FeatureCardProps) => (
     <div
         className="flex flex-col gap-2 py-10 border-b border-border"
         style={{ gridArea: area }}

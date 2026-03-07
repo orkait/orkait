@@ -1,26 +1,21 @@
 import Image from "next/image";
-
-const SERVICES = [
-    { label: "Client Work", active: false },
-    { label: "Solutions", active: false },
-    { label: "SaaS Work", active: false },
-    { label: "Dev Products", active: true },
-];
+import { SERVICES } from "@/constants";
 
 const ServicesText = () => {
     return (
-        <div className="flex gap-16 items-start mt-32 relative">
+        <div className="flex flex-col laptop:flex-row justify-between items-start mt-32 gap-16 w-full">
             {/* Left: image + sub-tags */}
-            <div className="relative shrink-0">
-                <Image
-                    src="https://placehold.co/500x500/webp"
-                    alt="Services"
-                    width={500}
-                    height={500}
-                    className="rounded-sm object-cover"
-                />
-                {/* Tag list â€” bottom-right of image */}
-                <div className="absolute bottom-0 right-0 translate-x-full pl-6 pb-2 flex flex-col gap-1">
+            <div className="flex flex-col phone:flex-row phone:items-end gap-6 shrink-0">
+                <div className="relative w-full phone:w-[500px] max-w-full aspect-square">
+                    <Image
+                        src="https://placehold.co/500x500/webp"
+                        alt="Services"
+                        fill
+                        className="rounded-sm object-cover"
+                    />
+                </div>
+                {/* Tag list */}
+                <div className="flex flex-col gap-1 pb-2 shrink-0">
                     <p className="text-foreground font-medium text-body leading-body">
                         Developer Tools
                     </p>
@@ -34,16 +29,17 @@ const ServicesText = () => {
             </div>
 
             {/* Right: label + stacked service names */}
-            <div className="flex flex-1  flex-col gap-2 absolute top-0 right-0 mt-12">
-                <span className="text-foreground font-medium text-body-lg leading-body-lg">
+            <div className="flex flex-col gap-2 mt-0 laptop:mt-12 items-start laptop:items-end w-full">
+                <span className="text-foreground font-medium text-body-lg leading-body-lg self-start">
                     (03) SERVICES
                 </span>
                 {/* Service name list */}
                 {SERVICES.map(({ label, active }) => (
                     <p
                         key={label}
-                        className={`test max-w-fit font-medium text-heading leading-heading tracking-tight ${active ? "text-foreground" : "text-muted text-black"
-                            }`}
+                        className={`max-w-fit font-medium text-title-1 phone:text-heading leading-title-1 phone:leading-heading tracking-tight ${
+                            active ? "text-foreground" : "text-muted-foreground"
+                        }`}
                     >
                         {label}
                     </p>
