@@ -3,8 +3,8 @@ import Image from "next/image"
 
 const Flash = () => {
     return (
-        <Section className="w-full relative h-[400px] tablet:h-[686px] pt-16">
-            <div className="relative w-full h-full rounded-[var(--radius-xl)] overflow-hidden">
+        <div className="w-[100vw] h-[204px] -ml-4 mt-5 tablet:mt-0 tablet:ml-0 tablet:w-full tablet:h-[400px] laptop:h-[686px] flex tablet:px-0">
+            <div className="relative w-full h-full rounded-[14px] tablet:rounded-[var(--radius-xl)] overflow-hidden">
                 <Image
                     src="/homepage/059a3882520dc15f89884aa9adf2a9548d6e1bb1.png"
                     alt="Flash"
@@ -14,7 +14,7 @@ const Flash = () => {
                     className="object-cover"
                 />
             </div>
-        </Section>
+        </div>
     )
 }
 

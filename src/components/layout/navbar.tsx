@@ -13,7 +13,7 @@ export function Navbar() {
     const pathname = usePathname();
     return (
         <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-            <div className="flex w-full items-center justify-between px-4 py-4 phone:px-8 tablet:px-12">
+            <div className="flex w-full items-center justify-between px-4 py-4 tablet:px-8 base:px-12">
                 <Link href="/" aria-label="Home" className="shrink-0">
                     <Image
                         src="/orkait.svg"
@@ -25,7 +25,7 @@ export function Navbar() {
                     />
                 </Link>
 
-                <div className="hidden items-center gap-8 tablet:flex">
+                <div className="hidden items-center gap-8 laptop:flex">
                     {HEADER_LINKS.map((link) => {
                         const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
                         return (
@@ -56,7 +56,7 @@ export function Navbar() {
                     </Link>
                 </div>
 
-                <div className="tablet:hidden">
+                <div className="laptop:hidden">
                     <MobileNav />
                 </div>
             </div>

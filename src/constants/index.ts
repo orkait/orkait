@@ -157,8 +157,8 @@ export const FEATURES: FeatureCardProps[] = [
 
 // --- ServicesText.tsx ---
 export const SERVICES = [
-    { label: "Client Work", active: false },
+    { label: "Client Work", active: true },
     { label: "Solutions", active: false },
     { label: "SaaS Work", active: false },
-    { label: "Dev Products", active: true },
+    { label: "Dev Products", active: false },
 ];

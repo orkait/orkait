@@ -13,11 +13,12 @@
     /* Clear all default breakpoints (sm, md, lg, xl, 2xl) */
     --breakpoint-*: initial;
 
-    /* Your specific device breakpoints from the image */
-    --breakpoint-phone: 860px;
-    --breakpoint-tablet: 1024px;
-    --breakpoint-laptop: 1440px;
-    --breakpoint-desktop: 1920px;
+    /* Device breakpoints */
+    --breakpoint-mobile: 320px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-laptop: 1024px;
+    --breakpoint-base: 1440px;
+    --breakpoint-large: 1920px;
 }
 
 
