@@ -4,7 +4,7 @@ import { CAPABILITIES_LEFT, CAPABILITIES_RIGHT } from "@/constants";
 
 const Advance = () => {
     return (
-        <div className="relative mt-16 base:mt-32 min-h-[400px] laptop:min-h-[800px] flex flex-col justify-between">
+        <div className="relative mt-16 base:mt-32 tablet:min-h-[400px] laptop:min-h-[800px] flex flex-col tablet:justify-between">
             {/* Desktop Decorative stripe pattern — bound to full section */}
             <div className="hidden tablet:flex absolute top-0 right-[calc(50%-50vw)] h-full w-[50vw] pointer-events-none items-center justify-end">
                 <Image
@@ -34,18 +34,22 @@ const Advance = () => {
                 {/* Features container (Relative wrapper to bind gradient height) */}
                 <div className="relative w-full">
                     {/* Mobile Decorative stripe pattern — bound entirely to list height */}
-                    <div className="tablet:hidden absolute top-0 right-[calc(50%-50vw)] h-full w-[50vw] pointer-events-none flex items-center justify-end">
+                    <div 
+                        className="tablet:hidden absolute top-0 right-[-16px] h-full w-[45vw] pointer-events-none overflow-hidden"
+                        style={{
+                            maskImage: 'linear-gradient(to right, transparent 0%, black 60%)',
+                            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 60%)'
+                        }}
+                    >
                         <Image
                             src="/homepage/uniq_1.svg"
                             alt=""
                             fill
-                            className="object-cover object-right opacity-60"
+                            className="object-cover object-right translate-x-[15%]"
                             aria-hidden
                         />
-                        {/* Fade right edge → background */}
-                        <div className="fade-edge-right absolute inset-0 mix-blend-multiply" />
-                        {/* Fade left edge → background */}
-                        <div className="fade-edge-left absolute inset-0 mix-blend-multiply" />
+                        {/* Deepening colors with vertical gradient from Figma 414:269 */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-transparent mix-blend-multiply" />
                     </div>
 
                     {/* capability list -> 1 col mobile, 2 col desktop */}

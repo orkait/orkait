@@ -25,7 +25,7 @@ const FeatureCard = ({ num, title, description, index }: FeatureCardProps & { in
 
 const Process = () => {
     return (
-        <section className="mt-16 base:mt-32">
+        <section className="mt-14 tablet:mt-16 base:mt-32">
             
             {/* Mobile Title */}
             <div className="tablet:hidden mb-[32px] w-full">

@@ -64,7 +64,7 @@ export const ChatWidget = () => {
     }, [messages, isTyping]);
 
     return (
-        <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4 pointer-events-none">
+        <div className="hidden tablet:flex fixed bottom-8 right-8 z-50 flex-col items-end gap-4 pointer-events-none">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
