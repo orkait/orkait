@@ -49,7 +49,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
         heading: "Social Media",
         links: [
             { label: "Youtube", href: "https://www.youtube.com", isExternal: true },
-            { label: "Intsagram", href: "https://www.instagram.com", isExternal: true },
+            { label: "Instagram", href: "https://www.instagram.com", isExternal: true },
             { label: "Twitter", href: "https://x.com", isExternal: true },
         ],
     },

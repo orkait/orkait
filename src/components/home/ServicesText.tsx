@@ -4,8 +4,7 @@ import { SERVICES } from "@/constants";
 const ServicesText = () => {
     return (
         <div className="w-full relative">
-            {/* --- MOBILE VIEW (RESTORED/UNTOUCHED) --- */}
-            <div className="tablet:hidden flex flex-col items-start mt-16 gap-16 w-full">
+        <div className="tablet:hidden flex flex-col items-start mt-16 gap-16 w-full">
                 <div className="flex flex-col gap-4 items-start w-full">
                     <span className="text-foreground font-medium text-[14px] leading-[20px] self-start">
                         (02) SERVICES
@@ -33,9 +32,9 @@ const ServicesText = () => {
                 </div>
             </div>
 
-            {/* --- TABLET/LAPTOP VIEW (REFINED LAYOUT) --- */}
+            {/* Tablet/laptop view */}
             <div className="hidden tablet:flex flex-row justify-between items-start mt-32 gap-16 w-full overflow-visible">
-                {/* Left: Image + Tag list */}
+                {/* Image + tag list */}
                 <div className="flex flex-row items-end gap-10 shrink-0">
                     <div className="relative w-[500px] aspect-square rounded-sm overflow-hidden bg-muted">
                         <Image
@@ -52,9 +51,8 @@ const ServicesText = () => {
                     </div>
                 </div>
 
-                {/* Right: Label + Services List */}
+                {/* Label + services list */}
                 <div className="flex flex-col items-start gap-4">
-                    {/* Shifted Label - Aligned with the start of Client Work */}
                     <span className="text-muted-foreground font-medium text-body-lg leading-body-lg uppercase tracking-widest pl-0">
                         (02) SERVICES
                     </span>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PROJECTS } from "./projects-data";
+import { PROJECTS } from "@/data/projects";
 
 export function ProjectsMasonryGrid() {
 	return (
@@ -17,7 +17,7 @@ export function ProjectsMasonryGrid() {
 			</header>
 
 			<section className="mx-auto mt-16 max-w-7xl columns-1 gap-6 phone:columns-2 tablet:columns-3 tablet:gap-8">
-				{PROJECTS.map((project, index) => (
+				{PROJECTS.map((project, index: number) => (
 					<article key={project.id} className="mb-6 break-inside-avoid phone:mb-8">
 						<Card className="overflow-hidden border border-border bg-background p-3 shadow-sm transition-all duration-300 hover:shadow-md phone:p-4">
 							<div className="overflow-hidden rounded-sm">

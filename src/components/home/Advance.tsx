@@ -5,7 +5,7 @@ import { CAPABILITIES_LEFT, CAPABILITIES_RIGHT } from "@/constants";
 const Advance = () => {
     return (
         <div className="relative mt-16 base:mt-32 tablet:min-h-[400px] laptop:min-h-[800px] flex flex-col tablet:justify-between">
-            {/* Desktop Decorative stripe pattern — bound to full section */}
+            {/* Desktop decorative stripe pattern */}
             <div 
                 className="hidden tablet:flex absolute top-0 right-[calc(50%-50vw)] h-full w-[35vw] pointer-events-none items-center justify-end overflow-hidden"
                 style={{
@@ -39,7 +39,7 @@ const Advance = () => {
 
                 {/* Features container (Relative wrapper to bind gradient height) */}
                 <div className="relative w-full">
-                    {/* Mobile Decorative stripe pattern — bound entirely to list height */}
+                    {/* Mobile decorative stripe pattern */}
                     <div 
                         className="tablet:hidden absolute top-0 right-[-16px] h-full w-[45vw] pointer-events-none overflow-hidden"
                         style={{
@@ -54,11 +54,11 @@ const Advance = () => {
                             className="object-cover object-right translate-x-[15%]"
                             aria-hidden
                         />
-                        {/* Deepening colors with vertical gradient from Figma 414:269 */}
+                        {/* Vertical gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-transparent mix-blend-multiply" />
                     </div>
 
-                    {/* capability list -> 1 col mobile, 2 col desktop */}
+                    {/* Capability list */}
                     <div className="grid grid-cols-1 tablet:grid-cols-2 gap-x-16 gap-y-[16px] tablet:gap-y-6 relative z-10 w-[70%] tablet:w-full">
                         <div className="flex flex-col gap-[16px] tablet:gap-6">
                             {CAPABILITIES_LEFT.map((item) => (

@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 const StudioText = () => {
     return (
         <div className="w-full relative overflow-visible">
-            {/* --- MOBILE VIEW (RESTORED EXACTLY) --- */}
-            {/* Design/layout/typography is NOT implemented for this view */}
+            {/* Mobile view */}
             <div className="tablet:hidden flex flex-col items-start mt-16 w-full">
                 <div className="w-full">
                     <span className="float-left mr-4 pt-1">
@@ -53,9 +52,8 @@ const StudioText = () => {
                 </div>
             </div>
 
-            {/* --- TABLET/LAPTOP VIEW (REFINED FIGMA DESIGN) --- */}
+            {/* Tablet/laptop view */}
             <div className="hidden tablet:block flex flex-col items-start mt-16 base:mt-32 w-full">
-                {/* Header Section - Floated Label for correct text wrapping */}
                 <div className="w-full block">
                     <div className="float-left tablet:w-[150px] laptop:w-[200px] mb-4 tablet:mb-0">
                         <p className="text-muted-foreground font-medium text-body leading-none tablet:leading-body tracking-widest uppercase pt-2">
@@ -70,10 +68,9 @@ const StudioText = () => {
                 
                 <div className="clear-both" />
 
-                {/* Content Section - Responsive Layout */}
                 <div className="mt-16 laptop:mt-32 grid grid-cols-1 tablet:grid-cols-1 laptop:grid-cols-3 gap-8 laptop:gap-8 base:gap-12 items-start w-full">
                     
-                    {/* Column 1: Image (Left) */}
+                    {/* Image column */}
                     <div className="w-full relative shrink-0 rounded-[3px] overflow-hidden aspect-[340/375] laptop:aspect-[291/322] bg-muted">
                         <Image
                             src="/homepage/studio-side.png"
@@ -83,7 +80,6 @@ const StudioText = () => {
                         />
                     </div>
 
-                    {/* Column 2: First Description (Middle) - Shifted right */}
                     <div className="laptop:max-w-[311px] laptop:ml-24">
                         <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
                             We are Orkait, a service provider dedicated to crafting digital
@@ -93,7 +89,7 @@ const StudioText = () => {
                         </p>
                     </div>
 
-                    {/* Column 3: Second Description + CTA (Right) */}
+                    {/* Second description + CTA */}
                     <div className="flex flex-col items-start gap-8 laptop:max-w-[280px]">
                         <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
                             We work with small enterprises to help them compete and grow in

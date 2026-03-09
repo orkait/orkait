@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
-import { PRICING_PLANS } from "./pricing-data";
+import { PRICING_PLANS } from "@/data/pricing";
 import { Section } from "@/components/shared/section";
 import Link from "next/link";
 

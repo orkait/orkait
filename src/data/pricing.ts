@@ -49,4 +49,3 @@ export const PRICING_PLANS: PricingPlan[] = [
 	},
 ];
 
-export const pricingPlans = PRICING_PLANS;

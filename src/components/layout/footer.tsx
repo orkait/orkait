@@ -29,7 +29,6 @@ function FooterLinksColumn({ ariaLabel, heading, links }: FooterColumn) {
 const Footer = () => {
     return (
         <footer className="relative mt-[16px] tablet:mt-0 overflow-hidden tablet:overflow-visible">
-            {/* Absolute layers are required to recreate the diagonal cut and stripe artwork. */}
             <div
                 className="pointer-events-none absolute inset-y-0 right-0 tablet:right-[calc(50%-50vw)] w-[50vw] tablet:hidden base:block"
                 aria-hidden
@@ -43,7 +42,7 @@ const Footer = () => {
                 />
             </div>
 
-            <div className="relative flex min-h-[160px] tablet:min-h-[420px] flex-col laptop:min-h-[500px] base:min-h-[663px] pt-[24px] tablet:pt-0 pl-[22px] tablet:pl-0">
+            <div className="relative flex min-h-[160px] tablet:min-h-[420px] flex-col laptop:min-h-[500px] base:min-h-[663px] pt-[24px] tablet:pt-[77px] pl-[22px] tablet:pl-[60px]">
                 <div className="grid max-w-3xl grid-cols-3 gap-x-[16px] tablet:gap-8 tablet:grid-cols-2 laptop:grid-cols-3 tablet:gap-12 w-[65%] tablet:w-full z-10">
                     {FOOTER_COLUMNS.map((column) => (
                         <FooterLinksColumn key={column.ariaLabel} {...column} />

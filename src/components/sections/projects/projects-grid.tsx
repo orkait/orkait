@@ -7,7 +7,7 @@ import { useLenis } from "lenis/react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { PROJECTS } from "./projects-data";
+import { PROJECTS } from "@/data/projects";
 
 export function ProjectsGrid() {
 	const [activeIndex, setActiveIndex] = useState(0);

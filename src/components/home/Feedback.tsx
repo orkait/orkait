@@ -1,7 +1,7 @@
 "use client";
 
 import Autoplay from "embla-carousel-autoplay";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import {
     Carousel,
     CarouselContent,
@@ -14,13 +14,12 @@ import { cn } from "@/lib/utils";
 import { TESTIMONIALS } from "@/constants";
 import { useCarouselInit } from "@/hooks/useCarouselInit";
 
-/** ← Change this to control how long each card is shown (milliseconds) */
 const AUTOPLAY_DELAY_MS = 3500;
 
 const Feedback = () => {
     const [api, setApi] = useState<CarouselApi>();
     const isInitialized = useCarouselInit(api);
-    
+
     const plugin = useRef(
         Autoplay({ delay: AUTOPLAY_DELAY_MS, stopOnInteraction: false, stopOnMouseEnter: true })
     );
@@ -38,7 +37,7 @@ const Feedback = () => {
                 </h2>
             </div>
 
-            {/* Carousel — partial left · full centre · partial right */}
+            {/* Carousel */}
             <div className={cn(
                 "relative overflow-hidden transition-opacity duration-700 ease-in-out",
                 isInitialized ? "opacity-100" : "opacity-0"

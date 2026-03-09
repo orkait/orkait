@@ -2,7 +2,8 @@ import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { PRICING_PLANS, type PricingPlan } from "./pricing-data";
+import { PRICING_PLANS } from "@/data/pricing";
+import type { PricingPlan } from "@/types";
 
 function PricingPlanCard({ plan }: { plan: PricingPlan }) {
 	const isFeatured = plan.tone === "featured";

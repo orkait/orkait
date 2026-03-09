@@ -70,4 +70,3 @@ export const PROJECTS: Project[] = [
 	},
 ];
 
-export const projects = PROJECTS;
