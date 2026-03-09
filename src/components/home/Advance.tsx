@@ -6,7 +6,13 @@ const Advance = () => {
     return (
         <div className="relative mt-16 base:mt-32 tablet:min-h-[400px] laptop:min-h-[800px] flex flex-col tablet:justify-between">
             {/* Desktop Decorative stripe pattern — bound to full section */}
-            <div className="hidden tablet:flex absolute top-0 right-[calc(50%-50vw)] h-full w-[50vw] pointer-events-none items-center justify-end">
+            <div 
+                className="hidden tablet:flex absolute top-0 right-[calc(50%-50vw)] h-full w-[35vw] pointer-events-none items-center justify-end overflow-hidden"
+                style={{
+                    maskImage: 'linear-gradient(to right, transparent 0%, black 40%)',
+                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%)'
+                }}
+            >
                 <Image
                     src="/homepage/uniq_1.svg"
                     alt=""

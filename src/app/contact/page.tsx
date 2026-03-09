@@ -31,7 +31,7 @@ export default function ContactPage() {
 
                         <Link
                             href={routes.contact}
-                            className="text-body leading-body text-foreground font-medium hover:opacity-70 transition-opacity"
+                            className="block mt-16 text-body leading-body text-foreground font-medium hover:opacity-70 transition-opacity"
                         >
                             Social Network
                         </Link>
