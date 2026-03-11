@@ -12,7 +12,6 @@ export const metadata: Metadata = createPageMetadata(
 export default function ServicesPage() {
 	const links = [
 		{ label: "See Pricing", href: routes.pricing },
-		{ label: "Start a Project", href: routes.contact },
 	];
 
 	return (

@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
 
 
-                <div className="relative mt-8 tablet:mt-auto w-fit leading-[0.7] font-bold tracking-tight text-foreground text-[52.77px] tablet:text-[100px] laptop:text-[150px] base:text-[194px] z-10 pb-[15px] tablet:pb-0">
+                <div className="relative mt-8 tablet:mt-auto w-fit leading-[0.7] font-bold tracking-tight text-black text-[52.77px] tablet:text-[100px] laptop:text-[150px] base:text-[194px] z-10 pb-[15px] tablet:pb-0">
                     ORKAIT
 
                     <Image

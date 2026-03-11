@@ -5,7 +5,6 @@ import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { ChatWidget } from "@/components/layout/chat-widget";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-import { ScrollToTop } from "@/components/layout/scroll-to-top";
 
 export const metadata: Metadata = {
     title: {
@@ -32,7 +31,6 @@ export default function RootLayout({
                     </main>
 
                     <ChatWidget />
-                    <ScrollToTop />
 
                     <section className="mx-auto w-full max-w-[1440px]">
                         <Footer />
