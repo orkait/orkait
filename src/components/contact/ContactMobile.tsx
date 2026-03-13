@@ -6,9 +6,9 @@ export function ContactMobile() {
         <Section className="block tablet:hidden w-full pt-16 pb-20 px-5 flex flex-col font-sans bg-background">
             <div className="flex flex-col mb-12">
                 <h1 className="text-[28px] font-bold leading-[1.1] text-foreground">
-                    Always ready to help you<br />
-                    and answer your<br />
-                    questions
+                    Ready to build<br />
+                    something<br />
+                    that works?
                 </h1>
             </div>
 

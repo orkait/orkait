@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { TEAM_MEMBERS, type TeamMember } from "@/data/team";
 import { Section } from "@/components/shared/section";
-import { ChevronRight } from "lucide-react";
+
 
 function TeamMemberCard({ member, index }: { member: TeamMember; index: number }) {
     return (
@@ -63,25 +63,12 @@ export function TeamCarousel() {
                         (02) OUR TEAM
                     </h2>
 
-                    {/* DESKTOP STAGGERED GRID VIEW */}
+                    {/* DESKTOP GRID VIEW */}
                     <div className="flex flex-col items-center justify-center w-full">
-                        <div className="grid grid-cols-4 gap-x-1 gap-y-1">
-                            {/* Rows 1 & 2 (8 members) */}
-                            {TEAM_MEMBERS.slice(0, 8).map((member, index) => (
+                        <div className="flex flex-wrap justify-center gap-1">
+                            {TEAM_MEMBERS.map((member, index) => (
                                 <TeamMemberCard key={index} member={member} index={index} />
                             ))}
-                            
-                            {/* Row 3 - STAGGERED PER FIGMA IMAGE */}
-                            <div className="w-[216px] h-[282px]" /> {/* Empty Column 1 */}
-                            
-                            {TEAM_MEMBERS.slice(8, 10).map((member, index) => (
-                                <TeamMemberCard key={index + 8} member={member} index={index + 8} />
-                            ))}
-
-                            {/* Arrow Card - Column 4 */}
-                            <div className="w-[216px] h-[282px] bg-white border border-border flex items-center justify-center group cursor-pointer hover:bg-muted/50 transition-colors">
-                                <ChevronRight className="w-12 h-12 text-foreground group-hover:translate-x-1 transition-transform" strokeWidth={1} />
-                            </div>
                         </div>
                     </div>
                 </Section>

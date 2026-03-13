@@ -11,10 +11,10 @@ export const Hero = () => {
                 <div className="flex items-center justify-end font-bold w-full h-full ">
                     <div className="max-w-lg flex flex-col items-end justify-center gap-[68px] mt-4 px-4">
                         <span className="w-full max-w-[334px] text-[24px] font-medium leading-[24px] tracking-[-1.55px] text-black text-right text-wrap">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae tortor varius.
+                            We engineer software that works. Reliable systems, honest engineering, no hype.
                         </span>
                         <Button asChild className="inline-flex px-4 py-2 justify-center items-center gap-[10px] rounded-md bg-slate-900 text-white hover:bg-slate-900/90 h-auto font-normal text-base">
-                            <Link href={routes.contact}>Contact Us</Link>
+                            <Link href={routes.contact}>Talk to Us</Link>
                         </Button>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export const Hero = () => {
                 {/* Tagline */}
                 <div className="absolute right-0 tablet:top-6 laptop:top-[12px] w-full max-w-[450px] laptop:max-w-[512px] z-20">
                     <p className="tablet:text-[36px] laptop:text-title-2 font-bold leading-tight laptop:leading-[50px] tracking-[-0.96px] text-black text-right">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae tortor varius.
+                        We engineer software that works. Reliable systems, honest engineering, no hype.
                     </p>
                 </div>
 

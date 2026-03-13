@@ -29,12 +29,12 @@ const Advance = () => {
 
                 {/* Mobile Section label — top */}
                 <p className="tablet:hidden text-foreground font-medium text-[14px] leading-[20px] mb-[16px]">
-                    (04) ADV
+                    (03) ADV
                 </p>
 
                 {/* Heading (Hidden on Mobile) */}
                 <h2 className="hidden tablet:block text-foreground font-medium text-title-1 tablet:text-heading leading-title-1 tablet:leading-heading tracking-tight">
-                    High Performance scalable solutions
+                    High-Performance Scalable Solutions
                 </h2>
 
                 {/* Features container (Relative wrapper to bind gradient height) */}
@@ -85,7 +85,7 @@ const Advance = () => {
 
             {/* Section label — bottom (Hidden on Mobile) */}
             <p className="hidden tablet:block mt-16 text-foreground font-medium text-body-lg leading-body-lg">
-                (04) ADV
+                (03) ADV
             </p>
         </div>
     );
