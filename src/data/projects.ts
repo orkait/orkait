@@ -5,7 +5,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: "17th-floor",
 		title: "17th Floor",
-		services: "Strategy, Identity",
+		services: "Strategy, Engineering",
 		href: `${routes.projects}#project-17th-floor`,
 		image: {
 			src: "/projects/17th-floor.webp",
@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: "mora-fashion",
 		title: "Mora Fashion",
-		services: "Strategy, Identity, Webdesign",
+		services: "Strategy, Web Engineering",
 		href: `${routes.projects}#project-mora-fashion`,
 		image: {
 			src: "/projects/mora-fashion.webp",
@@ -27,7 +27,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: "zeba-imp",
 		title: "Zeba-IMP",
-		services: "Strategy, Identity, Webdesign",
+		services: "Strategy, Full-Stack Development",
 		href: `${routes.projects}#project-zeba-imp`,
 		image: {
 			src: "/projects/zeba-imp.webp",
@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: "anima-living",
 		title: "Anima Living",
-		services: "Strategy, Identity, Webdesign",
+		services: "Web App, Backend Systems",
 		href: `${routes.projects}#project-anima-living`,
 		image: {
 			src: "/projects/anima-living.webp",
@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: "montara-immobilien",
 		title: "Montara Immobilien",
-		services: "Strategy, Identity, Webdesign",
+		services: "Dashboard, API Engineering",
 		href: `${routes.projects}#project-montara-immobilien`,
 		image: {
 			src: "/projects/montara-immobilien.webp",
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
 	{
 		id: "vienna-rental",
 		title: "Vienna Rental",
-		services: "Strategy, Identity",
+		services: "SaaS Platform, Engineering",
 		href: `${routes.projects}#project-vienna-rental`,
 		image: {
 			src: "/projects/vienna-rental.webp",

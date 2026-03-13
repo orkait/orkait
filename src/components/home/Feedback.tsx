@@ -32,8 +32,8 @@ const Feedback = () => {
                     (04) FEEDBACK
                 </p>
                 <h2 className="text-foreground font-bold tablet:font-medium text-[24px] leading-[30px] tablet:text-heading tablet:leading-heading tracking-tight">
-                    <span className="tablet:hidden">Clients Trust Us!</span>
-                    <span className="hidden tablet:block">Clients<br />Trust Us!</span>
+                    <span className="tablet:hidden">Teams Trust Us to Deliver</span>
+                    <span className="hidden tablet:block">Teams Trust Us<br />to Deliver</span>
                 </h2>
             </div>
 

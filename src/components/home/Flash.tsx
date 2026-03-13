@@ -7,7 +7,7 @@ const Flash = () => {
             <div className="relative w-full h-full overflow-hidden">
                 <Image
                     src="/homepage/059a3882520dc15f89884aa9adf2a9548d6e1bb1.png"
-                    alt="Flash"
+                    alt="Orkait engineering workspace"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                     priority

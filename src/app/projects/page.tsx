@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/config/metadata";
 
 export const metadata: Metadata = createPageMetadata(
 	"Projects",
-	"Case studies covering strategy, product design, and engineering delivery."
+	"Engineering case studies — dashboards, web apps, SaaS platforms, and scalable backend systems."
 );
 
 export default function ProjectsPage() {

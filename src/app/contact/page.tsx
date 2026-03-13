@@ -1,14 +1,12 @@
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactMobile } from "@/components/contact/ContactMobile";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Section } from "@/components/shared/section";
 import { createPageMetadata } from "@/config/metadata";
-import { routes } from "@/config/routes";
 
 export const metadata: Metadata = createPageMetadata(
 	"Contact Us",
-	"Always ready to help you and answer your questions. Reach out to the Orkait team today."
+	"Tell us your problem. We'll tell you if we can solve it. No sales pitch, just honest engineering."
 );
 
 export default function ContactPage() {
@@ -20,21 +18,16 @@ export default function ContactPage() {
                 <section className="flex">
                     <div className="flex-1">
                         <h1 className="text-title-1 leading-title-1 font-bold tracking-tight text-foreground">
-                            Always ready to
+                            Ready to build
                             <br />
-                            help you and
+                            something
                             <br />
-                            answer your
-                            <br />
-                            questions
+                            that works?
                         </h1>
 
-                        <Link
-                            href={routes.contact}
-                            className="block mt-16 text-body leading-body text-foreground font-medium hover:opacity-70 transition-opacity"
-                        >
-                            Social Network
-                        </Link>
+                        <p className="block mt-16 text-body leading-body text-muted-foreground font-medium">
+                            Or find us on social media
+                        </p>
                     </div>
 
                     <div className="flex-1">

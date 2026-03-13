@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         default: "Orkait",
         template: "%s | Orkait",
     },
-    description: "High-performance software solutions for modern businesses.",
+    description: "Orkait is an engineering-first company that builds reliable client software and focused SaaS products. No fluff, no hype — just systems that work.",
 };
 
 export default function RootLayout({

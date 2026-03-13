@@ -1,0 +1,1 @@
+Read and follow CLAUDE.md at the project root. It contains Orkait's brand rules, banned language, tone guide, content architecture, and engineering-first positioning requirements. All copy changes must comply with those rules.

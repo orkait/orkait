@@ -11,8 +11,8 @@ export interface ChatMessage {
 const MOCK_SCRIPT: Omit<ChatMessage, "id">[] = [
     { sender: "bot", text: "Hi there! How can I help?" },
     { sender: "user", text: "🤔 What is Orkait?" },
-    { sender: "bot", text: "Orkait specializes in high-performance scalable solutions and rapid iteration." },
-    { sender: "bot", text: "We empower businesses to thrive in the digital world through custom SaaS and enterprise deployment." },
+    { sender: "bot", text: "Orkait is an engineering-first company. We build reliable client software and focused SaaS products." },
+    { sender: "bot", text: "From dashboards to scalable backends — we solve real problems with honest engineering. No hype." },
 ];
 
 export function useChatScript(isOpen: boolean) {

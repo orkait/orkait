@@ -38,8 +38,8 @@ const ServicesText = () => {
                 <div className="flex flex-row items-end gap-10 shrink-0">
                     <div className="relative w-[500px] aspect-square rounded-sm overflow-hidden bg-muted">
                         <Image
-                            src="https://placehold.co/500x500/webp"
-                            alt="Services Overview"
+                            src="/homepage/studio-side.png"
+                            alt="Orkait engineering services"
                             fill
                             className="object-cover"
                         />
