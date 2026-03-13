@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "figma": {
+      "command": "node",
+      "args": ["C:/Users/Admin/AppData/Roaming/npm/node_modules/@modelcontextprotocol/server-figma/dist/index.js"],
+      "env": {
+        "FIGMA_PERSONAL_ACCESS_TOKEN": ""
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

@@ -13,8 +13,8 @@ const StudioText = () => {
                         </p>
                     </span>
                     <h2 className="text-foreground font-medium text-subtitle leading-tight tracking-tight">
-                        We craft digital experiences that inspire, empowering businesses to
-                        thrive in the digital world.
+                        Engineering-first. We build reliable client software and focused
+                        SaaS products that hold up under pressure.
                     </h2>
                 </div>
 
@@ -22,7 +22,7 @@ const StudioText = () => {
                     <div className="w-full relative shrink-0 rounded-[3px] overflow-hidden aspect-[340/375] bg-muted">
                         <Image
                             src="/homepage/studio-side.png"
-                            alt="Orkait studio space"
+                            alt="Orkait engineering team at work"
                             fill
                             className="object-cover"
                         />
@@ -31,18 +31,17 @@ const StudioText = () => {
                     <div className="flex flex-col gap-6 w-full">
                         <div className="pr-[16px]">
                             <p className="text-foreground font-medium text-[14px] leading-[20px]">
-                                We are Orkait, a service provider dedicated to crafting digital
-                                experiences that inspire. Our expertise spans three core domains: web
-                                app development, software solutions, and enterprise scaling &amp;
-                                deployment.
+                                We are Orkait, an engineering-first company. Our expertise spans
+                                three core domains: web app development, scalable backend systems,
+                                and focused SaaS products built from real needs.
                             </p>
                         </div>
 
                         <div className="flex flex-col items-center gap-7 mt-4">
                             <p className="text-foreground font-medium text-[14px] leading-[20px] text-right pl-[50px]">
-                                We work with small enterprises to help them compete and grow in
-                                today&apos;s digital landscape. Our team combines technical excellence
-                                with creative vision to deliver solutions that make a real difference.
+                                We don&apos;t chase trends — we solve problems. Every line of code
+                                we ship is backed by ownership, craftsmanship, and a commitment
+                                to getting it right.
                             </p>
                             <Button className="px-4 py-2 h-auto text-[14px] font-medium rounded-[6px]" variant="default">
                                 About Us
@@ -61,8 +60,8 @@ const StudioText = () => {
                         </p>
                     </div>
                     <h2 className="text-foreground font-medium text-subtitle tablet:text-title-1 laptop:text-heading leading-tight tablet:leading-title-1 laptop:leading-heading tracking-tight max-w-[1400px] block">
-                        We craft digital experiences that inspire, empowering businesses to
-                        thrive in the digital world.
+                        Engineering-first. We build reliable client software and focused
+                        SaaS products that hold up under pressure.
                     </h2>
                 </div>
                 
@@ -74,7 +73,7 @@ const StudioText = () => {
                     <div className="w-full relative shrink-0 rounded-[3px] overflow-hidden aspect-[340/375] laptop:aspect-[291/322] bg-muted">
                         <Image
                             src="/homepage/studio-side.png"
-                            alt="Orkait studio space"
+                            alt="Orkait engineering team at work"
                             fill
                             className="object-cover"
                         />
@@ -82,19 +81,18 @@ const StudioText = () => {
 
                     <div className="laptop:max-w-[311px] laptop:ml-24">
                         <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
-                            We are Orkait, a service provider dedicated to crafting digital
-                            experiences that inspire. Our expertise spans three core domains: web
-                            app development, software solutions, and enterprise scaling &amp;
-                            deployment.
+                            We are Orkait, an engineering-first company. Our expertise spans
+                            three core domains: web app development, scalable backend systems,
+                            and focused SaaS products built from real needs.
                         </p>
                     </div>
 
                     {/* Second description + CTA */}
                     <div className="flex flex-col items-start gap-8 laptop:max-w-[280px]">
                         <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
-                            We work with small enterprises to help them compete and grow in
-                            today&apos;s digital landscape. Our team combines technical excellence
-                            with creative vision to deliver solutions that make a real difference.
+                            We don&apos;t chase trends — we solve problems. Every line of code
+                            we ship is backed by ownership, craftsmanship, and a commitment
+                            to getting it right.
                         </p>
                         <Button className="px-4 py-2 h-auto text-[14px] tablet:text-base font-medium rounded-[6px] bg-black text-white hover:bg-black/90" variant="default">
                             About Us

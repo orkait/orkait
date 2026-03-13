@@ -39,10 +39,10 @@ export const ContactUs = () => {
                 {/* ── Left: Tagline ── */}
                 <div className="flex flex-col gap-16 laptop:flex-1">
                     <h2 className="text-foreground text-title-1 leading-title-1 font-bold tracking-tight">
-                        Always ready to help you and answer your questions
+                        Ready to build something that works?
                     </h2>
                     <p className="text-muted-foreground text-subtitle leading-subtitle font-medium">
-                        Social Network
+                        Or find us on social media
                     </p>
                 </div>
 

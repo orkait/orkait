@@ -7,7 +7,7 @@ import { Section } from "@/components/shared/section";
 
 export const metadata: Metadata = createPageMetadata(
 	"About",
-	"Learn how Orkait helps teams launch and scale high-performance digital products."
+	"Orkait is an engineering-first company that builds reliable client software and focused SaaS products."
 );
 
 export default function AboutPage() {
@@ -22,15 +22,15 @@ export default function AboutPage() {
 						</p>
 
 						<h1 className="text-[clamp(32px,9vw,40px)] font-bold leading-[1.05] uppercase text-foreground">
-							WE CRAFT DIGITAL<br />
-							EXPERIENCES THAT<br />
-							INSPIRE
+							WE ENGINEER<br />
+							SOFTWARE<br />
+							THAT WORKS
 						</h1>
 
 						<p className="text-[16px] font-medium leading-[22px] text-foreground mt-[220px] max-w-[65%]">
-							Empowering businesses<br />
-							to thrive in the digital<br />
-							world.
+							Reliable systems.<br />
+							Honest engineering.<br />
+							No hype.
 						</p>
 					</div>
 
@@ -51,20 +51,21 @@ export default function AboutPage() {
 						</p>
 					</div>
 
-					{/* We Craft Digital... - Top: 189px, Left: 64px */}
+					{/* Heading - Top: 189px, Left: 64px */}
 					<div className="absolute top-[189px] left-[64px] z-10 w-[515px]">
 						<h1 className="text-[64px] font-bold leading-[1.2] text-foreground tracking-[-1.55px]">
-							We Craft Digital<br />
-							Experiences that<br />
-							Inspire
+							We Engineer<br />
+							Software<br />
+							That Works
 						</h1>
 					</div>
 
-					{/* Empowering... - Top: 496px, Left: 576px */}
+					{/* Subheading - Top: 496px, Left: 576px */}
 					<div className="absolute top-[496px] left-[576px] z-10 w-[288px]">
 						<p className="text-[32px] font-bold leading-[1.48] text-foreground tracking-[-0.64px] whitespace-pre-wrap">
-							Empowering      businesses to{"\n"}
-							thrive in the digital world.
+							Reliable systems.{"\n"}
+							Honest engineering.{"\n"}
+							No hype.
 						</p>
 					</div>
 
