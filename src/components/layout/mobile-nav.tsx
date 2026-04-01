@@ -32,7 +32,7 @@ export function MobileNav() {
 				<SheetHeader className="pt-8 relative">
 					<SheetTitle className="sr-only">Navigation</SheetTitle>
 					<SheetClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-						<Image src="/cross.svg" alt="Close menu" width={36} height={36} />
+						<Image src="/data/ui/cross.svg" alt="Close menu" width={36} height={36} />
 						<span className="sr-only">Close</span>
 					</SheetClose>
 				</SheetHeader>
@@ -44,14 +44,12 @@ export function MobileNav() {
 							</Button>
 						</SheetClose>
 					))}
-				</nav>
-				<div className="mt-auto px-4 pb-8 flex justify-center">
 					<SheetClose asChild>
-						<Button asChild>
+						<Button asChild variant="ghost" className="justify-end text-lg font-normal hover:bg-transparent hover:text-primary">
 							<Link href={routes.contact}>Contact Us</Link>
 						</Button>
 					</SheetClose>
-				</div>
+				</nav>
 			</SheetContent>
 		</Sheet>
 	);

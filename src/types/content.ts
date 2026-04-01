@@ -20,6 +20,7 @@ export type PricingPlan = {
 	paymentType: string;
 	features: string[];
 	ctaLabel: string;
+	ctaHref: string;
 	tone: PricingPlanTone;
 };
 
@@ -41,4 +42,19 @@ export type Testimonial = {
 	company: string;
 	content: string;
 	avatar?: string;
+};
+
+export type OSSProject = {
+	id: string;
+	title: string;
+	description: string;
+	tags: string;
+	language: string;
+	href: string;
+	hidden?: boolean;
+	image?: {
+		src: string;
+		width: number;
+		height: number;
+	};
 };

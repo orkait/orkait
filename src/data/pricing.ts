@@ -1,4 +1,5 @@
 import type { PricingPlan } from "@/types";
+import { routes } from "@/config/routes";
 
 const STARTER_PLAN: Omit<PricingPlan, "id"> = {
 	title: "Starter",
@@ -14,6 +15,7 @@ const STARTER_PLAN: Omit<PricingPlan, "id"> = {
 		"30 days post-launch support",
 	],
 	ctaLabel: "Get Started",
+	ctaHref: routes.contact,
 	tone: "default",
 };
 
@@ -31,6 +33,7 @@ const PRO_PLAN: Omit<PricingPlan, "id"> = {
 		"90 days post-launch support",
 	],
 	ctaLabel: "Talk to Us",
+	ctaHref: routes.contact,
 	tone: "featured",
 };
 
@@ -48,4 +51,3 @@ export const PRICING_PLANS: PricingPlan[] = [
 		...STARTER_PLAN,
 	},
 ];
-

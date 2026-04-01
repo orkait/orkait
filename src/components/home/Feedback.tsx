@@ -8,7 +8,7 @@ import {
     CarouselItem,
     type CarouselApi,
 } from "@/components/ui/carousel";
-import FeedbackCard, { type FeedbackCardProps } from "./FeedbackCard";
+import FeedbackCard from "./FeedbackCard";
 import { cn } from "@/lib/utils";
 
 import { TESTIMONIALS } from "@/constants";

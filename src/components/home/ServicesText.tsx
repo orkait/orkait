@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { SERVICES } from "@/constants";
+import { GameOfLife } from "@/components/shared/game-of-life";
 
 const ServicesText = () => {
     return (
@@ -34,42 +34,37 @@ const ServicesText = () => {
 
             {/* Tablet/laptop view */}
             <div className="hidden tablet:flex flex-row justify-between items-start mt-32 gap-16 w-full overflow-visible">
-                {/* Image + tag list */}
-                <div className="flex flex-row items-end gap-10 shrink-0">
-                    <div className="relative w-[500px] aspect-square rounded-sm overflow-hidden bg-muted">
-                        <Image
-                            src="/homepage/studio-side.png"
-                            alt="Orkait engineering services"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-                    <div className="flex flex-col gap-1 pb-2">
-                        <p className="text-foreground font-medium text-body leading-body">Developer Tools</p>
-                        <p className="text-foreground font-medium text-body leading-body">Infrastructure Platforms</p>
-                        <p className="text-foreground font-medium text-body leading-body">Analytics</p>
-                    </div>
-                </div>
-
                 {/* Label + services list */}
                 <div className="flex flex-col items-start gap-4">
                     <span className="text-muted-foreground font-medium text-body-lg leading-body-lg uppercase tracking-widest pl-0">
                         (02) SERVICES
                     </span>
-                    
+
                     <div className="flex flex-col">
                         {SERVICES.map(({ label, active }) => (
                             <p
                                 key={label}
                                 className={`font-medium tablet:text-title-1 laptop:text-heading leading-tight tracking-tight ${
-                                    active 
-                                      ? "text-foreground" 
+                                    active
+                                      ? "text-foreground"
                                       : "text-muted-foreground/30 dark:text-white/10"
                                 }`}
                             >
                                 {label}
                             </p>
                         ))}
+                    </div>
+                </div>
+
+                {/* Game of Life + tag list */}
+                <div className="flex flex-row items-end gap-10 shrink-0">
+                    <div className="flex flex-col gap-1 pb-2">
+                        <p className="text-foreground font-medium text-body leading-body">Developer Tools</p>
+                        <p className="text-foreground font-medium text-body leading-body">Infrastructure Platforms</p>
+                        <p className="text-foreground font-medium text-body leading-body">Analytics</p>
+                    </div>
+                    <div className="relative w-[500px] aspect-square rounded-lg overflow-hidden bg-[#fafafa]">
+                        <GameOfLife className="absolute inset-0 w-full h-full block" />
                     </div>
                 </div>
             </div>

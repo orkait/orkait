@@ -14,10 +14,10 @@ const Advance = () => {
                 }}
             >
                 <Image
-                    src="/homepage/uniq_1.svg"
+                    src="/data/homepage/uniq_1.svg"
                     alt=""
                     fill
-                    className="object-cover object-right"
+                    className="object-cover object-right opacity-30"
                     aria-hidden
                 />
                 <div className="fade-edge-right absolute inset-0 mix-blend-multiply" />
@@ -48,7 +48,7 @@ const Advance = () => {
                         }}
                     >
                         <Image
-                            src="/homepage/uniq_1.svg"
+                            src="/data/homepage/uniq_1.svg"
                             alt=""
                             fill
                             className="object-cover object-right translate-x-[15%]"

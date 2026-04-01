@@ -12,6 +12,15 @@ export const metadata: Metadata = {
         template: "%s | Orkait",
     },
     description: "Orkait is an engineering-first company that builds reliable client software and focused SaaS products. No fluff, no hype — just systems that work.",
+    metadataBase: new URL("https://orkait.com"),
+    openGraph: {
+        siteName: "Orkait",
+        url: "https://orkait.com",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+    },
 };
 
 export default function RootLayout({
@@ -23,18 +32,12 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${satoshi.variable} ${poppins.variable} antialiased relative`}>
                 <SmoothScrollProvider>
-                    <section className="mx-auto w-full max-w-[1440px]">
-                        <Navbar />
-                    </section>
-                    <main className="mx-auto w-full max-w-[1440px]">
+                    <Navbar />
+                    <main>
                         {children}
                     </main>
-
-                    <ChatWidget />
-
-                    <section className="mx-auto w-full max-w-[1440px]">
-                        <Footer />
-                    </section>
+                    {/* <ChatWidget /> */}
+                    <Footer />
                 </SmoothScrollProvider>
             </body>
         </html>

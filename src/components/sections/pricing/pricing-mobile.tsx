@@ -20,12 +20,11 @@ export function PricingMobile() {
       <div className="flex flex-col gap-8 items-center">
         {PRICING_PLANS.map((plan) => {
           const isFeatured = plan.tone === "featured";
-          const isEnterprise = plan.title.toLowerCase() === "enterprise";
           
           return (
             <div
               key={plan.id}
-              className={`w-full max-w-[341px] flex flex-col p-8 rounded-none border border-transparent shadow-md ${
+              className={`w-full max-w-[341px] flex flex-col p-8 rounded-lg border border-transparent shadow-md ${
                 isFeatured
                   ? "bg-gradient-to-b from-[#3b3b3b] to-black text-white shadow-[5.413px_5.413px_12.681px_0px_rgba(0,0,0,0.25)]"
                   : "bg-gradient-to-b from-[#f6f6f6] to-[#e6e6e6] text-black"
@@ -54,13 +53,13 @@ export function PricingMobile() {
 
               <Button
                 asChild
-                className={`w-full h-[36px] rounded-[6px] text-[14px] font-medium transition-colors ${
+                className={`w-full h-[36px] rounded-md text-[14px] font-medium transition-colors ${
                   isFeatured
                     ? "bg-white text-black hover:bg-white/90"
                     : "bg-black text-white hover:bg-black/90"
                 }`}
               >
-                <Link href="#">{plan.ctaLabel}</Link>
+                <Link href={plan.ctaHref}>{plan.ctaLabel}</Link>
               </Button>
             </div>
           );

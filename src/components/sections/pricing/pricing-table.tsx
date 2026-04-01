@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +12,7 @@ function PricingPlanCard({ plan }: { plan: PricingPlan }) {
 	return (
 		<Card
 			className={cn(
-				"h-[586px] w-full max-w-[400px] overflow-hidden rounded-none border border-border shadow-2xl",
+				"h-[586px] w-full max-w-[400px] overflow-hidden rounded-lg border border-border shadow-2xl",
 				isFeatured
 					? "bg-[linear-gradient(180deg,var(--color-pricing-active-start)_0%,var(--color-pricing-active-end)_100%)] text-primary-foreground"
 					: "bg-background text-foreground"
@@ -72,7 +73,7 @@ function PricingPlanCard({ plan }: { plan: PricingPlan }) {
 				</ul>
 
 				<Button
-					type="button"
+					asChild
 					size="lg"
 					className={cn(
 						"mt-auto h-10 w-full",
@@ -81,7 +82,7 @@ function PricingPlanCard({ plan }: { plan: PricingPlan }) {
 							: "border border-foreground bg-background text-foreground hover:bg-muted"
 					)}
 				>
-					{plan.ctaLabel}
+					<Link href={plan.ctaHref}>{plan.ctaLabel}</Link>
 				</Button>
 			</CardContent>
 		</Card>

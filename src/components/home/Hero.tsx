@@ -13,7 +13,7 @@ export const Hero = () => {
                         <span className="w-full max-w-[334px] text-[24px] font-medium leading-[24px] tracking-[-1.55px] text-black text-right text-wrap">
                             We engineer software that works. Reliable systems, honest engineering, no hype.
                         </span>
-                        <Button asChild className="inline-flex px-4 py-2 justify-center items-center gap-[10px] rounded-md bg-slate-900 text-white hover:bg-slate-900/90 h-auto font-normal text-base">
+                        <Button asChild className="inline-flex px-4 py-2 justify-center items-center gap-[10px] rounded-md bg-foreground text-white hover:bg-slate-900/90 h-auto font-normal text-base">
                             <Link href={routes.contact}>Talk to Us</Link>
                         </Button>
                     </div>
@@ -22,7 +22,7 @@ export const Hero = () => {
                     <div className="relative inline-block mt-4">
                         <Image
                             className="absolute aspect-square w-[90px] h-[90px] -rotate-[4.672deg] -top-[75px] -left-3"
-                            src="/orkait.svg"
+                            src="/data/brand/orkait.svg"
                             alt="Orkait Logo Fin"
                             width={200}
                             height={200}
@@ -53,9 +53,12 @@ export const Hero = () => {
             {/* Tablet/laptop view */}
             <div className="hidden tablet:block relative w-full h-[600px] laptop:h-[750px] overflow-visible">
                 {/* Tagline */}
-                <div className="absolute right-0 tablet:top-6 laptop:top-[12px] w-full max-w-[450px] laptop:max-w-[512px] z-20">
-                    <p className="tablet:text-[36px] laptop:text-title-2 font-bold leading-tight laptop:leading-[50px] tracking-[-0.96px] text-black text-right">
-                        We engineer software that works. Reliable systems, honest engineering, no hype.
+                <div className="absolute right-0 tablet:top-6 laptop:top-[12px] w-full max-w-[450px] laptop:max-w-[1000px] z-20">
+                    <p className="tablet:text-[36px] laptop:text-[52px] font-bold leading-tight laptop:leading-[50px] tracking-[-0.96px] text-black text-right">
+                        We engineer software that works.<br />
+                        Honest engineering.<br />
+                        Reliable systems.<br />
+                        No hype.
                     </p>
                 </div>
 
@@ -64,11 +67,11 @@ export const Hero = () => {
                     <div className="relative transition-all duration-500">
                         
                         {/* Logo fin */}
-                        <div className="absolute tablet:-top-[110px] tablet:left-[-20px] laptop:top-[-90px] laptop:left-[-20px] z-10 pointer-events-none">
-                            <div className="rotate-[-4.67deg] transition-transform duration-300">
+                        <div className="absolute tablet:-top-[95px] tablet:left-[-10px] laptop:-top-[70px] laptop:left-[-10px] z-10 pointer-events-none">
+                            <div className="rotate-[-5deg] transition-transform duration-300">
                                 <Image
                                     className="tablet:w-[180px] tablet:h-[180px] laptop:w-[240px] laptop:h-[240px]"
-                                    src="/orkait.svg"
+                                    src="/data/brand/orkait.svg"
                                     alt="Orkait Fin Logo"
                                     width={240}
                                     height={240}
