@@ -1,5 +1,5 @@
 export const images = {
-	logo: "/orkait.svg",
-	logoWhite: "/orkait_white.svg",
-	logoYellow: "/orkait_yellow.svg",
+	logo: "/data/brand/orkait.svg",
+	logoWhite: "/data/brand/orkait_white.svg",
+	logoYellow: "/data/brand/orkait_yellow.svg",
 } as const;

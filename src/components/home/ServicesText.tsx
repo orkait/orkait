@@ -36,9 +36,9 @@ const ServicesText = () => {
             <div className="hidden tablet:flex flex-row justify-between items-start mt-32 gap-16 w-full overflow-visible">
                 {/* Image + tag list */}
                 <div className="flex flex-row items-end gap-10 shrink-0">
-                    <div className="relative w-[500px] aspect-square rounded-sm overflow-hidden bg-muted">
+                    <div className="relative w-[500px] aspect-square rounded-lg overflow-hidden bg-muted">
                         <Image
-                            src="/homepage/studio-side.png"
+                            src="/data/homepage/studio-side.png"
                             alt="Orkait engineering services"
                             fill
                             className="object-cover"

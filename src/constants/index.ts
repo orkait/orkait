@@ -119,29 +119,28 @@ export type FooterColumn = {
 export const FOOTER_COLUMNS: FooterColumn[] = [
     {
         ariaLabel: "Primary navigation",
+        heading: "Company",
         links: [
             { label: "Home", href: routes.home },
-            { label: "About", href: routes.about },
             { label: "Our Work", href: routes.projects },
-            { label: "Services", href: routes.services },
         ],
     },
     {
         ariaLabel: "Legal navigation",
+        heading: "Legal",
         links: [
             { label: "Cookie settings", href: `${routes.privacyPolicy}#cookie-settings` },
-            { label: "Pricing", href: routes.pricing },
             { label: "Privacy Policy", href: routes.privacyPolicy },
             { label: "Terms & Conditions", href: routes.terms },
         ],
     },
     {
-        ariaLabel: "Social navigation",
-        heading: "Social Media",
+        ariaLabel: "Social and contact navigation",
+        heading: "Connect",
         links: [
-            { label: "Youtube", href: "https://www.youtube.com", isExternal: true },
-            { label: "Instagram", href: "https://www.instagram.com", isExternal: true },
-            { label: "Twitter", href: "https://x.com", isExternal: true },
+            { label: "Contact", href: routes.contact },
+            { label: "LinkedIn", href: "https://www.linkedin.com/company/orkait/", isExternal: true },
+            { label: "GitHub", href: "https://github.com/orkait", isExternal: true },
         ],
     },
 ];

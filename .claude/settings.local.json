@@ -4,7 +4,21 @@
       "WebFetch(domain:127.0.0.1)",
       "Bash(netstat:*)",
       "Bash(curl:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(docker compose:*)",
+      "Read(//home/kai/**)",
+      "Bash(codex --help)",
+      "Bash(grep -v \"^[[:space:]]*$\")",
+      "Bash(objdump -d /home/kai/.local/bin/claude-confined)",
+      "Bash(gcc -O2 -o /home/kai/.local/bin/codex-confined /tmp/codex-confined.c)",
+      "Bash(/home/kai/.local/bin/codex-confined --version)",
+      "Bash(gcc -O2 -o /home/kai/.local/bin/codex-confined /mnt/storage/codespace/configs/codex-confined.c)",
+      "Bash(aa-status)",
+      "Bash(sudo aa-status:*)",
+      "Bash(sudo -S ls /etc/apparmor.d/)",
+      "Bash(sudo -S cp /mnt/storage/codespace/configs/apparmor-codex-confined /etc/apparmor.d/autonomous-agent-codex)",
+      "Bash(sudo -S apparmor_parser -r /etc/apparmor.d/autonomous-agent-codex)",
+      "Bash(sudo -S aa-status)"
     ]
   }
 }

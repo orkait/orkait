@@ -14,7 +14,7 @@ const Advance = () => {
                 }}
             >
                 <Image
-                    src="/homepage/uniq_1.svg"
+                    src="/data/homepage/uniq_1.svg"
                     alt=""
                     fill
                     className="object-cover object-right"
@@ -48,7 +48,7 @@ const Advance = () => {
                         }}
                     >
                         <Image
-                            src="/homepage/uniq_1.svg"
+                            src="/data/homepage/uniq_1.svg"
                             alt=""
                             fill
                             className="object-cover object-right translate-x-[15%]"

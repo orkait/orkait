@@ -1,0 +1,18 @@
+{
+  "configVersion": "0.8.0",
+  "server": {
+    "port": "9867",
+    "bind": "0.0.0.0",
+    "token": "cf46bf554beedfd19e8f76febbe8b2a3a46245e1b123c5446d347c26babd3f1e"
+  },
+  "instanceDefaults": {
+    "mode": "headless",
+    "maxTabs": 8,
+    "tabEvictionPolicy": "close_oldest"
+  },
+  "security": {
+    "idpi": {
+      "enabled": false
+    }
+  }
+}

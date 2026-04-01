@@ -1,72 +1,61 @@
-import type { Project } from "@/types";
+import type { OSSProject, Project } from "@/types";
 import { routes } from "@/config/routes";
 
 export const PROJECTS: Project[] = [
 	{
-		id: "17th-floor",
-		title: "17th Floor",
-		services: "Strategy, Engineering",
-		href: `${routes.projects}#project-17th-floor`,
+		id: "rustbox",
+		title: "Rustbox",
+		services: "Infrastructure, Systems Engineering",
+		href: "https://rustbox.orkait.com",
 		image: {
-			src: "/projects/17th-floor.webp",
+			src: "/data/projects/rustbox.webp",
 			width: 453,
 			height: 443,
 		},
 	},
 	{
-		id: "mora-fashion",
-		title: "Mora Fashion",
-		services: "Strategy, Web Engineering",
-		href: `${routes.projects}#project-mora-fashion`,
+		id: "booleanstack",
+		title: "BooleanStack",
+		services: "SaaS Platform, Full-Stack Development",
+		href: "https://booleanstack.com",
 		image: {
-			src: "/projects/mora-fashion.webp",
+			src: "/data/projects/booleanstack.webp",
 			width: 453,
 			height: 443,
 		},
 	},
+];
+
+export const OSS_PROJECTS: OSSProject[] = [
 	{
-		id: "zeba-imp",
-		title: "Zeba-IMP",
-		services: "Strategy, Full-Stack Development",
-		href: `${routes.projects}#project-zeba-imp`,
-		image: {
-			src: "/projects/zeba-imp.webp",
-			width: 453,
-			height: 599,
-		},
+		id: "gatekeeper",
+		title: "Gatekeeper",
+		description:
+			"Control plane for managing authentication, sessions, subscriptions, and access control across multiple services. Built on Cloudflare Workers.",
+		tags: "Backend Systems, API Engineering",
+		language: "TypeScript",
+		href: "https://github.com/orkait/gatekeeper",
+		image: { src: "/data/projects/gatekeeper.webp", width: 453, height: 300 },
 	},
 	{
-		id: "anima-living",
-		title: "Anima Living",
-		services: "Web App, Backend Systems",
-		href: `${routes.projects}#project-anima-living`,
-		image: {
-			src: "/projects/anima-living.webp",
-			width: 453,
-			height: 599,
-		},
+		id: "event-calendar",
+		title: "Event Calendar",
+		description:
+			"Production-ready scheduling API on Cloudflare Workers using bitset-based storage for availability tracking and conflict detection.",
+		tags: "API Engineering, Infrastructure",
+		language: "TypeScript",
+		href: "https://github.com/orkait/event-calendar",
+		image: { src: "/data/projects/event-calendar.webp", width: 453, height: 300 },
 	},
 	{
-		id: "montara-immobilien",
-		title: "Montara Immobilien",
-		services: "Dashboard, API Engineering",
-		href: `${routes.projects}#project-montara-immobilien`,
-		image: {
-			src: "/projects/montara-immobilien.webp",
-			width: 453,
-			height: 604,
-		},
-	},
-	{
-		id: "vienna-rental",
-		title: "Vienna Rental",
-		services: "SaaS Platform, Engineering",
-		href: `${routes.projects}#project-vienna-rental`,
-		image: {
-			src: "/projects/vienna-rental.webp",
-			width: 453,
-			height: 443,
-		},
+		id: "unified-mcp",
+		title: "Unified MCP",
+		description:
+			"One MCP server. All frontend libraries. No conflicts. Provides Claude with unified access to React Flow, Motion, and other frontend tooling.",
+		tags: "Dev Tools, AI Tooling",
+		language: "TypeScript",
+		href: "https://github.com/orkait/unified-mcp",
+		image: { src: "/data/projects/unified-mcp.webp", width: 453, height: 300 },
 	},
 ];
 

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { HEADER_LINKS } from "@/config/site-links";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { routes } from "@/config/routes";
@@ -16,7 +15,7 @@ export function Navbar() {
             <div className="flex w-full items-center justify-between px-4 py-4 tablet:px-8 base:px-12">
                 <Link href="/" aria-label="Home" className="shrink-0">
                     <Image
-                        src="/orkait.svg"
+                        src="/data/brand/orkait.svg"
                         alt="Orkait Logo"
                         width={69}
                         height={46}
