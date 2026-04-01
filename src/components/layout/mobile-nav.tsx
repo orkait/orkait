@@ -44,14 +44,12 @@ export function MobileNav() {
 							</Button>
 						</SheetClose>
 					))}
-				</nav>
-				<div className="mt-auto px-4 pb-8 flex justify-center">
 					<SheetClose asChild>
-						<Button asChild>
+						<Button asChild variant="ghost" className="justify-end text-lg font-normal hover:bg-transparent hover:text-primary">
 							<Link href={routes.contact}>Contact Us</Link>
 						</Button>
 					</SheetClose>
-				</div>
+				</nav>
 			</SheetContent>
 		</Sheet>
 	);

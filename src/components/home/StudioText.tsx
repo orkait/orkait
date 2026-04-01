@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/config/routes";
+import { AsciiField } from "@/components/shared/ascii-field";
 
 const StudioText = () => {
     return (
@@ -21,13 +21,8 @@ const StudioText = () => {
                 </div>
 
                 <div className="mt-16 flex flex-col gap-8 items-start w-full">
-                    <div className="w-full relative shrink-0 rounded-lg overflow-hidden aspect-[340/375] bg-muted">
-                        <Image
-                            src="/data/homepage/studio-side.png"
-                            alt="Orkait engineering team at work"
-                            fill
-                            className="object-cover"
-                        />
+                    <div className="w-full relative shrink-0 rounded-lg overflow-hidden aspect-[340/375] bg-[#fafafa]">
+                        <AsciiField className="absolute inset-0 w-full h-full block" />
                     </div>
 
                     <div className="flex flex-col gap-6 w-full">
@@ -72,13 +67,8 @@ const StudioText = () => {
                 <div className="mt-16 laptop:mt-32 grid grid-cols-1 tablet:grid-cols-1 laptop:grid-cols-3 gap-8 laptop:gap-8 base:gap-12 items-start w-full">
 
                     {/* Image column */}
-                    <div className="w-full relative shrink-0 rounded-lg overflow-hidden aspect-[340/375] laptop:aspect-[291/322] bg-muted">
-                        <Image
-                            src="/data/homepage/studio-side.png"
-                            alt="Orkait engineering team at work"
-                            fill
-                            className="object-cover"
-                        />
+                    <div className="w-full relative shrink-0 rounded-lg overflow-hidden aspect-[340/375] laptop:aspect-[291/322] bg-[#fafafa]">
+                        <AsciiField className="absolute inset-0 w-full h-full block" />
                     </div>
 
                     <div className="laptop:max-w-[311px] laptop:ml-24">

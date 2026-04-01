@@ -51,6 +51,7 @@ export type OSSProject = {
 	tags: string;
 	language: string;
 	href: string;
+	hidden?: boolean;
 	image?: {
 		src: string;
 		width: number;

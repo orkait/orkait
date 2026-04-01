@@ -1,15 +1,91 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { CardSwap, Card } from "@/components/ui/card-swap";
+import { ProjectAvatar } from "@/components/shared/project-avatar";
 import { PROJECTS, OSS_PROJECTS } from "@/data/projects";
 
-const SHOWCASE_ITEMS = [
-    ...PROJECTS.map((p) => ({ id: p.id, title: p.title, imageSrc: p.image.src })),
+type ShowcaseItem = {
+    id: string;
+    title: string;
+    subtitle: string;
+    href: string;
+    imageSrc: string | null;
+};
+
+const ALL_ITEMS: ShowcaseItem[] = [
+    ...PROJECTS.map((p) => ({
+        id: p.id,
+        title: p.title,
+        subtitle: p.services,
+        href: p.href,
+        imageSrc: p.image.src,
+    })),
     ...OSS_PROJECTS
-        .filter((p) => p.image)
-        .map((p) => ({ id: p.id, title: p.title, imageSrc: p.image!.src })),
-].slice(0, 4);
+        .filter((p) => !p.hidden)
+        .map((p) => ({
+            id: p.id,
+            title: p.title,
+            subtitle: p.tags,
+            href: p.href,
+            imageSrc: p.image?.src ?? null,
+        })),
+];
+
+const SHOWCASE_ORDER = ["rustbox", "gatekeeper", "booleanstack", "unified-mcp"];
+const SHOWCASE_ITEMS: ShowcaseItem[] = SHOWCASE_ORDER
+    .map((id) => ALL_ITEMS.find((item) => item.id === id))
+    .filter((item): item is ShowcaseItem => item !== undefined);
+
+function HoverOverlay({ href }: { href: string }) {
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+        >
+            <span className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-sm font-semibold text-foreground">
+                Visit Site <ArrowUpRight className="size-4" />
+            </span>
+        </a>
+    );
+}
+
+function CardContent({ item }: { item: ShowcaseItem }) {
+    if (item.imageSrc) {
+        return (
+            <>
+                <Image
+                    src={item.imageSrc}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                    sizes="560px"
+                />
+                <HoverOverlay href={item.href} />
+            </>
+        );
+    }
+
+    return (
+        <>
+            <div className="absolute inset-0 bg-[#f7f7f7] flex flex-col items-center justify-center gap-4 p-6">
+                <ProjectAvatar name={item.id} size={128} className="w-24 h-24" />
+                <div className="flex flex-col items-center gap-2 text-center">
+                    <span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
+                        {item.title}
+                    </span>
+                    <span className="text-body leading-body font-medium text-muted-foreground">
+                        {item.subtitle}
+                    </span>
+                </div>
+            </div>
+            <HoverOverlay href={item.href} />
+        </>
+    );
+}
 
 const Flash = () => {
     return (
@@ -36,20 +112,13 @@ const Flash = () => {
                             cardDistance={50}
                             verticalDistance={105}
                             skewAmount={0}
-                            easing="linear"
-                            pauseOnHover
-                            width={500}
-                            height={380}
+                                                        pauseOnHover
+                            width={480}
+                            height={270}
                         >
                             {SHOWCASE_ITEMS.map((item) => (
                                 <Card key={item.id}>
-                                    <Image
-                                        src={item.imageSrc}
-                                        alt={item.title}
-                                        fill
-                                        className="object-cover"
-                                        sizes="500px"
-                                    />
+                                    <CardContent item={item} />
                                 </Card>
                             ))}
                         </CardSwap>
@@ -82,20 +151,13 @@ const Flash = () => {
                             cardDistance={50}
                             verticalDistance={105}
                             skewAmount={0}
-                            easing="linear"
-                            pauseOnHover
+                                                        pauseOnHover
                             width={560}
-                            height={400}
+                            height={315}
                         >
                             {SHOWCASE_ITEMS.map((item) => (
                                 <Card key={item.id}>
-                                    <Image
-                                        src={item.imageSrc}
-                                        alt={item.title}
-                                        fill
-                                        className="object-cover"
-                                        sizes="560px"
-                                    />
+                                    <CardContent item={item} />
                                 </Card>
                             ))}
                         </CardSwap>

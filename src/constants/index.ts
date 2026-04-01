@@ -126,15 +126,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
         ],
     },
     {
-        ariaLabel: "Legal navigation",
-        heading: "Legal",
-        links: [
-            { label: "Cookie settings", href: `${routes.privacyPolicy}#cookie-settings` },
-            { label: "Privacy Policy", href: routes.privacyPolicy },
-            { label: "Terms & Conditions", href: routes.terms },
-        ],
-    },
-    {
         ariaLabel: "Social and contact navigation",
         heading: "Connect",
         links: [

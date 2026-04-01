@@ -14,8 +14,7 @@ export function ProjectAvatar({ name, size = 80, className }: ProjectAvatarProps
 
     return (
         <div
-            className={`grayscale ${className ?? ""}`}
-            style={{ width: size, height: size }}
+            className={`grayscale [&>svg]:w-full [&>svg]:h-full ${className ?? ""}`}
             dangerouslySetInnerHTML={{ __html: svg }}
         />
     );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { ProjectAvatar } from "@/components/shared/project-avatar";
 import { OSS_PROJECTS, PROJECTS } from "@/data/projects";
 import { TEAM_MEMBERS, type TeamMember } from "@/data/team";
@@ -10,12 +10,12 @@ const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((m) => m.alumni);
 function ProjectCard({
 	name,
 	label,
-	sublabel,
+	subtitle,
 	href,
 }: {
 	name: string;
 	label: string;
-	sublabel: string;
+	subtitle: string;
 	href: string;
 }) {
 	return (
@@ -25,61 +25,19 @@ function ProjectCard({
 			rel="noopener noreferrer"
 			className="group block"
 		>
-			<div className="aspect-square rounded-lg border border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-5 p-6 transition-all duration-300 hover:shadow-lg hover:border-foreground/20">
-				<ProjectAvatar name={name} size={96} />
-				<div className="flex flex-col items-center gap-2 text-center">
-					<span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
+			<div className="h-40 tablet:h-56 rounded-lg border border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-3 tablet:gap-4 px-4 py-6 tablet:px-5 tablet:py-8 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-foreground/20">
+				<ProjectAvatar name={name} size={128} className="w-10 h-10 tablet:w-16 tablet:h-16 laptop:w-20 laptop:h-20" />
+				<div className="flex flex-col items-center gap-1 tablet:gap-1.5 text-center">
+					<span className="text-sm tablet:text-subtitle font-bold text-foreground tracking-tight leading-tight">
 						{label}
 					</span>
-					<span className="text-body leading-body font-medium text-muted-foreground">
-						{sublabel}
+					<span className="hidden tablet:block text-xs font-medium text-muted-foreground leading-snug max-w-[90%]">
+						{subtitle.length > 60 ? `${subtitle.slice(0, 60)}...` : subtitle}
 					</span>
 				</div>
 				<span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-					View live <ArrowUpRight className="size-3.5" />
+					View <ArrowUpRight className="size-3.5" />
 				</span>
-			</div>
-		</a>
-	);
-}
-
-function OSSCard({
-	name,
-	label,
-	description,
-	language,
-	href,
-}: {
-	name: string;
-	label: string;
-	description: string;
-	language: string;
-	href: string;
-}) {
-	return (
-		<a
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="group block"
-		>
-			<div className="aspect-square rounded-lg border border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-4 p-6 transition-all duration-300 hover:shadow-lg hover:border-foreground/20">
-				<ProjectAvatar name={name} size={96} />
-				<div className="flex flex-col items-center gap-2 text-center">
-					<span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
-						{label}
-					</span>
-					<span className="text-xs leading-relaxed font-medium text-muted-foreground max-w-[85%]">
-						{description.length > 90 ? `${description.slice(0, 90)}...` : description}
-					</span>
-				</div>
-				<div className="flex items-center gap-3">
-					<span className="text-xs font-mono text-muted-foreground">{language}</span>
-					<span className="text-border">|</span>
-					<span className="flex items-center gap-1 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-						<Github className="size-3" /> Source
-					</span>
-				</div>
 			</div>
 		</a>
 	);
@@ -87,7 +45,7 @@ function OSSCard({
 
 function TeamMemberCard({ member, index }: { member: TeamMember; index: number }) {
 	return (
-		<article className="group w-40 relative overflow-hidden rounded-lg cursor-default transition-shadow duration-300 hover:shadow-lg">
+		<article className="group w-40 relative overflow-hidden rounded-lg cursor-default transition-shadow duration-300 shadow-sm hover:shadow-lg">
 			<div className="relative aspect-[3/4]">
 				<Image
 					src={member.image}
@@ -152,7 +110,7 @@ export function ProjectsMasonryGrid() {
 							key={project.id}
 							name={project.id}
 							label={project.title}
-							sublabel={project.services}
+							subtitle={project.services}
 							href={project.href}
 						/>
 					))}
@@ -161,14 +119,13 @@ export function ProjectsMasonryGrid() {
 
 			{/* ── Section 2: Open Source — cards left, text right ── */}
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
-				<div className="order-2 tablet:order-1 grid grid-cols-2 tablet:grid-cols-3 gap-4">
+				<div className="order-2 tablet:order-1 grid grid-cols-2 laptop:grid-cols-3 gap-4">
 					{OSS_PROJECTS.map((project) => (
-						<OSSCard
+						<ProjectCard
 							key={project.id}
 							name={project.id}
 							label={project.title}
-							description={project.description}
-							language={project.language}
+							subtitle={project.description}
 							href={project.href}
 						/>
 					))}
