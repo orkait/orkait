@@ -6,6 +6,17 @@ export type TeamMember = {
     alumni?: boolean;
 };
 
+export type OpenRole = {
+    title: string;
+    emailSubject: string;
+    isIntern?: boolean;
+};
+
+export const OPEN_ROLES: OpenRole[] = [
+    { title: "UI/UX Designer", emailSubject: "UI/UX Designer Intern Application", isIntern: true },
+    { title: "Fullstack Developer", emailSubject: "Fullstack Developer Intern Application", isIntern: true },
+];
+
 export const TEAM_MEMBERS: TeamMember[] = [
     {
         name: "Kailas Mahavarkar",
@@ -18,6 +29,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
         role: "Fullstack Developer",
         ex: [],
         image: "/data/team/anupam.jpeg",
+        alumni: true,
     },
     {
         name: "Abhay Vyas",
