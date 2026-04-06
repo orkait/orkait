@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectAvatar } from "@/components/shared/project-avatar";
 import { OSS_PROJECTS, PROJECTS } from "@/data/projects";
-import { TEAM_MEMBERS, type TeamMember } from "@/data/team";
+import { TEAM_MEMBERS, OPEN_ROLES, type TeamMember } from "@/data/team";
+import { routes } from "@/config/routes";
 
 const ACTIVE_MEMBERS = TEAM_MEMBERS.filter((m) => !m.alumni);
 const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((m) => m.alumni);
@@ -179,6 +181,34 @@ export function ProjectsMasonryGrid() {
 							</div>
 						</div>
 					) : null}
+
+					<div className="space-y-4">
+						<div className="space-y-1">
+							<p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+								OPEN ROLES
+							</p>
+							<p className="text-body-lg leading-body-lg font-bold text-foreground">
+								We&apos;re hiring.
+							</p>
+						</div>
+						<div className="flex flex-wrap gap-3">
+							{OPEN_ROLES.map((role) => {
+								const label = role.isIntern ? `${role.title} (Intern)` : role.title;
+								return (
+									<Link key={role.emailSubject} href={`${routes.careers}?role=${encodeURIComponent(label)}`} className="group block">
+										<div className="h-40 tablet:h-48 w-44 tablet:w-52 rounded-lg border border-dashed border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-3 p-5 transition-all duration-300 hover:border-foreground/40 hover:shadow-sm">
+											<span className="text-2xl">+</span>
+											<span className="text-sm font-bold text-foreground tracking-tight text-center">
+												{role.title}
+												{role.isIntern && <><br />(Intern)</>}
+											</span>
+											<span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">Apply</span>
+										</div>
+									</Link>
+								);
+							})}
+						</div>
+					</div>
 				</div>
 			</section>
 		</main>
