@@ -86,7 +86,6 @@ export function ApplyForm({ role }: { role: string }) {
                             id="apply-name"
                             type="text"
                             autoComplete="name"
-                            placeholder="Your full name"
                             className={INPUT_CLASS}
                             {...register("name")}
                         />
@@ -99,7 +98,6 @@ export function ApplyForm({ role }: { role: string }) {
                             id="apply-email"
                             type="email"
                             autoComplete="email"
-                            placeholder="you@example.com"
                             className={INPUT_CLASS}
                             {...register("email")}
                         />
@@ -112,7 +110,6 @@ export function ApplyForm({ role }: { role: string }) {
                             id="apply-phone"
                             type="tel"
                             autoComplete="tel"
-                            placeholder="+91 00000 00000"
                             className={INPUT_CLASS}
                             {...register("phone")}
                         />
@@ -127,7 +124,6 @@ export function ApplyForm({ role }: { role: string }) {
                         <input
                             id="apply-portfolio"
                             type="url"
-                            placeholder="https://"
                             className={INPUT_CLASS}
                             {...register("portfolio")}
                         />
@@ -139,7 +135,6 @@ export function ApplyForm({ role }: { role: string }) {
                         <textarea
                             id="apply-message"
                             rows={4}
-                            placeholder="Tell us about yourself and why this role interests you."
                             className={`${INPUT_CLASS} resize-none`}
                             {...register("message")}
                         />
