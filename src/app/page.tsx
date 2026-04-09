@@ -10,7 +10,7 @@ import Feedback from "@/components/home/Feedback";
 export default function Home() {
     return (
         <>
-            <Section horizontalMargin verticalMargin>
+            <Section horizontalMargin verticalMargin className="py-12 tablet:py-14 laptop:py-16">
                 <Hero />
                 <Flash />
                 <StudioText />

@@ -4,7 +4,7 @@ import { GameOfLife } from "@/components/shared/game-of-life";
 const ServicesText = () => {
     return (
         <div className="w-full relative">
-        <div className="tablet:hidden flex flex-col items-start mt-16 gap-16 w-full">
+            <div className="tablet:hidden flex flex-col items-start mt-12 gap-14 w-full">
                 <div className="flex flex-col gap-4 items-start w-full">
                     <span className="text-foreground font-medium text-[14px] leading-[20px] self-start">
                         (02) SERVICES
@@ -14,15 +14,15 @@ const ServicesText = () => {
                             {SERVICES.map(({ label, active }) => (
                                 <p
                                     key={label}
-                                    className={`max-w-fit font-bold text-[32px] leading-[normal] tracking-tight ${
-                                        active ? "text-foreground" : "text-black/5"
+                                    className={`max-w-fit font-bold text-[28px] leading-[1.1] tracking-tight ${
+                                        active ? "text-foreground" : "text-muted-foreground/45"
                                     }`}
                                 >
                                     {label}
                                 </p>
                             ))}
                         </div>
-                        <div className="flex flex-col gap-1 pt-2 shrink-0">
+                        <div className="flex flex-col gap-1 pt-1 shrink-0">
                             <p className="text-foreground font-medium text-[14px] leading-[20px]">Developer Tools</p>
                             <p className="text-foreground font-medium text-[14px] leading-[20px]">Infrastructure</p>
                             <p className="text-foreground font-medium text-[14px] leading-[20px]">Platforms</p>
@@ -33,7 +33,7 @@ const ServicesText = () => {
             </div>
 
             {/* Tablet/laptop view */}
-            <div className="hidden tablet:flex flex-row justify-between items-start mt-32 gap-16 w-full overflow-visible">
+            <div className="hidden tablet:flex flex-row justify-between items-start mt-24 gap-16 w-full overflow-visible">
                 {/* Label + services list */}
                 <div className="flex flex-col items-start gap-4">
                     <span className="text-muted-foreground font-medium text-body-lg leading-body-lg uppercase tracking-widest pl-0">
@@ -47,7 +47,7 @@ const ServicesText = () => {
                                 className={`font-medium tablet:text-title-1 laptop:text-heading leading-tight tracking-tight ${
                                     active
                                       ? "text-foreground"
-                                      : "text-muted-foreground/30 dark:text-white/10"
+                                      : "text-muted-foreground/50 dark:text-white/25"
                                 }`}
                             >
                                 {label}
@@ -63,7 +63,7 @@ const ServicesText = () => {
                         <p className="text-foreground font-medium text-body leading-body">Infrastructure Platforms</p>
                         <p className="text-foreground font-medium text-body leading-body">Analytics</p>
                     </div>
-                    <div className="relative w-[500px] aspect-square rounded-lg overflow-hidden bg-[#fafafa]">
+                    <div className="relative tablet:w-[320px] tablet:aspect-[5/4] laptop:w-[500px] laptop:aspect-square rounded-lg overflow-hidden bg-[#fafafa]">
                         <GameOfLife className="absolute inset-0 w-full h-full block" />
                     </div>
                 </div>

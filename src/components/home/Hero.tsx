@@ -6,11 +6,11 @@ import { routes } from "@/config/routes";
 export const Hero = () => {
     return (
         <div className="w-full relative overflow-visible">
-        {/* Mobile view */}
-        <div className="tablet:hidden flex flex-col items-center justify-center">
-                <div className="flex items-center justify-end font-bold w-full h-full ">
-                    <div className="max-w-lg flex flex-col items-end justify-center gap-[68px] mt-4 px-4">
-                        <span className="w-full max-w-[334px] text-[24px] font-medium leading-[24px] tracking-[-1.55px] text-black text-right text-wrap">
+            {/* Mobile view */}
+            <div className="tablet:hidden flex flex-col gap-14 pt-4 pb-4">
+                <div className="flex w-full justify-end">
+                    <div className="flex w-full max-w-[320px] flex-col items-end gap-8">
+                        <span className="w-full max-w-[320px] text-right text-[22px] font-medium leading-[24px] tracking-[-0.04em] text-foreground text-wrap">
                             We engineer software that works. Reliable systems, honest engineering, no hype.
                         </span>
                         <Button asChild className="inline-flex px-4 py-2 justify-center items-center gap-[10px] rounded-md bg-foreground text-white hover:bg-slate-900/90 h-auto font-normal text-base">
@@ -18,10 +18,11 @@ export const Hero = () => {
                         </Button>
                     </div>
                 </div>
-                <div className="w-full h-full mt-[168px] flex flex-col items-end justify-end">
-                    <div className="relative inline-block mt-4">
+
+                <div className="flex w-full justify-start pt-6">
+                    <div className="relative inline-flex flex-col">
                         <Image
-                            className="absolute aspect-square w-[90px] h-[90px] -rotate-[4.672deg] -top-[75px] -left-3"
+                            className="absolute aspect-square size-[72px] -rotate-[4.672deg] -top-[52px] left-0"
                             src="/data/brand/orkait.svg"
                             alt="Orkait Logo Fin"
                             width={200}
@@ -29,17 +30,17 @@ export const Hero = () => {
                             style={{ objectFit: "contain" }}
                         />
 
-                        <div 
-                            className="text-[92.774px] font-bold text-black mt-0"
-                            style={{ lineHeight: "0.76" }}
+                        <div
+                            className="text-[clamp(4.5rem,24vw,5.6rem)] font-bold tracking-[-0.05em] text-foreground"
+                            style={{ lineHeight: "0.8" }}
                         >
                             ORKAIT
                         </div>
-                        
+
                         <div
-                            className="text-[92.774px] font-bold text-black opacity-40 -scale-y-100"
+                            className="text-[clamp(4.5rem,24vw,5.6rem)] font-bold tracking-[-0.05em] text-foreground/12 -scale-y-100"
                             style={{
-                                lineHeight: "0.76",
+                                lineHeight: "0.8",
                                 WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.5), transparent 80%)",
                                 maskImage: "linear-gradient(to top, rgba(0,0,0,0.5), transparent 100%)",
                             }}

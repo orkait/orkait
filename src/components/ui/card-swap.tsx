@@ -15,6 +15,7 @@ interface CardSwapProps {
   cardDistance?: number;
   verticalDistance?: number;
   delay?: number;
+  autoPlay?: boolean;
   pauseOnHover?: boolean;
   skewAmount?: number;
   children: ReactNode;
@@ -52,6 +53,7 @@ function CardSwap({
   cardDistance = 60,
   verticalDistance = 70,
   delay = 5000,
+  autoPlay = true,
   pauseOnHover = false,
   skewAmount = 0,
   children,
@@ -75,6 +77,7 @@ function CardSwap({
 
   function resetInterval() {
     clearInterval(intervalRef.current);
+    if (!autoPlay) return;
     intervalRef.current = window.setInterval(autoSwap, delay);
   }
 
@@ -118,7 +121,9 @@ function CardSwap({
       node.addEventListener("mouseleave", onLeave);
     }
 
-    intervalRef.current = window.setInterval(autoSwap, delay);
+    if (autoPlay) {
+      intervalRef.current = window.setInterval(autoSwap, delay);
+    }
 
     return () => {
       observer.disconnect();
@@ -128,7 +133,7 @@ function CardSwap({
         node.removeEventListener("mouseleave", onLeave);
       }
     };
-  }, [total, delay, pauseOnHover]);
+  }, [total, delay, autoPlay, pauseOnHover]);
 
   function slotStyle(i: number): React.CSSProperties {
     const z = -i * cardDistance * 1.5;
