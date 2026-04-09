@@ -1,5 +1,3 @@
-"use server";
-
 import { z } from "zod";
 
 const CONNECT_EMAIL = "connect@orkait.com";

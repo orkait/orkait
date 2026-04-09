@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const G = 1;
 const M = 1;
@@ -12,6 +12,7 @@ const STEPS_PER_FRAME = 8;
 const SOFTENING = 0.02;
 const STROKE_ALPHA = 0.15;
 const BALL_RADIUS = 12;
+const MAX_RENDER_SIZE = 500;
 
 type Vec2 = { x: number; y: number };
 type Body = { pos: Vec2; vel: Vec2 };
@@ -53,19 +54,55 @@ function cloneBodies(): Body[] {
   }));
 }
 
-export function AsciiField({ className }: { className?: string }) {
+export function AsciiField() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLCanvasElement>(null);
   const ballRef  = useRef<HTMLCanvasElement>(null);
+  const [size, setSize] = useState<number | null>(null);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const syncSize = () => {
+      const rect = container.getBoundingClientRect();
+      const next = Math.max(
+        1,
+        Math.round(Math.min(rect.width, rect.height, MAX_RENDER_SIZE))
+      );
+
+      setSize((current) => {
+        if (current === next) {
+          return current;
+        }
+
+        return next;
+      });
+    };
+
+    syncSize();
+
+    const observer = new ResizeObserver(syncSize);
+    observer.observe(container);
+    window.addEventListener("resize", syncSize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncSize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!size) return;
+
     const trailCanvas = trailRef.current;
     const ballCanvas  = ballRef.current;
     if (!trailCanvas || !ballCanvas) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const rect = trailCanvas.getBoundingClientRect();
-    const W = Math.round(rect.width);
-    const H = Math.round(rect.height);
+    const W = size;
+    const H = size;
     trailCanvas.width  = W;  trailCanvas.height  = H;
     ballCanvas.width   = W;  ballCanvas.height   = H;
 
@@ -124,7 +161,7 @@ export function AsciiField({ className }: { className?: string }) {
     trail.lineWidth = 1.5;
     trail.lineCap = "round";
 
-    let bodies = reset();
+    const bodies = reset();
     let timer: ReturnType<typeof setTimeout> | null = null;
     let running = true;
     let visible = true;
@@ -137,7 +174,9 @@ export function AsciiField({ className }: { className?: string }) {
       },
       { threshold: 0.05 }
     );
-    observer.observe(trailRef.current!.parentElement!);
+    if (stageRef.current) {
+      observer.observe(stageRef.current);
+    }
 
     function tick() {
       if (!running || !visible) { timer = null; return; }
@@ -198,12 +237,23 @@ export function AsciiField({ className }: { className?: string }) {
       observer.disconnect();
       if (timer !== null) clearTimeout(timer);
     };
-  }, []);
+  }, [size]);
 
   return (
-    <div className={`relative ${className ?? ""}`}>
-      <canvas ref={trailRef} className="absolute inset-0 w-full h-full block" aria-hidden />
-      <canvas ref={ballRef}  className="absolute inset-0 w-full h-full block" aria-hidden />
+    <div ref={containerRef} className="relative flex h-full w-full items-start justify-start">
+      <div
+        ref={stageRef}
+        className="relative shrink-0 overflow-hidden"
+        style={{
+          width: `${size ?? 1}px`,
+          height: `${size ?? 1}px`,
+          maxWidth: `${MAX_RENDER_SIZE}px`,
+          maxHeight: `${MAX_RENDER_SIZE}px`,
+        }}
+      >
+        <canvas ref={trailRef} className="absolute inset-0 block size-full" aria-hidden />
+        <canvas ref={ballRef}  className="absolute inset-0 block size-full" aria-hidden />
+      </div>
     </div>
   );
 }

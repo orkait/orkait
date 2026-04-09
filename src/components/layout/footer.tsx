@@ -20,7 +20,7 @@ function FooterLinksColumn({ ariaLabel, heading, links }: FooterColumn) {
                     href={link.href}
                     target={link.isExternal ? "_blank" : undefined}
                     rel={link.isExternal ? "noopener noreferrer" : undefined}
-                    className="text-muted-foreground font-medium text-body leading-body transition-colors hover:text-foreground w-fit"
+                    className="text-foreground/70 font-medium text-body leading-body transition-colors hover:text-foreground w-fit"
                 >
                     {link.label}
                 </Link>
@@ -45,7 +45,7 @@ const Footer = () => {
                                 className="h-auto w-[56px]"
                             />
                         </Link>
-                        <p className="text-muted-foreground font-medium text-body leading-body max-w-[260px]">
+                        <p className="text-foreground/70 font-medium text-body leading-body max-w-[260px]">
                             Engineering-first software company. Reliable systems, honest engineering.
                         </p>
                         <Button asChild variant="default" className="w-fit mt-2">
@@ -73,7 +73,7 @@ const Footer = () => {
                                 className="h-auto w-[56px]"
                             />
                         </Link>
-                        <p className="text-muted-foreground font-medium text-body leading-body max-w-[260px]">
+                        <p className="text-foreground/70 font-medium text-body leading-body max-w-[260px]">
                             Engineering-first software company. Reliable systems, honest engineering.
                         </p>
                         <Button asChild variant="default" className="w-fit mt-2">
@@ -92,10 +92,10 @@ const Footer = () => {
 
             {/* Bottom bar */}
             <div className="border-t border-border px-4 tablet:px-8 laptop:px-12 base:px-16 py-6 flex items-center justify-between">
-                <p className="text-muted-foreground font-medium text-xs leading-none">
+                <p className="text-foreground/60 font-medium text-xs leading-none">
                     &copy; {new Date().getFullYear()} Orkait
                 </p>
-                <p className="text-muted-foreground font-medium text-xs leading-none">
+                <p className="text-foreground/60 font-medium text-xs leading-none">
                     Built in Mumbai
                 </p>
             </div>

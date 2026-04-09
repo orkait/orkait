@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const CELL_SIZE = 14;
 const FPS = 7;
@@ -14,6 +15,7 @@ const AGE_STYLES = ["rgba(0,0,0,0.37)", "rgba(0,0,0,0.63)", "rgba(0,0,0,0.88)", 
 const AGE_SCALE  = [0.55, 0.70, 0.85, 1.00] as const;
 const DYING_STYLE = "rgba(0,0,0,0.15)";
 const DYING_SCALE = 0.30;
+const MAX_RENDER_WIDTH = 500;
 
 function step(
   curr: Uint16Array,
@@ -55,17 +57,53 @@ function countLive(grid: Uint16Array): number {
 }
 
 export function GameOfLife({ className }: { className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const syncSize = () => {
+      const rect = container.getBoundingClientRect();
+      const next = {
+        width: Math.max(1, Math.round(Math.min(rect.width, MAX_RENDER_WIDTH))),
+        height: Math.max(1, Math.round(rect.height)),
+      };
+
+      setSize((current) => {
+        if (current && current.width === next.width && current.height === next.height) {
+          return current;
+        }
+
+        return next;
+      });
+    };
+
+    syncSize();
+
+    const observer = new ResizeObserver(syncSize);
+    observer.observe(container);
+    window.addEventListener("resize", syncSize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncSize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!size) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const rect = canvas.getBoundingClientRect();
-    canvas.width  = Math.round(rect.width);
-    canvas.height = Math.round(rect.height);
-    const W = canvas.width, H = canvas.height;
+    const W = size.width;
+    const H = size.height;
+    canvas.width = W;
+    canvas.height = H;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -173,7 +211,15 @@ export function GameOfLife({ className }: { className?: string }) {
       observer.disconnect();
       if (timer !== null) clearTimeout(timer);
     };
-  }, []);
+  }, [size]);
 
-  return <canvas ref={canvasRef} className={className} aria-hidden />;
+  return (
+    <div
+      ref={containerRef}
+      className="relative h-full w-full max-w-[500px] mx-auto"
+      style={{ maxWidth: `${MAX_RENDER_WIDTH}px` }}
+    >
+      <canvas ref={canvasRef} className={cn("absolute inset-0 block size-full", className)} aria-hidden />
+    </div>
+  );
 }

@@ -92,7 +92,7 @@
     --color-foreground: theme(colors.slate.900);
 
     --color-muted: theme(colors.slate.200);
-    --color-muted-foreground: theme(colors.slate.500);
+    --color-muted-foreground: theme(colors.slate.600);
 
     --color-border: theme(colors.slate.200);
     --color-input: theme(colors.slate.200);
@@ -127,7 +127,7 @@
     --color-foreground: theme(colors.slate.50);
 
     --color-muted: theme(colors.slate.800);
-    --color-muted-foreground: theme(colors.slate.400);
+    --color-muted-foreground: theme(colors.slate.300);
 
     --color-border: theme(colors.slate.700);
     --color-input: theme(colors.slate.700);
@@ -264,4 +264,4 @@ html.lenis body {
     animation-play-state: paused;
 }
 
-
+

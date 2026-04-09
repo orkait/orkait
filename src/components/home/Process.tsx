@@ -2,10 +2,10 @@ import { FEATURES, type FeatureCardProps } from "@/constants";
 
 const FeatureCard = ({ num, title, description, index }: FeatureCardProps & { index: number }) => (
     <div
-        className={`flex flex-col tablet:gap-2 py-[24px] tablet:py-10 border-border tablet:border-b
+        className={`flex flex-col tablet:gap-2 py-6 tablet:py-10 border-border tablet:border-b
         ${index % 2 === 0 && index !== 6 ? "pr-[16px] border-r border-[#e8e8e8] dark:border-white/10 tablet:border-r-0 tablet:pr-0" : ""}
         ${index % 2 !== 0 && index !== 6 ? "pl-[16px] tablet:pl-0" : ""}
-        ${index === 6 ? "col-span-2 w-[60%] mx-auto tablet:col-span-1 tablet:w-full tablet:mx-0" : ""}
+        ${index === 6 ? "col-span-2 w-full mx-auto tablet:col-span-1 tablet:w-full tablet:mx-0" : ""}
         ${index < 6 ? "border-b border-[#e8e8e8] dark:border-white/10 tablet:border-border" : ""}
         `}
     >
@@ -13,11 +13,11 @@ const FeatureCard = ({ num, title, description, index }: FeatureCardProps & { in
             <p className="text-[#111] dark:text-[#eee] tablet:text-muted-foreground font-medium text-[14px] leading-[20px] tablet:text-subtitle tablet:leading-subtitle">
                 {num}
             </p>
-            <p className="text-[#111] dark:text-[#eee] tablet:text-foreground font-bold tablet:font-medium text-[14px] leading-[28.8px] tablet:text-subtitle tablet:leading-subtitle">
+            <p className="text-[#111] dark:text-[#eee] tablet:text-foreground font-bold tablet:font-medium text-[15px] leading-[22px] tablet:text-subtitle tablet:leading-subtitle">
                 {title}
             </p>
         </div>
-        <p className="text-[#6d6d6d] dark:text-[#a0a0a0] tablet:text-muted-foreground font-normal text-[10px] leading-[17px] tablet:text-body tablet:leading-body">
+        <p className="text-[#6d6d6d] dark:text-[#a0a0a0] tablet:text-muted-foreground font-normal text-[12px] leading-[18px] tablet:text-body tablet:leading-body">
             {description}
         </p>
     </div>
@@ -25,10 +25,10 @@ const FeatureCard = ({ num, title, description, index }: FeatureCardProps & { in
 
 const Process = () => {
     return (
-        <section className="mt-14 tablet:mt-16 base:mt-32">
+        <section className="mt-12 tablet:mt-12 base:mt-24">
             
             {/* Mobile Title */}
-            <div className="tablet:hidden mb-[32px] w-full">
+            <div className="tablet:hidden mb-10 w-full">
                 <h2 className="text-foreground font-bold text-[24px] leading-[30px] tracking-tight flex flex-col">
                     <span>Engineered right,</span>
                     <span>built to last</span>

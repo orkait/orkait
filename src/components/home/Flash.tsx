@@ -5,6 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 import { CardSwap, Card } from "@/components/ui/card-swap";
 import { ProjectAvatar } from "@/components/shared/project-avatar";
 import { PROJECTS, OSS_PROJECTS } from "@/data/projects";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 type ShowcaseItem = {
     id: string;
@@ -61,7 +63,7 @@ function CardContent({ item }: { item: ShowcaseItem }) {
                     src={item.imageSrc}
                     alt={item.title}
                     fill
-                    className="object-cover"
+                    className="object-cover grayscale"
                     sizes="560px"
                 />
                 <HoverOverlay href={item.href} />
@@ -88,10 +90,15 @@ function CardContent({ item }: { item: ShowcaseItem }) {
 }
 
 const Flash = () => {
+    const isMobile = useIsMobile();
+    const prefersReducedMotion = usePrefersReducedMotion();
+    const shouldAutoplay = !isMobile && !prefersReducedMotion;
+    const mobileItems = prefersReducedMotion ? SHOWCASE_ITEMS.slice(0, 1) : SHOWCASE_ITEMS;
+
     return (
         <div className="w-full mt-5 tablet:mt-0">
             {/* Mobile view */}
-            <div className="tablet:hidden flex flex-col gap-8 px-4 py-8">
+            <div className="tablet:hidden flex flex-col gap-10 py-10">
                 <div className="flex flex-col gap-4">
                     <p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
                         Our Focus
@@ -106,23 +113,22 @@ const Flash = () => {
                     </p>
                 </div>
 
-                <div className="h-[380px] overflow-hidden flex items-end justify-center">
-                    <div className="scale-[0.65] origin-bottom">
-                        <CardSwap
-                            cardDistance={50}
-                            verticalDistance={105}
-                            skewAmount={0}
-                                                        pauseOnHover
-                            width={480}
-                            height={270}
-                        >
-                            {SHOWCASE_ITEMS.map((item) => (
-                                <Card key={item.id}>
-                                    <CardContent item={item} />
-                                </Card>
-                            ))}
-                        </CardSwap>
-                    </div>
+                <div className="flex min-h-[248px] items-end justify-center overflow-hidden py-2">
+                    <CardSwap
+                        autoPlay={!isMobile && !prefersReducedMotion}
+                        cardDistance={18}
+                        verticalDistance={34}
+                        skewAmount={0}
+                        pauseOnHover={shouldAutoplay}
+                        width="clamp(252px, 80vw, 320px)"
+                        height="clamp(158px, 46vw, 196px)"
+                    >
+                        {mobileItems.map((item) => (
+                            <Card key={item.id}>
+                                <CardContent item={item} />
+                            </Card>
+                        ))}
+                    </CardSwap>
                 </div>
             </div>
 
