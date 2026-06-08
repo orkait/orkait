@@ -9,11 +9,7 @@ import { routes } from "@/config/routes";
 const ACTIVE_MEMBERS = TEAM_MEMBERS.filter((member) => !member.alumni);
 const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((member) => member.alumni);
 
-function ProductLineCard({
-	product,
-}: {
-	product: (typeof PRODUCT_LINES)[number];
-}) {
+function ProductLineCard({ product }: { product: (typeof PRODUCT_LINES)[number] }) {
 	const content = (
 		<div className="h-48 rounded-lg border border-border bg-[#f7f7f7] flex flex-col justify-between gap-4 px-5 py-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-foreground/20">
 			<div className="flex items-center justify-between gap-3">
@@ -99,10 +95,10 @@ export function ProjectsMasonryGrid() {
 						(01) PRODUCTS
 					</p>
 					<h1 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2 laptop:text-title-1 laptop:leading-title-1">
-						Applied AI research, shipped as products.
+						Product-grade systems, not launch claims.
 					</h1>
 					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 max-w-[360px]">
-						Rustbox is live. BooleanStack and Zen are coming soon.
+						Live work is separated from lab work until it can stand on its own.
 					</p>
 				</div>
 
@@ -120,7 +116,8 @@ export function ProjectsMasonryGrid() {
 							Research partnerships
 						</p>
 						<p className="mt-3 text-body leading-body font-medium text-muted-foreground">
-							We partner when the work has a path to a real product or research system.
+							We partner when the work has a path to a real product or research
+							system.
 						</p>
 						<Link
 							href={routes.contact}
@@ -139,7 +136,8 @@ export function ProjectsMasonryGrid() {
 						Selective research, product-grade outcomes.
 					</h2>
 					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 tablet:ml-auto max-w-[320px]">
-						No open-ended consulting menu. We work on execution, learning, and interface systems.
+						No open-ended consulting menu. We work on execution, learning, and interface
+						systems.
 					</p>
 				</div>
 			</section>
@@ -192,14 +190,25 @@ export function ProjectsMasonryGrid() {
 							{OPEN_ROLES.map((role) => {
 								const label = role.isIntern ? `${role.title} (Intern)` : role.title;
 								return (
-									<Link key={role.emailSubject} href={`${routes.careers}?role=${encodeURIComponent(label)}`} className="group block">
+									<Link
+										key={role.emailSubject}
+										href={`${routes.careers}?role=${encodeURIComponent(label)}`}
+										className="group block"
+									>
 										<div className="h-40 tablet:h-48 w-44 tablet:w-52 rounded-lg border border-dashed border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-3 p-5 transition-all duration-300 hover:border-foreground/40 hover:shadow-sm">
 											<span className="text-2xl">+</span>
 											<span className="text-sm font-bold text-foreground tracking-tight text-center">
 												{role.title}
-												{role.isIntern && <><br />(Intern)</>}
+												{role.isIntern && (
+													<>
+														<br />
+														(Intern)
+													</>
+												)}
 											</span>
-											<span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">Apply</span>
+											<span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+												Apply
+											</span>
 										</div>
 									</Link>
 								);

@@ -17,13 +17,13 @@ export const CORE_VALUES: CoreValue[] = [
 		title: "Reliability",
 		tagline: "Systems should hold under pressure",
 		description:
-			"Rustbox sets the bar for how we think about execution, isolation, and production boundaries.",
+			"Live product work sets the bar for how we think about execution, isolation, and production boundaries.",
 	},
 	{
 		title: "Specificity",
 		tagline: "Name the product, name the surface",
 		description:
-			"We avoid vague AI claims. Public copy should tie back to Rustbox, BooleanStack, Zen, or a concrete technical problem.",
+			"We avoid vague AI claims. Public copy should tie back to a real surface, constraint, or technical problem.",
 	},
 	{
 		title: "Research Taste",
@@ -34,8 +34,7 @@ export const CORE_VALUES: CoreValue[] = [
 	{
 		title: "Clear Communication",
 		tagline: "Say what exists and what is next",
-		description:
-			"Rustbox is live. BooleanStack and Zen are coming soon. Anything beyond that should be labelled as research or partnership work.",
+		description: "Live work, lab work, and partnership work should be labelled differently.",
 	},
 ];
 
@@ -48,19 +47,19 @@ export type ProductPillar = {
 export const PRODUCT_PILLARS: ProductPillar[] = [
 	{
 		title: "Secure execution",
-		surface: "Rustbox",
+		surface: "Runtime boundaries",
 		description:
 			"Run untrusted code with strict execution boundaries, resource limits, and infrastructure-grade isolation.",
 	},
 	{
 		title: "Software learning systems",
-		surface: "BooleanStack",
+		surface: "Practice infrastructure",
 		description:
 			"Build practice environments for algorithms, system design, and engineering depth without shallow progress loops.",
 	},
 	{
 		title: "AI-assisted creation",
-		surface: "Zen",
+		surface: "Interface workflows",
 		description:
 			"Turn rough product intent into usable interface concepts without pretending a prompt is a finished product.",
 	},
@@ -168,7 +167,11 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
 		heading: "Connect",
 		links: [
 			{ label: "Research Partnerships", href: routes.contact },
-			{ label: "LinkedIn", href: "https://www.linkedin.com/company/orkait/", isExternal: true },
+			{
+				label: "LinkedIn",
+				href: "https://www.linkedin.com/company/orkait/",
+				isExternal: true,
+			},
 			{ label: "GitHub", href: "https://github.com/orkait", isExternal: true },
 		],
 	},
@@ -193,8 +196,7 @@ export const FEATURES: FeatureCardProps[] = [
 	{
 		num: "(01)",
 		title: "Live means live",
-		description:
-			"Rustbox is public and reachable. Coming soon products are labelled clearly until they ship.",
+		description: "Public product claims are reserved for systems people can actually use.",
 		area: "card1",
 	},
 	{
@@ -207,22 +209,19 @@ export const FEATURES: FeatureCardProps[] = [
 	{
 		num: "(03)",
 		title: "Claims stay bounded",
-		description:
-			"We do not inflate roadmap work into public product claims.",
+		description: "We do not inflate roadmap work into public product claims.",
 		area: "card3",
 	},
 	{
 		num: "(04)",
 		title: "Systems come first",
-		description:
-			"We care about runtime behavior, constraints, failure modes, and maintenance.",
+		description: "We care about runtime behavior, constraints, failure modes, and maintenance.",
 		area: "card4",
 	},
 	{
 		num: "(05)",
 		title: "Partnerships stay selective",
-		description:
-			"We collaborate when the work has a path to a real system.",
+		description: "We collaborate when the work has a path to a real system.",
 		area: "card5",
 	},
 	{
@@ -235,15 +234,14 @@ export const FEATURES: FeatureCardProps[] = [
 	{
 		num: "(07)",
 		title: "Ship the proof",
-		description:
-			"Research earns trust when users can touch the product.",
+		description: "Research earns trust when users can touch the product.",
 		area: "card7",
 	},
 ];
 
 export const SERVICES = [
-	{ label: "Rustbox", active: true },
-	{ label: "BooleanStack", active: false },
-	{ label: "Zen", active: false },
-	{ label: "Research", active: false },
+	{ label: "Secure execution", active: true },
+	{ label: "Learning systems", active: false },
+	{ label: "Creation tools", active: false },
+	{ label: "Research partnerships", active: false },
 ];

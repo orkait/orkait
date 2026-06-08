@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/config/metadata";
 
 export const metadata: Metadata = createPageMetadata(
 	"Products",
-	"Rustbox is live. BooleanStack and Zen are coming soon from the Orkait product lab."
+	"Live product work and research directions from the Orkait product lab.",
 );
 
 export default function ProjectsPage() {
