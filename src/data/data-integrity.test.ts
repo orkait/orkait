@@ -174,14 +174,14 @@ describe("knowledge base", () => {
 
 		const markdown = readFileSync(kbPath, "utf8");
 
-		[
-			"# Orkait Knowledge Base",
-			"## What Orkait Builds",
-			"## Active Public Products And Infrastructure",
-			"## Selected Supporting Projects",
-			"## Coming Soon",
-			"## What We Do Not Claim",
-		].forEach((heading) => {
+			[
+				"# Orkait Knowledge Base",
+				"## What Orkait Is",
+				"## Live Product",
+				"## Coming Soon",
+				"## Research Partnerships",
+				"## What We Do Not Claim",
+			].forEach((heading) => {
 			assert.match(markdown, new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "m"));
 		});
 	});

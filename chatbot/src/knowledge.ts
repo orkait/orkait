@@ -64,8 +64,18 @@ export function selectRelevantSections(
 	return sections
 		.map((section) => {
 			const haystack = `${section.title} ${section.content}`;
+			const normalizedQuery = query.toLowerCase();
+			const normalizedTitle = section.title.toLowerCase();
+			const titleTokens = new Set(tokenize(section.title));
 			const sectionTokens = new Set(tokenize(haystack));
-			const exactTitleMatch = section.title.toLowerCase().includes(query.toLowerCase()) ? 5 : 0;
+			const exactTitleMatch =
+				normalizedQuery.includes(normalizedTitle) || normalizedTitle.includes(normalizedQuery)
+					? 8
+					: 0;
+			const titleTokenScore = queryTokens.reduce(
+				(score, token) => score + (titleTokens.has(token) ? 4 : 0),
+				0
+			);
 			const tokenScore = queryTokens.reduce(
 				(score, token) => score + (sectionTokens.has(token) ? 1 : 0),
 				0
@@ -73,7 +83,7 @@ export function selectRelevantSections(
 
 			return {
 				section,
-				score: exactTitleMatch + tokenScore,
+				score: exactTitleMatch + titleTokenScore + tokenScore,
 			};
 		})
 		.filter(({ score }) => score > 0)
