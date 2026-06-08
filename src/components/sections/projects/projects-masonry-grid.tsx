@@ -2,45 +2,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectAvatar } from "@/components/shared/project-avatar";
-import { OSS_PROJECTS, PROJECTS } from "@/data/projects";
+import { PRODUCT_LINES } from "@/data/projects";
 import { TEAM_MEMBERS, OPEN_ROLES, type TeamMember } from "@/data/team";
 import { routes } from "@/config/routes";
 
-const ACTIVE_MEMBERS = TEAM_MEMBERS.filter((m) => !m.alumni);
-const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((m) => m.alumni);
+const ACTIVE_MEMBERS = TEAM_MEMBERS.filter((member) => !member.alumni);
+const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((member) => member.alumni);
 
-function ProjectCard({
-	name,
-	label,
-	subtitle,
-	href,
+function ProductLineCard({
+	product,
 }: {
-	name: string;
-	label: string;
-	subtitle: string;
-	href: string;
+	product: (typeof PRODUCT_LINES)[number];
 }) {
-	return (
-		<a
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			className="group block"
-		>
-			<div className="h-40 tablet:h-56 rounded-lg border border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-3 tablet:gap-4 px-4 py-6 tablet:px-5 tablet:py-8 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-foreground/20">
-				<ProjectAvatar name={name} size={128} className="w-10 h-10 tablet:w-16 tablet:h-16 laptop:w-20 laptop:h-20" />
-				<div className="flex flex-col items-center gap-1 tablet:gap-1.5 text-center">
-					<span className="text-sm tablet:text-subtitle font-bold text-foreground tracking-tight leading-tight">
-						{label}
-					</span>
-					<span className="hidden tablet:block text-xs font-medium text-muted-foreground leading-snug max-w-[90%]">
-						{subtitle.length > 60 ? `${subtitle.slice(0, 60)}...` : subtitle}
-					</span>
-				</div>
-				<span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-					View <ArrowUpRight className="size-3.5" />
+	const content = (
+		<div className="h-48 rounded-lg border border-border bg-[#f7f7f7] flex flex-col justify-between gap-4 px-5 py-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-foreground/20">
+			<div className="flex items-center justify-between gap-3">
+				<ProjectAvatar name={product.id} size={128} className="w-12 h-12" />
+				<span className="rounded-md border border-border px-2 py-1 text-xs font-medium text-muted-foreground">
+					{product.statusLabel}
 				</span>
 			</div>
+			<div className="flex flex-col gap-2">
+				<span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
+					{product.title}
+				</span>
+				<span className="text-sm font-medium text-muted-foreground leading-snug">
+					{product.summary}
+				</span>
+			</div>
+			<span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+				{product.ctaLabel} {product.href ? <ArrowUpRight className="size-3.5" /> : null}
+			</span>
+		</div>
+	);
+
+	if (!product.href) {
+		return <div className="group block">{content}</div>;
+	}
+
+	return (
+		<a href={product.href} target="_blank" rel="noopener noreferrer" className="group block">
+			{content}
 		</a>
 	);
 }
@@ -91,62 +93,57 @@ function AlumniCard({ member }: { member: TeamMember }) {
 export function ProjectsMasonryGrid() {
 	return (
 		<main className="bg-background px-4 pb-24 pt-16 tablet:px-8 laptop:px-12 base:px-16 phone:pt-20 tablet:pt-24 space-y-32 tablet:space-y-44">
-
-			{/* ── Section 1: Projects — text left, cards right ── */}
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
 				<div className="flex flex-col gap-4">
 					<p className="text-body leading-body font-medium uppercase tracking-wide text-muted-foreground">
-						(01) PROJECTS
+						(01) PRODUCTS
 					</p>
 					<h1 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2 laptop:text-title-1 laptop:leading-title-1">
-						Systems we&apos;ve shipped.
+						Applied AI research, shipped as products.
 					</h1>
-					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 max-w-[340px]">
-						Products built from real problems, running in production.
+					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 max-w-[360px]">
+						Rustbox is live. BooleanStack and Zen are coming soon.
 					</p>
 				</div>
 
-				<div className="grid grid-cols-2 gap-4 tablet:justify-self-end tablet:max-w-lg">
-					{PROJECTS.map((project) => (
-						<ProjectCard
-							key={project.id}
-							name={project.id}
-							label={project.title}
-							subtitle={project.services}
-							href={project.href}
-						/>
+				<div className="grid grid-cols-1 phone:grid-cols-2 gap-4 tablet:justify-self-end tablet:max-w-xl">
+					{PRODUCT_LINES.map((product) => (
+						<ProductLineCard key={product.id} product={product} />
 					))}
 				</div>
 			</section>
 
-			{/* ── Section 2: Open Source — cards left, text right ── */}
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
-				<div className="order-2 tablet:order-1 grid grid-cols-2 laptop:grid-cols-3 gap-4">
-					{OSS_PROJECTS.map((project) => (
-						<ProjectCard
-							key={project.id}
-							name={project.id}
-							label={project.title}
-							subtitle={project.description}
-							href={project.href}
-						/>
-					))}
+				<div className="order-2 tablet:order-1 grid grid-cols-1 gap-4">
+					<div className="rounded-lg border border-border bg-[#f7f7f7] p-6 shadow-sm">
+						<p className="text-body-lg leading-body-lg font-bold text-foreground">
+							Research partnerships
+						</p>
+						<p className="mt-3 text-body leading-body font-medium text-muted-foreground">
+							We partner when the work has a path to a real product or research system.
+						</p>
+						<Link
+							href={routes.contact}
+							className="mt-5 inline-flex text-sm font-medium text-foreground underline underline-offset-4"
+						>
+							Start a partnership conversation
+						</Link>
+					</div>
 				</div>
 
 				<div className="order-1 tablet:order-2 flex flex-col gap-4 tablet:text-right tablet:justify-self-end">
 					<p className="text-body leading-body font-medium uppercase tracking-wide text-muted-foreground">
-						(02) OPEN SOURCE
+						(02) PARTNERSHIPS
 					</p>
 					<h2 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2">
-						Built in the open.
+						Selective research, product-grade outcomes.
 					</h2>
-					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 tablet:ml-auto max-w-[300px]">
-						Tools we use internally, released publicly.
+					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 tablet:ml-auto max-w-[320px]">
+						No open-ended consulting menu. We work on execution, learning, and interface systems.
 					</p>
 				</div>
 			</section>
 
-			{/* ── Section 3: Team — text left, cards right ── */}
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
 				<div className="flex flex-col gap-4">
 					<p className="text-body font-medium uppercase tracking-[0.2em] text-muted-foreground">
