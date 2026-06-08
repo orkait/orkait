@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { ProjectAvatar } from "@/components/shared/project-avatar";
-import { PRODUCT_LINES } from "@/data/projects";
+import { OSS_PROJECTS, PRODUCT_LINES } from "@/data/projects";
 import { TEAM_MEMBERS, OPEN_ROLES, type TeamMember } from "@/data/team";
 import { routes } from "@/config/routes";
 
@@ -11,19 +11,14 @@ const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((member) => member.alumni);
 
 function ProductLineCard({ product }: { product: (typeof PRODUCT_LINES)[number] }) {
 	const content = (
-		<div className="h-48 rounded-lg border border-border bg-[#f7f7f7] flex flex-col justify-between gap-4 px-5 py-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-foreground/20">
-			<div className="flex items-center justify-between gap-3">
-				<ProjectAvatar name={product.id} size={128} className="w-12 h-12" />
-				<span className="rounded-md border border-border px-2 py-1 text-xs font-medium text-muted-foreground">
-					{product.statusLabel}
-				</span>
-			</div>
-			<div className="flex flex-col gap-2">
+		<div className="aspect-square rounded-lg border border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-4 p-6 text-center transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:border-foreground/20">
+			<ProjectAvatar name={product.id} size={96} className="size-20" />
+			<div className="flex flex-col items-center gap-2">
 				<span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
 					{product.title}
 				</span>
-				<span className="text-sm font-medium text-muted-foreground leading-snug">
-					{product.summary}
+				<span className="max-w-[16rem] text-xs leading-relaxed font-medium text-muted-foreground">
+					{product.surface}
 				</span>
 			</div>
 			<span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
@@ -33,12 +28,54 @@ function ProductLineCard({ product }: { product: (typeof PRODUCT_LINES)[number] 
 	);
 
 	if (!product.href) {
-		return <div className="group block">{content}</div>;
+		return (
+			<div
+				className="group block cursor-default"
+				aria-label={`${product.title}: ${product.statusLabel}`}
+			>
+				{content}
+			</div>
+		);
 	}
 
 	return (
-		<a href={product.href} target="_blank" rel="noopener noreferrer" className="group block">
+		<a
+			href={product.href}
+			target="_blank"
+			rel="noopener noreferrer"
+			className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+		>
 			{content}
+		</a>
+	);
+}
+
+function OpenProjectCard({ project }: { project: (typeof OSS_PROJECTS)[number] }) {
+	return (
+		<a
+			href={project.href}
+			target="_blank"
+			rel="noopener noreferrer"
+			className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+		>
+			<div className="aspect-square rounded-lg border border-border bg-[#f7f7f7] flex flex-col items-center justify-center gap-4 p-6 text-center transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:border-foreground/20">
+				<ProjectAvatar name={project.id} size={96} className="size-20" />
+				<span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
+					{project.title}
+				</span>
+				<span className="max-w-[16rem] text-xs leading-relaxed font-medium text-muted-foreground">
+					{project.description}
+				</span>
+				<div className="flex items-center gap-3">
+					<span className="text-xs font-mono text-muted-foreground">
+						{project.language}
+					</span>
+					<span className="text-border">|</span>
+					<span className="flex items-center gap-1 text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+						<Github className="size-3" /> Source
+					</span>
+				</div>
+			</div>
 		</a>
 	);
 }
@@ -87,33 +124,69 @@ function AlumniCard({ member }: { member: TeamMember }) {
 }
 
 export function ProjectsMasonryGrid() {
+	const productCards = PRODUCT_LINES.slice(0, 4);
+	const openCards = OSS_PROJECTS.slice(0, 4);
+
 	return (
 		<main className="bg-background px-4 pb-24 pt-16 tablet:px-8 laptop:px-12 base:px-16 phone:pt-20 tablet:pt-24 space-y-32 tablet:space-y-44">
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
 				<div className="flex flex-col gap-4">
 					<p className="text-body leading-body font-medium uppercase tracking-wide text-muted-foreground">
-						(01) PRODUCTS
+						(01) PROJECTS
 					</p>
 					<h1 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2 laptop:text-title-1 laptop:leading-title-1">
-						Product-grade systems, not launch claims.
+						Systems we&apos;ve shipped.
 					</h1>
 					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 max-w-[360px]">
-						Live work is separated from lab work until it can stand on its own.
+						Products built from real problems, running in production.
 					</p>
 				</div>
 
 				<div className="grid grid-cols-1 phone:grid-cols-2 gap-4 tablet:justify-self-end tablet:max-w-xl">
-					{PRODUCT_LINES.map((product) => (
+					{productCards.map((product) => (
 						<ProductLineCard key={product.id} product={product} />
 					))}
 				</div>
 			</section>
 
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
-				<div className="order-2 tablet:order-1 grid grid-cols-1 gap-4">
+				<div className="order-2 tablet:order-1 grid grid-cols-1 phone:grid-cols-2 gap-4 tablet:max-w-xl">
+					{openCards.map((project) => (
+						<OpenProjectCard key={project.id} project={project} />
+					))}
+				</div>
+
+				<div className="order-1 tablet:order-2 flex flex-col gap-4 tablet:text-right tablet:justify-self-end">
+					<p className="text-body leading-body font-medium uppercase tracking-wide text-muted-foreground">
+						(02) BUILT IN THE OPEN
+					</p>
+					<h2 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2">
+						Built in the open.
+					</h2>
+					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 tablet:ml-auto max-w-[320px]">
+						Tools and research infrastructure we can share publicly.
+					</p>
+				</div>
+			</section>
+
+			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
+				<div className="flex flex-col gap-4">
+					<p className="text-body leading-body font-medium uppercase tracking-wide text-muted-foreground">
+						(03) RESEARCH PARTNERSHIPS
+					</p>
+					<h2 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2">
+						Selective research, product-grade outcomes.
+					</h2>
+					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 max-w-[320px]">
+						No open-ended consulting menu. We work on execution, learning, and interface
+						systems.
+					</p>
+				</div>
+
+				<div className="tablet:justify-self-end tablet:max-w-xl">
 					<div className="rounded-lg border border-border bg-[#f7f7f7] p-6 shadow-sm">
 						<p className="text-body-lg leading-body-lg font-bold text-foreground">
-							Research partnerships
+							Bring a hard systems problem.
 						</p>
 						<p className="mt-3 text-body leading-body font-medium text-muted-foreground">
 							We partner when the work has a path to a real product or research
@@ -127,25 +200,12 @@ export function ProjectsMasonryGrid() {
 						</Link>
 					</div>
 				</div>
-
-				<div className="order-1 tablet:order-2 flex flex-col gap-4 tablet:text-right tablet:justify-self-end">
-					<p className="text-body leading-body font-medium uppercase tracking-wide text-muted-foreground">
-						(02) PARTNERSHIPS
-					</p>
-					<h2 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2">
-						Selective research, product-grade outcomes.
-					</h2>
-					<p className="text-body leading-body font-medium text-muted-foreground laptop:text-body-lg laptop:leading-body-lg mt-2 tablet:ml-auto max-w-[320px]">
-						No open-ended consulting menu. We work on execution, learning, and interface
-						systems.
-					</p>
-				</div>
 			</section>
 
 			<section className="grid grid-cols-1 tablet:grid-cols-2 gap-10 tablet:gap-16">
 				<div className="flex flex-col gap-4">
 					<p className="text-body font-medium uppercase tracking-[0.2em] text-muted-foreground">
-						(03) TEAM
+						(04) TEAM
 					</p>
 					<h2 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground tablet:text-title-2 tablet:leading-title-2">
 						The people building Orkait.

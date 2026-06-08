@@ -33,6 +33,17 @@ The lab builds focused products around secure execution, software learning syste
 - What it is for: turning rough product intent into usable screens and interactive UI concepts
 - Public positioning: upcoming product line, not a live public product yet
 
+## Built In The Open
+
+### GraphStore
+
+- Status: public open project
+- URL: https://github.com/orkait/graphstore
+- Language: Python
+- Summary: memory infrastructure for AI agents
+- What it does: stores and recalls information by meaning or association, ingests documents, and tracks beliefs
+- Public positioning: open research infrastructure, not a live Orkait product line
+
 ## Research Partnerships
 
 Orkait takes on selective research partnerships when the work can become a real system.

@@ -54,4 +54,14 @@ export const PROJECTS: Project[] = [
 	},
 ];
 
-export const OSS_PROJECTS: OSSProject[] = [];
+export const OSS_PROJECTS: OSSProject[] = [
+	{
+		id: "graphstore",
+		title: "GraphStore",
+		description:
+			"Memory infrastructure for agents: semantic recall, document ingest, and belief tracking.",
+		tags: "Agent Memory, Research Infrastructure",
+		language: "Python",
+		href: "https://github.com/orkait/graphstore",
+	},
+];
