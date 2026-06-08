@@ -47,7 +47,7 @@ function HoverOverlay({ href, label }: { href?: string; label: string }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition-opacity duration-300"
         >
             <span className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-sm font-semibold text-foreground">
                 {label} <ArrowUpRight className="size-4" />
