@@ -5,6 +5,7 @@ import React, {
   forwardRef,
   type ReactNode,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -73,7 +74,14 @@ function CardSwap({
   const isHoveredRef = useRef(false);
   const isAnimatingRef = useRef(false);
   const orderRef = useRef(order);
-  orderRef.current = order;
+  const slotLookup = useMemo(
+    () => new Map(order.map((item, index) => [item, index])),
+    [order]
+  );
+
+  useEffect(() => {
+    orderRef.current = order;
+  }, [order]);
 
   function resetInterval() {
     clearInterval(intervalRef.current);
@@ -160,26 +168,39 @@ function CardSwap({
       style={{ width, height, perspective: 900 }}
     >
       {childArr.map((child, originalIdx) => {
-        const slotIdx = order.indexOf(originalIdx);
+        const childProps = child.props;
+        const slotIdx = slotLookup.get(originalIdx) ?? 0;
         const isDrop = dropping === originalIdx;
         const isFront = slotIdx === 0 && !isDrop;
 
-        return React.cloneElement(child, {
-          key: originalIdx,
-          style: {
-            width,
-            height,
-            ...(isDrop ? dropStyle() : slotStyle(slotIdx)),
-            ...(child.props.style ?? {}),
-          },
-          onClickCapture: isFront
-            ? undefined
-            : (e: React.MouseEvent) => {
+        return (
+          <div
+            key={originalIdx}
+            style={{
+              ...childProps.style,
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width,
+              height,
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+              backfaceVisibility: "hidden",
+              transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), opacity ${TRANSITION_MS}ms ease`,
+              ...(isDrop ? dropStyle() : slotStyle(slotIdx)),
+            }}
+            className={`rounded-lg border border-border bg-background overflow-hidden ${childProps.className ?? ""}`.trim()}
+            onClickCapture={isFront
+              ? undefined
+              : (e: React.MouseEvent) => {
                 e.preventDefault();
                 e.stopPropagation();
                 bringToFront(originalIdx);
-              },
-        } as CardProps);
+              }}
+          >
+            {childProps.children}
+          </div>
+        );
       })}
     </div>
   );
