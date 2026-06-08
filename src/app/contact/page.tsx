@@ -7,8 +7,8 @@ import { FOOTER_SOCIAL_LINKS } from "@/config/site-links";
 import Link from "next/link";
 
 export const metadata: Metadata = createPageMetadata(
-	"Contact Us",
-	"Tell us your problem. We'll tell you if we can solve it. No sales pitch, just honest engineering."
+	"Research Partnerships",
+	"Bring a hard systems problem with a path to a real product or research system."
 );
 
 export default function ContactPage() {
@@ -18,19 +18,19 @@ export default function ContactPage() {
             
             <Section className="hidden tablet:flex bg-background text-foreground flex-col" horizontalMargin verticalMargin>
                 <section className="flex">
-                    <div className="flex-1">
-                        <h1 className="text-title-1 leading-title-1 font-bold tracking-tight text-foreground">
-                            Ready to build
-                            <br />
-                            something
-                            <br />
-                            that works?
-                        </h1>
+	                    <div className="flex-1">
+	                        <h1 className="text-title-1 leading-title-1 font-bold tracking-tight text-foreground">
+	                            Bring a hard
+	                            <br />
+	                            systems
+	                            <br />
+	                            problem.
+	                        </h1>
 
-                        <div className="mt-16 flex flex-col gap-3">
-                            <p className="text-body leading-body text-muted-foreground font-medium">
-                                Or find us on social media
-                            </p>
+	                        <div className="mt-16 flex flex-col gap-3">
+	                            <p className="text-body leading-body text-muted-foreground font-medium">
+	                                Or reach the lab through public channels
+	                            </p>
                             <div className="flex gap-4">
                                 {FOOTER_SOCIAL_LINKS.map((link) => (
                                     <Link

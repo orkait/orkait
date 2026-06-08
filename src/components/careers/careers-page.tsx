@@ -83,13 +83,13 @@ export function CareersPage() {
                     <p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
                         Careers
                     </p>
-                    <h1 className="text-[28px] font-bold leading-[1.1] tracking-tight text-foreground">
-                        Work on systems<br />
-                        that hold up.
-                    </h1>
-                    <p className="text-muted-foreground font-medium text-[14px] leading-[20px] max-w-[300px]">
-                        Small team. Real problems. No hype.
-                    </p>
+	                    <h1 className="text-[28px] font-bold leading-[1.1] tracking-tight text-foreground">
+	                        Work on product-grade<br />
+	                        AI systems.
+	                    </h1>
+	                    <p className="text-muted-foreground font-medium text-[14px] leading-[20px] max-w-[300px]">
+	                        Small team. Live products. Research that has to survive real users and real constraints.
+	                    </p>
                 </div>
 
                 <RoleList activeLabel={activeLabel} />
@@ -110,14 +110,14 @@ export function CareersPage() {
                             Careers
                         </p>
 
-                        <h1 className="text-title-1 leading-title-1 font-bold tracking-tight text-foreground">
-                            Work on systems<br />
-                            that hold up.
-                        </h1>
+	                        <h1 className="text-title-1 leading-title-1 font-bold tracking-tight text-foreground">
+	                            Work on product-grade<br />
+	                            AI systems.
+	                        </h1>
 
-                        <p className="text-muted-foreground font-medium text-body-lg leading-body-lg max-w-[300px]">
-                            Small team. Real problems. No hype.
-                        </p>
+	                        <p className="text-muted-foreground font-medium text-body-lg leading-body-lg max-w-[300px]">
+	                            Small team. Live products. Research that has to survive real users and real constraints.
+	                        </p>
 
                         <div className="mt-6 max-w-[360px]">
                             <RoleList activeLabel={activeLabel} />
