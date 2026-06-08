@@ -5,8 +5,8 @@ import { flag } from "@/config/feature-flag";
 import { createPageMetadata } from "@/config/metadata";
 
 export const metadata: Metadata = createPageMetadata(
-	"Products",
-	"Live product work and research directions from the Orkait product lab.",
+	"Projects & Team",
+	"Shipped systems, open research infrastructure, and the people building Orkait.",
 );
 
 export default function ProjectsPage() {

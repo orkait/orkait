@@ -1,9 +1,5 @@
-import { describe, expect, it } from "vitest";
-import {
-	buildKnowledgeContext,
-	parseKnowledgeSections,
-	selectRelevantSections,
-} from "./knowledge";
+import { describe, expect, it } from 'vitest';
+import { buildKnowledgeContext, parseKnowledgeSections, selectRelevantSections } from './knowledge';
 
 const SAMPLE_KB = `# Orkait Knowledge Base
 
@@ -29,44 +25,61 @@ Orkait is a product-first AI lab.
 
 - Status: coming soon
 - Summary: AI-assisted interface creation product
+
+## Built In The Open
+
+### GraphStore
+
+- Status: public open project
+- Language: Python
+- Summary: memory infrastructure for AI agents
 `;
 
-describe("knowledge helpers", () => {
-	it("parses markdown into named sections", () => {
+describe('knowledge helpers', () => {
+	it('parses markdown into named sections', () => {
 		const sections = parseKnowledgeSections(SAMPLE_KB);
 
-			expect(sections.map((section) => section.title)).toEqual([
-				"What Orkait Is",
-				"Live Product",
-				"Rustbox",
-				"Coming Soon",
-				"BooleanStack",
-				"Zen",
-			]);
+		expect(sections.map((section) => section.title)).toEqual([
+			'What Orkait Is',
+			'Live Product',
+			'Rustbox',
+			'Coming Soon',
+			'BooleanStack',
+			'Zen',
+			'Built In The Open',
+			'GraphStore',
+		]);
 	});
 
-	it("selects the most relevant sections for a repo-specific query", () => {
+	it('selects the most relevant sections for a repo-specific query', () => {
 		const sections = parseKnowledgeSections(SAMPLE_KB);
-		const matches = selectRelevantSections(sections, "What is Rustbox used for?", 2);
+		const matches = selectRelevantSections(sections, 'What is Rustbox used for?', 2);
 
 		expect(matches.length).toBeGreaterThan(0);
-		expect(matches[0]?.title).toBe("Rustbox");
+		expect(matches[0]?.title).toBe('Rustbox');
 	});
 
-	it("builds a bounded context instead of returning the entire KB", () => {
+	it('builds a bounded context instead of returning the entire KB', () => {
 		const sections = parseKnowledgeSections(SAMPLE_KB);
-		const context = buildKnowledgeContext(sections, "Tell me about software learning", 1);
+		const context = buildKnowledgeContext(sections, 'Tell me about software learning', 1);
 
-		expect(context).toContain("BooleanStack");
-		expect(context).not.toContain("Zen");
-		expect(context).not.toContain("# Orkait Knowledge Base");
+		expect(context).toContain('BooleanStack');
+		expect(context).not.toContain('Zen');
+		expect(context).not.toContain('# Orkait Knowledge Base');
 	});
 
-	it("does not select removed internal projects from the public product truth", () => {
+	it('selects GraphStore for open infrastructure queries', () => {
 		const sections = parseKnowledgeSections(SAMPLE_KB);
-		const context = buildKnowledgeContext(sections, "Tell me about gatekeeper and unified-mcp", 2);
+		const matches = selectRelevantSections(sections, 'What is GraphStore?', 2);
 
-		expect(context.toLowerCase()).not.toContain("gatekeeper");
-		expect(context.toLowerCase()).not.toContain("unified-mcp");
+		expect(matches[0]?.title).toBe('GraphStore');
+	});
+
+	it('does not select removed internal projects from the public product truth', () => {
+		const sections = parseKnowledgeSections(SAMPLE_KB);
+		const context = buildKnowledgeContext(sections, 'Tell me about gatekeeper and unified-mcp', 2);
+
+		expect(context.toLowerCase()).not.toContain('gatekeeper');
+		expect(context.toLowerCase()).not.toContain('unified-mcp');
 	});
 });

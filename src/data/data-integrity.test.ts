@@ -55,7 +55,7 @@ describe("project data", () => {
 			assert.equal(
 				project.href.startsWith("https://"),
 				true,
-				`Project ${project.title} should have a live URL`
+				`Project ${project.title} should have a live URL`,
 			);
 		});
 	});
@@ -65,7 +65,7 @@ describe("project data", () => {
 			assert.equal(
 				project.image.src.startsWith("/data/projects/"),
 				true,
-				`Project ${project.title} image should be in /data/projects/`
+				`Project ${project.title} image should be in /data/projects/`,
 			);
 		});
 	});
@@ -77,32 +77,59 @@ describe("OSS project data", () => {
 		assert.equal(new Set(ids).size, ids.length);
 	});
 
+	it("keeps the public open section capped to four cards", () => {
+		assert.equal(
+			OSS_PROJECTS.length <= 4,
+			true,
+			"Open project cards should stay capped at four",
+		);
+	});
+
+	it("showcases GraphStore as the open public project", () => {
+		assert.deepEqual(
+			OSS_PROJECTS.map((project) => project.id),
+			["graphstore"],
+		);
+		assert.equal(OSS_PROJECTS[0]?.href, "https://github.com/orkait/graphstore");
+		assert.equal(OSS_PROJECTS[0]?.language, "Python");
+	});
+
 	it("does not share IDs with client projects", () => {
 		const clientIds = new Set(PROJECTS.map((p) => p.id));
 		OSS_PROJECTS.forEach((project) => {
 			assert.equal(
 				clientIds.has(project.id),
 				false,
-				`OSS project ${project.title} shares ID with a client project`
+				`OSS project ${project.title} shares ID with a client project`,
 			);
 		});
+	});
+
+	it("does not publish removed internal projects as open cards", () => {
+		const ids = OSS_PROJECTS.map((project) => project.id);
+
+		assert.equal(ids.includes("unified-mcp"), false);
+		assert.equal(ids.includes("gatekeeper"), false);
 	});
 });
 
 describe("product positioning data", () => {
+	it("keeps the product grid capped to four cards", () => {
+		assert.equal(PRODUCT_LINES.length <= 4, true, "Product cards should stay capped at four");
+	});
+
 	it("keeps Rustbox as the only live public product", () => {
 		const liveProducts = PRODUCT_LINES.filter((product) => product.status === "live");
 
 		assert.deepEqual(
 			liveProducts.map((product) => product.id),
-			["rustbox"]
+			["rustbox"],
 		);
 		assert.equal(liveProducts[0]?.href, "https://rustbox.orkait.com");
 	});
 
 	it("keeps BooleanStack and Zen as coming soon products", () => {
-		const comingSoonIds = PRODUCT_LINES
-			.filter((product) => product.status === "coming-soon")
+		const comingSoonIds = PRODUCT_LINES.filter((product) => product.status === "coming-soon")
 			.map((product) => product.id)
 			.sort();
 
@@ -126,7 +153,7 @@ describe("public copy voice", () => {
 				assert.equal(
 					source.includes(phrase.toLowerCase()),
 					false,
-					`${file} contains banned phrase: ${phrase}`
+					`${file} contains banned phrase: ${phrase}`,
 				);
 			}
 		}
@@ -137,15 +164,13 @@ describe("navigation data", () => {
 	it("keeps header links aligned with valid app routes", () => {
 		const routeSet = new Set<string>(Object.values(routes));
 
-		HEADER_LINKS
-			.filter((link) => !link.href.startsWith("http"))
-			.forEach((link) => {
-				assert.equal(
-					routeSet.has(link.href),
-					true,
-					`Header link "${link.label}" points to invalid route: ${link.href}`
-				);
-			});
+		HEADER_LINKS.filter((link) => !link.href.startsWith("http")).forEach((link) => {
+			assert.equal(
+				routeSet.has(link.href),
+				true,
+				`Header link "${link.label}" points to invalid route: ${link.href}`,
+			);
+		});
 	});
 });
 
@@ -156,7 +181,7 @@ describe("team data", () => {
 			assert.equal(
 				existsSync(assetPath),
 				true,
-				`Missing image asset for ${member.name}: ${member.image}`
+				`Missing image asset for ${member.name}: ${member.image}`,
 			);
 		});
 	});
@@ -174,15 +199,19 @@ describe("knowledge base", () => {
 
 		const markdown = readFileSync(kbPath, "utf8");
 
-			[
-				"# Orkait Knowledge Base",
-				"## What Orkait Is",
-				"## Live Product",
-				"## Coming Soon",
-				"## Research Partnerships",
-				"## What We Do Not Claim",
-			].forEach((heading) => {
-			assert.match(markdown, new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "m"));
+		[
+			"# Orkait Knowledge Base",
+			"## What Orkait Is",
+			"## Live Product",
+			"## Coming Soon",
+			"## Built In The Open",
+			"## Research Partnerships",
+			"## What We Do Not Claim",
+		].forEach((heading) => {
+			assert.match(
+				markdown,
+				new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "m"),
+			);
 		});
 	});
 });
