@@ -1,136 +1,138 @@
-# Orkait — AI Context & Brand Rules
+# Orkait AI Context And Brand Rules
 
-This file is the single source of truth for any AI/LLM modifying this codebase.
-Violating these rules produces copy and code that contradicts Orkait's brand.
-
----
+This file is the source of truth for AI or LLM edits in this codebase.
 
 ## Identity
 
-Orkait is an **engineering-first company** that builds:
-1. **Reliable client software** — dashboards, web apps, admin panels, scalable backends
-2. **Focused SaaS products** — problem-specific tools born from real internal needs
+Orkait is a product-first AI lab.
 
-Orkait is NOT a design agency, creative studio, or digital marketing firm.
+We build focused products around:
 
-## Core Values (non-negotiable)
+1. Secure execution - Rustbox is live at https://rustbox.orkait.com
+2. Software learning systems - BooleanStack is coming soon
+3. AI-assisted interface creation - Zen is coming soon
 
-These come from `legal/orkait_core.pdf` and are codified in `src/constants/index.ts` as `CORE_VALUES`.
+Research partnerships are secondary and selective. They should be described only when the work has a path to a product-grade system.
 
-| Value | Tagline |
-|-------|---------|
-| Ownership | Own outcomes, not just tasks |
-| Reliability | Commitments matter |
-| Thoughtful Innovation | Build smart, not just new |
-| Craftsmanship | Quality is a habit, not an accident |
-| Respect & Clear Communication | Say things clearly and directly |
+Orkait is not an agency, design studio, or general services shop.
 
-**Never remove, rename, or reorder these values.** They are the company's foundation.
+## Core Positioning
 
-## Banned Language
+Primary line:
 
-Do NOT use these phrases anywhere in the codebase — they contradict engineering-first positioning:
+Applied AI research, shipped as products.
 
-- "craft digital experiences"
-- "digital experiences that inspire"
-- "empowering businesses to thrive in the digital world"
-- "digital transformation"
-- "synergy" / "leverage" / "paradigm"
-- "game-changer" / "revolutionary" / "disruptive"
-- "cutting-edge" (unless describing a specific technology)
-- "one-stop shop" / "full-service agency"
-- "holistic approach"
-- Any sentence that could describe any company in any industry
+Supporting definition:
+
+Orkait builds focused tools for secure execution, software learning, and AI-assisted creation. Rustbox is live. BooleanStack and Zen are coming soon.
+
+## Product Truth
+
+| Product | Status | Public Role |
+|---|---|---|
+| Rustbox | Live | Secure execution product |
+| BooleanStack | Coming soon | Software learning system |
+| Zen | Coming soon | AI-assisted interface creation product |
+
+Do not position unified-mcp or gatekeeper as public Orkait products.
+
+## Voice Rules
+
+Use:
+
+- Concrete product names: Rustbox, BooleanStack, Zen
+- Concrete technical surfaces: secure execution, untrusted code, learning systems, interface generation, product-grade systems
+- Clear maturity labels: live, coming soon, research partnership
+- Direct claims tied to what exists
+- Product-first framing before partnership framing
+
+Avoid:
+
+- AI solutions
+- digital transformation
+- unlock potential
+- revolutionize
+- next-gen
+- modern businesses
+- custom software solutions
+- client work
+- professional services
+- business websites
+- case studies as the primary public framing
+- broad claims that could describe any AI startup
 
 ## Required Tone
 
-- **Direct.** Lead with what we do, not what we aspire to.
-- **Technical but clear.** Engineers should nod. Non-engineers should still get it.
-- **Confident, not arrogant.** Let the work speak.
-- **Short sentences.** If it can be said in fewer words, do it.
-- **First person plural.** "We build..." not "Orkait builds..." (except in meta/SEO).
-- **No emojis** in production copy (acceptable in chat widget suggestions only).
+- Specific, not generic.
+- Technical, but readable.
+- Confident, not inflated.
+- Product-led, not service-led.
+- Research-aware, but grounded in shipped or clearly labelled product work.
+- Short sentences where possible.
 
-### Good examples:
-- "We engineer software that works."
-- "Quality is a habit, not an accident."
-- "Built to solve real problems, not chase hype."
-- "No fluff. No hype. Just systems that hold up."
+Good examples:
 
-### Bad examples:
-- "We craft digital experiences that inspire."
-- "Empowering businesses to thrive in the digital world."
-- "Your trusted partner for digital transformation."
-- "We leverage cutting-edge technology to deliver game-changing solutions."
+- "Rustbox is our secure execution product for running untrusted code."
+- "BooleanStack is our upcoming learning system for serious software practice."
+- "Zen is our upcoming interface lab for turning rough product ideas into usable screens."
+- "We partner when the work has a path to a real product or research system."
 
-## Problem-Solving Process
+Bad examples:
 
-Orkait's iterative process (from core values PDF):
-
-```
-Problem → Break it Down → Prototype → Feedback → Solution
-                                  ↑_______________|
-```
-
-This is codified in `src/constants/index.ts` as `PROBLEM_SOLVING_PROCESS`.
-When describing how Orkait works, reference this loop — not generic "agile" or "scrum" language.
+- "We build AI solutions for modern businesses."
+- "We unlock the next generation of digital transformation."
+- "We provide custom software solutions for every business need."
+- "We revolutionize workflows with cutting-edge AI."
 
 ## Content Data Architecture
 
-All website copy lives in structured data files, NOT hardcoded in components:
+Public copy should live in structured data files when practical, not scattered through component JSX.
 
 | Data | File | Constant |
-|------|------|----------|
-| Core values | `src/constants/index.ts` | `CORE_VALUES` |
-| Process steps | `src/constants/index.ts` | `PROBLEM_SOLVING_PROCESS` |
-| Client services | `src/constants/index.ts` | `CLIENT_SERVICES` |
-| SaaS principles | `src/constants/index.ts` | `SAAS_PRINCIPLES` |
-| Capabilities | `src/constants/index.ts` | `CAPABILITIES_LEFT`, `CAPABILITIES_RIGHT` |
-| Features | `src/constants/index.ts` | `FEATURES` |
-| Testimonials | `src/constants/index.ts` | `TESTIMONIALS` |
-| Services list | `src/constants/index.ts` | `SERVICES` |
+|---|---|---|
+| Product lines | `src/data/projects.ts` | `PRODUCT_LINES` |
+| Legacy live project adapter | `src/data/projects.ts` | `PROJECTS` |
+| Lab thesis | `src/constants/index.ts` | `LAB_THESIS` |
+| Product pillars | `src/constants/index.ts` | `PRODUCT_PILLARS` |
+| Shipping discipline | `src/constants/index.ts` | `SHIPPING_DISCIPLINE` |
+| Research criteria | `src/constants/index.ts` | `RESEARCH_PARTNERSHIP_CRITERIA` |
 | Footer links | `src/constants/index.ts` | `FOOTER_COLUMNS` |
 | Team members | `src/data/team.ts` | `TEAM_MEMBERS` |
-| Projects | `src/data/projects.ts` | `PROJECTS` |
-| Pricing plans | `src/data/pricing.ts` | `PRICING_PLANS` |
 
-**When modifying content, edit the data — not the component JSX.**
+When modifying public content, prefer editing the data source first.
 
-## Project Tags
+## Navigation
 
-Projects should be tagged with engineering-relevant labels:
+Primary public navigation should lead with Products, not portfolio or agency language.
 
-**Use:** Strategy, Engineering, Web Engineering, Full-Stack Development, Dashboard, API Engineering, SaaS Platform, Backend Systems, Web App, Infrastructure
-**Avoid:** Identity, Webdesign, Branding, Creative Direction
+Recommended first-pass nav:
 
-## Testimonials
-
-Testimonials must:
-- Reference specific technical outcomes (uptime, performance, architecture decisions)
-- Sound like real engineers or technical founders wrote them
-- NOT use words like "game-changer", "exceeded expectations", "unmatched"
-- NOT follow identical sentence structures across all entries
-
-## Tech Stack
-
-- Next.js 16 (App Router) + React 19 + TypeScript
-- Tailwind CSS v4 (CSS-first, token-driven)
-- Custom breakpoints: `phone:`, `tablet:`, `laptop:`, `desktop:` (NOT sm/md/lg/xl)
-- Typography tokens: heading, title-1/2/3, subtitle, body-lg, body
-- shadcn/ui components (Radix-based)
-- Framer Motion for animations
-- Lenis for smooth scroll
-- Bun as package manager
+- Products
+- Contact
 
 ## Pricing
 
-Pricing must reflect engineering scope, not screen counts or design deliverables:
-- Reference API complexity, infrastructure, CI/CD, testing, monitoring
-- NOT "Basic UI/UX design" or "Custom UI/UX design"
-- Tiers should scale by system complexity, not page count
+Do not present agency-style packages based on page counts, screen counts, or generic deliverables.
+
+If pricing is public, frame it as research partnership engagement bands. If that framing is not ready, hide pricing from the main public flow.
+
+## Knowledge Base And Chatbot
+
+The public knowledge base at `chatbot/knowledge/index.md` is the chatbot truth source.
+
+It must state:
+
+- Orkait is product-first.
+- Rustbox is live.
+- BooleanStack is coming soon.
+- Zen is coming soon.
+- Research partnerships are selective.
+- unified-mcp and gatekeeper are not public Orkait product claims.
+
+The chatbot must not invent maturity, timelines, features, customers, or roadmap details.
 
 ## Key Principle
 
-> "Products are built to solve real problems, not chase hype."
+When in doubt, ask whether the copy names a real product, surface, or constraint.
 
-When in doubt, ask: does this copy sound like it was written by an engineer, or by a marketing intern? Choose the engineer.
+If it does not, tighten it until it does.

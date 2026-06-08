@@ -1,245 +1,249 @@
 import { routes } from "@/config/routes";
 
-// --- Core Values (source: legal/orkait_core.pdf) ---
 export type CoreValue = {
-    title: string;
-    tagline: string;
-    description: string;
+	title: string;
+	tagline: string;
+	description: string;
 };
 
 export const CORE_VALUES: CoreValue[] = [
-    {
-        title: "Ownership",
-        tagline: "Own outcomes, not just tasks",
-        description:
-            "If it's your problem, it's your problem until it's solved. We don't pass the buck or wait for someone else to figure it out.",
-    },
-    {
-        title: "Reliability",
-        tagline: "Commitments matter",
-        description:
-            "We deliver what we promise, when we promise it. Deadlines are real. If something slips, we communicate early — never silently.",
-    },
-    {
-        title: "Thoughtful Innovation",
-        tagline: "Build smart, not just new",
-        description:
-            "We pick the right tool for the job, not the trendy one. Every technical decision is weighed against real constraints and real outcomes.",
-    },
-    {
-        title: "Craftsmanship",
-        tagline: "Quality is a habit, not an accident",
-        description:
-            "Every system we ship is built to hold up under pressure. Clean code, proper testing, and engineering discipline are non-negotiable.",
-    },
-    {
-        title: "Respect & Clear Communication",
-        tagline: "Say things clearly and directly",
-        description:
-            "No politics, no ambiguity. We give honest feedback, flag problems early, and have direct engineering conversations.",
-    },
+	{
+		title: "Product Discipline",
+		tagline: "Research must become a working system",
+		description:
+			"We do not treat prototypes as proof. A useful idea has to survive constraints, users, deployment, and maintenance.",
+	},
+	{
+		title: "Reliability",
+		tagline: "Systems should hold under pressure",
+		description:
+			"Rustbox sets the bar for how we think about execution, isolation, and production boundaries.",
+	},
+	{
+		title: "Specificity",
+		tagline: "Name the product, name the surface",
+		description:
+			"We avoid vague AI claims. Public copy should tie back to Rustbox, BooleanStack, Zen, or a concrete technical problem.",
+	},
+	{
+		title: "Research Taste",
+		tagline: "Novelty is not enough",
+		description:
+			"We care about ideas that can turn into useful tools for secure execution, software learning, or AI-assisted creation.",
+	},
+	{
+		title: "Clear Communication",
+		tagline: "Say what exists and what is next",
+		description:
+			"Rustbox is live. BooleanStack and Zen are coming soon. Anything beyond that should be labelled as research or partnership work.",
+	},
 ];
 
-// --- Problem-Solving Process (source: legal/orkait_core.pdf) ---
+export type ProductPillar = {
+	title: string;
+	description: string;
+	surface: string;
+};
+
+export const PRODUCT_PILLARS: ProductPillar[] = [
+	{
+		title: "Secure execution",
+		surface: "Rustbox",
+		description:
+			"Run untrusted code with strict execution boundaries, resource limits, and infrastructure-grade isolation.",
+	},
+	{
+		title: "Software learning systems",
+		surface: "BooleanStack",
+		description:
+			"Build practice environments for algorithms, system design, and engineering depth without shallow progress loops.",
+	},
+	{
+		title: "AI-assisted creation",
+		surface: "Zen",
+		description:
+			"Turn rough product intent into usable interface concepts without pretending a prompt is a finished product.",
+	},
+];
+
+export const LAB_THESIS = [
+	"Applied research only matters when it becomes a reliable product surface.",
+	"Secure execution is the foundation for serious agent and code-running workflows.",
+	"Learning systems should reward engineering depth, not shallow engagement.",
+	"AI interface tools should help shape product thinking, not replace it with generic screens.",
+];
+
+export const SHIPPING_DISCIPLINE = [
+	"Live products are labelled live.",
+	"Upcoming products are labelled coming soon.",
+	"Research partnerships are selective.",
+	"Public claims stay tied to product truth.",
+];
+
+export const RESEARCH_PARTNERSHIP_CRITERIA = [
+	"Secure execution or agent runtime work",
+	"Software learning and evaluation systems",
+	"AI-assisted product and interface tooling",
+	"Research with a path to deployment",
+];
+
 export type ProcessStep = {
-    step: number;
-    title: string;
-    description: string;
+	step: number;
+	title: string;
+	description: string;
 };
 
 export const PROBLEM_SOLVING_PROCESS: ProcessStep[] = [
-    {
-        step: 1,
-        title: "Problem",
-        description: "Understand what actually needs solving",
-    },
-    {
-        step: 2,
-        title: "Break it Down",
-        description: "Scope it tight, plan it clearly",
-    },
-    {
-        step: 3,
-        title: "Prototype",
-        description: "Build fast, validate early",
-    },
-    {
-        step: 4,
-        title: "Feedback",
-        description: "Iterate with real input, not assumptions",
-    },
-    {
-        step: 5,
-        title: "Solution",
-        description: "Ship something reliable",
-    },
+	{
+		step: 1,
+		title: "Question",
+		description: "Find a hard systems problem worth productizing",
+	},
+	{
+		step: 2,
+		title: "Research",
+		description: "Reduce the unknowns before writing product claims",
+	},
+	{
+		step: 3,
+		title: "Prototype",
+		description: "Build the smallest useful execution path",
+	},
+	{
+		step: 4,
+		title: "Harden",
+		description: "Test constraints, failures, and real workloads",
+	},
+	{
+		step: 5,
+		title: "Ship",
+		description: "Release the product only when the proof is public",
+	},
 ];
 
-// --- What We Build (source: legal/orkait_core.pdf) ---
-export const CLIENT_SERVICES = [
-    "Dashboards & Admin Panels",
-    "Business Websites",
-    "Custom Web Apps",
-    "Data & Business Analysis",
-    "Scalable Backend Systems",
-];
+export const CLIENT_SERVICES = RESEARCH_PARTNERSHIP_CRITERIA;
 
 export const SAAS_PRINCIPLES = [
-    "Focused, problem-specific tools",
-    "Built from real client and internal needs",
-    "Limited scope, opinionated design",
-    "Internal-first, then external SaaS",
+	"Product truth before launch copy",
+	"Live and coming soon states separated clearly",
+	"Research tied to execution, learning, or interface creation",
+	"Selective partnerships with product-grade outcomes",
 ];
 
-// --- Advance.tsx ---
 export const CAPABILITIES_LEFT = [
-    "Rapid Iteration",
-    "Cloud-Native SaaS",
-    "High Performance Systems",
+	"Secure execution",
+	"Product-grade AI systems",
+	"Software learning infrastructure",
 ];
 
 export const CAPABILITIES_RIGHT = [
-    "Scalable Foundations",
-    "Production-Hardened Deployments",
+	"AI-assisted interface creation",
+	"Selective research partnerships",
 ];
 
-// --- Footer.tsx ---
 export type FooterLink = {
-    label: string;
-    href: string;
-    isExternal?: boolean;
+	label: string;
+	href: string;
+	isExternal?: boolean;
 };
 
 export type FooterColumn = {
-    ariaLabel: string;
-    heading?: string;
-    links: FooterLink[];
+	ariaLabel: string;
+	heading?: string;
+	links: FooterLink[];
 };
 
 export const FOOTER_COLUMNS: FooterColumn[] = [
-    {
-        ariaLabel: "Primary navigation",
-        heading: "Company",
-        links: [
-            { label: "Home", href: routes.home },
-            { label: "Our Work", href: routes.projects },
-        ],
-    },
-    {
-        ariaLabel: "Social and contact navigation",
-        heading: "Connect",
-        links: [
-            { label: "Contact", href: routes.contact },
-            { label: "LinkedIn", href: "https://www.linkedin.com/company/orkait/", isExternal: true },
-            { label: "GitHub", href: "https://github.com/orkait", isExternal: true },
-        ],
-    },
+	{
+		ariaLabel: "Primary navigation",
+		heading: "Company",
+		links: [
+			{ label: "Home", href: routes.home },
+			{ label: "Products", href: routes.projects },
+			{ label: "Careers", href: routes.careers },
+		],
+	},
+	{
+		ariaLabel: "Social and contact navigation",
+		heading: "Connect",
+		links: [
+			{ label: "Research Partnerships", href: routes.contact },
+			{ label: "LinkedIn", href: "https://www.linkedin.com/company/orkait/", isExternal: true },
+			{ label: "GitHub", href: "https://github.com/orkait", isExternal: true },
+		],
+	},
 ];
 
-// --- Feedback.tsx ---
 export type FeedbackCardProps = {
-    quote: string;
-    name: string;
-    company: string;
+	quote: string;
+	name: string;
+	company: string;
 };
 
-export const TESTIMONIALS: FeedbackCardProps[] = [
-    {
-        quote:
-            "Orkait rebuilt our admin dashboard from scratch. The system handles 10x the traffic now with zero downtime. They didn't just build what we asked for — they pushed back where it mattered and delivered something better.",
-        name: "Sarah K.",
-        company: "TechVentures",
-    },
-    {
-        quote:
-            "We needed a backend that could scale with our property listings. Orkait delivered a system that's fast, reliable, and easy for our team to maintain. No over-engineering, no wasted effort — just solid work.",
-        name: "Manuel H.",
-        company: "Montara Immobilien",
-    },
-    {
-        quote:
-            "Most agencies gave us timelines and buzzwords. Orkait gave us a working prototype in two weeks and iterated from there. The final product has been running in production for over a year without issues.",
-        name: "Isabelle T.",
-        company: "Kultur",
-    },
-    {
-        quote:
-            "Orkait built our SaaS platform with a cloud-native architecture from day one. We went from zero to handling thousands of daily active users without re-architecting anything. That's rare.",
-        name: "James R.",
-        company: "Foundry Labs",
-    },
-    {
-        quote:
-            "Their engineering discipline is what sets them apart. Clean code, proper testing, honest communication about trade-offs. They treat your codebase like it's their own.",
-        name: "Priya M.",
-        company: "Datasync",
-    },
-];
+export const TESTIMONIALS: FeedbackCardProps[] = [];
 
-// --- Process.tsx ---
 export type FeatureCardProps = {
-    num: string;
-    title: string;
-    description: string;
-    area: string;
+	num: string;
+	title: string;
+	description: string;
+	area: string;
 };
 
 export const FEATURES: FeatureCardProps[] = [
-    {
-        num: "(01)",
-        title: "Secure",
-        description:
-            "Security baked in from day one. OWASP best practices, proper auth, encrypted data at rest and in transit. Not bolted on after launch.",
-        area: "card1",
-    },
-    {
-        num: "(02)",
-        title: "High-Performance",
-        description:
-            "Systems built for sub-millisecond latency and millions of requests. We profile, benchmark, and optimize — not guess.",
-        area: "card2",
-    },
-    {
-        num: "(03)",
-        title: "Quality Assured",
-        description:
-            "Quality is a habit, not an accident. Automated testing, code reviews, and CI/CD pipelines that catch problems before they ship.",
-        area: "card3",
-    },
-    {
-        num: "(04)",
-        title: "Simple",
-        description:
-            "Complexity is easy. Simplicity takes discipline. We build systems that are easy to understand, extend, and maintain.",
-        area: "card4",
-    },
-    {
-        num: "(05)",
-        title: "Customizable",
-        description:
-            "Every business has different constraints. We build solutions scoped to your problem — no bloated frameworks, no unnecessary abstractions.",
-        area: "card5",
-    },
-    {
-        num: "(06)",
-        title: "Plug and Play",
-        description:
-            "Clean APIs, documented interfaces, and deployment pipelines that work. Integrate with your existing stack without friction.",
-        area: "card6",
-    },
-    {
-        num: "(07)",
-        title: "Enterprise Ready",
-        description:
-            "Built to scale from day one. Proper logging, monitoring, role-based access, and infrastructure that grows with your business.",
-        area: "card7",
-    },
+	{
+		num: "(01)",
+		title: "Live means live",
+		description:
+			"Rustbox is public and reachable. Coming soon products are labelled clearly until they ship.",
+		area: "card1",
+	},
+	{
+		num: "(02)",
+		title: "Research has a target",
+		description:
+			"Every lab direction maps to a product surface: execution, learning, or interface creation.",
+		area: "card2",
+	},
+	{
+		num: "(03)",
+		title: "Claims stay bounded",
+		description:
+			"We do not inflate roadmap work into public product claims.",
+		area: "card3",
+	},
+	{
+		num: "(04)",
+		title: "Systems come first",
+		description:
+			"We care about runtime behavior, constraints, failure modes, and maintenance.",
+		area: "card4",
+	},
+	{
+		num: "(05)",
+		title: "Partnerships stay selective",
+		description:
+			"We collaborate when the work has a path to a real system.",
+		area: "card5",
+	},
+	{
+		num: "(06)",
+		title: "No generic AI copy",
+		description:
+			"Public language should name the product, surface, or constraint it describes.",
+		area: "card6",
+	},
+	{
+		num: "(07)",
+		title: "Ship the proof",
+		description:
+			"Research earns trust when users can touch the product.",
+		area: "card7",
+	},
 ];
 
-// --- ServicesText.tsx ---
 export const SERVICES = [
-    { label: "Client Work", active: true },
-    { label: "Solutions", active: false },
-    { label: "SaaS Work", active: false },
-    { label: "Dev Products", active: false },
+	{ label: "Rustbox", active: true },
+	{ label: "BooleanStack", active: false },
+	{ label: "Zen", active: false },
+	{ label: "Research", active: false },
 ];

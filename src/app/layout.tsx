@@ -3,7 +3,6 @@ import { satoshi, poppins } from "@/config/fonts";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
-import { ChatWidget } from "@/components/layout/chat-widget";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 
 export const metadata: Metadata = {
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
         default: "Orkait",
         template: "%s | Orkait",
     },
-    description: "Orkait is an engineering-first company that builds reliable client software and focused SaaS products. No fluff, no hype — just systems that work.",
+    description: "Orkait is a product-first AI lab. We build secure execution tools, software learning systems, and AI-assisted creation products.",
     metadataBase: new URL("https://orkait.com"),
     openGraph: {
         siteName: "Orkait",
@@ -36,7 +35,6 @@ export default function RootLayout({
                     <main>
                         {children}
                     </main>
-                    {/* <ChatWidget /> */}
                     <Footer />
                 </SmoothScrollProvider>
             </body>
