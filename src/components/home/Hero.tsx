@@ -9,13 +9,13 @@ export const Hero = () => {
             {/* Mobile view */}
             <div className="tablet:hidden flex flex-col gap-14 pt-4 pb-4">
                 <div className="flex w-full justify-end">
-                    <div className="flex w-full max-w-[320px] flex-col items-end gap-8">
-                        <span className="w-full max-w-[320px] text-right text-[22px] font-medium leading-[24px] tracking-[-0.04em] text-foreground text-wrap">
-                            We engineer software that works. Reliable systems, honest engineering, no hype.
-                        </span>
-                        <Button asChild className="inline-flex px-4 py-2 justify-center items-center gap-[10px] rounded-md bg-foreground text-white hover:bg-slate-900/90 h-auto font-normal text-base">
-                            <Link href={routes.contact}>Talk to Us</Link>
-                        </Button>
+	                    <div className="flex w-full max-w-[320px] flex-col items-end gap-8">
+	                        <span className="w-full max-w-[320px] text-right text-[22px] font-medium leading-[24px] tracking-[-0.04em] text-foreground text-wrap">
+	                            Applied AI research, shipped as products. Rustbox is live. BooleanStack and Zen are next.
+	                        </span>
+	                        <Button asChild className="inline-flex px-4 py-2 justify-center items-center gap-[10px] rounded-md bg-foreground text-white hover:bg-slate-900/90 h-auto font-normal text-base">
+	                            <Link href={routes.projects}>View Products</Link>
+	                        </Button>
                     </div>
                 </div>
 
@@ -54,14 +54,14 @@ export const Hero = () => {
             {/* Tablet/laptop view */}
             <div className="hidden tablet:block relative w-full h-[600px] laptop:h-[750px] overflow-visible">
                 {/* Tagline */}
-                <div className="absolute right-0 tablet:top-6 laptop:top-[12px] w-full max-w-[450px] laptop:max-w-[1000px] z-20">
-                    <p className="tablet:text-[36px] laptop:text-[52px] font-bold leading-tight laptop:leading-[50px] tracking-[-0.96px] text-black text-right">
-                        We engineer software that works.<br />
-                        Honest engineering.<br />
-                        Reliable systems.<br />
-                        No hype.
-                    </p>
-                </div>
+	                <div className="absolute right-0 tablet:top-6 laptop:top-[12px] w-full max-w-[450px] laptop:max-w-[1000px] z-20">
+	                    <p className="tablet:text-[36px] laptop:text-[52px] font-bold leading-tight laptop:leading-[50px] tracking-[-0.96px] text-black text-right">
+	                        Applied AI research,<br />
+	                        shipped as products.<br />
+	                        Rustbox is live.<br />
+	                        BooleanStack and Zen are next.
+	                    </p>
+	                </div>
 
                 {/* Brand group */}
                 <div className="absolute left-0 tablet:top-[200px] laptop:top-[240px] flex items-start">

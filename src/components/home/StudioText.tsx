@@ -9,15 +9,15 @@ const StudioText = () => {
             {/* Mobile view */}
             <div className="tablet:hidden flex flex-col items-start mt-12 w-full">
                 <div className="w-full">
-                    <span className="float-left mr-4 pt-1">
-                        <p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
-                            (01) Studio
-                        </p>
-                    </span>
-                    <h2 className="text-foreground font-medium text-subtitle leading-tight tracking-tight">
-                        Engineering-first. We build reliable client software and focused
-                        SaaS products that hold up under pressure.
-                    </h2>
+	                    <span className="float-left mr-4 pt-1">
+	                        <p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
+	                            (01) Lab Thesis
+	                        </p>
+	                    </span>
+	                    <h2 className="text-foreground font-medium text-subtitle leading-tight tracking-tight">
+	                        We build where execution, learning, and interface work need
+	                        real product discipline.
+	                    </h2>
                 </div>
 
                 <div className="mt-14 flex flex-col gap-8 items-start w-full">
@@ -26,21 +26,19 @@ const StudioText = () => {
                     </div>
 
                     <div className="flex flex-col gap-7 w-full">
-                        <p className="max-w-[34ch] text-foreground font-medium text-[14px] leading-[22px]">
-                            We are Orkait, an engineering-first company. Our expertise spans
-                            three core domains: web app development, scalable backend systems,
-                            and focused SaaS products built from real needs.
-                        </p>
+	                        <p className="max-w-[34ch] text-foreground font-medium text-[14px] leading-[22px]">
+	                            Orkait is product-first. Rustbox is live as our secure
+	                            execution product. BooleanStack and Zen are the next product lines.
+	                        </p>
 
-                        <div className="flex flex-col items-start gap-6">
-                            <p className="max-w-[34ch] text-foreground font-medium text-[14px] leading-[22px]">
-                                We don&apos;t chase trends — we solve problems. Every line of code
-                                we ship is backed by ownership, craftsmanship, and a commitment
-                                to getting it right.
-                            </p>
-                            <Button asChild className="px-4 py-2 h-auto text-[14px] font-medium rounded-md" variant="default">
-                                <Link href={routes.projects}>See Our Work</Link>
-                            </Button>
+	                        <div className="flex flex-col items-start gap-6">
+	                            <p className="max-w-[34ch] text-foreground font-medium text-[14px] leading-[22px]">
+	                                We keep the lab small on purpose. Research earns space here
+	                                when it can become a working system.
+	                            </p>
+	                            <Button asChild className="px-4 py-2 h-auto text-[14px] font-medium rounded-md" variant="default">
+	                                <Link href={routes.projects}>View Products</Link>
+	                            </Button>
                         </div>
                     </div>
                 </div>
@@ -49,15 +47,15 @@ const StudioText = () => {
             {/* Tablet/laptop view */}
             <div className="hidden tablet:flex flex-col items-start mt-12 base:mt-24 w-full">
                 <div className="w-full block">
-                    <div className="float-left tablet:w-[150px] laptop:w-[200px] mb-4 tablet:mb-0">
-                        <p className="text-muted-foreground font-medium text-body leading-none tablet:leading-body tracking-widest uppercase pt-2">
-                            (01) Studio
-                        </p>
-                    </div>
-                    <h2 className="text-foreground font-medium text-subtitle tablet:text-title-1 laptop:text-heading leading-tight tablet:leading-title-1 laptop:leading-heading tracking-tight max-w-[1400px] block">
-                        Engineering-first. We build reliable client software and focused
-                        SaaS products that hold up under pressure.
-                    </h2>
+	                    <div className="float-left tablet:w-[150px] laptop:w-[200px] mb-4 tablet:mb-0">
+	                        <p className="text-muted-foreground font-medium text-body leading-none tablet:leading-body tracking-widest uppercase pt-2">
+	                            (01) Lab Thesis
+	                        </p>
+	                    </div>
+	                    <h2 className="text-foreground font-medium text-subtitle tablet:text-title-1 laptop:text-heading leading-tight tablet:leading-title-1 laptop:leading-heading tracking-tight max-w-[1400px] block">
+	                        We build where execution, learning, and interface work need
+	                        real product discipline.
+	                    </h2>
                 </div>
 
                 <div className="clear-both" />
@@ -69,23 +67,21 @@ const StudioText = () => {
                         <AsciiField />
                     </div>
 
-                    <div className="laptop:max-w-[311px] laptop:ml-24">
-                        <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
-                            We are Orkait, an engineering-first company. Our expertise spans
-                            three core domains: web app development, scalable backend systems,
-                            and focused SaaS products built from real needs.
-                        </p>
-                    </div>
+	                    <div className="laptop:max-w-[311px] laptop:ml-24">
+	                        <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
+	                            Orkait is product-first. Rustbox is live as our secure
+	                            execution product. BooleanStack and Zen are the next product lines.
+	                        </p>
+	                    </div>
 
                     {/* Second description + CTA */}
-                    <div className="flex flex-col items-start gap-8 laptop:max-w-[280px]">
-                        <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
-                            We don&apos;t chase trends — we solve problems. Every line of code
-                            we ship is backed by ownership, craftsmanship, and a commitment
-                            to getting it right.
-                        </p>
-                        <Button asChild className="px-4 py-2 h-auto text-[14px] tablet:text-base font-medium rounded-md bg-black text-white hover:bg-black/90" variant="default">
-                            <Link href={routes.projects}>See Our Work</Link>
+	                    <div className="flex flex-col items-start gap-8 laptop:max-w-[280px]">
+	                        <p className="text-foreground font-medium text-[14px] leading-[20px] tablet:text-body laptop:text-body-lg tablet:leading-body laptop:leading-body-lg">
+	                            We keep the lab small on purpose. Research earns space here
+	                            when it can become a working system.
+	                        </p>
+	                        <Button asChild className="px-4 py-2 h-auto text-[14px] tablet:text-base font-medium rounded-md bg-black text-white hover:bg-black/90" variant="default">
+	                            <Link href={routes.projects}>View Products</Link>
                         </Button>
                     </div>
                 </div>

@@ -4,11 +4,11 @@ import { GameOfLife } from "@/components/shared/game-of-life";
 const ServicesText = () => {
     return (
         <div className="w-full relative">
-            <div className="tablet:hidden flex flex-col items-start mt-12 gap-14 w-full">
-                <div className="flex flex-col gap-4 items-start w-full">
-                    <span className="text-foreground font-medium text-[14px] leading-[20px] self-start">
-                        (02) SERVICES
-                    </span>
+	            <div className="tablet:hidden flex flex-col items-start mt-12 gap-14 w-full">
+	                <div className="flex flex-col gap-4 items-start w-full">
+	                    <span className="text-foreground font-medium text-[14px] leading-[20px] self-start">
+	                        (02) PRODUCT SURFACES
+	                    </span>
                     <div className="flex flex-row justify-between w-full">
                         <div className="flex flex-col gap-1">
                             {SERVICES.map(({ label, active }) => (
@@ -21,13 +21,12 @@ const ServicesText = () => {
                                     {label}
                                 </p>
                             ))}
-                        </div>
-                        <div className="flex flex-col gap-1 pt-1 shrink-0">
-                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Developer Tools</p>
-                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Infrastructure</p>
-                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Platforms</p>
-                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Analytics</p>
-                        </div>
+	                        </div>
+	                        <div className="flex flex-col gap-1 pt-1 shrink-0">
+	                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Secure Execution</p>
+	                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Software Learning</p>
+	                            <p className="text-foreground font-medium text-[14px] leading-[20px]">Interface Creation</p>
+	                        </div>
                     </div>
                 </div>
             </div>
@@ -35,10 +34,10 @@ const ServicesText = () => {
             {/* Tablet/laptop view */}
             <div className="hidden tablet:flex flex-row justify-between items-start mt-24 gap-16 w-full overflow-visible">
                 {/* Label + services list */}
-                <div className="flex flex-col items-start gap-4">
-                    <span className="text-muted-foreground font-medium text-body-lg leading-body-lg uppercase tracking-widest pl-0">
-                        (02) SERVICES
-                    </span>
+	                <div className="flex flex-col items-start gap-4">
+	                    <span className="text-muted-foreground font-medium text-body-lg leading-body-lg uppercase tracking-widest pl-0">
+	                        (02) PRODUCT SURFACES
+	                    </span>
 
                     <div className="flex flex-col">
                         {SERVICES.map(({ label, active }) => (
@@ -57,12 +56,12 @@ const ServicesText = () => {
                 </div>
 
                 {/* Game of Life + tag list */}
-                <div className="flex flex-row items-end gap-10 shrink-0">
-                    <div className="flex flex-col gap-1 pb-2">
-                        <p className="text-foreground font-medium text-body leading-body">Developer Tools</p>
-                        <p className="text-foreground font-medium text-body leading-body">Infrastructure Platforms</p>
-                        <p className="text-foreground font-medium text-body leading-body">Analytics</p>
-                    </div>
+	                <div className="flex flex-row items-end gap-10 shrink-0">
+	                    <div className="flex flex-col gap-1 pb-2">
+	                        <p className="text-foreground font-medium text-body leading-body">Secure Execution</p>
+	                        <p className="text-foreground font-medium text-body leading-body">Software Learning</p>
+	                        <p className="text-foreground font-medium text-body leading-body">Interface Creation</p>
+	                    </div>
                     <div className="relative tablet:w-[320px] tablet:aspect-[5/4] laptop:w-[500px] laptop:aspect-square rounded-lg overflow-hidden bg-[#fafafa]">
                         <GameOfLife className="absolute inset-0 w-full h-full block" />
                     </div>

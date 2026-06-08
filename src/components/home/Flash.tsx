@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { CardSwap, Card } from "@/components/ui/card-swap";
 import { ProjectAvatar } from "@/components/shared/project-avatar";
-import { PROJECTS, OSS_PROJECTS } from "@/data/projects";
+import { PRODUCT_LINES } from "@/data/projects";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
@@ -12,35 +12,36 @@ type ShowcaseItem = {
     id: string;
     title: string;
     subtitle: string;
-    href: string;
+    href?: string;
     imageSrc: string | null;
+    ctaLabel: string;
 };
 
-const ALL_ITEMS: ShowcaseItem[] = [
-    ...PROJECTS.map((p) => ({
-        id: p.id,
-        title: p.title,
-        subtitle: p.services,
-        href: p.href,
-        imageSrc: p.image.src,
-    })),
-    ...OSS_PROJECTS
-        .filter((p) => !p.hidden)
-        .map((p) => ({
-            id: p.id,
-            title: p.title,
-            subtitle: p.tags,
-            href: p.href,
-            imageSrc: p.image?.src ?? null,
-        })),
-];
+const ALL_ITEMS: ShowcaseItem[] = PRODUCT_LINES.map((product) => ({
+    id: product.id,
+    title: product.title,
+    subtitle: product.summary,
+    href: product.href,
+    imageSrc: product.id === "rustbox" ? "/data/projects/rustbox-hero.jpeg" : null,
+    ctaLabel: product.ctaLabel,
+}));
 
-const SHOWCASE_ORDER = ["rustbox", "gatekeeper", "booleanstack", "unified-mcp"];
+const SHOWCASE_ORDER = ["rustbox", "booleanstack", "zen"];
 const SHOWCASE_ITEMS: ShowcaseItem[] = SHOWCASE_ORDER
     .map((id) => ALL_ITEMS.find((item) => item.id === id))
     .filter((item): item is ShowcaseItem => item !== undefined);
 
-function HoverOverlay({ href }: { href: string }) {
+function HoverOverlay({ href, label }: { href?: string; label: string }) {
+    if (!href) {
+        return (
+            <div className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <span className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-sm font-semibold text-foreground">
+                    {label}
+                </span>
+            </div>
+        );
+    }
+
     return (
         <a
             href={href}
@@ -49,7 +50,7 @@ function HoverOverlay({ href }: { href: string }) {
             className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300"
         >
             <span className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-sm font-semibold text-foreground">
-                Visit Site <ArrowUpRight className="size-4" />
+                {label} <ArrowUpRight className="size-4" />
             </span>
         </a>
     );
@@ -66,7 +67,7 @@ function CardContent({ item }: { item: ShowcaseItem }) {
                     className="object-cover grayscale"
                     sizes="560px"
                 />
-                <HoverOverlay href={item.href} />
+                <HoverOverlay href={item.href} label={item.ctaLabel} />
             </>
         );
     }
@@ -84,7 +85,7 @@ function CardContent({ item }: { item: ShowcaseItem }) {
                     </span>
                 </div>
             </div>
-            <HoverOverlay href={item.href} />
+            <HoverOverlay href={item.href} label={item.ctaLabel} />
         </>
     );
 }
@@ -98,19 +99,19 @@ const Flash = () => {
     return (
         <div className="w-full mt-5 tablet:mt-0">
             {/* Mobile view */}
-            <div className="tablet:hidden flex flex-col gap-10 py-10">
-                <div className="flex flex-col gap-4">
-                    <p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
-                        Our Focus
-                    </p>
-                    <h2 className="text-foreground font-bold text-[28px] leading-[34px] tracking-tight">
-                        Systems that hold up<br />
-                        under pressure.
-                    </h2>
-                    <p className="text-muted-foreground font-medium text-[14px] leading-[20px] max-w-[320px]">
-                        From dashboards to scalable backends, we ship software built
-                        for real workloads — not demos.
-                    </p>
+	                <div className="tablet:hidden flex flex-col gap-10 py-10">
+	                <div className="flex flex-col gap-4">
+	                    <p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
+	                        Product Lines
+	                    </p>
+	                    <h2 className="text-foreground font-bold text-[28px] leading-[34px] tracking-tight">
+	                        One product live.<br />
+	                        Two in build.
+	                    </h2>
+	                    <p className="text-muted-foreground font-medium text-[14px] leading-[20px] max-w-[320px]">
+	                        Rustbox is the proof. BooleanStack and Zen are the next
+	                        product lines from the lab.
+	                    </p>
                 </div>
 
                 <div className="flex min-h-[248px] items-end justify-center overflow-hidden py-2">
@@ -132,25 +133,25 @@ const Flash = () => {
                 </div>
             </div>
 
-            {/* Tablet / Laptop view */}
-            <div className="hidden tablet:flex h-[550px] laptop:h-[700px] overflow-hidden">
-                {/* Left: text — flush left, vertically centered */}
-                <div className="flex items-center px-8 laptop:px-12 base:px-16">
-                    <div className="flex flex-col gap-6 laptop:gap-8 max-w-[420px] laptop:max-w-[480px]">
-                        <p className="text-muted-foreground font-medium text-body-lg leading-body-lg tracking-widest uppercase">
-                            Our Focus
-                        </p>
-                        <h2 className="text-foreground font-bold text-title-1 leading-title-1 laptop:text-heading laptop:leading-heading tracking-tight">
-                            Systems that hold up under pressure.
-                        </h2>
-                        <p className="text-muted-foreground font-medium text-body laptop:text-body-lg leading-body laptop:leading-body-lg max-w-[380px]">
-                            From dashboards to scalable backends, we ship software built
-                            for real workloads — not demos.
-                        </p>
-                    </div>
-                </div>
+	            {/* Tablet / Laptop view */}
+	            <div className="hidden tablet:flex h-[550px] laptop:h-[700px] overflow-hidden">
+	                {/* Left: text, flush left and vertically centered */}
+	                <div className="flex items-center px-8 laptop:px-12 base:px-16">
+	                    <div className="flex flex-col gap-6 laptop:gap-8 max-w-[420px] laptop:max-w-[480px]">
+	                        <p className="text-muted-foreground font-medium text-body-lg leading-body-lg tracking-widest uppercase">
+	                            Product Lines
+	                        </p>
+	                        <h2 className="text-foreground font-bold text-title-1 leading-title-1 laptop:text-heading laptop:leading-heading tracking-tight">
+	                            One product live. Two in build.
+	                        </h2>
+	                        <p className="text-muted-foreground font-medium text-body laptop:text-body-lg leading-body laptop:leading-body-lg max-w-[380px]">
+	                            Rustbox is the proof. BooleanStack and Zen are the next
+	                            product lines from the lab.
+	                        </p>
+	                    </div>
+	                </div>
 
-                {/* Right: card swap — pushed to the right edge */}
+	                {/* Right: card swap pushed to the right edge */}
                 <div className="ml-auto flex items-end justify-end pr-8 laptop:pr-12 base:pr-16 pb-8 laptop:pb-12">
                     <div className="tablet:scale-[0.75] laptop:scale-90 base:scale-100 origin-bottom-right">
                         <CardSwap
