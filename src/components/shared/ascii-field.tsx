@@ -17,7 +17,7 @@ const MAX_RENDER_SIZE = 500;
 type Vec2 = { x: number; y: number };
 type Body = { pos: Vec2; vel: Vec2 };
 
-// Figure-8 choreography — Chenciner & Montgomery (2000)
+// Figure-8 choreography - Chenciner & Montgomery (2000)
 const INIT = [
   { pos: { x: -0.97000436, y:  0.24308753 }, vel: { x:  0.93240737 / 2, y:  0.86473146 / 2 } },
   { pos: { x:  0.97000436, y: -0.24308753 }, vel: { x:  0.93240737 / 2, y:  0.86473146 / 2 } },
@@ -38,7 +38,7 @@ function gravity(bodies: Body[]): Vec2[] {
       a[j].x -= f * nx;  a[j].y -= f * ny;
     }
   }
-  // Central restoring force — pulls each body toward origin
+  // Central restoring force - pulls each body toward origin
   for (let i = 0; i < 3; i++) {
     a[i].x -= G_CENTER * bodies[i].pos.x;
     a[i].y -= G_CENTER * bodies[i].pos.y;
@@ -128,7 +128,7 @@ export function AsciiField() {
 
       const GRID_PX = 40;
 
-      // Minor grid — skip lines that land on canvas edges
+      // Minor grid - skip lines that land on canvas edges
       trail.strokeStyle = "rgba(0,0,0,0.05)";
       trail.lineWidth = 1;
       for (let x = CX % GRID_PX; x < W; x += GRID_PX) {
@@ -156,7 +156,7 @@ export function AsciiField() {
       return cloneBodies();
     }
 
-    // Set trail style once — never changes
+    // Set trail style once - never changes
     trail.strokeStyle = `rgba(0,0,0,${STROKE_ALPHA})`;
     trail.lineWidth = 1.5;
     trail.lineCap = "round";
@@ -185,7 +185,7 @@ export function AsciiField() {
       // Collect start positions for each body before stepping
       const segStarts: Vec2[][] = bodies.map((b) => [toCanvas(b.pos)]);
 
-      // Physics steps — accumulate waypoints per body
+      // Physics steps - accumulate waypoints per body
       for (let s = 0; s < STEPS_PER_FRAME; s++) {
         const a = gravity(bodies);
 
@@ -206,7 +206,7 @@ export function AsciiField() {
         }
       }
 
-      // One path per body — minimises draw calls
+      // One path per body - minimises draw calls
       for (let i = 0; i < 3; i++) {
         const pts = segStarts[i];
         trail.beginPath();
@@ -225,7 +225,7 @@ export function AsciiField() {
         ball.fill();
       }
 
-      // Adaptive delay — cap at 60fps
+      // Adaptive delay - cap at 60fps
       const elapsed = performance.now() - frameStart;
       timer = setTimeout(tick, Math.max(0, TARGET_MS - elapsed));
     }

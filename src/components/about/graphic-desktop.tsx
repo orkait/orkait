@@ -1,4 +1,4 @@
-// JUSTIFICATION: absolute positioning is required — this is a fixed 428x415 pixel-perfect geometric
+// JUSTIFICATION: absolute positioning is required - this is a fixed 428x415 pixel-perfect geometric
 // composition for desktop. Each petal's exact coordinates are defined by the Figma design node 845:293.
 // This is the high-resolution version of the graphic seen on node 845:293.
 

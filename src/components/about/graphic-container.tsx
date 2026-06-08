@@ -1,4 +1,4 @@
-// JUSTIFICATION: absolute positioning is required — this is a fixed 220×220 pixel-perfect geometric
+// JUSTIFICATION: absolute positioning is required - this is a fixed 220x220 pixel-perfect geometric
 // composition. Each petal's exact coordinates are defined by the Figma design node 414:823.
 // SVGs are rendered as data-URL background-images per the Figma MCP reference output,
 // which is the only reliable cross-browser technique for conic-gradient inside SVG foreignObject.
@@ -11,19 +11,19 @@ const RADIAL_SVG = `url('data:image/svg+xml;utf8,<svg viewBox="0 0 106.36 106.36
 const CONIC_MAIN = "conic-gradient(from 90deg, rgb(72, 62, 62) 0%, rgba(103, 96, 96, 0.75) 25%, rgba(134, 129, 129, 0.5) 50%, rgba(165, 163, 163, 0.25) 75%, rgba(196, 196, 196, 0) 100%)";
 const CONIC_ACCENT = "conic-gradient(from 90deg, rgb(152, 152, 152) 0%, rgba(174, 174, 174, 0.5) 50%, rgba(185, 185, 185, 0.25) 75%, rgba(196, 196, 196, 0) 100%)";
 
-// Large quadrant petals — 99.433×99.433, matrix: -4.9717 4.9717 -4.9717 -4.9717 49.717 49.717
+// Large quadrant petals - 99.433x99.433, matrix: -4.9717 4.9717 -4.9717 -4.9717 49.717 49.717
 const LARGE_M = "matrix(-4.9717 4.9717 -4.9717 -4.9717 49.717 49.717)";
 const LARGE_BG = CONIC_SVG(99.433, 99.433, LARGE_M, CONIC_MAIN);
 
-// Medium petals — 68.469×68.469, matrix: -3.4234 3.4234 -3.4234 -3.4234 34.234 34.234
+// Medium petals - 68.469x68.469, matrix: -3.4234 3.4234 -3.4234 -3.4234 34.234 34.234
 const MED_M = "matrix(-3.4234 3.4234 -3.4234 -3.4234 34.234 34.234)";
 const MED_BG = CONIC_SVG(68.469, 68.469, MED_M, CONIC_MAIN);
 
-// Inner petals — 48.592×48.61 (non-square), matrix: -2.4296 2.4305 -2.4296 -2.4305 24.296 24.305
+// Inner petals - 48.592x48.61 (non-square), matrix: -2.4296 2.4305 -2.4296 -2.4305 24.296 24.305
 const INNER_M = "matrix(-2.4296 2.4305 -2.4296 -2.4305 24.296 24.305)";
 const INNER_BG = CONIC_SVG(48.592, 48.61, INNER_M, CONIC_MAIN);
 
-// Small accent petals — 23.878×23.87 (non-square), matrix has positive values: 1.1939 1.1935 -1.1939 1.1935
+// Small accent petals - 23.878x23.87 (non-square), matrix has positive values: 1.1939 1.1935 -1.1939 1.1935
 const SMALL_M = "matrix(1.1939 1.1935 -1.1939 1.1935 11.939 11.935)";
 const SMALL_BG = CONIC_SVG(23.878, 23.87, SMALL_M, CONIC_ACCENT);
 
@@ -31,7 +31,7 @@ export function GraphicContainer({ className }: { className?: string }) {
     return (
         <div className={`relative w-[220px] h-[220px] ${className ?? ""}`} data-name="Graphic Container">
 
-            {/* ── Large quadrant petals ── */}
+            {/* Large quadrant petals */}
             <div className="absolute flex items-center justify-center left-[14.2px] size-[99.433px] top-[110.03px]">
                 <div className="-scale-y-100 flex-none rotate-90">
                     <div className="opacity-60 rounded-tr-[25.666px] size-[99.433px]" style={{ backgroundImage: LARGE_BG }} />

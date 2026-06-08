@@ -9,11 +9,10 @@ export function PricingMobile() {
     <Section className="block tablet:hidden w-full pt-16 pb-20 px-5 flex flex-col font-sans bg-background">
       <div className="flex flex-col items-center text-center mb-12">
         <h1 className="text-[24px] font-bold leading-[30px] text-foreground mb-4 uppercase">
-          Professional services for<br />
-          modern businesses
+          Product-grade AI systems
         </h1>
         <p className="text-[14px] font-medium leading-[20px] text-muted-foreground max-w-[281px]">
-          From web applications to custom software solutions, we deliver quality services tailored to your business needs.
+          Selective research partnerships for teams with hard technical constraints.
         </p>
       </div>
 
