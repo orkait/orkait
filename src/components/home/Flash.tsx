@@ -98,19 +98,19 @@ const Flash = () => {
 
 	return (
 		<div className="w-full mt-5 tablet:mt-0">
-			{/* Mobile view */}
 			<div className="tablet:hidden flex flex-col gap-10 py-10">
 				<div className="flex flex-col gap-4">
 					<p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
-						Product Work
+						Our Focus
 					</p>
 					<h2 className="text-foreground font-bold text-[28px] leading-[34px] tracking-tight">
-						Live systems first.
+						Systems that hold up
 						<br />
-						Research stays grounded.
+						under pressure.
 					</h2>
 					<p className="text-muted-foreground font-medium text-[14px] leading-[20px] max-w-[320px]">
-						Work becomes public only when it can be used, tested, and maintained.
+						From dashboards to scalable backends, we ship software built for real
+						workloads, not demos.
 					</p>
 				</div>
 
@@ -133,24 +133,22 @@ const Flash = () => {
 				</div>
 			</div>
 
-			{/* Tablet / Laptop view */}
 			<div className="hidden tablet:flex h-[550px] laptop:h-[700px] overflow-hidden">
-				{/* Left: text, flush left and vertically centered */}
 				<div className="flex items-center px-8 laptop:px-12 base:px-16">
 					<div className="flex flex-col gap-6 laptop:gap-8 max-w-[420px] laptop:max-w-[480px]">
 						<p className="text-muted-foreground font-medium text-body-lg leading-body-lg tracking-widest uppercase">
-							Product Work
+							Our Focus
 						</p>
 						<h2 className="text-foreground font-bold text-title-1 leading-title-1 laptop:text-heading laptop:leading-heading tracking-tight">
-							Live systems first. Research stays grounded.
+							Systems that hold up under pressure.
 						</h2>
 						<p className="text-muted-foreground font-medium text-body laptop:text-body-lg leading-body laptop:leading-body-lg max-w-[380px]">
-							Work becomes public only when it can be used, tested, and maintained.
+							From dashboards to scalable backends, we ship software built for real
+							workloads, not demos.
 						</p>
 					</div>
 				</div>
 
-				{/* Right: card swap pushed to the right edge */}
 				<div className="ml-auto flex items-end justify-end pr-8 laptop:pr-12 base:pr-16 pb-8 laptop:pb-12">
 					<div className="tablet:scale-[0.75] laptop:scale-90 base:scale-100 origin-bottom-right">
 						<CardSwap

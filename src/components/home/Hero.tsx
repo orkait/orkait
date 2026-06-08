@@ -11,7 +11,8 @@ export const Hero = () => {
 				<div className="flex w-full justify-end">
 					<div className="flex w-full max-w-[320px] flex-col items-end gap-8">
 						<span className="w-full max-w-[320px] text-right text-[22px] font-medium leading-[24px] tracking-[-0.04em] text-foreground text-wrap">
-							A product lab for software that has to run under real constraints.
+							We engineer software that works. Honest engineering. Reliable systems.
+							No hype.
 						</span>
 						<Button
 							asChild
@@ -61,11 +62,13 @@ export const Hero = () => {
 				{/* Tagline */}
 				<div className="absolute right-0 tablet:top-6 laptop:top-[12px] w-full max-w-[450px] laptop:max-w-[1000px] z-20">
 					<p className="tablet:text-[36px] laptop:text-[52px] font-bold leading-tight laptop:leading-[50px] tracking-[-0.96px] text-black text-right">
-						A product lab for
+						We engineer software that works.
 						<br />
-						software that has to run
+						Honest engineering.
 						<br />
-						under real constraints.
+						Reliable systems.
+						<br />
+						No hype.
 					</p>
 				</div>
 
