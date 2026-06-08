@@ -2,10 +2,47 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { PROJECTS, OSS_PROJECTS } from "./projects";
+import { PROJECTS, OSS_PROJECTS, PRODUCT_LINES } from "./projects";
 import { TEAM_MEMBERS } from "./team";
 import { HEADER_LINKS } from "../config/site-links";
 import { routes } from "../config/routes";
+
+const PUBLIC_COPY_FILES = [
+	"src/config/site.ts",
+	"src/config/site-links.ts",
+	"src/app/layout.tsx",
+	"src/app/projects/page.tsx",
+	"src/app/contact/page.tsx",
+	"src/components/home/Hero.tsx",
+	"src/components/home/Flash.tsx",
+	"src/components/home/StudioText.tsx",
+	"src/components/home/ServicesText.tsx",
+	"src/components/home/Advance.tsx",
+	"src/components/home/Process.tsx",
+	"src/components/sections/projects/projects-masonry-grid.tsx",
+	"src/components/contact/ContactMobile.tsx",
+	"src/components/careers/careers-page.tsx",
+	"src/constants/index.ts",
+	"src/data/projects.ts",
+	"chatbot/knowledge/index.md",
+];
+
+const BANNED_PUBLIC_COPY_PHRASES = [
+	"AI solutions",
+	"digital transformation",
+	"unlock potential",
+	"revolutionize",
+	"next-gen",
+	"modern businesses",
+	"custom software solutions",
+	"client work",
+	"professional services",
+	"business websites",
+];
+
+function readProjectFile(relativePath: string) {
+	return readFileSync(path.join(process.cwd(), relativePath), "utf8");
+}
 
 describe("project data", () => {
 	it("uses stable unique identifiers", () => {
@@ -52,6 +89,50 @@ describe("OSS project data", () => {
 	});
 });
 
+describe("product positioning data", () => {
+	it("keeps Rustbox as the only live public product", () => {
+		const liveProducts = PRODUCT_LINES.filter((product) => product.status === "live");
+
+		assert.deepEqual(
+			liveProducts.map((product) => product.id),
+			["rustbox"]
+		);
+		assert.equal(liveProducts[0]?.href, "https://rustbox.orkait.com");
+	});
+
+	it("keeps BooleanStack and Zen as coming soon products", () => {
+		const comingSoonIds = PRODUCT_LINES
+			.filter((product) => product.status === "coming-soon")
+			.map((product) => product.id)
+			.sort();
+
+		assert.deepEqual(comingSoonIds, ["booleanstack", "zen"]);
+	});
+
+	it("does not publish removed internal projects as product lines", () => {
+		const ids = PRODUCT_LINES.map((product) => product.id);
+
+		assert.equal(ids.includes("unified-mcp"), false);
+		assert.equal(ids.includes("gatekeeper"), false);
+	});
+});
+
+describe("public copy voice", () => {
+	it("avoids agency and generic AI phrasing in public copy", () => {
+		for (const file of PUBLIC_COPY_FILES) {
+			const source = readProjectFile(file).toLowerCase();
+
+			for (const phrase of BANNED_PUBLIC_COPY_PHRASES) {
+				assert.equal(
+					source.includes(phrase.toLowerCase()),
+					false,
+					`${file} contains banned phrase: ${phrase}`
+				);
+			}
+		}
+	});
+});
+
 describe("navigation data", () => {
 	it("keeps header links aligned with valid app routes", () => {
 		const routeSet = new Set<string>(Object.values(routes));
@@ -93,14 +174,14 @@ describe("knowledge base", () => {
 
 		const markdown = readFileSync(kbPath, "utf8");
 
-		[
-			"# Orkait Knowledge Base",
-			"## What Orkait Builds",
-			"## Active Public Products And Infrastructure",
-			"## Selected Supporting Projects",
-			"## Coming Soon",
-			"## What We Do Not Claim",
-		].forEach((heading) => {
+			[
+				"# Orkait Knowledge Base",
+				"## What Orkait Is",
+				"## Live Product",
+				"## Coming Soon",
+				"## Research Partnerships",
+				"## What We Do Not Claim",
+			].forEach((heading) => {
 			assert.match(markdown, new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "m"));
 		});
 	});

@@ -53,7 +53,7 @@ export async function submitApplication(data: unknown): Promise<ApplyResult> {
             from: fromEmail,
             to: toEmail,
             reply_to: email,
-            subject: `Application — ${role} — ${name}`,
+            subject: `Application - ${role} - ${name}`,
             text: body,
         }),
     });

@@ -1,11 +1,50 @@
-import type { OSSProject, Project } from "@/types";
-import { routes } from "@/config/routes";
+import type { OSSProject, ProductLine, Project } from "@/types";
+
+export const PRODUCT_LINES: ProductLine[] = [
+	{
+		id: "rustbox",
+		title: "Rustbox",
+		status: "live",
+		statusLabel: "Live",
+		summary: "Secure execution for untrusted code.",
+		description:
+			"Rustbox is Orkait's live product for running untrusted workloads with strict isolation, resource controls, and production-minded execution boundaries.",
+		surface: "Secure execution",
+		href: "https://rustbox.orkait.com",
+		ctaLabel: "Open Rustbox",
+		publicRole: "Flagship completed product",
+	},
+	{
+		id: "booleanstack",
+		title: "BooleanStack",
+		status: "coming-soon",
+		statusLabel: "Coming soon",
+		summary: "A software learning system for serious practice.",
+		description:
+			"BooleanStack is Orkait's upcoming product for data structures, algorithms, system design, and engineering practice that rewards depth over streaks.",
+		surface: "Software learning systems",
+		ctaLabel: "Coming soon",
+		publicRole: "Upcoming software learning system",
+	},
+	{
+		id: "zen",
+		title: "Zen",
+		status: "coming-soon",
+		statusLabel: "Coming soon",
+		summary: "AI-assisted interface creation for rough product ideas.",
+		description:
+			"Zen is Orkait's upcoming interface lab for turning rough product intent into usable screens and interactive UI concepts.",
+		surface: "AI-assisted creation",
+		ctaLabel: "Coming soon",
+		publicRole: "Upcoming AI interface creation product",
+	},
+];
 
 export const PROJECTS: Project[] = [
 	{
 		id: "rustbox",
 		title: "Rustbox",
-		services: "Infrastructure, Systems Engineering",
+		services: "Secure Execution, Systems Infrastructure",
 		href: "https://rustbox.orkait.com",
 		image: {
 			src: "/data/projects/rustbox-hero.jpeg",
@@ -13,47 +52,6 @@ export const PROJECTS: Project[] = [
 			height: 540,
 		},
 	},
-	{
-		id: "booleanstack",
-		title: "BooleanStack",
-		services: "SaaS Platform, Full-Stack Development",
-		href: "https://booleanstack.com",
-		image: {
-			src: "/data/projects/nitrogen-hero-v2.jpeg",
-			width: 960,
-			height: 540,
-		},
-	},
 ];
 
-export const OSS_PROJECTS: OSSProject[] = [
-	{
-		id: "event-calendar",
-		title: "Event Calendar",
-		description:
-			"Production-ready scheduling API on Cloudflare Workers using bitset-based storage for availability tracking and conflict detection.",
-		tags: "API Engineering, Infrastructure",
-		language: "TypeScript",
-		href: "https://github.com/orkait/event-calendar",
-		hidden: true,
-	},
-	{
-		id: "gatekeeper",
-		title: "Gatekeeper",
-		description:
-			"Control plane for managing authentication, sessions, subscriptions, and access control across multiple services. Built on Cloudflare Workers.",
-		tags: "Backend Systems, API Engineering",
-		language: "TypeScript",
-		href: "https://github.com/orkait/gatekeeper",
-	},
-	{
-		id: "unified-mcp",
-		title: "Unified MCP",
-		description:
-			"One MCP server. All frontend libraries. No conflicts. Provides Claude with unified access to React Flow, Motion, and other frontend tooling.",
-		tags: "Dev Tools, AI Tooling",
-		language: "TypeScript",
-		href: "https://github.com/orkait/unified-mcp",
-	},
-];
-
+export const OSS_PROJECTS: OSSProject[] = [];

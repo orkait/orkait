@@ -84,7 +84,7 @@ export function ProjectsGrid() {
 		<main className="bg-background px-4 pb-24 pt-16 phone:px-8 phone:pt-20 tablet:px-16 tablet:pt-24">
 			<header className="mx-auto flex max-w-4xl flex-col items-center text-center">
 				<h1 className="text-title-3 leading-title-3 font-bold tracking-tight text-foreground phone:text-title-2 phone:leading-title-2 tablet:text-title-1 tablet:leading-title-1">
-					Professional services for modern businesses
+					Product-grade AI systems
 				</h1>
 				<p className="mt-6 text-body leading-body font-medium uppercase tracking-wide text-foreground phone:text-body-lg phone:leading-body-lg">
 					(01) CASE STUDIES

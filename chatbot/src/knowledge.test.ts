@@ -7,36 +7,42 @@ import {
 
 const SAMPLE_KB = `# Orkait Knowledge Base
 
-## Active Public Products And Infrastructure
+## What Orkait Is
+
+Orkait is a product-first AI lab.
+
+## Live Product
 
 ### Rustbox
 
-- Summary: kernel-enforced sandbox
-- Why it matters: safe code execution
-
-### graphstore
-
-- Summary: agent memory database
-- Why it matters: long-running memory for agents
+- Status: live
+- Summary: secure execution product for running untrusted code
 
 ## Coming Soon
 
+### BooleanStack
+
+- Status: coming soon
+- Summary: software learning system
+
 ### Zen
 
-- Summary: AI-powered mockup and wireframe generation platform
+- Status: coming soon
+- Summary: AI-assisted interface creation product
 `;
 
 describe("knowledge helpers", () => {
 	it("parses markdown into named sections", () => {
 		const sections = parseKnowledgeSections(SAMPLE_KB);
 
-		expect(sections.map((section) => section.title)).toEqual([
-			"Active Public Products And Infrastructure",
-			"Rustbox",
-			"graphstore",
-			"Coming Soon",
-			"Zen",
-		]);
+			expect(sections.map((section) => section.title)).toEqual([
+				"What Orkait Is",
+				"Live Product",
+				"Rustbox",
+				"Coming Soon",
+				"BooleanStack",
+				"Zen",
+			]);
 	});
 
 	it("selects the most relevant sections for a repo-specific query", () => {
@@ -49,10 +55,18 @@ describe("knowledge helpers", () => {
 
 	it("builds a bounded context instead of returning the entire KB", () => {
 		const sections = parseKnowledgeSections(SAMPLE_KB);
-		const context = buildKnowledgeContext(sections, "Tell me about agent memory", 1);
+		const context = buildKnowledgeContext(sections, "Tell me about software learning", 1);
 
-		expect(context).toContain("graphstore");
+		expect(context).toContain("BooleanStack");
 		expect(context).not.toContain("Zen");
 		expect(context).not.toContain("# Orkait Knowledge Base");
+	});
+
+	it("does not select removed internal projects from the public product truth", () => {
+		const sections = parseKnowledgeSections(SAMPLE_KB);
+		const context = buildKnowledgeContext(sections, "Tell me about gatekeeper and unified-mcp", 2);
+
+		expect(context.toLowerCase()).not.toContain("gatekeeper");
+		expect(context.toLowerCase()).not.toContain("unified-mcp");
 	});
 });

@@ -19,19 +19,19 @@ const Advance = () => {
             {/* Main content */}
             <div className="relative flex flex-col gap-10 tablet:gap-16 max-w-full laptop:max-w-[80%] base:max-w-[60%]">
 
-                {/* Mobile Section label — top */}
-                <p className="tablet:hidden text-foreground font-medium text-[14px] leading-[20px]">
-                    (03) ADV
-                </p>
+	                {/* Mobile Section label, top */}
+	                <p className="tablet:hidden text-foreground font-medium text-[14px] leading-[20px]">
+	                    (03) DISCIPLINE
+	                </p>
 
-                <h2 className="tablet:hidden max-w-[12ch] text-[24px] font-medium leading-[30px] tracking-tight text-foreground">
-                    High-performance scalable solutions
-                </h2>
+	                <h2 className="tablet:hidden max-w-[12ch] text-[24px] font-medium leading-[30px] tracking-tight text-foreground">
+	                    Research only matters when it survives production.
+	                </h2>
 
-                {/* Heading (Hidden on Mobile) */}
-                <h2 className="hidden tablet:block text-foreground font-medium text-title-1 tablet:text-heading leading-title-1 tablet:leading-heading tracking-tight">
-                    High-Performance Scalable Solutions
-                </h2>
+	                {/* Heading (Hidden on Mobile) */}
+	                <h2 className="hidden tablet:block text-foreground font-medium text-title-1 tablet:text-heading leading-title-1 tablet:leading-heading tracking-tight">
+	                    Research only matters when it survives production.
+	                </h2>
 
                 {/* Features container (Relative wrapper to bind gradient height) */}
                 <div className="relative w-full">
@@ -74,10 +74,10 @@ const Advance = () => {
 
             </div>
 
-            {/* Section label — bottom (Hidden on Mobile) */}
-            <p className="hidden tablet:block mt-12 text-foreground font-medium text-body-lg leading-body-lg">
-                (03) ADV
-            </p>
+	            {/* Section label, bottom (Hidden on Mobile) */}
+	            <p className="hidden tablet:block mt-12 text-foreground font-medium text-body-lg leading-body-lg">
+	                (03) DISCIPLINE
+	            </p>
         </div>
     );
 };

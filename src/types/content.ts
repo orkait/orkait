@@ -36,6 +36,21 @@ export type Project = {
 	};
 };
 
+export type ProductStatus = "live" | "coming-soon";
+
+export type ProductLine = {
+	id: string;
+	title: string;
+	status: ProductStatus;
+	statusLabel: string;
+	summary: string;
+	description: string;
+	surface: string;
+	href?: string;
+	ctaLabel: string;
+	publicRole: string;
+};
+
 export type Testimonial = {
 	name: string;
 	role: string;
