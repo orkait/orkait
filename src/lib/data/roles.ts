@@ -1,8 +1,4 @@
-export type OpenRole = {
-	title: string;
-	emailSubject: string;
-	isIntern?: boolean;
-};
+import type { OpenRole } from "@/lib/types";
 
 export const OPEN_ROLES: OpenRole[] = [
 	{
