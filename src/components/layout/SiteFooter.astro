@@ -1,0 +1,49 @@
+---
+import Container from "./Container.astro";
+import { routes } from "@/lib/data/nav";
+import { FOOTER_COLUMNS } from "@/lib/data/footer";
+---
+
+<footer class="border-t border-border bg-background">
+	<Container class="flex flex-col gap-12 py-16 tablet:flex-row tablet:justify-between">
+		<div class="max-w-sm">
+			<a href={routes.home} class="flex items-center gap-2" aria-label="Orkait home">
+				<img src="/data/brand/orkait.svg" alt="Orkait" width="28" height="28" class="size-7" />
+				<span class="text-body-lg font-medium tracking-tight">Orkait</span>
+			</a>
+			<p class="mt-4 text-body text-muted-foreground">
+				Applied AI research, shipped as products.
+			</p>
+		</div>
+
+		<div class="grid grid-cols-2 gap-12">
+			{
+				FOOTER_COLUMNS.map((col) => (
+					<nav aria-label={col.ariaLabel} class="flex flex-col gap-3">
+						{col.heading && (
+							<p class="text-body font-medium text-foreground">{col.heading}</p>
+						)}
+						{col.links.map((link) => (
+							<a
+								href={link.href}
+								target={link.isExternal ? "_blank" : undefined}
+								rel={link.isExternal ? "noopener noreferrer" : undefined}
+								class="text-body text-muted-foreground transition-colors hover:text-foreground"
+							>
+								{link.label}
+							</a>
+						))}
+					</nav>
+				))
+			}
+		</div>
+	</Container>
+
+	<Container class="flex flex-col gap-2 border-t border-border py-6 text-body text-muted-foreground tablet:flex-row tablet:items-center tablet:justify-between">
+		<p>&copy; {new Date().getFullYear()} Orkait. All rights reserved.</p>
+		<div class="flex gap-6">
+			<a href={routes.privacyPolicy} class="hover:text-foreground">Privacy</a>
+			<a href={routes.terms} class="hover:text-foreground">Terms</a>
+		</div>
+	</Container>
+</footer>

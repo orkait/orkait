@@ -1,0 +1,77 @@
+---
+import Container from "./Container.astro";
+import { routes, HEADER_LINKS } from "@/lib/data/nav";
+import { cn } from "@/lib/utils";
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+	href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+const links = [...HEADER_LINKS, { label: "Contact", href: routes.contact }];
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur">
+	<Container class="flex h-16 items-center justify-between">
+		<a href={routes.home} class="flex items-center gap-2" aria-label="Orkait home">
+			<img src="/data/brand/orkait.svg" alt="Orkait" width="28" height="28" class="size-7" />
+			<span class="text-body-lg font-medium tracking-tight">Orkait</span>
+		</a>
+
+		<nav class="hidden items-center gap-1 tablet:flex" aria-label="Primary">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						aria-current={isActive(link.href) ? "page" : undefined}
+						class={cn(
+							"rounded-md px-3 py-2 text-body transition-colors",
+							isActive(link.href)
+								? "bg-primary text-primary-foreground"
+								: "text-muted-foreground hover:text-foreground",
+						)}
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<button
+			type="button"
+			class="tablet:hidden rounded-md p-2 text-foreground"
+			popovertarget="mobile-menu"
+			aria-label="Open menu"
+		>
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<line x1="3" y1="12" x2="21" y2="12"></line>
+				<line x1="3" y1="18" x2="21" y2="18"></line>
+			</svg>
+		</button>
+	</Container>
+
+	<div
+		id="mobile-menu"
+		popover
+		class="m-0 ml-auto h-dvh w-64 border-l border-border bg-background p-6"
+	>
+		<nav class="flex flex-col gap-1" aria-label="Mobile">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						aria-current={isActive(link.href) ? "page" : undefined}
+						class={cn(
+							"rounded-md px-3 py-3 text-body-lg transition-colors",
+							isActive(link.href)
+								? "bg-primary text-primary-foreground"
+								: "text-muted-foreground hover:text-foreground",
+						)}
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</header>
