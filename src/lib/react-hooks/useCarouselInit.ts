@@ -1,5 +1,5 @@
 import { useSyncExternalStore, useCallback, useRef, useEffect } from "react";
-import { type CarouselApi } from "@/components/ui/carousel";
+import { type CarouselApi } from "@/components/react/ui/carousel";
 
 export function useCarouselInit(api: CarouselApi | undefined) {
 	const readyRef = useRef(false);
