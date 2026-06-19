@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import { siteConfig } from "@/lib/site";
+import ChatWidget from "@/components/react/ChatWidget";
 
 interface Props {
 	title?: string;
@@ -51,6 +52,8 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 	</head>
 	<body>
 		<slot />
+
+		<ChatWidget client:idle />
 
 		<script>
 			import { initSmoothScroll } from "@/lib/client/smoothScroll";
