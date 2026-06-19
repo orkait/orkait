@@ -1,0 +1,98 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/layout/Section.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import { ApplyForm } from "@/components/react/ApplyForm";
+import { OPEN_ROLES } from "@/lib/data/team";
+import type { OpenRole } from "@/lib/types";
+
+function getRoleLabel(role: OpenRole): string {
+	return role.isIntern ? `${role.title} (Intern)` : role.title;
+}
+
+const activeRole = OPEN_ROLES[0] ?? null;
+const activeLabel = activeRole ? getRoleLabel(activeRole) : null;
+---
+
+<Layout
+	title="Careers"
+	description="Open roles at Orkait. Engineering-first team. Real problems, no hype."
+>
+	<SiteHeader />
+
+	<main>
+		<Section background="default" spacing="lg" class="text-foreground">
+			{
+				!activeRole || !activeLabel ? (
+					<p class="text-body font-medium leading-body text-muted-foreground">
+						No open roles right now. Check back soon.
+					</p>
+				) : (
+					<div class="flex flex-col gap-12 tablet:flex-row tablet:items-start tablet:gap-16">
+						<div class="flex flex-1 flex-col gap-8 tablet:gap-10">
+							<p class="text-body font-medium uppercase leading-none tracking-widest text-muted-foreground">
+								Careers
+							</p>
+
+							<h1 class="text-title-2 font-bold leading-title-2 tracking-tight text-foreground tablet:text-title-1 tablet:leading-title-1">
+								Work on product-grade<br />
+								AI systems.
+							</h1>
+
+							<p class="max-w-[320px] text-body-lg font-medium leading-body-lg text-muted-foreground">
+								Small team. Live products. Research that has to survive real users and
+								real constraints.
+							</p>
+
+							<div class="mt-2 flex max-w-[360px] flex-col gap-3">
+								{OPEN_ROLES.map((role) => {
+									const label = getRoleLabel(role);
+									const isActive = label === activeLabel;
+
+									return (
+										<div
+											class:list={[
+												"flex flex-col gap-0.5 rounded-lg border px-5 py-4 transition-all duration-200",
+												isActive
+													? "border-foreground bg-foreground"
+													: "border-border bg-background",
+											]}
+										>
+											<span
+												class:list={[
+													"text-subtitle font-bold leading-subtitle tracking-tight",
+													isActive ? "text-background" : "text-foreground",
+												]}
+											>
+												{role.title}
+											</span>
+											{role.isIntern && (
+												<span
+													class:list={[
+														"text-body font-medium leading-body",
+														isActive
+															? "text-background/70"
+															: "text-muted-foreground",
+													]}
+												>
+													Internship
+												</span>
+											)}
+										</div>
+									);
+								})}
+							</div>
+						</div>
+
+						<div class="flex-1">
+							<ApplyForm role={activeLabel} client:load />
+						</div>
+					</div>
+				)
+			}
+		</Section>
+	</main>
+
+	<SiteFooter />
+</Layout>

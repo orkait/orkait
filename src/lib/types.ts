@@ -53,6 +53,12 @@ export type TeamMember = {
 	alumni?: boolean;
 };
 
+export type OpenRole = {
+	title: string;
+	emailSubject: string;
+	isIntern?: boolean;
+};
+
 export type Service = {
 	label: string;
 	active: boolean;
