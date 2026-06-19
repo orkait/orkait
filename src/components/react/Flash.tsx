@@ -1,0 +1,169 @@
+import { ArrowUpRight } from "lucide-react";
+import { CardSwap, Card } from "@/components/react/ui/card-swap";
+import { ProjectAvatar } from "@/components/shared/project-avatar";
+import { PRODUCT_LINES } from "@/lib/data/products";
+import { useIsMobile, usePrefersReducedMotion } from "@/lib/react-hooks";
+
+type ShowcaseItem = {
+	id: string;
+	title: string;
+	subtitle: string;
+	href?: string;
+	imageSrc: string | null;
+	ctaLabel: string;
+};
+
+const ALL_ITEMS: ShowcaseItem[] = PRODUCT_LINES.map((product) => ({
+	id: product.id,
+	title: product.title,
+	subtitle: product.summary,
+	href: product.href,
+	imageSrc: product.id === "rustbox" ? "/data/projects/rustbox-hero.jpeg" : null,
+	ctaLabel: product.ctaLabel,
+}));
+
+const SHOWCASE_ORDER = ["rustbox", "booleanstack", "zen"];
+const SHOWCASE_ITEMS: ShowcaseItem[] = SHOWCASE_ORDER.map((id) =>
+	ALL_ITEMS.find((item) => item.id === id),
+).filter((item): item is ShowcaseItem => item !== undefined);
+
+function HoverOverlay({ href, label }: { href?: string; label: string }) {
+	if (!href) {
+		return (
+			<div className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+				<span className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-sm font-semibold text-foreground">
+					{label}
+				</span>
+			</div>
+		);
+	}
+
+	return (
+		<a
+			href={href}
+			target="_blank"
+			rel="noopener noreferrer"
+			className="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition-opacity duration-300"
+		>
+			<span className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-sm font-semibold text-foreground">
+				{label} <ArrowUpRight className="size-4" />
+			</span>
+		</a>
+	);
+}
+
+function CardContent({ item }: { item: ShowcaseItem }) {
+	if (item.imageSrc) {
+		return (
+			<>
+				<img
+					src={item.imageSrc}
+					alt={item.title}
+					className="absolute inset-0 h-full w-full object-cover grayscale"
+				/>
+				<HoverOverlay href={item.href} label={item.ctaLabel} />
+			</>
+		);
+	}
+
+	return (
+		<>
+			<div className="absolute inset-0 bg-[#f7f7f7] flex flex-col items-center justify-center gap-4 p-6">
+				<ProjectAvatar name={item.id} size={128} className="w-24 h-24" />
+				<div className="flex flex-col items-center gap-2 text-center">
+					<span className="text-subtitle leading-subtitle font-bold text-foreground tracking-tight">
+						{item.title}
+					</span>
+					<span className="text-body leading-body font-medium text-muted-foreground">
+						{item.subtitle}
+					</span>
+				</div>
+			</div>
+			<HoverOverlay href={item.href} label={item.ctaLabel} />
+		</>
+	);
+}
+
+const Flash = () => {
+	const isMobile = useIsMobile();
+	const prefersReducedMotion = usePrefersReducedMotion();
+	const shouldAutoplay = !isMobile && !prefersReducedMotion;
+	const mobileItems = prefersReducedMotion ? SHOWCASE_ITEMS.slice(0, 1) : SHOWCASE_ITEMS;
+
+	return (
+		<div className="w-full mt-5 tablet:mt-0">
+			<div className="tablet:hidden flex flex-col gap-10 py-10">
+				<div className="flex flex-col gap-4">
+					<p className="text-muted-foreground font-medium text-body leading-none tracking-widest uppercase">
+						Our Focus
+					</p>
+					<h2 className="text-foreground font-bold text-[28px] leading-[34px] tracking-tight">
+						Systems that hold up
+						<br />
+						under pressure.
+					</h2>
+					<p className="text-muted-foreground font-medium text-[14px] leading-[20px] max-w-[320px]">
+						From dashboards to scalable backends, we ship software built for real
+						workloads, not demos.
+					</p>
+				</div>
+
+				<div className="flex min-h-[248px] items-end justify-center overflow-hidden py-2">
+					<CardSwap
+						autoPlay={!isMobile && !prefersReducedMotion}
+						cardDistance={18}
+						verticalDistance={34}
+						skewAmount={0}
+						pauseOnHover={shouldAutoplay}
+						width="clamp(252px, 80vw, 320px)"
+						height="clamp(158px, 46vw, 196px)"
+					>
+						{mobileItems.map((item) => (
+							<Card key={item.id}>
+								<CardContent item={item} />
+							</Card>
+						))}
+					</CardSwap>
+				</div>
+			</div>
+
+			<div className="hidden tablet:flex h-[550px] laptop:h-[700px] overflow-hidden">
+				<div className="flex items-center px-8 laptop:px-12 base:px-16">
+					<div className="flex flex-col gap-6 laptop:gap-8 max-w-[420px] laptop:max-w-[480px]">
+						<p className="text-muted-foreground font-medium text-body-lg leading-body-lg tracking-widest uppercase">
+							Our Focus
+						</p>
+						<h2 className="text-foreground font-bold text-title-1 leading-title-1 laptop:text-heading laptop:leading-heading tracking-tight">
+							Systems that hold up under pressure.
+						</h2>
+						<p className="text-muted-foreground font-medium text-body laptop:text-body-lg leading-body laptop:leading-body-lg max-w-[380px]">
+							From dashboards to scalable backends, we ship software built for real
+							workloads, not demos.
+						</p>
+					</div>
+				</div>
+
+				<div className="ml-auto flex items-end justify-end pr-8 laptop:pr-12 base:pr-16 pb-8 laptop:pb-12">
+					<div className="tablet:scale-[0.75] laptop:scale-90 base:scale-100 origin-bottom-right">
+						<CardSwap
+							cardDistance={50}
+							verticalDistance={105}
+							skewAmount={0}
+							pauseOnHover
+							width={560}
+							height={315}
+						>
+							{SHOWCASE_ITEMS.map((item) => (
+								<Card key={item.id}>
+									<CardContent item={item} />
+								</Card>
+							))}
+						</CardSwap>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Flash;
