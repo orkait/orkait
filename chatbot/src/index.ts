@@ -4,6 +4,7 @@ import { logger } from 'hono/logger';
 import { prettyJSON } from 'hono/pretty-json';
 import OpenAI from 'openai';
 import { buildKnowledgeContext, parseKnowledgeSections } from './knowledge';
+import { handleApply, handleContact } from './forms';
 
 type ChatHistoryEntry = { role: 'user' | 'assistant'; content: string };
 type EnvBindings = {
@@ -12,6 +13,9 @@ type EnvBindings = {
     OPENROUTER_API_KEY: string;
     OPENROUTER_MODEL?: string;
     SITE_URL?: string;
+    RESEND_API_KEY?: string;
+    CONTACT_FORM_FROM_EMAIL?: string;
+    CONTACT_FORM_TO_EMAIL?: string;
 };
 
 const app = new Hono<{ Bindings: EnvBindings }>();
@@ -123,6 +127,10 @@ app.get('/health', (c) => {
         framework: 'Hono.js',
     });
 });
+
+app.post('/api/contact', (c) => handleContact(c));
+
+app.post('/api/apply', (c) => handleApply(c));
 
 app.post('/api/chatbot/chat', async (c) => {
     try {
