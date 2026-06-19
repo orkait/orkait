@@ -1,10 +1,10 @@
 import { ArrowUpRight, Github } from "lucide-react";
-import { ProjectAvatar } from "@/components/shared/project-avatar";
+import { ProjectAvatar } from "@/components/react/ui/project-avatar";
 import { OSS_PROJECTS, PRODUCT_LINES } from "@/lib/data/products";
 import { TEAM_MEMBERS } from "@/lib/data/team";
 import { OPEN_ROLES } from "@/lib/data/roles";
 import type { TeamMember } from "@/lib/types";
-import { routes } from "@/config/routes";
+import { routes } from "@/lib/data/nav";
 
 const ACTIVE_MEMBERS = TEAM_MEMBERS.filter((member) => !member.alumni);
 const ALUMNI_MEMBERS = TEAM_MEMBERS.filter((member) => member.alumni);

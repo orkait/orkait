@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/react/ui/card";
 
 export type FeedbackCardProps = {
     quote: string;

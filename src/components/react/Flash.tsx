@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { CardSwap, Card } from "@/components/react/ui/card-swap";
-import { ProjectAvatar } from "@/components/shared/project-avatar";
+import { ProjectAvatar } from "@/components/react/ui/project-avatar";
 import { PRODUCT_LINES } from "@/lib/data/products";
 import { useIsMobile, usePrefersReducedMotion } from "@/lib/react-hooks";
 
