@@ -81,9 +81,20 @@ function buildMessages(
 // Middleware
 app.use('*', logger());
 app.use('*', prettyJSON());
+const ALLOWED_ORIGINS = new Set([
+    'https://orkait.com',
+    'https://www.orkait.com',
+    'https://nitrogen-orkait.pages.dev',
+    'http://localhost:3838',
+    'http://localhost:4321',
+]);
+
 app.use('*', cors({
-    origin: (origin) => origin, // Allow all origins in Workers, or specify your domain
-    credentials: true,
+    origin: (origin, c) => {
+        const configured = c.env?.SITE_URL || c.env?.FRONTEND_URL;
+        if (configured && origin === configured) return origin;
+        return ALLOWED_ORIGINS.has(origin) ? origin : '';
+    },
 }));
 
 // Rate limiting function

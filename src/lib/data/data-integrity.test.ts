@@ -23,6 +23,9 @@ const BANNED_PUBLIC_COPY_PHRASES = [
 	"client work",
 	"professional services",
 	"business websites",
+	"unlock the next",
+	"next generation",
+	"case studies",
 ];
 
 function readProjectFile(relativePath: string) {

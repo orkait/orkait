@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { applySchema, type ApplyPayload, type FormResult } from "@/lib/forms/payload";
 
-const FORMS_URL = import.meta.env.PUBLIC_FORMS_URL;
+const FORMS_URL = import.meta.env.PUBLIC_FORMS_URL ?? import.meta.env.PUBLIC_CHATBOT_URL ?? "";
 const CONNECT_EMAIL = "connect@orkait.com";
 
 const INPUT_CLASS =
