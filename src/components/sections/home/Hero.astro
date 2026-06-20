@@ -3,45 +3,38 @@ import { routes } from "@/lib/data/nav";
 
 const rustboxHref = "https://rustbox.orkait.com";
 
-// "products" gets the playful per-letter jitter. transform-only, neutralized
-// by the global prefers-reduced-motion guard via .hero-jitter.
-const jitterWord = "products";
-const jitterLetters = jitterWord.split("");
+const ticker = [
+	"Rustbox - live",
+	"BooleanStack - soon",
+	"Zen - soon",
+	"Secure execution",
+	"Software learning",
+	"Interface creation",
+];
+const loop = [...ticker, ...ticker];
 ---
 
-<div class="relative w-full" data-reveal>
-	<div class="flex flex-col gap-8 tablet:gap-10">
-		<p
-			class="font-mono text-[13px] uppercase tracking-[0.18em] text-muted-foreground"
-		>
-			(01) Product-first AI lab
+<div class="w-full" data-reveal>
+	<div class="mx-auto flex max-w-[62rem] flex-col items-center gap-7 px-4 text-center tablet:gap-8">
+		<p class="font-mono text-[13px] uppercase tracking-[0.2em] text-muted-foreground">
+			Product-first AI lab
 		</p>
 
 		<h1
-			class="max-w-[16ch] text-balance text-foreground"
-			style="font-weight: 900; letter-spacing: -0.03em; line-height: 0.92; font-size: clamp(3rem, 9vw, 7.5rem);"
+			class="text-balance text-foreground"
+			style="font-weight: 900; letter-spacing: -0.035em; line-height: 0.92; font-size: clamp(3.25rem, 9vw, 7.5rem);"
 		>
-			Applied AI research,<br />shipped as <span
-				class="hero-jitter inline-block text-signature-deep"
-				>{
-					jitterLetters.map((ch, i) => (
-						<span
-							class="inline-block"
-							style={`--i:${i}; animation-delay:${i * 60}ms`}
-						>
-							{ch}
-						</span>
-					))
-				}</span>.
+			Applied AI research,<br />shipped as <span class="text-signature-deep"
+				>products</span
+			>.
 		</h1>
 
-		<p class="max-w-[52ch] text-body-lg leading-[30px] text-ink-700">
-			Orkait builds focused tools for secure execution, software learning,
-			and AI-assisted creation. Rustbox is live. BooleanStack and Zen are
-			coming soon.
+		<p class="max-w-[48ch] text-body-lg leading-[30px] text-ink-700">
+			Focused tools for secure execution, software learning, and AI-assisted
+			creation. Rustbox is live.
 		</p>
 
-		<div class="flex flex-col gap-3 tablet:flex-row tablet:items-center">
+		<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
 			<a
 				href={rustboxHref}
 				class="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[transform,background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
@@ -69,35 +62,20 @@ const jitterLetters = jitterWord.split("");
 			</a>
 		</div>
 	</div>
+
+	<div
+		class="mt-14 w-full overflow-hidden bg-signature py-4 text-on-signature tablet:mt-20"
+		aria-hidden="true"
+	>
+		<div class="marquee-track gap-0">
+			{
+				loop.map((t) => (
+					<span class="flex items-center whitespace-nowrap px-8 font-mono text-[13px] uppercase tracking-[0.18em]">
+						{t}
+						<span class="ml-8 opacity-40">/</span>
+					</span>
+				))
+			}
+		</div>
+	</div>
 </div>
-
-<style>
-	@keyframes hero-letter-jitter {
-		0%,
-		100% {
-			transform: rotate(0deg) translateY(0);
-		}
-		50% {
-			transform: rotate(var(--rot, 2deg)) translateY(-2px);
-		}
-	}
-
-	.hero-jitter > span {
-		animation: hero-letter-jitter 2.8s ease-in-out infinite;
-		transform-origin: 50% 80%;
-	}
-
-	.hero-jitter > span:nth-child(odd) {
-		--rot: -2deg;
-	}
-	.hero-jitter > span:nth-child(even) {
-		--rot: 2deg;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.hero-jitter > span {
-			animation: none;
-			transform: none;
-		}
-	}
-</style>

@@ -1,0 +1,64 @@
+---
+import { FEATURES } from "@/lib/data/features";
+
+// Strip the legacy "(0x)" wrappers; render clean ordinals in the signature accent.
+const items = FEATURES.map((f, i) => ({
+	n: String(i + 1).padStart(2, "0"),
+	title: f.title,
+	description: f.description,
+}));
+
+// Group into clusters so dividers stay sparse (one hairline between groups,
+// none between rows inside a group).
+const clusters = [items.slice(0, 3), items.slice(3, 5), items.slice(5)];
+---
+
+<div class="w-full" data-reveal>
+	<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
+		<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
+			<p
+				class="font-mono text-[13px] uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				How the lab decides what ships
+			</p>
+			<h2
+				class="max-w-[16ch] text-[clamp(2rem,4vw,3.5rem)] font-black leading-[0.98] tracking-[-0.03em] text-foreground"
+			>
+				Research only counts when it survives production.
+			</h2>
+			<p class="max-w-[42ch] text-body-lg leading-[30px] text-ink-700">
+				A short set of rules keeps the work honest: every direction maps to a
+				real product surface, and nothing gets called live until people can use
+				it.
+			</p>
+		</div>
+
+		<div class="flex flex-col gap-12">
+			{
+				clusters.map((cluster, ci) => (
+					<div
+						class={ci === 0 ? "" : "border-t border-border pt-12"}
+					>
+						<ul class="flex flex-col gap-7">
+							{cluster.map((f) => (
+								<li class="grid grid-cols-[auto_1fr] items-baseline gap-x-5 tablet:gap-x-7">
+									<span class="font-mono text-[15px] font-bold text-signature-deep tabular-nums">
+										{f.n}
+									</span>
+									<div class="flex flex-col gap-1.5">
+										<h3 class="text-[19px] font-bold leading-tight tracking-tight text-foreground tablet:text-subtitle">
+											{f.title}
+										</h3>
+										<p class="max-w-[52ch] text-base leading-[24px] text-ink-700">
+											{f.description}
+										</p>
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,73 @@
+---
+import { OSS_PROJECTS } from "@/lib/data/products";
+
+const graphstore = OSS_PROJECTS.find((p) => p.id === "graphstore");
+const tags = graphstore?.tags.split(",").map((t) => t.trim()) ?? [];
+---
+
+<section class="w-full bg-tile text-on-tile" data-reveal>
+	<div class="mx-auto w-full max-w-site px-6 py-20 tablet:px-8 tablet:py-28 laptop:py-36">
+		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[1fr_1fr] laptop:items-end laptop:gap-20">
+			<div class="flex flex-col gap-6">
+				<h2
+					class="max-w-[14ch] text-[clamp(2.25rem,5vw,4.5rem)] font-black leading-[0.95] tracking-[-0.035em]"
+				>
+					Built in the open.
+				</h2>
+				<p class="max-w-[46ch] text-body-lg leading-[30px] text-on-tile/70">
+					We partner when the work has a path to a real product or research
+					system. The infrastructure behind that work lives on GitHub, not in a
+					slide deck.
+				</p>
+			</div>
+
+			<div
+				class="flex flex-col gap-6 rounded-[20px] border border-on-tile/15 bg-on-tile/[0.04] p-7 tablet:p-9"
+			>
+				<div class="flex items-baseline justify-between gap-4">
+					<h3 class="text-[clamp(1.75rem,3vw,2.5rem)] font-black tracking-[-0.03em]">
+						{graphstore?.title}
+					</h3>
+					<span class="font-mono text-[13px] uppercase tracking-[0.14em] text-on-tile/55">
+						{graphstore?.language}
+					</span>
+				</div>
+
+				<p class="max-w-[44ch] text-body-lg leading-[28px] text-on-tile/75">
+					{graphstore?.description}
+				</p>
+
+				<div class="flex flex-wrap gap-2">
+					{
+						tags.map((tag) => (
+							<span class="rounded-full border border-on-tile/20 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-on-tile/70">
+								{tag}
+							</span>
+						))
+					}
+				</div>
+
+				<a
+					href={graphstore?.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group mt-1 inline-flex h-12 w-fit items-center gap-2 rounded-lg bg-signature px-6 text-base font-bold text-on-signature transition-[transform,background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile active:scale-[0.98]"
+				>
+					View on GitHub
+					<svg
+						class="size-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M7 17 17 7M9 7h8v8"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

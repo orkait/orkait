@@ -5,48 +5,33 @@ import SiteHeader from "@/components/layout/SiteHeader.astro";
 import SiteFooter from "@/components/layout/SiteFooter.astro";
 import Hero from "@/components/sections/home/Hero.astro";
 import Bento from "@/components/sections/home/Bento.astro";
-import StudioText from "@/components/sections/home/StudioText.astro";
-import ServicesText from "@/components/sections/home/ServicesText.astro";
-import Advance from "@/components/sections/home/Advance.astro";
-import Process from "@/components/sections/home/Process.astro";
-import Flash from "@/components/react/Flash";
-import Feedback from "@/components/react/Feedback";
+import Capabilities from "@/components/sections/home/Capabilities.astro";
+import Proof from "@/components/sections/home/Proof.astro";
+import CtaBand from "@/components/sections/home/CtaBand.astro";
 ---
 
 <Layout>
 	<SiteHeader />
 
 	<main>
-		<Section spacing="none" class="pt-16 tablet:pt-24 laptop:pt-28">
+		<Section spacing="none" maxWidth="full" gutter={false} class="pt-16 tablet:pt-24">
 			<Hero />
 		</Section>
 
-		<Section spacing="none" maxWidth="full" class="pt-20 tablet:pt-28">
+		<Section spacing="none" maxWidth="full" class="pt-24 tablet:pt-32">
 			<Bento />
 		</Section>
 
-		<Section spacing="none" class="pt-24 tablet:pt-32">
-			<Flash client:visible />
+		<Section spacing="none" class="pt-24 tablet:pt-36">
+			<Capabilities />
 		</Section>
 
-		<Section spacing="none" class="pt-24 tablet:pt-32">
-			<StudioText />
+		<Section spacing="none" maxWidth="full" gutter={false} class="pt-24 tablet:pt-36">
+			<Proof />
 		</Section>
 
-		<Section spacing="none">
-			<ServicesText />
-		</Section>
-
-		<Section spacing="none">
-			<Advance />
-		</Section>
-
-		<Section spacing="none">
-			<Feedback client:visible />
-		</Section>
-
-		<Section spacing="none" class="pb-12 tablet:pb-16 laptop:pb-20">
-			<Process />
+		<Section spacing="none" maxWidth="full" gutter={false}>
+			<CtaBand />
 		</Section>
 	</main>
 
