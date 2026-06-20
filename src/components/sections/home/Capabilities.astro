@@ -1,37 +1,107 @@
 ---
-import { FEATURES } from "@/lib/data/features";
+// Real, verifiable capability substance sourced from the product repos.
+// Honest: Rustbox is live, GraphStore + Hyperstack are open source, Zen +
+// BooleanStack are coming soon. No invented metrics.
+type Metric = { value: string; label: string };
+type Capability = {
+	name: string;
+	surface: string;
+	status: "Live" | "Open source" | "Coming soon";
+	href?: string;
+	cta?: string;
+	statement: string;
+	detail?: string;
+	metrics: Metric[];
+	emphasis?: boolean;
+};
 
-// Each rule enforces one lab value - the card's meaningful second dimension,
-// not decoration. Order matches FEATURES.
-const VALUES = ["Honesty", "Focus", "Honesty", "Engineering", "Focus", "Voice", "Proof"];
+const capabilities: Capability[] = [
+	{
+		name: "Rustbox",
+		surface: "Secure execution",
+		status: "Live",
+		href: "https://rustbox.orkait.com",
+		cta: "Open Rustbox",
+		statement: "A kernel-enforced sandbox for running untrusted code.",
+		detail:
+			"seccomp-bpf syscall filtering, Linux namespaces, and cgroups v2 with deterministic resource limits. Single binary, no Docker daemon.",
+		metrics: [
+			{ value: "8", label: "languages" },
+			{ value: "147", label: "adversarial exploits" },
+			{ value: "0", label: "sandbox escapes" },
+		],
+		emphasis: true,
+	},
+	{
+		name: "GraphStore",
+		surface: "Agent memory",
+		status: "Open source",
+		href: "https://github.com/orkait/graphstore",
+		cta: "View on GitHub",
+		statement: "Recall by meaning or association, ingest documents, track beliefs.",
+		detail:
+			"Six engines behind one readable DSL: columnar numpy storage, HNSW vector search, and a markdown vault built for 24/7 agents.",
+		metrics: [
+			{ value: "6", label: "engines" },
+			{ value: "~127µs", label: "semantic recall" },
+			{ value: "Python", label: "library" },
+		],
+	},
+	{
+		name: "Hyperstack",
+		surface: "Engineering harness",
+		status: "Open source",
+		href: "https://github.com/orkait/hyperstack",
+		cta: "View on GitHub",
+		statement: "An MCP server and skill gates that keep AI agents honest.",
+		detail:
+			"Real-time ground truth for React, Next.js, Motion, React Flow, Echo, Go, Rust, and design tokens, enforced by adversarial gates.",
+		metrics: [
+			{ value: "21", label: "skill gates" },
+			{ value: "10+", label: "stacks covered" },
+		],
+	},
+	{
+		name: "Zen",
+		surface: "Interface creation",
+		status: "Coming soon",
+		statement: "Turn a prompt into interactive multi-screen UI.",
+		detail: "Rough product intent becomes usable, collaborative screens.",
+		metrics: [],
+	},
+	{
+		name: "BooleanStack",
+		surface: "Software learning",
+		status: "Coming soon",
+		statement: "Serious practice that rewards depth, not streaks.",
+		detail: "Data structures, algorithms, and system design for real engineering.",
+		metrics: [],
+	},
+];
 
-const items = FEATURES.map((f, i) => ({
-	n: String(i + 1).padStart(2, "0"),
-	title: f.title,
-	description: f.description,
-	value: VALUES[i],
-	lead: i === 0,
-}));
+const statusClass: Record<Capability["status"], string> = {
+	Live: "bg-signature-deep text-on-signature",
+	"Open source": "border border-foreground/25 text-foreground",
+	"Coming soon": "border border-border text-muted-foreground",
+};
 ---
 
 <section class="w-full py-20 tablet:py-28 laptop:py-32">
 	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
 			<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
-				<p
-					class="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground"
-				>
-					How the lab decides what ships
+				<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
+					What we actually ship
 				</p>
 				<h2
-					class="max-w-[16ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em] text-foreground"
+					class="max-w-[15ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em] text-foreground"
 				>
-					Research only counts when it survives production.
+					Measured, shipped, and open.
 				</h2>
 				<p class="max-w-[42ch] text-body-lg leading-[30px] text-ink-700">
-					A short set of rules keeps the work honest: every direction maps to a
-					real product surface, and nothing gets called live until people can use
-					it.
+					Not a roadmap. Rustbox runs untrusted code under kernel isolation
+					today, GraphStore and Hyperstack are open source, and the proof is
+					public.
 				</p>
 
 				<svg
@@ -61,25 +131,77 @@ const items = FEATURES.map((f, i) => ({
 
 			<ul class="flex flex-col gap-4 tablet:gap-5">
 				{
-					items.map((f) => (
+					capabilities.map((c) => (
 						<li data-reveal>
-							<article class="group flex min-h-[clamp(240px,30vh,320px)] flex-col justify-between rounded-[20px] border border-border bg-secondary p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_18px_44px_oklch(0.20_0.02_265_/_0.07)] tablet:p-10">
-								<div class="flex items-start justify-between">
-									<span class="font-mono text-[clamp(1.5rem,2vw,2rem)] font-bold tabular-nums leading-none text-signature-deep">
-										{f.n}
+							<article
+								class={`group flex flex-col gap-5 rounded-[20px] border p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 tablet:p-10 ${
+									c.emphasis
+										? "border-signature/40 bg-signature-soft/40 hover:border-signature/60"
+										: "border-border bg-secondary hover:border-foreground/20 hover:shadow-[0_18px_44px_oklch(0.20_0.02_265_/_0.07)]"
+								}`}
+							>
+								<div class="flex items-center justify-between gap-3">
+									<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+										{c.surface}
 									</span>
-									<span class="rounded-full border border-border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-										{f.value}
+									<span
+										class={`rounded-full px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] ${statusClass[c.status]}`}
+									>
+										{c.status}
 									</span>
 								</div>
+
 								<div class="flex flex-col gap-2.5">
-									<h3 class="font-display text-[clamp(1.5rem,2.4vw,2.125rem)] font-medium leading-[1.08] tracking-[-0.01em] text-foreground">
-										{f.title}
+									<h3 class="font-display text-[clamp(1.625rem,2.6vw,2.25rem)] font-medium leading-[1.05] tracking-[-0.015em] text-foreground">
+										{c.name}
 									</h3>
-									<p class="max-w-[48ch] text-body-lg leading-[28px] text-ink-700">
-										{f.description}
+									<p class="max-w-[46ch] text-body-lg leading-[28px] text-foreground">
+										{c.statement}
 									</p>
+									{c.detail && (
+										<p class="max-w-[52ch] text-base leading-[24px] text-ink-700">
+											{c.detail}
+										</p>
+									)}
 								</div>
+
+								{c.metrics.length > 0 && (
+									<dl class="mt-1 flex flex-wrap gap-x-10 gap-y-4 border-t border-foreground/10 pt-5">
+										{c.metrics.map((m) => (
+											<div class="flex flex-col gap-0.5">
+												<dt class="order-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+													{m.label}
+												</dt>
+												<dd class="order-1 text-[clamp(1.5rem,2.2vw,2rem)] font-black leading-none tracking-[-0.02em] text-signature-deep tabular-nums">
+													{m.value}
+												</dd>
+											</div>
+										))}
+									</dl>
+								)}
+
+								{c.href && (
+									<a
+										href={c.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="mt-1 inline-flex w-fit items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.12em] text-foreground transition-colors hover:text-signature-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+									>
+										{c.cta}
+										<svg
+											class="size-4 transition-transform duration-200 group-hover:translate-x-1"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2.2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											aria-hidden="true"
+										>
+											<path d="M5 12h14M13 6l6 6-6 6"></path>
+										</svg>
+									</a>
+								)}
 							</article>
 						</li>
 					))
@@ -117,9 +239,13 @@ const items = FEATURES.map((f, i) => ({
 		opacity: 0.12;
 	}
 	@keyframes cap-ship {
-		to { stroke-dashoffset: -18; }
+		to {
+			stroke-dashoffset: -18;
+		}
 	}
 	@media (prefers-reduced-motion: reduce) {
-		.cap-ship { animation: none; }
+		.cap-ship {
+			animation: none;
+		}
 	}
 </style>
