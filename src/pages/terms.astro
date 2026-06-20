@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ContentPage from "@/components/shared/ContentPage.astro";
+import { routes } from "@/lib/data/nav";
+---
+
+<Layout
+	title="Terms & Conditions"
+	description="Read the terms governing use of Orkait services, deliverables, and engagements."
+>
+	<ContentPage
+		eyebrow="(04) Legal"
+		title="Engagement terms and delivery expectations."
+		description="Project scope, timelines, acceptance criteria, and support windows are defined per engagement. Our terms ensure transparent collaboration and predictable execution."
+		links={[
+			{ label: "Privacy Policy", href: routes.privacyPolicy },
+			{ label: "Contact", href: routes.contact },
+		]}
+	/>
+</Layout>

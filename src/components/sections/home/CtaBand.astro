@@ -1,0 +1,39 @@
+---
+import { routes } from "@/lib/data/nav";
+import { MagneticButton } from "@/components/react/MagneticButton";
+---
+
+<section class="w-full bg-signature-deep text-on-signature" data-reveal>
+	<div
+		class="mx-auto flex w-full max-w-site flex-col items-center gap-8 px-6 py-24 text-center tablet:px-8 tablet:py-32"
+	>
+		<h2
+			class="max-w-[18ch] text-[clamp(1.875rem,3.5vw,3rem)] font-black leading-[1.05] tracking-[-0.025em]"
+		>
+			Have something that needs to actually ship?
+		</h2>
+		<p class="max-w-[46ch] text-body-lg leading-[30px] text-on-signature/80">
+			We take on selective research partnerships when there is a path to a real
+			system.
+		</p>
+		<MagneticButton
+			client:visible
+			href={routes.contact}
+			className="group inline-flex h-[52px] min-h-[48px] items-center justify-center gap-2 rounded-lg bg-tile px-8 text-base font-bold text-on-tile transition-[background-color] duration-200 hover:bg-tile/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-signature focus-visible:ring-offset-2 focus-visible:ring-offset-signature active:scale-[0.98]"
+		>
+			Get in touch
+			<svg
+				class="size-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2.2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<path d="M5 12h14M13 6l6 6-6 6"></path>
+			</svg>
+		</MagneticButton>
+	</div>
+</section>

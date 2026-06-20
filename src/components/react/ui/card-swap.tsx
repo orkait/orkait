@@ -1,0 +1,237 @@
+import React, {
+  Children,
+  forwardRef,
+  type ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+
+interface CardSwapProps {
+  width?: number | string;
+  height?: number | string;
+  cardDistance?: number;
+  verticalDistance?: number;
+  delay?: number;
+  autoPlay?: boolean;
+  pauseOnHover?: boolean;
+  skewAmount?: number;
+  children: ReactNode;
+  className?: string;
+}
+
+type CardProps = React.HTMLAttributes<HTMLDivElement> & {
+  style?: React.CSSProperties;
+};
+
+const TRANSITION_MS = 800;
+
+const Card = forwardRef<HTMLDivElement, CardProps>(({ style, ...rest }, ref) => (
+  <div
+    ref={ref}
+    {...rest}
+    style={{
+      ...style,
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transformStyle: "preserve-3d",
+      willChange: "transform",
+      backfaceVisibility: "hidden",
+      transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), opacity ${TRANSITION_MS}ms ease`,
+    }}
+    className={`rounded-lg border border-border bg-background overflow-hidden ${rest.className ?? ""}`.trim()}
+  />
+));
+Card.displayName = "Card";
+
+function CardSwap({
+  width = 500,
+  height = 400,
+  cardDistance = 60,
+  verticalDistance = 70,
+  delay = 5000,
+  autoPlay = true,
+  pauseOnHover = false,
+  skewAmount = 0,
+  children,
+  className,
+}: CardSwapProps) {
+  const childArr = Children.toArray(children) as React.ReactElement<CardProps>[];
+  const total = childArr.length;
+
+  const [order, setOrder] = useState(() =>
+    Array.from({ length: total }, (_, i) => i)
+  );
+  const [dropping, setDropping] = useState<number | null>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const loopRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dropTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isVisibleRef = useRef(true);
+  const isHoveredRef = useRef(false);
+  const isAnimatingRef = useRef(false);
+  const orderRef = useRef(order);
+  const slotLookup = useMemo(
+    () => new Map(order.map((item, index) => [item, index])),
+    [order]
+  );
+
+  useEffect(() => {
+    orderRef.current = order;
+  }, [order]);
+
+  function clearLoop() {
+    if (loopRef.current !== null) {
+      clearTimeout(loopRef.current);
+      loopRef.current = null;
+    }
+  }
+
+  function scheduleNext() {
+    clearLoop();
+    if (!autoPlay) return;
+    loopRef.current = setTimeout(tick, delay);
+  }
+
+  function tick() {
+    if (!isVisibleRef.current || isHoveredRef.current || isAnimatingRef.current) {
+      scheduleNext();
+      return;
+    }
+    isAnimatingRef.current = true;
+
+    const front = orderRef.current[0];
+    setDropping(front);
+
+    dropTimeoutRef.current = setTimeout(() => {
+      setOrder((prev) => [...prev.slice(1), prev[0]]);
+      setDropping(null);
+      isAnimatingRef.current = false;
+      scheduleNext();
+    }, TRANSITION_MS);
+  }
+
+  function resetInterval() {
+    scheduleNext();
+  }
+
+  function bringToFront(originalIdx: number) {
+    if (isAnimatingRef.current) return;
+    const slotIdx = orderRef.current.indexOf(originalIdx);
+    if (slotIdx === 0) return;
+
+    setOrder((prev) => [originalIdx, ...prev.filter((i) => i !== originalIdx)]);
+    resetInterval();
+  }
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node || total < 2) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(node);
+
+    const onEnter = () => {
+      isHoveredRef.current = true;
+    };
+    const onLeave = () => {
+      isHoveredRef.current = false;
+    };
+    if (pauseOnHover) {
+      node.addEventListener("mouseenter", onEnter);
+      node.addEventListener("mouseleave", onLeave);
+    }
+
+    if (autoPlay) {
+      loopRef.current = setTimeout(tick, delay);
+    }
+
+    return () => {
+      observer.disconnect();
+      clearLoop();
+      if (dropTimeoutRef.current !== null) {
+        clearTimeout(dropTimeoutRef.current);
+        dropTimeoutRef.current = null;
+      }
+      if (pauseOnHover) {
+        node.removeEventListener("mouseenter", onEnter);
+        node.removeEventListener("mouseleave", onLeave);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [total, delay, autoPlay, pauseOnHover]);
+
+  function slotStyle(i: number): React.CSSProperties {
+    const z = -i * cardDistance * 1.5;
+    return {
+      transform: `translate(-50%, -50%) translate3d(${i * cardDistance}px, ${-i * verticalDistance}px, ${z}px) skewY(${skewAmount}deg)`,
+      zIndex: total - i,
+      opacity: 1,
+      cursor: i === 0 ? "default" : "pointer",
+    };
+  }
+
+  function dropStyle(): React.CSSProperties {
+    return {
+      transform: `translate(-50%, -50%) translate3d(0px, 500px, -200px) skewY(${skewAmount}deg)`,
+      zIndex: 0,
+      opacity: 0,
+    };
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative overflow-visible ${className ?? ""}`}
+      style={{ width, height, perspective: 900 }}
+    >
+      {childArr.map((child, originalIdx) => {
+        const childProps = child.props;
+        const slotIdx = slotLookup.get(originalIdx) ?? 0;
+        const isDrop = dropping === originalIdx;
+        const isFront = slotIdx === 0 && !isDrop;
+
+        return (
+          <div
+            key={originalIdx}
+            style={{
+              ...childProps.style,
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width,
+              height,
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+              backfaceVisibility: "hidden",
+              transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), opacity ${TRANSITION_MS}ms ease`,
+              ...(isDrop ? dropStyle() : slotStyle(slotIdx)),
+            }}
+            className={`rounded-lg border border-border bg-background overflow-hidden ${childProps.className ?? ""}`.trim()}
+            onClickCapture={
+              isFront
+                ? undefined
+                : (e: React.MouseEvent) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    bringToFront(originalIdx);
+                  }
+            }
+          >
+            {childProps.children}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export { CardSwap, Card };
+export type { CardSwapProps, CardProps };

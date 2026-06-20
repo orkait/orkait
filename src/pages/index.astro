@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import Hero from "@/components/sections/home/Hero.astro";
+import Bento from "@/components/sections/home/Bento.astro";
+import Capabilities from "@/components/sections/home/Capabilities.astro";
+import Proof from "@/components/sections/home/Proof.astro";
+import CtaBand from "@/components/sections/home/CtaBand.astro";
+---
+
+<Layout>
+	<SiteHeader />
+
+	<main>
+		<Hero />
+		<Bento />
+		<Capabilities />
+		<Proof />
+		<CtaBand />
+	</main>
+
+	<SiteFooter />
+</Layout>

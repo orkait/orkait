@@ -1,0 +1,120 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { routes, headerNav, headerCtas } from "@/lib/data/nav";
+import { cn } from "@/lib/utils";
+
+interface Props {
+	overlap?: boolean;
+}
+
+const { overlap = false } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+	href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<header
+	data-site-header
+	class={cn(
+		"pointer-events-none sticky top-5 z-50 mt-6 w-full px-8 tablet:mt-10 mobile:max-tablet:top-4 mobile:max-tablet:mt-4 mobile:max-tablet:px-4",
+		overlap && "-mb-28 mobile:max-tablet:-mb-22",
+	)}
+>
+	<div
+		class="glass pointer-events-auto mx-auto flex h-16 w-full max-w-5xl items-center justify-between gap-6 rounded-full pl-6 pr-3 tablet:h-18 tablet:pl-7"
+	>
+		<a href={routes.home} class="flex shrink-0 items-center gap-2" aria-label="Orkait home">
+			<img src="/data/brand/orkait.svg" alt="" width="28" height="28" class="size-7" />
+			<span class="text-body-lg font-medium tracking-tight">Orkait</span>
+		</a>
+
+		<nav aria-label="Primary" class="flex items-center gap-9 max-laptop:hidden">
+			{
+				headerNav.map((link) => (
+					<a
+						href={link.href}
+						aria-current={isActive(link.href) ? "page" : undefined}
+						class="text-body font-medium text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:text-foreground"
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="flex items-center gap-2.5">
+			<Button
+				variant="outline"
+				size="lg"
+				href={headerCtas.rustbox.href}
+				target="_blank"
+				rel="noopener"
+				class="max-laptop:hidden"
+			>
+				{headerCtas.rustbox.label}
+			</Button>
+			<Button
+				variant="dark"
+				size="lg"
+				href={headerCtas.contact.href}
+				class="mobile:max-tablet:h-11 mobile:max-tablet:px-4 mobile:max-tablet:text-sm"
+			>
+				{headerCtas.contact.label}
+			</Button>
+			<button
+				popovertarget="mobile-nav"
+				class="hidden size-12 items-center justify-center rounded-full text-foreground max-laptop:inline-flex mobile:max-tablet:size-11"
+				aria-label="Open menu"
+			>
+				<svg
+					width="28"
+					height="28"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					aria-hidden="true"
+				>
+					<line x1="3.5" y1="6.5" x2="20.5" y2="6.5"></line>
+					<line x1="3.5" y1="12" x2="20.5" y2="12"></line>
+					<line x1="3.5" y1="17.5" x2="20.5" y2="17.5"></line>
+				</svg>
+			</button>
+		</div>
+	</div>
+</header>
+
+<div
+	id="mobile-nav"
+	popover
+	class="glass popover-panel pointer-events-auto fixed inset-x-0 top-24 m-0 mx-auto rounded-3xl p-4 backdrop:bg-foreground/10 laptop:hidden"
+>
+	<nav aria-label="Mobile" class="flex flex-col">
+		{
+			headerNav.map((link) => (
+				<a
+					href={link.href}
+					aria-current={isActive(link.href) ? "page" : undefined}
+					class="rounded-2xl px-4 py-3 text-body font-medium transition-colors hover:bg-secondary aria-[current=page]:text-primary"
+				>
+					{link.label}
+				</a>
+			))
+		}
+	</nav>
+	<div class="mt-3 flex flex-col gap-2 border-t border-border pt-3">
+		<Button variant="outline" href={headerCtas.rustbox.href} target="_blank" rel="noopener" class="w-full">
+			{headerCtas.rustbox.label}
+		</Button>
+		<Button variant="dark" href={headerCtas.contact.href} class="w-full">
+			{headerCtas.contact.label}
+		</Button>
+	</div>
+</div>
+
+<script>
+	import { initHeader } from "@/lib/client/header";
+	initHeader();
+</script>

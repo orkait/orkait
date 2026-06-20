@@ -1,0 +1,69 @@
+---
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import Container from "./Container.astro";
+
+const section = cva("w-full", {
+	variants: {
+		background: {
+			none: "",
+			default: "bg-background",
+			light: "bg-secondary",
+			dark: "bg-foreground text-background",
+		},
+		spacing: {
+			none: "",
+			sm: "py-12",
+			md: "py-24",
+			lg: "py-32",
+		},
+	},
+	defaultVariants: {
+		background: "none",
+		spacing: "md",
+	},
+});
+
+const innerMaxWidth = {
+	default: "max-w-site",
+	narrow: "max-w-3xl",
+	wide: "max-w-[1536px]",
+	full: "",
+} as const;
+
+interface Props extends VariantProps<typeof section> {
+	class?: string;
+	innerClass?: string;
+	maxWidth?: keyof typeof innerMaxWidth;
+	gutter?: boolean;
+	id?: string;
+	as?: keyof HTMLElementTagNameMap;
+}
+
+const {
+	class: className,
+	innerClass,
+	background,
+	spacing,
+	maxWidth = "default",
+	gutter = true,
+	id,
+	as: Tag = "section",
+} = Astro.props;
+
+const isFull = maxWidth === "full";
+---
+
+<Tag id={id} class={cn(section({ background, spacing }), className)}>
+	{
+		isFull ? (
+			<div class={innerClass}>
+				<slot />
+			</div>
+		) : (
+			<Container class={cn(innerMaxWidth[maxWidth], !gutter && "px-0", innerClass)}>
+				<slot />
+			</Container>
+		)
+	}
+</Tag>

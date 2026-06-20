@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/layout/Section.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import ProjectsInteractive from "@/components/react/ProjectsInteractive";
+---
+
+<Layout
+	title="Projects & Team"
+	description="Shipped systems, open research infrastructure, and the people building Orkait."
+>
+	<SiteHeader />
+
+	<main>
+		<Section spacing="none" class="pt-16 pb-24 tablet:pt-24">
+			<ProjectsInteractive client:visible />
+		</Section>
+	</main>
+
+	<SiteFooter />
+</Layout>

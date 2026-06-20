@@ -1,0 +1,559 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------- */
+/* Fonts                              */
+/* ---------------------------------- */
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("/fonts/Satoshi-Variable.woff2") format("woff2-variations");
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("/fonts/Satoshi-VariableItalic.woff2") format("woff2-variations");
+    font-weight: 300 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/poppins/poppins-300.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/poppins/poppins-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/poppins/poppins-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/poppins/poppins-600.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/poppins/poppins-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("/fonts/space-mono/space-mono-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("/fonts/space-mono/space-mono-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ---------------------------------- */
+/* ORKAIT DESIGN SYSTEM               */
+/* ---------------------------------- */
+
+@theme {
+    /* Clear all default breakpoints (sm, md, lg, xl, 2xl) */
+    --breakpoint-*: initial;
+
+    /* Device breakpoints */
+    --breakpoint-mobile: 320px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-laptop: 1024px;
+    --breakpoint-base: 1440px;
+    --breakpoint-large: 1920px;
+
+    /* Centered content container (1408px) + wide full-bleed (1536px) */
+    --container-site: 88rem;
+    --container-wide: 96rem;
+}
+
+
+@theme inline {
+    /* ------------------------------- */
+    /* Typography Scale               */
+    /* ------------------------------- */
+
+    --font-sans: var(--font-satoshi),
+    sans-serif;
+
+    --font-satoshi: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+    --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+    --text-heading: 72px;
+    --leading-heading: 80px;
+
+    --text-title-1: 64px;
+    --leading-title-1: 72px;
+
+    --text-title-2: 48px;
+    --leading-title-2: 56px;
+
+    --text-title-3: 32px;
+    --leading-title-3: 40px;
+
+    --text-subtitle: 24px;
+    --leading-subtitle: 36px;
+
+    --text-body-lg: 20px;
+    --leading-body-lg: 30px;
+
+    --text-body: 16px;
+    --leading-body: 24px;
+
+    /* ------------------------------- */
+    /* Spacing System (4px Grid)      */
+    /* ------------------------------- */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-32: 128px;
+    --space-40: 160px;
+    --space-48: 192px;
+    --space-56: 224px;
+    --space-64: 256px;
+
+    /* ------------------------------- */
+    /* Radius System                  */
+    /* ------------------------------- */
+
+    --radius: 10px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+    --radius-xl: 14px;
+    --radius-2xl: 18px;
+
+    /* ------------------------------- */
+    /* Color Primitives (OKLCH, warm)  */
+    /* ------------------------------- */
+
+    /* Warm paper neutrals */
+    --color-paper-50: oklch(0.985 0.006 85);
+    --color-paper-100: oklch(0.965 0.008 84);
+    --color-paper-200: oklch(0.935 0.010 82);
+
+    /* Navy-tinted ink (never pure black) */
+    --color-ink-950: oklch(0.20 0.025 265);
+    --color-ink-700: oklch(0.44 0.020 265);
+    --color-ink-500: oklch(0.58 0.018 265);
+    --color-ink-300: oklch(0.80 0.012 265);
+    --color-ink-200: oklch(0.90 0.008 265);
+
+    /* ======================================================= */
+    /* PRIMITIVE HUE RAMPS (raw color, no meaning)             */
+    /* Add a new ramp here, then point the SIGNATURE block at  */
+    /* it to re-hue the whole site. Components never reference  */
+    /* these directly - they use the semantic roles below.     */
+    /* ======================================================= */
+
+    /* amber (orkait heritage) */
+    --color-amber-50: oklch(0.970 0.030 82);
+    --color-amber-100: oklch(0.940 0.070 82);
+    --color-amber-300: oklch(0.880 0.130 80);
+    --color-amber-400: oklch(0.840 0.150 80);
+    --color-amber-500: oklch(0.800 0.160 75);
+    --color-amber-600: oklch(0.700 0.160 70);
+    --color-amber-700: oklch(0.580 0.140 65);
+    --color-amber-800: oklch(0.470 0.115 62);
+
+    /* cobalt (electric blue) */
+    --color-cobalt-300: oklch(0.700 0.140 264);
+    --color-cobalt-500: oklch(0.520 0.200 264);
+    --color-cobalt-600: oklch(0.460 0.190 264);
+    --color-cobalt-700: oklch(0.400 0.160 264);
+
+    /* teal / pine (secure, fresh) */
+    --color-teal-300: oklch(0.760 0.090 195);
+    --color-teal-500: oklch(0.560 0.100 192);
+    --color-teal-600: oklch(0.480 0.092 192);
+    --color-teal-700: oklch(0.400 0.080 192);
+
+    /* terracotta / clay (warm editorial) */
+    --color-clay-300: oklch(0.780 0.075 45);
+    --color-clay-500: oklch(0.620 0.130 42);
+    --color-clay-600: oklch(0.540 0.130 40);
+    --color-clay-700: oklch(0.460 0.115 38);
+
+    /* ======================================================= */
+    /* SIGNATURE - the ONE block to swap to re-hue everything. */
+    /* Point each role at a primitive ramp above. on-signature */
+    /* is the text/icon color that sits ON a signature fill    */
+    /* (ink for light hues, paper for dark hues).              */
+    /* ======================================================= */
+
+    --color-signature: var(--color-clay-500);        /* primary fill: buttons, hero tile */
+    --color-signature-soft: var(--color-clay-300);   /* lighter fill: secondary tile */
+    --color-signature-deep: var(--color-clay-700);   /* deep fill / readable accent text on paper */
+    --color-signature-hover: var(--color-clay-600);  /* hover state for signature fills */
+    --color-on-signature: var(--color-paper-50);       /* text/icon ON a signature fill (ink=light hue, paper=dark hue) */
+
+    /* Neutral tiles (bento) - hue-independent */
+    --color-tile: var(--color-ink-950);               /* navy tile */
+    --color-on-tile: var(--color-paper-50);           /* text on navy tile */
+
+    /* Canvas (read by AsciiField/GameOfLife via getComputedStyle) */
+    --cv-life-surface: var(--color-signature-deep);   /* game-of-life tile bg */
+    --cv-field-surface: var(--color-tile);            /* three-body tile bg (navy) */
+    --cv-field-trail: var(--color-signature);         /* three-body trails */
+    --cv-cell: var(--color-paper-50);                 /* live cell / body color */
+
+    /* ------------------------------- */
+    /* Semantic Tokens (Light)         */
+    /* ------------------------------- */
+
+    --color-background: var(--color-paper-50);
+    --color-foreground: var(--color-ink-950);
+
+    --color-muted: var(--color-paper-200);
+    --color-muted-foreground: var(--color-ink-500);
+
+    --color-border: var(--color-ink-200);
+    --color-input: var(--color-ink-200);
+
+    --color-primary: var(--color-signature-deep);
+    --color-primary-foreground: var(--color-on-signature);
+
+    --color-secondary: var(--color-paper-100);
+    --color-secondary-foreground: var(--color-ink-950);
+
+    --color-accent: var(--color-signature);
+    --color-accent-foreground: var(--color-on-signature);
+
+    --color-pricing-active-start: #3b3b3b;
+    --color-pricing-active-end: #000000;
+    --color-pricing-inactive-start: #f4f4f4;
+    --color-pricing-inactive-end: #b9b9b9;
+
+    --color-success: oklch(0.62 0.15 150);
+
+    --color-ring: var(--color-signature-hover);
+
+    --color-destructive: oklch(0.58 0.20 25);
+
+    /* Charts: dedicated, not reused from primary */
+    --color-chart-1: var(--color-signature);
+    --color-chart-2: var(--color-signature-deep);
+    --color-chart-3: var(--color-ink-700);
+    --color-chart-4: var(--color-signature-soft);
+    --color-chart-5: var(--color-ink-300);
+}
+
+/* ---------------------------------- */
+/* Dark Mode                         */
+/* ---------------------------------- */
+
+.dark {
+    /* Navy surface elevation (progressively lighter, not inverted) */
+    --color-background: oklch(0.20 0.025 265);
+    --color-foreground: var(--color-paper-50);
+
+    --color-muted: oklch(0.28 0.022 265);
+    --color-muted-foreground: oklch(0.72 0.015 265);
+
+    --color-border: oklch(0.32 0.020 265);
+    --color-input: oklch(0.32 0.020 265);
+
+    --color-primary: var(--color-signature-deep);
+    --color-primary-foreground: var(--color-on-signature);
+
+    --color-secondary: oklch(0.26 0.022 265);
+    --color-secondary-foreground: var(--color-paper-50);
+
+    --color-accent: var(--color-signature);
+    --color-accent-foreground: var(--color-on-signature);
+
+    --color-pricing-active-start: #3b3b3b;
+    --color-pricing-active-end: #000000;
+    --color-pricing-inactive-start: #f4f4f4;
+    --color-pricing-inactive-end: #b9b9b9;
+
+    --color-success: oklch(0.68 0.15 150);
+
+    --color-ring: var(--color-signature-hover);
+
+    --color-destructive: oklch(0.65 0.20 25);
+}
+
+/* ---------------------------------- */
+/* Base Layer                        */
+/* ---------------------------------- */
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans;
+    }
+}
+
+/* ---------------------------------- */
+/* Reduced Motion (global guard)      */
+/* ---------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------------------------------- */
+/* Scroll Reveal                      */
+/* ---------------------------------- */
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.reveal-ready [data-reveal] {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ---------------------------------- */
+/* Lenis                              */
+/* ---------------------------------- */
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* ---------------------------------- */
+/* Fade Edge Utilities                */
+/* ---------------------------------- */
+
+@utility fade-edge-right {
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: 33.333333%;
+    background: linear-gradient(to right, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+@utility fade-edge-left {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: 25%;
+    background: linear-gradient(to left, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+@utility fade-edge-bottom {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 33.333333%;
+    background: linear-gradient(to bottom, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+@utility fade-edge-top {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 25%;
+    background: linear-gradient(to top, transparent, var(--color-background));
+    pointer-events: none;
+}
+
+/* ---------------------------------- */
+/* Site Container (1340px)            */
+/* ---------------------------------- */
+
+@utility max-w-site {
+    max-width: var(--container-site);
+}
+
+/* ---------------------------------- */
+/* Named Grid Layouts                */
+/* ---------------------------------- */
+
+@utility process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "card1 card2 tagline"
+        "card3 card4 tagline"
+        "card5 card6 card7";
+}
+
+/* ---------------------------------- */
+/* Glass Navbar (floating pill)       */
+/* ---------------------------------- */
+
+@utility popover-panel {
+    width: calc(100% - 2rem);
+    max-width: 64rem;
+}
+
+@layer components {
+    .glass {
+        --glass-surface: 25%;
+        --glass-blur: 18px;
+        position: relative;
+        overflow: hidden;
+        background: color-mix(in oklab, var(--color-background) var(--glass-surface), transparent);
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+        backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+        border: 1px solid color-mix(in oklab, var(--color-background) 30%, transparent);
+        box-shadow:
+            0 0 24px oklch(0.62 0 0 / 8%),
+            inset 0 1px 0 color-mix(in oklab, var(--color-background) 50%, transparent),
+            inset 0 -1px 0 color-mix(in oklab, var(--color-background) 10%, transparent),
+            inset 0 0 12px 6px color-mix(in oklab, var(--color-background) 60%, transparent);
+        transition:
+            background 0.3s ease,
+            box-shadow 0.3s ease,
+            backdrop-filter 0.3s ease;
+    }
+
+    /* Auto-hide header: slides up on scroll-down, glides back on scroll-up
+       (toggled by header.ts). Keeps the chrome from feeling frozen. */
+    [data-site-header] {
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
+    }
+    [data-site-header][data-hidden] {
+        transform: translateY(-150%);
+    }
+
+    /* Past the hero the bar firms up: more opaque, deeper blur, grounded shadow. */
+    [data-site-header][data-scrolled] .glass {
+        --glass-surface: 55%;
+        --glass-blur: 24px;
+        box-shadow:
+            0 8px 28px oklch(0.62 0 0 / 14%),
+            inset 0 1px 0 color-mix(in oklab, var(--color-background) 60%, transparent),
+            inset 0 -1px 0 color-mix(in oklab, var(--color-background) 12%, transparent),
+            inset 0 0 12px 6px color-mix(in oklab, var(--color-background) 50%, transparent);
+    }
+    .glass::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            color-mix(in oklab, var(--color-background) 80%, transparent),
+            transparent
+        );
+        pointer-events: none;
+    }
+    .glass::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--color-background) 80%, transparent),
+            transparent,
+            color-mix(in oklab, var(--color-background) 30%, transparent)
+        );
+        pointer-events: none;
+    }
+}
+
+/* ---------------------------------- */
+/* Marquee / Infinite Scroll          */
+/* ---------------------------------- */
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@utility marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+}
+
+@utility marquee-track-paused {
+    animation-play-state: paused;
+}
