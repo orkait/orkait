@@ -6,11 +6,10 @@ export type Client = {
 	// No logo + no slug -> rendered as a clean wordmark (the name itself).
 };
 
-// Real partners/clients. Tencent + two research universities. None have a
-// simpleicons entry, so they render as wordmarks until a local logo is dropped
-// into /public and referenced via `logo`.
+// Real partners/clients. Official SVG logos sourced from Wikimedia Commons,
+// self-hosted under /public/logos and rendered grayscale + muted in the wall.
 export const CLIENTS: Client[] = [
-	{ name: "Tencent" },
-	{ name: "Kyoto University" },
-	{ name: "IIT Madras" },
+	{ name: "Tencent", logo: "/logos/tencent.svg" },
+	{ name: "Kyoto University", logo: "/logos/kyoto-university.svg" },
+	{ name: "IIT Madras", logo: "/logos/iit-madras.svg" },
 ];
