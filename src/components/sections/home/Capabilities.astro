@@ -1,19 +1,20 @@
 ---
 import { FEATURES } from "@/lib/data/features";
 
-// Strip the legacy "(0x)" wrappers; render clean ordinals in the signature accent.
+// Each rule enforces one lab value - the card's meaningful second dimension,
+// not decoration. Order matches FEATURES.
+const VALUES = ["Honesty", "Focus", "Honesty", "Engineering", "Focus", "Voice", "Proof"];
+
 const items = FEATURES.map((f, i) => ({
 	n: String(i + 1).padStart(2, "0"),
 	title: f.title,
 	description: f.description,
+	value: VALUES[i],
+	lead: i === 0,
 }));
-
-// Group into clusters so dividers stay sparse (one hairline between groups,
-// none between rows inside a group).
-const clusters = [items.slice(0, 3), items.slice(3, 5), items.slice(5)];
 ---
 
-<section class="w-full py-20 tablet:py-28 laptop:py-32" data-reveal>
+<section class="w-full py-20 tablet:py-28 laptop:py-32">
 	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
 			<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
@@ -58,33 +59,32 @@ const clusters = [items.slice(0, 3), items.slice(3, 5), items.slice(5)];
 				</svg>
 			</div>
 
-			<div class="flex flex-col gap-12">
+			<ul class="flex flex-col gap-4 tablet:gap-5">
 				{
-					clusters.map((cluster, ci) => (
-						<div
-							class={ci === 0 ? "" : "border-t border-border pt-12"}
-						>
-							<ul class="flex flex-col gap-7">
-								{cluster.map((f) => (
-									<li class="grid grid-cols-[auto_1fr] items-baseline gap-x-5 tablet:gap-x-7">
-										<span class="font-mono text-[15px] font-bold text-signature-deep tabular-nums">
-											{f.n}
-										</span>
-										<div class="flex flex-col gap-1.5">
-											<h3 class="text-[19px] font-bold leading-tight tracking-tight text-foreground tablet:text-subtitle">
-												{f.title}
-											</h3>
-											<p class="max-w-[52ch] text-base leading-[24px] text-ink-700">
-												{f.description}
-											</p>
-										</div>
-									</li>
-								))}
-							</ul>
-						</div>
+					items.map((f) => (
+						<li data-reveal>
+							<article class="group flex min-h-[clamp(240px,30vh,320px)] flex-col justify-between rounded-[20px] border border-border bg-secondary p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_18px_44px_oklch(0.20_0.02_265_/_0.07)] tablet:p-10">
+								<div class="flex items-start justify-between">
+									<span class="font-mono text-[clamp(1.5rem,2vw,2rem)] font-bold tabular-nums leading-none text-signature-deep">
+										{f.n}
+									</span>
+									<span class="rounded-full border border-border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+										{f.value}
+									</span>
+								</div>
+								<div class="flex flex-col gap-2.5">
+									<h3 class="font-display text-[clamp(1.5rem,2.4vw,2.125rem)] font-medium leading-[1.08] tracking-[-0.01em] text-foreground">
+										{f.title}
+									</h3>
+									<p class="max-w-[48ch] text-body-lg leading-[28px] text-ink-700">
+										{f.description}
+									</p>
+								</div>
+							</article>
+						</li>
 					))
 				}
-			</div>
+			</ul>
 		</div>
 	</div>
 </section>
