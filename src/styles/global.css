@@ -224,11 +224,11 @@
     /* (ink for light hues, paper for dark hues).              */
     /* ======================================================= */
 
-    --color-signature: var(--color-amber-500);        /* primary fill: buttons, hero tile */
-    --color-signature-soft: var(--color-amber-300);   /* lighter fill: secondary tile */
-    --color-signature-deep: var(--color-amber-700);   /* deep fill / readable accent text on paper */
-    --color-signature-hover: var(--color-amber-600);  /* hover state for signature fills */
-    --color-on-signature: var(--color-ink-950);       /* text/icon ON a signature fill (ink=light hue, paper=dark hue) */
+    --color-signature: var(--color-clay-500);        /* primary fill: buttons, hero tile */
+    --color-signature-soft: var(--color-clay-300);   /* lighter fill: secondary tile */
+    --color-signature-deep: var(--color-clay-700);   /* deep fill / readable accent text on paper */
+    --color-signature-hover: var(--color-clay-600);  /* hover state for signature fills */
+    --color-on-signature: var(--color-paper-50);       /* text/icon ON a signature fill (ink=light hue, paper=dark hue) */
 
     /* Neutral tiles (bento) - hue-independent */
     --color-tile: var(--color-ink-950);               /* navy tile */
