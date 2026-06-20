@@ -12,7 +12,7 @@ const socialIcons: Record<string, string> = {
 };
 ---
 
-<footer class="w-full border-t border-border bg-background">
+<footer class="w-full bg-tile text-on-tile">
 	<Container class="flex flex-col gap-8 py-14">
 		<div class="flex flex-col gap-10 tablet:flex-row tablet:items-start tablet:justify-between">
 			<div class="grid grid-cols-2 gap-x-10 gap-y-8 tablet:grid-cols-3 tablet:gap-x-14">
@@ -20,7 +20,7 @@ const socialIcons: Record<string, string> = {
 					FOOTER_COLUMNS.map((col) => (
 						<nav aria-label={col.ariaLabel} class="flex flex-col gap-3.5">
 							{col.heading && (
-								<p class="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-700">
+								<p class="font-mono text-[12px] uppercase tracking-[0.12em] text-on-tile/55">
 									{col.heading}
 								</p>
 							)}
@@ -29,7 +29,7 @@ const socialIcons: Record<string, string> = {
 									href={link.href}
 									target={link.isExternal ? "_blank" : undefined}
 									rel={link.isExternal ? "noopener noreferrer" : undefined}
-									class="text-body text-ink-700 transition-colors hover:text-signature-deep"
+									class="text-body text-on-tile/80 transition-colors hover:text-on-tile"
 								>
 									{link.label}
 								</a>
@@ -47,7 +47,7 @@ const socialIcons: Record<string, string> = {
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label={social.label}
-							class="inline-flex size-11 items-center justify-center rounded-full text-ink-700 transition-colors hover:text-signature-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+							class="inline-flex size-11 items-center justify-center rounded-full text-on-tile/70 transition-colors hover:text-signature focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
 						>
 							<Fragment set:html={socialIcons[social.label] ?? ""} />
 						</a>
@@ -57,7 +57,7 @@ const socialIcons: Record<string, string> = {
 		</div>
 	</Container>
 
-	<div class="relative w-full overflow-hidden bg-tile text-on-tile">
+	<div class="relative w-full overflow-hidden border-t border-on-tile/10">
 		<div class="footer-chevron pointer-events-none absolute inset-0" aria-hidden="true"></div>
 		<div class="relative z-10 mx-auto flex max-w-site flex-col gap-4 px-6 py-12 tablet:px-8">
 			<div class="flex items-center gap-4 tablet:gap-6">
@@ -87,8 +87,8 @@ const socialIcons: Record<string, string> = {
 		</div>
 	</div>
 
-	<Container class="py-6">
-		<p class="text-body text-ink-700">&copy; {year} Orkait. All rights reserved.</p>
+	<Container class="border-t border-on-tile/10 py-6">
+		<p class="text-body text-on-tile/55">&copy; {year} Orkait. All rights reserved.</p>
 	</Container>
 </footer>
 
