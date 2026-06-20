@@ -8,8 +8,9 @@ const STAGNATION_WINDOW = 30;
 const SETTLED_HOLD = 50; // frames to hold settled state (~5s at 10fps)
 const MAX_GENERATIONS = 600;
 
-// Cobalt bento tile palette - canvas sits on a cobalt-600 surface.
-const SURFACE = "#2a3eb0"; // cobalt-600-ish
+// Tile surface follows the signature hue: read from CSS var --cv-life-surface
+// at runtime (see global.css SIGNATURE block); this is only the fallback.
+const SURFACE_FALLBACK = "oklch(0.58 0.14 65)"; // signature-deep default
 // Precomputed per-age style buckets (age 1, 2, 3, 4+): paper warming to amber
 const AGE_STYLES = ["rgba(245,243,236,0.45)", "rgba(245,243,236,0.70)", "rgba(245,243,236,0.90)", "#f5f3ec"] as const;
 const AGE_SCALE  = [0.55, 0.70, 0.85, 1.00] as const;
@@ -108,6 +109,9 @@ export function GameOfLife({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const draw = ctx;
+    const surface =
+      getComputedStyle(canvas).getPropertyValue("--cv-life-surface").trim() ||
+      SURFACE_FALLBACK;
 
     const cols = Math.floor(W / CELL_SIZE);
     const rows = Math.floor(H / CELL_SIZE);
@@ -144,7 +148,7 @@ export function GameOfLife({ className }: { className?: string }) {
     }
 
     function render() {
-      draw.fillStyle = SURFACE;
+      draw.fillStyle = surface;
       draw.fillRect(0, 0, W, H);
 
       for (let row = 0; row < rows; row++) {

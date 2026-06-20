@@ -182,16 +182,63 @@
     --color-ink-300: oklch(0.80 0.012 265);
     --color-ink-200: oklch(0.90 0.008 265);
 
-    /* Signature: electric cobalt */
-    --color-cobalt-50: oklch(0.96 0.030 264);
-    --color-cobalt-300: oklch(0.70 0.140 264);
-    --color-cobalt-500: oklch(0.52 0.200 264);
-    --color-cobalt-600: oklch(0.46 0.190 264);
-    --color-cobalt-700: oklch(0.40 0.160 264);
+    /* ======================================================= */
+    /* PRIMITIVE HUE RAMPS (raw color, no meaning)             */
+    /* Add a new ramp here, then point the SIGNATURE block at  */
+    /* it to re-hue the whole site. Components never reference  */
+    /* these directly - they use the semantic roles below.     */
+    /* ======================================================= */
 
-    /* Secondary spark: amber (orkait heritage) */
-    --color-amber-400: oklch(0.84 0.150 80);
-    --color-amber-500: oklch(0.80 0.160 75);
+    /* amber (orkait heritage) */
+    --color-amber-50: oklch(0.970 0.030 82);
+    --color-amber-100: oklch(0.940 0.070 82);
+    --color-amber-300: oklch(0.880 0.130 80);
+    --color-amber-400: oklch(0.840 0.150 80);
+    --color-amber-500: oklch(0.800 0.160 75);
+    --color-amber-600: oklch(0.700 0.160 70);
+    --color-amber-700: oklch(0.580 0.140 65);
+    --color-amber-800: oklch(0.470 0.115 62);
+
+    /* cobalt (electric blue) */
+    --color-cobalt-300: oklch(0.700 0.140 264);
+    --color-cobalt-500: oklch(0.520 0.200 264);
+    --color-cobalt-600: oklch(0.460 0.190 264);
+    --color-cobalt-700: oklch(0.400 0.160 264);
+
+    /* teal / pine (secure, fresh) */
+    --color-teal-300: oklch(0.760 0.090 195);
+    --color-teal-500: oklch(0.560 0.100 192);
+    --color-teal-600: oklch(0.480 0.092 192);
+    --color-teal-700: oklch(0.400 0.080 192);
+
+    /* terracotta / clay (warm editorial) */
+    --color-clay-300: oklch(0.780 0.075 45);
+    --color-clay-500: oklch(0.620 0.130 42);
+    --color-clay-600: oklch(0.540 0.130 40);
+    --color-clay-700: oklch(0.460 0.115 38);
+
+    /* ======================================================= */
+    /* SIGNATURE - the ONE block to swap to re-hue everything. */
+    /* Point each role at a primitive ramp above. on-signature */
+    /* is the text/icon color that sits ON a signature fill    */
+    /* (ink for light hues, paper for dark hues).              */
+    /* ======================================================= */
+
+    --color-signature: var(--color-amber-500);        /* primary fill: buttons, hero tile */
+    --color-signature-soft: var(--color-amber-300);   /* lighter fill: secondary tile */
+    --color-signature-deep: var(--color-amber-700);   /* deep fill / readable accent text on paper */
+    --color-signature-hover: var(--color-amber-600);  /* hover state for signature fills */
+    --color-on-signature: var(--color-ink-950);       /* text/icon ON a signature fill (ink=light hue, paper=dark hue) */
+
+    /* Neutral tiles (bento) - hue-independent */
+    --color-tile: var(--color-ink-950);               /* navy tile */
+    --color-on-tile: var(--color-paper-50);           /* text on navy tile */
+
+    /* Canvas (read by AsciiField/GameOfLife via getComputedStyle) */
+    --cv-life-surface: var(--color-signature-deep);   /* game-of-life tile bg */
+    --cv-field-surface: var(--color-tile);            /* three-body tile bg (navy) */
+    --cv-field-trail: var(--color-signature);         /* three-body trails */
+    --cv-cell: var(--color-paper-50);                 /* live cell / body color */
 
     /* ------------------------------- */
     /* Semantic Tokens (Light)         */
@@ -206,14 +253,14 @@
     --color-border: var(--color-ink-200);
     --color-input: var(--color-ink-200);
 
-    --color-primary: var(--color-cobalt-500);
-    --color-primary-foreground: var(--color-paper-50);
+    --color-primary: var(--color-signature);
+    --color-primary-foreground: var(--color-on-signature);
 
     --color-secondary: var(--color-paper-100);
     --color-secondary-foreground: var(--color-ink-950);
 
-    --color-accent: var(--color-amber-500);
-    --color-accent-foreground: var(--color-ink-950);
+    --color-accent: var(--color-signature);
+    --color-accent-foreground: var(--color-on-signature);
 
     --color-pricing-active-start: #3b3b3b;
     --color-pricing-active-end: #000000;
@@ -222,15 +269,15 @@
 
     --color-success: oklch(0.62 0.15 150);
 
-    --color-ring: var(--color-cobalt-500);
+    --color-ring: var(--color-signature-hover);
 
     --color-destructive: oklch(0.58 0.20 25);
 
     /* Charts: dedicated, not reused from primary */
-    --color-chart-1: var(--color-cobalt-500);
-    --color-chart-2: var(--color-amber-500);
+    --color-chart-1: var(--color-signature);
+    --color-chart-2: var(--color-signature-deep);
     --color-chart-3: var(--color-ink-700);
-    --color-chart-4: var(--color-cobalt-300);
+    --color-chart-4: var(--color-signature-soft);
     --color-chart-5: var(--color-ink-300);
 }
 
@@ -249,14 +296,14 @@
     --color-border: oklch(0.32 0.020 265);
     --color-input: oklch(0.32 0.020 265);
 
-    --color-primary: var(--color-cobalt-300);
-    --color-primary-foreground: oklch(0.18 0.025 265);
+    --color-primary: var(--color-signature);
+    --color-primary-foreground: var(--color-on-signature);
 
     --color-secondary: oklch(0.26 0.022 265);
     --color-secondary-foreground: var(--color-paper-50);
 
-    --color-accent: var(--color-amber-400);
-    --color-accent-foreground: oklch(0.18 0.025 265);
+    --color-accent: var(--color-signature);
+    --color-accent-foreground: var(--color-on-signature);
 
     --color-pricing-active-start: #3b3b3b;
     --color-pricing-active-end: #000000;
@@ -265,7 +312,7 @@
 
     --color-success: oklch(0.68 0.15 150);
 
-    --color-ring: var(--color-cobalt-300);
+    --color-ring: var(--color-signature-hover);
 
     --color-destructive: oklch(0.65 0.20 25);
 }

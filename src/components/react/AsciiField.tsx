@@ -17,7 +17,7 @@ const SURFACE = "#16172a"; // ink-950
 const GRID_MINOR = "rgba(255,255,255,0.05)";
 const GRID_AXIS = "rgba(255,255,255,0.12)";
 const ORIGIN_DOT = "rgba(255,255,255,0.18)";
-const TRAIL = "118,140,255"; // cobalt-300-ish rgb for trails
+const TRAIL = "230,228,218"; // soft paper trails (hue-independent on navy tile)
 const BALL_FILL = "#f5f3ec"; // paper-100 bodies
 
 type Vec2 = { x: number; y: number };

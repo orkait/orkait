@@ -140,7 +140,7 @@ export function ChatWidget() {
 											type="button"
 											onClick={() => void sendMessage(input)}
 											disabled={isLoading || !input.trim()}
-											className="inline-flex cursor-pointer items-center justify-center bg-primary hover:bg-cobalt-600 text-primary-foreground rounded-md h-[40px] px-6 font-bold text-[10px] tracking-wider uppercase disabled:opacity-50"
+											className="inline-flex cursor-pointer items-center justify-center bg-primary hover:bg-signature-hover text-primary-foreground rounded-md h-[40px] px-6 font-bold text-[10px] tracking-wider uppercase disabled:opacity-50"
 										>
 											SEND
 										</button>
