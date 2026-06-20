@@ -1,6 +1,5 @@
 ---
 import { PRODUCT_LINES } from "@/lib/data/products";
-import { AsciiField } from "@/components/react/AsciiField";
 import { GameOfLife } from "@/components/react/GameOfLife";
 
 const rustbox = PRODUCT_LINES.find((p) => p.id === "rustbox");
@@ -45,19 +44,17 @@ const zen = PRODUCT_LINES.find((p) => p.id === "zen");
 				</div>
 			</a>
 
-			{/* Living tile: three-body (navy) */}
-			<div class="relative col-span-2 row-span-2 min-h-[280px] overflow-hidden rounded-[20px] bg-tile laptop:min-h-0">
-				<div class="absolute inset-0">
-					<AsciiField client:visible />
-				</div>
-				<div class="pointer-events-none absolute inset-0 flex flex-col justify-between p-7">
-					<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/70">
-						Systems in motion
-					</span>
-					<span class="font-mono text-[11px] uppercase tracking-[0.14em] text-on-tile/55">
-						Figure-8 / three-body
-					</span>
-				</div>
+			{/* Statement tile (navy) */}
+			<div class="relative col-span-2 row-span-2 flex min-h-[280px] flex-col justify-between overflow-hidden rounded-[20px] bg-tile p-7 text-on-tile laptop:min-h-0">
+				<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/60">
+					The discipline
+				</span>
+				<p class="max-w-[24ch] text-[clamp(1.5rem,2.6vw,2.25rem)] font-black leading-[1.05] tracking-[-0.02em]">
+					We care about runtime behavior, constraints, failure modes, and maintenance.
+				</p>
+				<span class="font-mono text-[11px] uppercase tracking-[0.14em] text-on-tile/55">
+					Systems come first
+				</span>
 			</div>
 
 			{/* BooleanStack - soft signature tile */}
