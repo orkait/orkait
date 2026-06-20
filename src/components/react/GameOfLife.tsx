@@ -8,10 +8,12 @@ const STAGNATION_WINDOW = 30;
 const SETTLED_HOLD = 50; // frames to hold settled state (~5s at 10fps)
 const MAX_GENERATIONS = 600;
 
-// Precomputed per-age style buckets (age 1, 2, 3, 4+)
-const AGE_STYLES = ["rgba(0,0,0,0.37)", "rgba(0,0,0,0.63)", "rgba(0,0,0,0.88)", "#000"] as const;
+// Cobalt bento tile palette - canvas sits on a cobalt-600 surface.
+const SURFACE = "#2a3eb0"; // cobalt-600-ish
+// Precomputed per-age style buckets (age 1, 2, 3, 4+): paper warming to amber
+const AGE_STYLES = ["rgba(245,243,236,0.45)", "rgba(245,243,236,0.70)", "rgba(245,243,236,0.90)", "#f5f3ec"] as const;
 const AGE_SCALE  = [0.55, 0.70, 0.85, 1.00] as const;
-const DYING_STYLE = "rgba(0,0,0,0.15)";
+const DYING_STYLE = "rgba(245,243,236,0.18)";
 const DYING_SCALE = 0.30;
 const MAX_RENDER_WIDTH = 500;
 
@@ -142,7 +144,7 @@ export function GameOfLife({ className }: { className?: string }) {
     }
 
     function render() {
-      draw.fillStyle = "#fafafa";
+      draw.fillStyle = SURFACE;
       draw.fillRect(0, 0, W, H);
 
       for (let row = 0; row < rows; row++) {

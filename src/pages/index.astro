@@ -4,6 +4,7 @@ import Section from "@/components/layout/Section.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
 import SiteFooter from "@/components/layout/SiteFooter.astro";
 import Hero from "@/components/sections/home/Hero.astro";
+import Bento from "@/components/sections/home/Bento.astro";
 import StudioText from "@/components/sections/home/StudioText.astro";
 import ServicesText from "@/components/sections/home/ServicesText.astro";
 import Advance from "@/components/sections/home/Advance.astro";
@@ -16,15 +17,19 @@ import Feedback from "@/components/react/Feedback";
 	<SiteHeader />
 
 	<main>
-		<Section spacing="none" class="pt-12 tablet:pt-16 laptop:pt-20">
+		<Section spacing="none" class="pt-16 tablet:pt-24 laptop:pt-28">
 			<Hero />
 		</Section>
 
-		<Section spacing="none">
+		<Section spacing="none" maxWidth="full" class="pt-20 tablet:pt-28">
+			<Bento />
+		</Section>
+
+		<Section spacing="none" class="pt-24 tablet:pt-32">
 			<Flash client:visible />
 		</Section>
 
-		<Section spacing="none">
+		<Section spacing="none" class="pt-24 tablet:pt-32">
 			<StudioText />
 		</Section>
 

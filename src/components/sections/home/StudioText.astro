@@ -8,7 +8,7 @@ import { AsciiField } from "@/components/react/AsciiField";
 	<div class="mt-12 flex w-full flex-col items-start tablet:hidden">
 		<div class="w-full">
 			<span class="float-left mr-4 pt-1">
-				<p class="text-body font-medium uppercase leading-none tracking-widest text-muted-foreground">
+				<p class="font-mono text-[13px] uppercase leading-none tracking-[0.18em] text-muted-foreground">
 					(01) Lab Thesis
 				</p>
 			</span>
@@ -18,7 +18,7 @@ import { AsciiField } from "@/components/react/AsciiField";
 		</div>
 
 		<div class="mt-14 flex w-full flex-col items-start gap-8">
-			<div class="relative aspect-[340/220] max-h-[220px] w-full shrink-0 overflow-hidden rounded-lg bg-[#fafafa]">
+			<div class="relative aspect-[340/220] max-h-[220px] w-full shrink-0 overflow-hidden rounded-lg bg-secondary">
 				<AsciiField client:visible />
 			</div>
 
@@ -35,7 +35,7 @@ import { AsciiField } from "@/components/react/AsciiField";
 					</p>
 					<a
 						href={routes.projects}
-						class="inline-flex h-auto items-center justify-center rounded-md bg-foreground px-4 py-2 text-[14px] font-medium text-white transition-colors hover:bg-foreground/90"
+						class="inline-flex h-auto items-center justify-center rounded-md bg-foreground px-4 py-2 text-[14px] font-medium text-background transition-colors hover:bg-foreground/90"
 					>
 						View Products
 					</a>
@@ -48,7 +48,7 @@ import { AsciiField } from "@/components/react/AsciiField";
 	<div class="mt-12 hidden w-full flex-col items-start base:mt-24 tablet:flex">
 		<div class="block w-full">
 			<div class="float-left mb-4 tablet:mb-0 tablet:w-[150px] laptop:w-[200px]">
-				<p class="pt-2 text-body font-medium uppercase leading-none tracking-widest text-muted-foreground tablet:leading-body">
+				<p class="pt-2 font-mono text-[13px] uppercase leading-none tracking-[0.18em] text-muted-foreground tablet:leading-body">
 					(01) Lab Thesis
 				</p>
 			</div>
@@ -61,7 +61,7 @@ import { AsciiField } from "@/components/react/AsciiField";
 
 		<div class="mt-12 grid w-full grid-cols-1 items-start gap-8 tablet:grid-cols-1 laptop:mt-24 laptop:grid-cols-3 laptop:gap-8 base:gap-12">
 			{/* Image column */}
-			<div class="relative aspect-[340/375] w-full shrink-0 overflow-hidden rounded-lg bg-[#fafafa] laptop:aspect-[291/322]">
+			<div class="relative aspect-[340/375] w-full shrink-0 overflow-hidden rounded-lg bg-secondary laptop:aspect-[291/322]">
 				<AsciiField client:visible />
 			</div>
 
@@ -80,7 +80,7 @@ import { AsciiField } from "@/components/react/AsciiField";
 				</p>
 				<a
 					href={routes.projects}
-					class="inline-flex h-auto items-center justify-center rounded-md bg-black px-4 py-2 text-[14px] font-medium text-white transition-colors hover:bg-black/90 tablet:text-base"
+					class="inline-flex h-auto items-center justify-center rounded-md bg-primary px-4 py-2 text-[14px] font-medium text-primary-foreground transition-colors hover:bg-cobalt-600 tablet:text-base"
 				>
 					View Products
 				</a>

@@ -1,101 +1,103 @@
 ---
 import { routes } from "@/lib/data/nav";
+
+const rustboxHref = "https://rustbox.orkait.com";
+
+// "products" gets the playful per-letter jitter. transform-only, neutralized
+// by the global prefers-reduced-motion guard via .hero-jitter.
+const jitterWord = "products";
+const jitterLetters = jitterWord.split("");
 ---
 
-<div class="relative w-full overflow-visible" data-reveal>
-	{/* Mobile view */}
-	<div class="flex flex-col gap-14 pt-4 pb-4 tablet:hidden">
-		<div class="flex w-full justify-end">
-			<div class="flex w-full max-w-[320px] flex-col items-end gap-8">
-				<span class="w-full max-w-[320px] text-wrap text-right text-[22px] font-medium leading-[24px] tracking-[-0.04em] text-foreground">
-					We engineer software that works. Honest engineering. Reliable systems. No hype.
-				</span>
-				<a
-					href={routes.projects}
-					class="inline-flex h-auto items-center justify-center gap-[10px] rounded-md bg-foreground px-4 py-2 text-base font-normal text-white transition-colors hover:bg-slate-900/90"
+<div class="relative w-full" data-reveal>
+	<div class="flex flex-col gap-8 tablet:gap-10">
+		<p
+			class="font-mono text-[13px] uppercase tracking-[0.18em] text-muted-foreground"
+		>
+			(01) Product-first AI lab
+		</p>
+
+		<h1
+			class="max-w-[16ch] text-balance text-foreground"
+			style="font-weight: 900; letter-spacing: -0.03em; line-height: 0.92; font-size: clamp(3rem, 9vw, 7.5rem);"
+		>
+			Applied AI research,<br />shipped as <span
+				class="hero-jitter inline-block text-primary"
+				>{
+					jitterLetters.map((ch, i) => (
+						<span
+							class="inline-block"
+							style={`--i:${i}; animation-delay:${i * 60}ms`}
+						>
+							{ch}
+						</span>
+					))
+				}</span>.
+		</h1>
+
+		<p class="max-w-[52ch] text-body-lg leading-[30px] text-ink-700">
+			Orkait builds focused tools for secure execution, software learning,
+			and AI-assisted creation. Rustbox is live. BooleanStack and Zen are
+			coming soon.
+		</p>
+
+		<div class="flex flex-col gap-3 tablet:flex-row tablet:items-center">
+			<a
+				href={rustboxHref}
+				class="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.52_0.20_264_/_0.18)] transition-[transform,background-color] duration-200 hover:bg-cobalt-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+			>
+				Open Rustbox
+				<svg
+					class="size-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
 				>
-					View Products
-				</a>
-			</div>
-		</div>
+					<path d="M5 12h14M13 6l6 6-6 6"></path>
+				</svg>
+			</a>
 
-		<div class="flex w-full justify-start pt-6">
-			<div class="relative inline-flex flex-col">
-				<img
-					class="absolute left-0 -top-[52px] aspect-square size-[72px] -rotate-[4.672deg] object-contain"
-					src="/data/brand/orkait.svg"
-					alt="Orkait Logo Fin"
-					width="200"
-					height="200"
-				/>
-
-				<div
-					class="text-[clamp(4.5rem,24vw,5.6rem)] font-bold tracking-[-0.05em] text-foreground"
-					style="line-height: 0.8;"
-				>
-					ORKAIT
-				</div>
-
-				<div
-					class="-scale-y-100 text-[clamp(4.5rem,24vw,5.6rem)] font-bold tracking-[-0.05em] text-foreground/12"
-					style="line-height: 0.8; -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.5), transparent 80%); mask-image: linear-gradient(to top, rgba(0,0,0,0.5), transparent 100%);"
-				>
-					ORKAIT
-				</div>
-			</div>
-		</div>
-	</div>
-
-	{/* Tablet/laptop view */}
-	<div class="relative hidden h-[600px] w-full overflow-visible tablet:block laptop:h-[750px]">
-		{/* Tagline */}
-		<div class="absolute right-0 z-20 w-full max-w-[450px] tablet:top-6 laptop:top-[12px] laptop:max-w-[1000px]">
-			<p class="text-right text-[36px] font-bold leading-tight tracking-[-0.96px] text-black laptop:text-[52px] laptop:leading-[50px]">
-				We engineer software that works.
-				<br />
-				Honest engineering.
-				<br />
-				Reliable systems.
-				<br />
-				No hype.
-			</p>
-		</div>
-
-		{/* Brand group */}
-		<div class="absolute left-0 flex items-start tablet:top-[200px] laptop:top-[240px]">
-			<div class="relative transition-all duration-500">
-				{/* Logo fin */}
-				<div class="pointer-events-none absolute z-10 tablet:-top-[95px] tablet:left-[-10px] laptop:-top-[70px] laptop:left-[-10px]">
-					<div class="rotate-[-5deg] transition-transform duration-300">
-						<img
-							class="tablet:h-[180px] tablet:w-[180px] laptop:h-[240px] laptop:w-[240px] object-contain"
-							src="/data/brand/orkait.svg"
-							alt="Orkait Fin Logo"
-							width="240"
-							height="240"
-						/>
-					</div>
-				</div>
-
-				{/* "ORKAIT" heading */}
-				<div
-					class="ml-0 text-[140px] font-bold tracking-normal text-black transition-all duration-300 tablet:mt-[80px] laptop:mt-[110px] laptop:text-[230.4px]"
-					style="line-height: 0.76;"
-				>
-					ORKAIT
-				</div>
-
-				{/* Reflection */}
-				<div
-					class="pointer-events-none ml-0 -scale-y-100 text-[140px] font-bold text-black opacity-30 transition-all duration-300 laptop:text-[230.4px]"
-					style="line-height: 0.76; mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%); -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%);"
-				>
-					ORKAIT
-				</div>
-			</div>
+			<a
+				href={routes.projects}
+				class="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-foreground/20 bg-transparent px-7 text-base font-semibold text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+			>
+				Products &amp; Team
+			</a>
 		</div>
 	</div>
-
-	{/* Desktop spacer */}
-	<div class="hidden h-[64px] tablet:block"></div>
 </div>
+
+<style>
+	@keyframes hero-letter-jitter {
+		0%,
+		100% {
+			transform: rotate(0deg) translateY(0);
+		}
+		50% {
+			transform: rotate(var(--rot, 2deg)) translateY(-2px);
+		}
+	}
+
+	.hero-jitter > span {
+		animation: hero-letter-jitter 2.8s ease-in-out infinite;
+		transform-origin: 50% 80%;
+	}
+
+	.hero-jitter > span:nth-child(odd) {
+		--rot: -2deg;
+	}
+	.hero-jitter > span:nth-child(even) {
+		--rot: 2deg;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-jitter > span {
+			animation: none;
+			transform: none;
+		}
+	}
+</style>

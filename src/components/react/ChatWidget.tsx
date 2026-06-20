@@ -37,7 +37,7 @@ export function ChatWidget() {
 						>
 							<div className="w-[427px] h-[615px] min-h-0 overflow-hidden flex flex-col border-none rounded-lg bg-white">
 								{/* Header */}
-								<div className="bg-black p-6 flex items-center justify-between text-white rounded-t-lg">
+								<div className="bg-primary p-6 flex items-center justify-between text-primary-foreground rounded-t-lg">
 									<div className="flex flex-col">
 										<span className="font-bold text-body-lg leading-tight tracking-wider">
 											ORKAIT
@@ -140,7 +140,7 @@ export function ChatWidget() {
 											type="button"
 											onClick={() => void sendMessage(input)}
 											disabled={isLoading || !input.trim()}
-											className="inline-flex items-center justify-center bg-black hover:bg-black/90 text-white rounded-md h-[40px] px-6 font-bold text-[10px] tracking-wider uppercase disabled:opacity-50"
+											className="inline-flex cursor-pointer items-center justify-center bg-primary hover:bg-cobalt-600 text-primary-foreground rounded-md h-[40px] px-6 font-bold text-[10px] tracking-wider uppercase disabled:opacity-50"
 										>
 											SEND
 										</button>
@@ -153,7 +153,7 @@ export function ChatWidget() {
 
 				{/* Toggle button */}
 				<motion.div
-					className="pointer-events-auto size-16 bg-black rounded-full flex items-center justify-center cursor-pointer shadow-xl text-white relative overflow-hidden"
+					className="pointer-events-auto size-16 bg-primary rounded-full flex items-center justify-center cursor-pointer shadow-[0_8px_24px_oklch(0.52_0.20_264_/_0.32)] text-primary-foreground relative overflow-hidden"
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
 					onClick={() => setIsOpen(!isOpen)}

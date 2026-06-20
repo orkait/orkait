@@ -26,14 +26,14 @@ const cardClass = (index: number) =>
 			FEATURES.map((f, i) => (
 				<div class={cardClass(i)}>
 					<div class="mb-[8px] flex flex-row items-center gap-[6px] tablet:mb-0 tablet:flex-col tablet:items-start tablet:gap-0">
-						<p class="text-[14px] font-medium leading-[20px] text-[#111] tablet:text-subtitle tablet:leading-subtitle tablet:text-muted-foreground dark:text-[#eee]">
+						<p class="text-[14px] font-medium leading-[20px] text-foreground tablet:text-subtitle tablet:leading-subtitle tablet:text-muted-foreground">
 							{f.num}
 						</p>
-						<p class="text-[15px] font-bold leading-[22px] text-[#111] tablet:text-subtitle tablet:font-medium tablet:leading-subtitle tablet:text-foreground dark:text-[#eee]">
+						<p class="text-[15px] font-bold leading-[22px] text-foreground tablet:text-subtitle tablet:font-medium tablet:leading-subtitle tablet:text-foreground">
 							{f.title}
 						</p>
 					</div>
-					<p class="text-[12px] font-normal leading-[18px] text-[#6d6d6d] tablet:text-body tablet:leading-body tablet:text-muted-foreground dark:text-[#a0a0a0]">
+					<p class="text-[12px] font-normal leading-[18px] text-muted-foreground tablet:text-body tablet:leading-body tablet:text-muted-foreground">
 						{f.description}
 					</p>
 				</div>

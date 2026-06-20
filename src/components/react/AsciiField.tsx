@@ -8,9 +8,17 @@ const BORDER_MARGIN = 0.35; // sim-space distance from wall where repulsion star
 const DT = 0.001;
 const STEPS_PER_FRAME = 8;
 const SOFTENING = 0.02;
-const STROKE_ALPHA = 0.15;
+const STROKE_ALPHA = 0.35;
 const BALL_RADIUS = 12;
 const MAX_RENDER_SIZE = 500;
+
+// Navy bento tile palette - canvas sits on an ink-950 surface.
+const SURFACE = "#16172a"; // ink-950
+const GRID_MINOR = "rgba(255,255,255,0.05)";
+const GRID_AXIS = "rgba(255,255,255,0.12)";
+const ORIGIN_DOT = "rgba(255,255,255,0.18)";
+const TRAIL = "118,140,255"; // cobalt-300-ish rgb for trails
+const BALL_FILL = "#f5f3ec"; // paper-100 bodies
 
 type Vec2 = { x: number; y: number };
 type Body = { pos: Vec2; vel: Vec2 };
@@ -121,13 +129,13 @@ export function AsciiField() {
     }
 
     function drawGrid() {
-      trail.fillStyle = "#fafafa";
+      trail.fillStyle = SURFACE;
       trail.fillRect(0, 0, W, H);
 
       const GRID_PX = 40;
 
       // Minor grid - skip lines that land on canvas edges
-      trail.strokeStyle = "rgba(0,0,0,0.05)";
+      trail.strokeStyle = GRID_MINOR;
       trail.lineWidth = 1;
       for (let x = CX % GRID_PX; x < W; x += GRID_PX) {
         if (x < 1 || x > W - 1) continue;
@@ -139,13 +147,13 @@ export function AsciiField() {
       }
 
       // Axes
-      trail.strokeStyle = "rgba(0,0,0,0.12)";
+      trail.strokeStyle = GRID_AXIS;
       trail.lineWidth = 1;
       trail.beginPath(); trail.moveTo(CX, 0); trail.lineTo(CX, H); trail.stroke();
       trail.beginPath(); trail.moveTo(0, CY); trail.lineTo(W, CY); trail.stroke();
 
       // Origin dot
-      trail.fillStyle = "rgba(0,0,0,0.15)";
+      trail.fillStyle = ORIGIN_DOT;
       trail.beginPath(); trail.arc(CX, CY, 2, 0, Math.PI * 2); trail.fill();
     }
 
@@ -155,7 +163,7 @@ export function AsciiField() {
     }
 
     // Set trail style once - never changes
-    trail.strokeStyle = `rgba(0,0,0,${STROKE_ALPHA})`;
+    trail.strokeStyle = `rgba(${TRAIL},${STROKE_ALPHA})`;
     trail.lineWidth = 1.5;
     trail.lineCap = "round";
 
@@ -215,7 +223,7 @@ export function AsciiField() {
 
       // Balls on separate canvas
       ball.clearRect(0, 0, W, H);
-      ball.fillStyle = "#000";
+      ball.fillStyle = BALL_FILL;
       for (const body of bodies) {
         const cp = toCanvas(body.pos);
         ball.beginPath();
