@@ -1,34 +1,73 @@
 ---
 import Container from "./Container.astro";
 import { routes } from "@/lib/data/nav";
-import { FOOTER_COLUMNS } from "@/lib/data/footer";
+import { FOOTER_COLUMNS, FOOTER_SOCIAL_LINKS, FOOTER_STATUS } from "@/lib/data/footer";
+
+const year = new Date().getFullYear();
+
+const socialIcons: Record<string, string> = {
+	LinkedIn:
+		'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>',
+	GitHub:
+		'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>',
+};
 ---
 
-<footer class="border-t border-border bg-background">
-	<Container class="flex flex-col gap-12 py-16 tablet:flex-row tablet:justify-between">
-		<div class="max-w-sm">
+<footer class="relative isolate overflow-hidden border-t border-border bg-background">
+	<img
+		src="/data/brand/orkait.svg"
+		alt=""
+		aria-hidden="true"
+		class="pointer-events-none absolute -bottom-16 -right-8 -z-10 w-[300px] select-none opacity-[0.06] tablet:w-[440px]"
+	/>
+
+	<Container class="flex flex-col gap-14 py-20 tablet:flex-row tablet:justify-between">
+		<div class="max-w-xs">
 			<a href={routes.home} class="flex items-center gap-2" aria-label="Orkait home">
 				<img src="/data/brand/orkait.svg" alt="Orkait" width="28" height="28" class="size-7" />
 				<span class="text-body-lg font-medium tracking-tight">Orkait</span>
 			</a>
-			<p class="mt-4 text-body text-muted-foreground">
+			<p class="mt-4 text-body text-ink-700">
 				Applied AI research, shipped as products.
 			</p>
+			<div class="mt-6 flex items-center gap-5">
+				{
+					FOOTER_SOCIAL_LINKS.map((social) => (
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={social.label}
+							class="text-ink-700 transition-colors hover:text-signature-deep"
+						>
+							<Fragment set:html={socialIcons[social.label] ?? ""} />
+						</a>
+					))
+				}
+			</div>
 		</div>
 
-		<div class="grid grid-cols-2 gap-12">
+		<div class="grid grid-cols-2 gap-x-10 gap-y-12 tablet:grid-cols-3 tablet:gap-x-0">
 			{
-				FOOTER_COLUMNS.map((col) => (
-					<nav aria-label={col.ariaLabel} class="flex flex-col gap-3">
+				FOOTER_COLUMNS.map((col, i) => (
+					<nav
+						aria-label={col.ariaLabel}
+						class:list={[
+							"flex flex-col gap-3.5 tablet:pr-10",
+							i > 0 && "tablet:border-l tablet:border-border tablet:pl-10",
+						]}
+					>
 						{col.heading && (
-							<p class="text-body font-medium text-foreground">{col.heading}</p>
+							<p class="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-700">
+								{col.heading}
+							</p>
 						)}
 						{col.links.map((link) => (
 							<a
 								href={link.href}
 								target={link.isExternal ? "_blank" : undefined}
 								rel={link.isExternal ? "noopener noreferrer" : undefined}
-								class="text-body text-muted-foreground transition-colors hover:text-foreground"
+								class="text-body text-ink-700 transition-colors hover:text-signature-deep"
 							>
 								{link.label}
 							</a>
@@ -39,11 +78,10 @@ import { FOOTER_COLUMNS } from "@/lib/data/footer";
 		</div>
 	</Container>
 
-	<Container class="flex flex-col gap-2 border-t border-border py-6 text-body text-muted-foreground tablet:flex-row tablet:items-center tablet:justify-between">
-		<p>&copy; {new Date().getFullYear()} Orkait. All rights reserved.</p>
-		<div class="flex gap-6">
-			<a href={routes.privacyPolicy} class="hover:text-foreground">Privacy</a>
-			<a href={routes.terms} class="hover:text-foreground">Terms</a>
-		</div>
+	<Container class="flex flex-col gap-2 border-t border-border py-6">
+		<p class="text-body text-ink-700">&copy; {year} Orkait. All rights reserved.</p>
+		<p class="font-mono text-[11px] tracking-[0.1em] text-ink-700 tablet:text-[12px]">
+			{FOOTER_STATUS}
+		</p>
 	</Container>
 </footer>
