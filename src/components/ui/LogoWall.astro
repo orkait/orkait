@@ -9,37 +9,28 @@ const { clients } = Astro.props;
 
 // simpleicons CDN colour: ink hue so logos sit on warm paper. rgb(26,27,42).
 const INK_HEX = "1a1b2a";
-
-function monogram(name: string): string {
-	const parts = name.trim().split(/\s+/);
-	if (parts.length >= 2) {
-		return (parts[0][0] + parts[1][0]).toUpperCase();
-	}
-	return name.trim().slice(0, 2).toUpperCase();
-}
 ---
 
-<ul class="flex flex-wrap items-center justify-center gap-x-10 gap-y-7 tablet:gap-x-14">
+<ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-7 tablet:gap-x-16 laptop:gap-x-20">
 	{
-		clients.map((c) => (
-			<li class="flex items-center">
-				{c.slug ? (
+		clients.map((c) =>
+			c.logo || c.slug ? (
+				<li class="flex items-center">
 					<img
-						src={`https://cdn.simpleicons.org/${c.slug}/${INK_HEX}`}
+						src={c.logo ?? `https://cdn.simpleicons.org/${c.slug}/${INK_HEX}`}
 						alt={c.name}
 						loading="lazy"
 						decoding="async"
-						class="h-7 w-auto opacity-60 grayscale transition-opacity duration-300 hover:opacity-90"
+						class="h-7 w-auto opacity-60 grayscale transition-opacity duration-300 hover:opacity-100 tablet:h-8"
 					/>
-				) : (
-					<span
-						class="inline-flex h-10 items-center rounded-lg border border-border px-4 font-mono text-[13px] font-bold uppercase tracking-[0.16em] text-muted-foreground opacity-70 transition-opacity duration-300 hover:opacity-100"
-						aria-label={c.name}
-					>
-						{monogram(c.name)}
+				</li>
+			) : (
+				<li class="flex items-center">
+					<span class="text-[clamp(1.125rem,1.7vw,1.5rem)] font-semibold tracking-[-0.01em] text-ink-700 opacity-70 transition-opacity duration-300 hover:opacity-100">
+						{c.name}
 					</span>
-				)}
-			</li>
-		))
+				</li>
+			),
+		)
 	}
 </ul>

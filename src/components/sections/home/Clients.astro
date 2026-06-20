@@ -1,9 +1,6 @@
 ---
 import LogoWall from "@/components/ui/LogoWall.astro";
 import { CLIENTS } from "@/lib/data/clients";
-
-// NOTE: CLIENTS are placeholder monogram chips (Partner A..E) until the real
-// client logos arrive from the team. The section only renders when populated.
 ---
 
 {
@@ -11,7 +8,7 @@ import { CLIENTS } from "@/lib/data/clients";
 		<section class="w-full py-16 tablet:py-20" data-reveal>
 			<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
 				<p class="mb-10 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground tablet:mb-12">
-					Teams building on Orkait
+					Trusted by teams at
 				</p>
 				<LogoWall clients={CLIENTS} />
 			</div>
