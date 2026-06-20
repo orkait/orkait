@@ -24,41 +24,9 @@
 }
 
 @font-face {
-    font-family: "Poppins";
-    src: url("/fonts/poppins/poppins-300.woff2") format("woff2");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Poppins";
-    src: url("/fonts/poppins/poppins-400.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Poppins";
-    src: url("/fonts/poppins/poppins-500.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Poppins";
-    src: url("/fonts/poppins/poppins-600.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Poppins";
-    src: url("/fonts/poppins/poppins-700.woff2") format("woff2");
-    font-weight: 700;
+    font-family: "Fraunces";
+    src: url("/fonts/fraunces/fraunces-variable.woff2") format("woff2-variations");
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
 }
@@ -109,7 +77,7 @@
     sans-serif;
 
     --font-satoshi: "Satoshi", ui-sans-serif, system-ui, sans-serif;
-    --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
     --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
     --text-heading: 72px;
