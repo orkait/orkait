@@ -59,7 +59,7 @@ export const OSS_PROJECTS: OSSProject[] = [
 		id: "graphstore",
 		title: "GraphStore",
 		description:
-			"Agent memory in one Python library: recall by meaning or association, ingest documents, and track beliefs.",
+			"Spreading-activation recall, confidence-scored beliefs that expire and get contradicted. No Cypher, no SPARQL - queries that read like sentences.",
 		tags: "Agent Memory, Research Infrastructure",
 		language: "Python",
 		href: "https://github.com/orkait/graphstore",
