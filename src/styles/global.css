@@ -253,7 +253,7 @@
     --color-border: var(--color-ink-200);
     --color-input: var(--color-ink-200);
 
-    --color-primary: var(--color-signature);
+    --color-primary: var(--color-signature-deep);
     --color-primary-foreground: var(--color-on-signature);
 
     --color-secondary: var(--color-paper-100);
@@ -296,7 +296,7 @@
     --color-border: oklch(0.32 0.020 265);
     --color-input: oklch(0.32 0.020 265);
 
-    --color-primary: var(--color-signature);
+    --color-primary: var(--color-signature-deep);
     --color-primary-foreground: var(--color-on-signature);
 
     --color-secondary: oklch(0.26 0.022 265);
