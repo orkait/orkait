@@ -19,4 +19,10 @@ export const applySchema = z.object({
 
 export type ApplyPayload = z.infer<typeof applySchema>;
 
+export const newsletterSchema = z.object({
+	email: z.email("Enter a valid email"),
+});
+
+export type NewsletterPayload = z.infer<typeof newsletterSchema>;
+
 export type FormResult = { success: true } | { success: false; error: string };

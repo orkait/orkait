@@ -1,6 +1,7 @@
 ---
 import Container from "./Container.astro";
 import { FOOTER_COLUMNS } from "@/lib/data/footer";
+import { NewsletterForm } from "@/components/react/NewsletterForm";
 
 const year = new Date().getFullYear();
 ---
@@ -23,22 +24,7 @@ const year = new Date().getFullYear();
 				<h3 class="font-display text-[clamp(1.5rem,2.4vw,2rem)] font-medium leading-[1.1] tracking-[-0.01em]">
 					Product updates, no noise.
 				</h3>
-				<form class="flex w-full items-center gap-2" aria-label="Newsletter signup" data-newsletter>
-					<input
-						type="email"
-						name="email"
-						required
-						placeholder="you@company.com"
-						aria-label="Email address"
-						class="h-12 w-full rounded-lg border border-on-tile/25 bg-on-tile/[0.06] px-4 text-base text-on-tile placeholder:text-on-tile/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
-					/>
-					<button
-						type="submit"
-						class="inline-flex h-12 shrink-0 items-center rounded-lg bg-signature-deep px-5 text-base font-bold text-on-signature transition-colors hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
-					>
-						Subscribe
-					</button>
-				</form>
+				<NewsletterForm client:visible />
 				<div class="mt-1 flex items-center justify-between gap-4 text-on-tile/65">
 					<div class="flex items-center gap-3">
 					<a

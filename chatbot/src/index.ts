@@ -4,7 +4,7 @@ import { logger } from 'hono/logger';
 import { prettyJSON } from 'hono/pretty-json';
 import OpenAI from 'openai';
 import { buildKnowledgeContext, parseKnowledgeSections } from './knowledge';
-import { handleApply, handleContact } from './forms';
+import { handleApply, handleContact, handleNewsletter } from './forms';
 
 type ChatHistoryEntry = { role: 'user' | 'assistant'; content: string };
 type EnvBindings = {
@@ -142,6 +142,8 @@ app.get('/health', (c) => {
 app.post('/api/contact', (c) => handleContact(c));
 
 app.post('/api/apply', (c) => handleApply(c));
+
+app.post('/api/newsletter', (c) => handleNewsletter(c));
 
 app.post('/api/chatbot/chat', async (c) => {
     try {
