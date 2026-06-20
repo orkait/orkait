@@ -63,6 +63,22 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Space Mono";
+    src: url("/fonts/space-mono/space-mono-400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("/fonts/space-mono/space-mono-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ---------------------------------- */
 /* ORKAIT DESIGN SYSTEM               */
 /* ---------------------------------- */
@@ -78,8 +94,9 @@
     --breakpoint-base: 1440px;
     --breakpoint-large: 1920px;
 
-    /* Centered content container (1340px) */
-    --container-site: 83.75rem;
+    /* Centered content container (1408px) + wide full-bleed (1536px) */
+    --container-site: 88rem;
+    --container-wide: 96rem;
 }
 
 
@@ -93,6 +110,7 @@
 
     --font-satoshi: "Satoshi", ui-sans-serif, system-ui, sans-serif;
     --font-poppins: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
     --text-heading: 72px;
     --leading-heading: 80px;
@@ -149,37 +167,71 @@
     --radius-2xl: 18px;
 
     /* ------------------------------- */
-    /* Color Tokens (Slate-Based)     */
+    /* Color Primitives (OKLCH, warm)  */
     /* ------------------------------- */
 
-    --color-background: theme(colors.slate.50);
-    --color-foreground: theme(colors.slate.900);
+    /* Warm paper neutrals */
+    --color-paper-50: oklch(0.985 0.006 85);
+    --color-paper-100: oklch(0.965 0.008 84);
+    --color-paper-200: oklch(0.935 0.010 82);
 
-    --color-muted: theme(colors.slate.200);
-    --color-muted-foreground: theme(colors.slate.600);
+    /* Navy-tinted ink (never pure black) */
+    --color-ink-950: oklch(0.20 0.025 265);
+    --color-ink-700: oklch(0.44 0.020 265);
+    --color-ink-500: oklch(0.58 0.018 265);
+    --color-ink-300: oklch(0.80 0.012 265);
+    --color-ink-200: oklch(0.90 0.008 265);
 
-    --color-border: theme(colors.slate.200);
-    --color-input: theme(colors.slate.200);
+    /* Signature: electric cobalt */
+    --color-cobalt-50: oklch(0.96 0.030 264);
+    --color-cobalt-300: oklch(0.70 0.140 264);
+    --color-cobalt-500: oklch(0.52 0.200 264);
+    --color-cobalt-600: oklch(0.46 0.190 264);
+    --color-cobalt-700: oklch(0.40 0.160 264);
 
-    --color-primary: theme(colors.slate.900);
-    --color-primary-foreground: theme(colors.slate.50);
+    /* Secondary spark: amber (orkait heritage) */
+    --color-amber-400: oklch(0.84 0.150 80);
+    --color-amber-500: oklch(0.80 0.160 75);
 
-    --color-secondary: theme(colors.slate.100);
-    --color-secondary-foreground: theme(colors.slate.900);
+    /* ------------------------------- */
+    /* Semantic Tokens (Light)         */
+    /* ------------------------------- */
 
-    --color-accent: theme(colors.slate.200);
-    --color-accent-foreground: theme(colors.slate.900);
+    --color-background: var(--color-paper-50);
+    --color-foreground: var(--color-ink-950);
+
+    --color-muted: var(--color-paper-200);
+    --color-muted-foreground: var(--color-ink-500);
+
+    --color-border: var(--color-ink-200);
+    --color-input: var(--color-ink-200);
+
+    --color-primary: var(--color-cobalt-500);
+    --color-primary-foreground: var(--color-paper-50);
+
+    --color-secondary: var(--color-paper-100);
+    --color-secondary-foreground: var(--color-ink-950);
+
+    --color-accent: var(--color-amber-500);
+    --color-accent-foreground: var(--color-ink-950);
 
     --color-pricing-active-start: #3b3b3b;
     --color-pricing-active-end: #000000;
     --color-pricing-inactive-start: #f4f4f4;
     --color-pricing-inactive-end: #b9b9b9;
 
-    --color-success: theme(colors.emerald.500);
+    --color-success: oklch(0.62 0.15 150);
 
-    --color-ring: theme(colors.slate.400);
+    --color-ring: var(--color-cobalt-500);
 
-    --color-destructive: theme(colors.red.600);
+    --color-destructive: oklch(0.58 0.20 25);
+
+    /* Charts: dedicated, not reused from primary */
+    --color-chart-1: var(--color-cobalt-500);
+    --color-chart-2: var(--color-amber-500);
+    --color-chart-3: var(--color-ink-700);
+    --color-chart-4: var(--color-cobalt-300);
+    --color-chart-5: var(--color-ink-300);
 }
 
 /* ---------------------------------- */
@@ -187,34 +239,35 @@
 /* ---------------------------------- */
 
 .dark {
-    --color-background: theme(colors.slate.900);
-    --color-foreground: theme(colors.slate.50);
+    /* Navy surface elevation (progressively lighter, not inverted) */
+    --color-background: oklch(0.20 0.025 265);
+    --color-foreground: var(--color-paper-50);
 
-    --color-muted: theme(colors.slate.800);
-    --color-muted-foreground: theme(colors.slate.300);
+    --color-muted: oklch(0.28 0.022 265);
+    --color-muted-foreground: oklch(0.72 0.015 265);
 
-    --color-border: theme(colors.slate.700);
-    --color-input: theme(colors.slate.700);
+    --color-border: oklch(0.32 0.020 265);
+    --color-input: oklch(0.32 0.020 265);
 
-    --color-primary: theme(colors.slate.50);
-    --color-primary-foreground: theme(colors.slate.900);
+    --color-primary: var(--color-cobalt-300);
+    --color-primary-foreground: oklch(0.18 0.025 265);
 
-    --color-secondary: theme(colors.slate.800);
-    --color-secondary-foreground: theme(colors.slate.50);
+    --color-secondary: oklch(0.26 0.022 265);
+    --color-secondary-foreground: var(--color-paper-50);
 
-    --color-accent: theme(colors.slate.700);
-    --color-accent-foreground: theme(colors.slate.50);
+    --color-accent: var(--color-amber-400);
+    --color-accent-foreground: oklch(0.18 0.025 265);
 
     --color-pricing-active-start: #3b3b3b;
     --color-pricing-active-end: #000000;
     --color-pricing-inactive-start: #f4f4f4;
     --color-pricing-inactive-end: #b9b9b9;
 
-    --color-success: theme(colors.emerald.400);
+    --color-success: oklch(0.68 0.15 150);
 
-    --color-ring: theme(colors.slate.500);
+    --color-ring: var(--color-cobalt-300);
 
-    --color-destructive: theme(colors.red.500);
+    --color-destructive: oklch(0.65 0.20 25);
 }
 
 /* ---------------------------------- */

@@ -6,5 +6,8 @@ export default defineConfig({
 	site: process.env.PUBLIC_SITE_URL ?? "https://orkait.com",
 	integrations: [react(), sitemap()],
 	build: { inlineStylesheets: "always" },
-	vite: { resolve: { dedupe: ["react", "react-dom"] } },
+	vite: {
+		resolve: { dedupe: ["react", "react-dom"] },
+		server: { allowedHosts: [".ts.net"] },
+	},
 });
