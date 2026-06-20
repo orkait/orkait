@@ -2,12 +2,13 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { applySchema, type ApplyPayload, type FormResult } from "@/lib/forms/payload";
+import { FieldError } from "@/components/react/FieldError";
 
 const FORMS_URL = import.meta.env.PUBLIC_FORMS_URL ?? import.meta.env.PUBLIC_CHATBOT_URL ?? "";
 const CONNECT_EMAIL = "connect@orkait.com";
 
 const INPUT_CLASS =
-	"bg-transparent border-0 border-b border-[#00000033] dark:border-white/20 outline-none w-full pb-2 text-foreground placeholder:text-muted-foreground transition-colors focus:border-foreground";
+	"bg-transparent border-0 border-b border-[#00000033] dark:border-white/20 outline-none w-full pb-2 text-foreground placeholder:text-muted-foreground transition-colors focus:border-foreground aria-[invalid=true]:border-destructive";
 
 const LABEL_CLASS = "text-foreground font-medium text-body leading-body";
 
@@ -51,7 +52,7 @@ export function ApplyForm({ role }: { role: string }) {
 		handleSubmit,
 		reset,
 		formState: { errors, isSubmitting },
-	} = useForm<ApplyFormValues>({ resolver: zodResolver(formValuesSchema) });
+	} = useForm<ApplyFormValues>({ mode: "onTouched", resolver: zodResolver(formValuesSchema) });
 
 	async function onSubmit(values: ApplyFormValues) {
 		if (inFlight.current) return;
@@ -99,7 +100,7 @@ export function ApplyForm({ role }: { role: string }) {
 		<div className={CARD_CLASS}>
 			<h2 className="font-bold text-foreground text-title-3 leading-title-3 pb-10">{role}</h2>
 
-			<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10">
+			<form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-10">
 				<div className="flex flex-col gap-3">
 					<label htmlFor="apply-name" className={LABEL_CLASS}>
 						Name
@@ -109,9 +110,11 @@ export function ApplyForm({ role }: { role: string }) {
 						type="text"
 						autoComplete="name"
 						className={INPUT_CLASS}
+						aria-invalid={errors.name ? "true" : undefined}
+						aria-describedby={errors.name ? "apply-name-error" : undefined}
 						{...register("name")}
 					/>
-					{errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
+					{errors.name && <FieldError id="apply-name-error">{errors.name.message}</FieldError>}
 				</div>
 
 				<div className="flex flex-col gap-3">
@@ -123,9 +126,11 @@ export function ApplyForm({ role }: { role: string }) {
 						type="email"
 						autoComplete="email"
 						className={INPUT_CLASS}
+						aria-invalid={errors.email ? "true" : undefined}
+						aria-describedby={errors.email ? "apply-email-error" : undefined}
 						{...register("email")}
 					/>
-					{errors.email && <p className="text-destructive text-xs">{errors.email.message}</p>}
+					{errors.email && <FieldError id="apply-email-error">{errors.email.message}</FieldError>}
 				</div>
 
 				<div className="flex flex-col gap-3">
@@ -137,9 +142,11 @@ export function ApplyForm({ role }: { role: string }) {
 						type="tel"
 						autoComplete="tel"
 						className={INPUT_CLASS}
+						aria-invalid={errors.phone ? "true" : undefined}
+						aria-describedby={errors.phone ? "apply-phone-error" : undefined}
 						{...register("phone")}
 					/>
-					{errors.phone && <p className="text-destructive text-xs">{errors.phone.message}</p>}
+					{errors.phone && <FieldError id="apply-phone-error">{errors.phone.message}</FieldError>}
 				</div>
 
 				<div className="flex flex-col gap-3">
@@ -151,10 +158,12 @@ export function ApplyForm({ role }: { role: string }) {
 						id="apply-portfolio"
 						type="url"
 						className={INPUT_CLASS}
+						aria-invalid={errors.portfolio ? "true" : undefined}
+						aria-describedby={errors.portfolio ? "apply-portfolio-error" : undefined}
 						{...register("portfolio")}
 					/>
 					{errors.portfolio && (
-						<p className="text-destructive text-xs">{errors.portfolio.message}</p>
+						<FieldError id="apply-portfolio-error">{errors.portfolio.message}</FieldError>
 					)}
 				</div>
 
@@ -166,14 +175,20 @@ export function ApplyForm({ role }: { role: string }) {
 						id="apply-message"
 						rows={4}
 						className={`${INPUT_CLASS} resize-none`}
+						aria-invalid={errors.message ? "true" : undefined}
+						aria-describedby={errors.message ? "apply-message-error" : undefined}
 						{...register("message")}
 					/>
 					{errors.message && (
-						<p className="text-destructive text-xs">{errors.message.message}</p>
+						<FieldError id="apply-message-error">{errors.message.message}</FieldError>
 					)}
 				</div>
 
-				{submitError && <p className="text-destructive text-sm">{submitError}</p>}
+				{submitError && (
+					<p role="alert" className="text-destructive text-sm">
+						{submitError}
+					</p>
+				)}
 
 				<button
 					type="submit"
