@@ -1,8 +1,15 @@
 ---
 import { routes } from "@/lib/data/nav";
-import { AsciiField } from "@/components/react/AsciiField";
+import { SplitHeadline } from "@/components/react/SplitHeadline";
+import { MagneticButton } from "@/components/react/MagneticButton";
+import { HeroVisual } from "@/components/react/HeroVisual";
 
 const rustboxHref = "https://rustbox.orkait.com";
+
+const headlineLines = [
+	[{ t: "Applied" }, { t: "AI" }, { t: "research," }],
+	[{ t: "shipped" }, { t: "as" }, { t: "products.", accent: true }],
+];
 
 const ticker = [
 	"Rustbox - live",
@@ -26,14 +33,17 @@ const loop = [...ticker, ...ticker];
 				Product-first AI lab
 			</p>
 
-			<h1
-				class="text-balance text-foreground"
-				style="font-weight: 900; letter-spacing: -0.035em; line-height: 0.95; font-size: clamp(2.75rem, 7vw, 6rem);"
-			>
-				Applied AI research,<br />shipped as <span class="text-signature-deep"
-					>products</span
-				>.
-			</h1>
+			<SplitHeadline
+				client:load
+				lines={headlineLines}
+				className="text-foreground"
+				style={{
+					fontWeight: 900,
+					letterSpacing: "-0.035em",
+					lineHeight: 0.95,
+					fontSize: "clamp(2.75rem, 7vw, 6rem)",
+				}}
+			/>
 
 			<p class="max-w-[48ch] text-body-lg leading-[30px] text-ink-700">
 				Focused tools for secure execution, software learning, and AI-assisted
@@ -41,9 +51,10 @@ const loop = [...ticker, ...ticker];
 			</p>
 
 			<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
-				<a
+				<MagneticButton
+					client:visible
 					href={rustboxHref}
-					class="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[transform,background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+					className="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 				>
 					Open Rustbox
 					<svg
@@ -58,31 +69,25 @@ const loop = [...ticker, ...ticker];
 					>
 						<path d="M5 12h14M13 6l6 6-6 6"></path>
 					</svg>
-				</a>
+				</MagneticButton>
 
-				<a
+				<MagneticButton
+					client:visible
 					href={routes.projects}
-					class="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-foreground/20 bg-transparent px-7 text-base font-semibold text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+					strength={0.25}
+					className="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-foreground/20 bg-transparent px-7 text-base font-semibold text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 				>
 					Products &amp; Team
-				</a>
+				</MagneticButton>
 			</div>
 		</div>
 
 		<div class="mt-14 w-full tablet:mt-16">
-			<div class="relative h-[clamp(280px,38vh,440px)] w-full overflow-hidden rounded-[20px] bg-tile">
-				<div class="absolute inset-0">
-					<AsciiField client:visible />
-				</div>
-				<div class="pointer-events-none absolute inset-0 flex flex-col justify-between p-7 tablet:p-8">
-					<span class="font-mono text-[12px] uppercase tracking-[0.18em] text-on-tile/80">
-						Secure execution / systems in motion
-					</span>
-					<span class="max-w-[34ch] text-on-tile" style="font-weight:700; letter-spacing:-0.02em; line-height:1.05; font-size:clamp(1.25rem,2.4vw,1.875rem);">
-						Untrusted code, run under real constraints.
-					</span>
-				</div>
-			</div>
+			<HeroVisual
+				client:visible
+				eyebrow="Secure execution / systems in motion"
+				statement="Untrusted code, run under real constraints."
+			/>
 		</div>
 
 		<div

@@ -10,7 +10,8 @@ const STEPS_PER_FRAME = 8;
 const SOFTENING = 0.02;
 const STROKE_ALPHA = 0.35;
 const BALL_RADIUS = 12;
-const MAX_RENDER_SIZE = 500;
+const MAX_RENDER_W = 1600;
+const MAX_RENDER_H = 600;
 
 // Navy bento tile palette - canvas sits on an ink-950 surface.
 const SURFACE = "#16172a"; // ink-950
@@ -65,7 +66,7 @@ export function AsciiField() {
   const stageRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLCanvasElement>(null);
   const ballRef  = useRef<HTMLCanvasElement>(null);
-  const [size, setSize] = useState<number | null>(null);
+  const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -73,17 +74,15 @@ export function AsciiField() {
 
     const syncSize = () => {
       const rect = container.getBoundingClientRect();
-      const next = Math.max(
-        1,
-        Math.round(Math.min(rect.width, rect.height, MAX_RENDER_SIZE))
-      );
+      const w = Math.max(1, Math.round(Math.min(rect.width, MAX_RENDER_W)));
+      const h = Math.max(1, Math.round(Math.min(rect.height, MAX_RENDER_H)));
 
-      setSize((current) => {
-        if (current === next) {
+      setDims((current) => {
+        if (current && current.w === w && current.h === h) {
           return current;
         }
 
-        return next;
+        return { w, h };
       });
     };
 
@@ -100,15 +99,15 @@ export function AsciiField() {
   }, []);
 
   useEffect(() => {
-    if (!size) return;
+    if (!dims) return;
 
     const trailCanvas = trailRef.current;
     const ballCanvas  = ballRef.current;
     if (!trailCanvas || !ballCanvas) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const W = size;
-    const H = size;
+    const W = dims.w;
+    const H = dims.h;
     trailCanvas.width  = W;  trailCanvas.height  = H;
     ballCanvas.width   = W;  ballCanvas.height   = H;
 
@@ -243,20 +242,11 @@ export function AsciiField() {
       observer.disconnect();
       if (timer !== null) clearTimeout(timer);
     };
-  }, [size]);
+  }, [dims]);
 
   return (
-    <div ref={containerRef} className="relative flex h-full w-full items-start justify-start">
-      <div
-        ref={stageRef}
-        className="relative shrink-0 overflow-hidden"
-        style={{
-          width: `${size ?? 1}px`,
-          height: `${size ?? 1}px`,
-          maxWidth: `${MAX_RENDER_SIZE}px`,
-          maxHeight: `${MAX_RENDER_SIZE}px`,
-        }}
-      >
+    <div ref={containerRef} className="relative h-full w-full">
+      <div ref={stageRef} className="absolute inset-0 overflow-hidden">
         <canvas ref={trailRef} className="absolute inset-0 block size-full" aria-hidden />
         <canvas ref={ballRef}  className="absolute inset-0 block size-full" aria-hidden />
       </div>

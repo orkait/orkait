@@ -1,5 +1,6 @@
 ---
 import { routes } from "@/lib/data/nav";
+import { MagneticButton } from "@/components/react/MagneticButton";
 ---
 
 <section class="w-full bg-signature-deep text-on-signature" data-reveal>
@@ -15,9 +16,10 @@ import { routes } from "@/lib/data/nav";
 			We take on selective research partnerships when there is a path to a real
 			system.
 		</p>
-		<a
+		<MagneticButton
+			client:visible
 			href={routes.contact}
-			class="group inline-flex h-[52px] min-h-[48px] items-center justify-center gap-2 rounded-lg bg-tile px-8 text-base font-bold text-on-tile transition-[transform,background-color] duration-200 hover:bg-tile/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-signature focus-visible:ring-offset-2 focus-visible:ring-offset-signature active:scale-[0.98]"
+			className="group inline-flex h-[52px] min-h-[48px] items-center justify-center gap-2 rounded-lg bg-tile px-8 text-base font-bold text-on-tile transition-[background-color] duration-200 hover:bg-tile/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-signature focus-visible:ring-offset-2 focus-visible:ring-offset-signature active:scale-[0.98]"
 		>
 			Get in touch
 			<svg
@@ -32,6 +34,6 @@ import { routes } from "@/lib/data/nav";
 			>
 				<path d="M5 12h14M13 6l6 6-6 6"></path>
 			</svg>
-		</a>
+		</MagneticButton>
 	</div>
 </section>
