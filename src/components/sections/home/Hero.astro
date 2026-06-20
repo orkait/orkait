@@ -10,16 +10,6 @@ const headlineLines = [
 	[{ t: "Applied" }, { t: "AI" }, { t: "research," }],
 	[{ t: "shipped" }, { t: "as" }, { t: "products.", accent: true }],
 ];
-
-const ticker = [
-	"Rustbox - live",
-	"BooleanStack - soon",
-	"Zen - soon",
-	"Secure execution",
-	"Software learning",
-	"Interface creation",
-];
-const loop = [...ticker, ...ticker];
 ---
 
 <section
@@ -88,22 +78,6 @@ const loop = [...ticker, ...ticker];
 				eyebrow="Secure execution / systems in motion"
 				statement="Untrusted code, run under real constraints."
 			/>
-		</div>
-
-		<div
-			class="mt-14 w-full overflow-hidden rounded-[20px] bg-signature-deep py-4 text-on-signature tablet:mt-16"
-			aria-hidden="true"
-		>
-			<div class="marquee-track gap-0">
-				{
-					loop.map((t) => (
-						<span class="flex items-center whitespace-nowrap px-8 font-mono text-[13px] uppercase tracking-[0.18em]">
-							{t}
-							<span class="ml-8 opacity-40">/</span>
-						</span>
-					))
-				}
-			</div>
 		</div>
 	</div>
 </section>
