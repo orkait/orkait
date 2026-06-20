@@ -7,7 +7,7 @@ type Metric = { value: string; label: string };
 type Capability = {
 	name: string;
 	surface: string;
-	status: "Live" | "Open source" | "Coming soon";
+	status: "Live" | "Open source" | "Research" | "Coming soon";
 	href?: string;
 	cta?: string;
 	statement: string;
@@ -63,6 +63,15 @@ const capabilities: Capability[] = [
 		],
 	},
 	{
+		name: "Orka",
+		surface: "Model compression",
+		status: "Research",
+		statement: "Language-model weights, compressed toward 1 bit.",
+		detail:
+			"Learned codebooks and a hand-written GGML kernel keep reconstruction byte-exact.",
+		metrics: [{ value: "~1 bit", label: "per-weight target" }],
+	},
+	{
 		name: "Zen",
 		surface: "Interface creation",
 		status: "Coming soon",
@@ -83,6 +92,7 @@ const capabilities: Capability[] = [
 const statusClass: Record<Capability["status"], string> = {
 	Live: "bg-signature-deep text-on-signature",
 	"Open source": "border border-foreground/25 text-foreground",
+	Research: "border border-border text-foreground/70",
 	"Coming soon": "border border-border text-muted-foreground",
 };
 ---

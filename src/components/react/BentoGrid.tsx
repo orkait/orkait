@@ -101,7 +101,7 @@ export function BentoGrid() {
 							1<span className="text-signature-deep">/</span>3
 						</p>
 						<p className="mt-2 text-base leading-[24px] text-ink-700">
-							products live. Two coming soon, no hype.
+							product live today. Two more coming soon.
 						</p>
 					</div>
 				</div>
