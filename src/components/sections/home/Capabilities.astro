@@ -23,7 +23,7 @@ const capabilities: Capability[] = [
 		status: "Live",
 		href: "https://rustbox.orkait.com",
 		cta: "Open Rustbox",
-		statement: "A kernel-enforced sandbox for running untrusted code.",
+		statement: "Run untrusted code without trusting it.",
 		detail:
 			"seccomp-bpf syscall filtering, Linux namespaces, and cgroups v2 with deterministic resource limits. Single binary, no Docker daemon.",
 		metrics: [
@@ -39,7 +39,7 @@ const capabilities: Capability[] = [
 		status: "Open source",
 		href: "https://github.com/orkait/graphstore",
 		cta: "View on GitHub",
-		statement: "Recall by meaning or association, ingest documents, track beliefs.",
+		statement: "Agent memory that recalls by meaning, not keywords.",
 		detail:
 			"Six engines behind one readable DSL: columnar numpy storage, HNSW vector search, and a markdown vault built for 24/7 agents.",
 		metrics: [
@@ -54,7 +54,7 @@ const capabilities: Capability[] = [
 		status: "Open source",
 		href: "https://github.com/orkait/hyperstack",
 		cta: "View on GitHub",
-		statement: "An MCP server and skill gates that keep AI agents honest.",
+		statement: "Stop AI agents from shipping plausible-but-wrong code.",
 		detail:
 			"Real-time ground truth for React, Next.js, Motion, React Flow, Echo, Go, Rust, and design tokens, enforced by adversarial gates.",
 		metrics: [
@@ -66,7 +66,7 @@ const capabilities: Capability[] = [
 		name: "Zen",
 		surface: "Interface creation",
 		status: "Coming soon",
-		statement: "Turn a prompt into interactive multi-screen UI.",
+		statement: "Describe a screen. Get a usable one.",
 		detail: "Rough product intent becomes usable, collaborative screens.",
 		metrics: [],
 	},
@@ -92,7 +92,7 @@ const statusClass: Record<Capability["status"], string> = {
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
 			<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
 				<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
-					What we actually ship
+					What we ship
 				</p>
 				<h2
 					class="max-w-[15ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em] text-foreground"
@@ -100,20 +100,15 @@ const statusClass: Record<Capability["status"], string> = {
 					Measured, shipped, and open.
 				</h2>
 				<p class="max-w-[42ch] text-body-lg leading-[30px] text-ink-700">
-					Not a roadmap. Rustbox runs untrusted code under kernel isolation
-					today, GraphStore and Hyperstack are open source, and the proof is
-					public.
+					Rustbox isolates untrusted code at the kernel: 147 adversarial
+					exploits, zero escapes. GraphStore and Hyperstack are open source,
+					ready to read and run.
 				</p>
 
-				<figure class="mt-6 hidden flex-col gap-3 laptop:flex">
-					<MemoryGraph
-						client:visible
-						className="h-[clamp(260px,30vh,340px)] w-full"
-					/>
-					<figcaption class="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-						Recall by association - GraphStore memory
-					</figcaption>
-				</figure>
+				<MemoryGraph
+					client:visible
+					className="mt-6 hidden h-[clamp(280px,32vh,360px)] w-full laptop:block"
+				/>
 			</div>
 
 			<ul class="flex flex-col gap-4 tablet:gap-5">
