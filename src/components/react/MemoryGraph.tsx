@@ -31,7 +31,15 @@ function token(el: Element, name: string, fallback: string): string {
 	return v || fallback;
 }
 
-export function MemoryGraph({ className }: { className?: string }) {
+type Tone = "light" | "dark";
+
+export function MemoryGraph({
+	className,
+	tone = "light",
+}: {
+	className?: string;
+	tone?: Tone;
+}) {
 	const wrapRef = useRef<HTMLDivElement>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
@@ -55,8 +63,9 @@ export function MemoryGraph({ className }: { className?: string }) {
 		if (!dims) return;
 		const canvas = canvasRef.current;
 		if (!canvas) return;
-		const ctx = canvas.getContext("2d");
-		if (!ctx) return;
+		const maybeCtx = canvas.getContext("2d");
+		if (!maybeCtx) return;
+		const ctx: CanvasRenderingContext2D = maybeCtx;
 
 		const dpr = Math.min(2, window.devicePixelRatio || 1);
 		const W = dims.w;
@@ -65,7 +74,9 @@ export function MemoryGraph({ className }: { className?: string }) {
 		canvas.height = Math.round(H * dpr);
 		ctx.scale(dpr, dpr);
 
-		const inkRgb = token(canvas, "--cv-graph-ink", "26,27,42");
+		// On dark (navy) sections the ink leaf/edge colour would vanish, so swap
+		// to a paper-ish rgb. Clay hubs read on both, so keep the token.
+		const inkRgb = tone === "dark" ? "230,228,218" : token(canvas, "--cv-graph-ink", "26,27,42");
 		const hub = token(canvas, "--cv-graph-hub", "#a9531f");
 		const cx = W / 2;
 		const cy = H / 2;
@@ -201,7 +212,7 @@ export function MemoryGraph({ className }: { className?: string }) {
 			if (timer) clearTimeout(timer);
 			io.disconnect();
 		};
-	}, [dims]);
+	}, [dims, tone]);
 
 	return (
 		<div ref={wrapRef} className={className} aria-hidden="true">

@@ -1,38 +1,21 @@
 ---
 import { MemoryGraph } from "@/components/react/MemoryGraph";
-// Real, verifiable capability substance sourced from the product repos.
-// Honest: Rustbox is live, GraphStore + Hyperstack are open source, Zen +
-// BooleanStack are coming soon. No invented metrics.
+// The dark "open and under the hood" beat. GraphStore + Hyperstack are open
+// source, Orka is research. No invented metrics. The product lines live in the
+// Bento section, not here, so nothing repeats across the page.
 type Metric = { value: string; label: string };
 type Capability = {
 	name: string;
 	surface: string;
-	status: "Live" | "Open source" | "Research" | "Coming soon";
+	status: "Open source" | "Research";
 	href?: string;
 	cta?: string;
 	statement: string;
-	detail?: string;
+	detail: string;
 	metrics: Metric[];
-	emphasis?: boolean;
 };
 
 const capabilities: Capability[] = [
-	{
-		name: "Rustbox",
-		surface: "Secure execution",
-		status: "Live",
-		href: "https://rustbox.orkait.com",
-		cta: "Open Rustbox",
-		statement: "Run untrusted code without trusting it.",
-		detail:
-			"seccomp-bpf syscall filtering, Linux namespaces, and cgroups v2 with deterministic resource limits. Single binary, no Docker daemon.",
-		metrics: [
-			{ value: "8", label: "languages" },
-			{ value: "147", label: "adversarial exploits" },
-			{ value: "0", label: "sandbox escapes" },
-		],
-		emphasis: true,
-	},
 	{
 		name: "GraphStore",
 		surface: "Agent memory",
@@ -71,52 +54,34 @@ const capabilities: Capability[] = [
 			"Learned codebooks and a hand-written GGML kernel keep reconstruction byte-exact.",
 		metrics: [{ value: "~1 bit", label: "per-weight target" }],
 	},
-	{
-		name: "Zen",
-		surface: "Interface creation",
-		status: "Coming soon",
-		statement: "Describe a screen. Get a usable one.",
-		detail: "Rough product intent becomes usable, collaborative screens.",
-		metrics: [],
-	},
-	{
-		name: "BooleanStack",
-		surface: "Software learning",
-		status: "Coming soon",
-		statement: "Serious practice that rewards depth, not streaks.",
-		detail: "Data structures, algorithms, and system design for real engineering.",
-		metrics: [],
-	},
 ];
 
 const statusClass: Record<Capability["status"], string> = {
-	Live: "bg-signature-deep text-on-signature",
-	"Open source": "border border-foreground/25 text-foreground",
-	Research: "border border-border text-foreground/70",
-	"Coming soon": "border border-border text-muted-foreground",
+	"Open source": "border border-on-tile/30 text-on-tile",
+	Research: "border border-on-tile/15 text-on-tile/70",
 };
 ---
 
-<section class="w-full py-20 tablet:py-28 laptop:py-32">
+<section class="w-full bg-tile text-on-tile py-20 tablet:py-28 laptop:py-32">
 	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
 			<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
-				<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
-					What we ship
+				<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-on-tile/55">
+					Open and under the hood
 				</p>
 				<h2
-					class="max-w-[15ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em] text-foreground"
+					class="max-w-[16ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em]"
 				>
-					Measured, shipped, and open.
+					We wrote the hard parts ourselves.
 				</h2>
-				<p class="max-w-[42ch] text-body-lg leading-[30px] text-ink-700">
-					Rustbox isolates untrusted code at the kernel: 147 adversarial
-					exploits, zero escapes. GraphStore and Hyperstack are open source,
-					ready to read and run.
+				<p class="max-w-[44ch] text-body-lg leading-[30px] text-on-tile/70">
+					GraphStore and Hyperstack are open source. Orka compresses model
+					weights toward 1 bit. Read the code, run the tests.
 				</p>
 
 				<MemoryGraph
 					client:visible
+					tone="dark"
 					className="mt-6 hidden h-[clamp(280px,32vh,360px)] w-full laptop:block"
 				/>
 			</div>
@@ -125,15 +90,9 @@ const statusClass: Record<Capability["status"], string> = {
 				{
 					capabilities.map((c) => (
 						<li data-reveal>
-							<article
-								class={`group flex flex-col gap-5 rounded-[20px] border p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 tablet:p-10 ${
-									c.emphasis
-										? "border-signature/40 bg-signature-soft/40 hover:border-signature/60"
-										: "border-border bg-secondary hover:border-foreground/20 hover:shadow-[0_18px_44px_oklch(0.20_0.02_265_/_0.07)]"
-								}`}
-							>
+							<article class="group flex flex-col gap-5 rounded-[20px] border border-on-tile/15 bg-on-tile/[0.04] p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-on-tile/30 tablet:p-10">
 								<div class="flex items-center justify-between gap-3">
-									<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+									<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/55">
 										{c.surface}
 									</span>
 									<span
@@ -144,27 +103,25 @@ const statusClass: Record<Capability["status"], string> = {
 								</div>
 
 								<div class="flex flex-col gap-2.5">
-									<h3 class="font-display text-[clamp(1.625rem,2.6vw,2.25rem)] font-medium leading-[1.05] tracking-[-0.015em] text-foreground">
+									<h3 class="font-display text-[clamp(1.625rem,2.6vw,2.25rem)] font-medium leading-[1.05] tracking-[-0.015em]">
 										{c.name}
 									</h3>
-									<p class="max-w-[46ch] text-body-lg leading-[28px] text-foreground">
+									<p class="max-w-[46ch] text-body-lg leading-[28px] text-on-tile">
 										{c.statement}
 									</p>
-									{c.detail && (
-										<p class="max-w-[52ch] text-base leading-[24px] text-ink-700">
-											{c.detail}
-										</p>
-									)}
+									<p class="max-w-[52ch] text-base leading-[24px] text-on-tile/65">
+										{c.detail}
+									</p>
 								</div>
 
 								{c.metrics.length > 0 && (
-									<dl class="mt-1 flex flex-wrap gap-x-10 gap-y-4 border-t border-foreground/10 pt-5">
+									<dl class="mt-1 flex flex-wrap gap-x-10 gap-y-4 border-t border-on-tile/12 pt-5">
 										{c.metrics.map((m) => (
 											<div class="flex flex-col gap-0.5">
-												<dt class="order-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+												<dt class="order-2 font-mono text-[11px] uppercase tracking-[0.12em] text-on-tile/55">
 													{m.label}
 												</dt>
-												<dd class="order-1 text-[clamp(1.5rem,2.2vw,2rem)] font-black leading-none tracking-[-0.02em] text-signature-deep tabular-nums">
+												<dd class="order-1 text-[clamp(1.5rem,2.2vw,2rem)] font-black leading-none tracking-[-0.02em] text-signature tabular-nums">
 													{m.value}
 												</dd>
 											</div>
@@ -177,7 +134,7 @@ const statusClass: Record<Capability["status"], string> = {
 										href={c.href}
 										target="_blank"
 										rel="noopener noreferrer"
-										class="mt-1 inline-flex w-fit items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.12em] text-foreground transition-colors hover:text-signature-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+										class="mt-1 inline-flex w-fit items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.12em] text-on-tile transition-colors hover:text-signature focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
 									>
 										{c.cta}
 										<svg
@@ -190,7 +147,7 @@ const statusClass: Record<Capability["status"], string> = {
 											stroke-linejoin="round"
 											aria-hidden="true"
 										>
-											<path d="M5 12h14M13 6l6 6-6 6"></path>
+											<path d="M5 12h14M13 6l6 6-6 6" />
 										</svg>
 									</a>
 								)}
