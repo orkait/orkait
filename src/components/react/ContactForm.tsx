@@ -2,12 +2,13 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactPayload, type FormResult } from "@/lib/forms/payload";
+import { FieldError } from "@/components/react/FieldError";
 
 const FORMS_URL = import.meta.env.PUBLIC_FORMS_URL ?? import.meta.env.PUBLIC_CHATBOT_URL ?? "";
 const CONNECT_EMAIL = "connect@orkait.com";
 
 const INPUT_CLASS =
-	"bg-transparent border-0 border-b border-[#00000033] dark:border-white/20 outline-none w-full max-w-[250px] tablet:max-w-full pb-2 text-foreground placeholder:text-muted-foreground transition-colors focus:border-foreground text-center tablet:text-left";
+	"bg-transparent border-0 border-b border-[#00000033] dark:border-white/20 outline-none w-full max-w-[250px] tablet:max-w-full pb-2 text-foreground placeholder:text-muted-foreground transition-colors focus:border-foreground text-center tablet:text-left aria-[invalid=true]:border-destructive";
 
 const LABEL_CLASS = "text-foreground font-medium text-body leading-body text-center tablet:text-left";
 
@@ -48,7 +49,7 @@ export function ContactForm() {
 		handleSubmit,
 		reset,
 		formState: { errors, isSubmitting },
-	} = useForm<ContactPayload>({ resolver: zodResolver(contactSchema) });
+	} = useForm<ContactPayload>({ mode: "onTouched", resolver: zodResolver(contactSchema) });
 
 	async function onSubmit(values: ContactPayload) {
 		if (inFlight.current) return;
@@ -98,6 +99,7 @@ export function ContactForm() {
 
 			<form
 				onSubmit={handleSubmit(onSubmit)}
+				noValidate
 				className="flex flex-col gap-10 items-center tablet:items-start"
 			>
 				<div className="flex flex-col gap-3 w-full items-center tablet:items-start">
@@ -109,10 +111,12 @@ export function ContactForm() {
 						type="text"
 						autoComplete="given-name"
 						className={INPUT_CLASS}
+						aria-invalid={errors.firstName ? "true" : undefined}
+						aria-describedby={errors.firstName ? "first-name-error" : undefined}
 						{...register("firstName")}
 					/>
 					{errors.firstName && (
-						<p className="text-destructive text-xs">{errors.firstName.message}</p>
+						<FieldError id="first-name-error">{errors.firstName.message}</FieldError>
 					)}
 				</div>
 
@@ -125,22 +129,33 @@ export function ContactForm() {
 						type="email"
 						autoComplete="email"
 						className={INPUT_CLASS}
+						aria-invalid={errors.email ? "true" : undefined}
+						aria-describedby={errors.email ? "email-error" : undefined}
 						{...register("email")}
 					/>
-					{errors.email && <p className="text-destructive text-xs">{errors.email.message}</p>}
+					{errors.email && <FieldError id="email-error">{errors.email.message}</FieldError>}
 				</div>
 
 				<div className="flex flex-col gap-3 w-full items-center tablet:items-start">
 					<label htmlFor="contact" className={LABEL_CLASS}>
 						Contact
 					</label>
-					<input id="contact" type="text" className={INPUT_CLASS} {...register("contact")} />
-					{errors.contact && (
-						<p className="text-destructive text-xs">{errors.contact.message}</p>
-					)}
+					<input
+						id="contact"
+						type="text"
+						className={INPUT_CLASS}
+						aria-invalid={errors.contact ? "true" : undefined}
+						aria-describedby={errors.contact ? "contact-error" : undefined}
+						{...register("contact")}
+					/>
+					{errors.contact && <FieldError id="contact-error">{errors.contact.message}</FieldError>}
 				</div>
 
-				{submitError && <p className="text-destructive text-sm">{submitError}</p>}
+				{submitError && (
+					<p role="alert" className="text-destructive text-sm">
+						{submitError}
+					</p>
+				)}
 
 				<button
 					type="submit"

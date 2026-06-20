@@ -73,10 +73,12 @@ describe("OSS project data", () => {
 		expect(OSS_PROJECTS.length).toBeLessThanOrEqual(4);
 	});
 
-	it("showcases GraphStore as the open public project", () => {
-		expect(OSS_PROJECTS.map((project) => project.id)).toEqual(["graphstore"]);
+	it("showcases the open public projects", () => {
+		expect(OSS_PROJECTS.map((project) => project.id)).toEqual(["graphstore", "hyperstack"]);
 		expect(OSS_PROJECTS[0]?.href).toBe("https://github.com/orkait/graphstore");
 		expect(OSS_PROJECTS[0]?.language).toBe("Python");
+		expect(OSS_PROJECTS[1]?.href).toBe("https://github.com/orkait/hyperstack");
+		expect(OSS_PROJECTS[1]?.language).toBe("TypeScript");
 	});
 
 	it("does not share IDs with client projects", () => {

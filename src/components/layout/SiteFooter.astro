@@ -1,49 +1,104 @@
 ---
 import Container from "./Container.astro";
-import { routes } from "@/lib/data/nav";
-import { FOOTER_COLUMNS } from "@/lib/data/footer";
+import { FOOTER_COLUMNS, FOOTER_SOCIAL_LINKS, FOOTER_STATUS } from "@/lib/data/footer";
+
+const year = new Date().getFullYear();
+
+const socialIcons: Record<string, string> = {
+	LinkedIn:
+		'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>',
+	GitHub:
+		'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>',
+};
 ---
 
-<footer class="border-t border-border bg-background">
-	<Container class="flex flex-col gap-12 py-16 tablet:flex-row tablet:justify-between">
-		<div class="max-w-sm">
-			<a href={routes.home} class="flex items-center gap-2" aria-label="Orkait home">
-				<img src="/data/brand/orkait.svg" alt="Orkait" width="28" height="28" class="size-7" />
-				<span class="text-body-lg font-medium tracking-tight">Orkait</span>
-			</a>
-			<p class="mt-4 text-body text-muted-foreground">
-				Applied AI research, shipped as products.
-			</p>
-		</div>
+<footer class="w-full border-t border-border bg-background">
+	<Container class="flex flex-col gap-8 py-14">
+		<div class="flex flex-col gap-10 tablet:flex-row tablet:items-start tablet:justify-between">
+			<div class="grid grid-cols-2 gap-x-10 gap-y-8 tablet:grid-cols-3 tablet:gap-x-14">
+				{
+					FOOTER_COLUMNS.map((col) => (
+						<nav aria-label={col.ariaLabel} class="flex flex-col gap-3.5">
+							{col.heading && (
+								<p class="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-700">
+									{col.heading}
+								</p>
+							)}
+							{col.links.map((link) => (
+								<a
+									href={link.href}
+									target={link.isExternal ? "_blank" : undefined}
+									rel={link.isExternal ? "noopener noreferrer" : undefined}
+									class="text-body text-ink-700 transition-colors hover:text-signature-deep"
+								>
+									{link.label}
+								</a>
+							))}
+						</nav>
+					))
+				}
+			</div>
 
-		<div class="grid grid-cols-2 gap-12">
-			{
-				FOOTER_COLUMNS.map((col) => (
-					<nav aria-label={col.ariaLabel} class="flex flex-col gap-3">
-						{col.heading && (
-							<p class="text-body font-medium text-foreground">{col.heading}</p>
-						)}
-						{col.links.map((link) => (
-							<a
-								href={link.href}
-								target={link.isExternal ? "_blank" : undefined}
-								rel={link.isExternal ? "noopener noreferrer" : undefined}
-								class="text-body text-muted-foreground transition-colors hover:text-foreground"
-							>
-								{link.label}
-							</a>
-						))}
-					</nav>
-				))
-			}
+			<div class="flex items-center gap-3">
+				{
+					FOOTER_SOCIAL_LINKS.map((social) => (
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={social.label}
+							class="inline-flex size-11 items-center justify-center rounded-full text-ink-700 transition-colors hover:text-signature-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+						>
+							<Fragment set:html={socialIcons[social.label] ?? ""} />
+						</a>
+					))
+				}
+			</div>
 		</div>
 	</Container>
 
-	<Container class="flex flex-col gap-2 border-t border-border py-6 text-body text-muted-foreground tablet:flex-row tablet:items-center tablet:justify-between">
-		<p>&copy; {new Date().getFullYear()} Orkait. All rights reserved.</p>
-		<div class="flex gap-6">
-			<a href={routes.privacyPolicy} class="hover:text-foreground">Privacy</a>
-			<a href={routes.terms} class="hover:text-foreground">Terms</a>
+	<div class="relative w-full overflow-hidden bg-tile text-on-tile">
+		<div class="footer-chevron pointer-events-none absolute inset-0" aria-hidden="true"></div>
+		<div class="relative z-10 mx-auto flex max-w-site flex-col gap-4 px-6 py-12 tablet:px-8">
+			<div class="flex items-center gap-4 tablet:gap-6">
+				<svg
+					class="h-14 w-auto shrink-0 text-on-tile tablet:h-20"
+					viewBox="0 0 473.88 239.19"
+					fill="currentColor"
+					aria-hidden="true"
+				>
+					<path
+						d="M329.86,222a361.76,361.76,0,0,0-113.61,9.62c-5.91,1.47-14.64,3.81-25.41,7.4,2.07-23.24-7.37-45.67-9.79-51.44-16.13-38.32-40.88-58.6-40.88-58.6A338,338,0,0,1,250.69,164.1,328.51,328.51,0,0,1,329.86,222Z"
+						transform="translate(-14.19 -128.94)"></path>
+					<path
+						d="M428,276.09a216.42,216.42,0,0,0-96.34-41.88.58.58,0,0,0-.1-.12,330.15,330.15,0,0,0-206.54,42C82.51,300.48,47.46,332.6,23.3,358.26,0,383,21.48,356.57,86.65,329.47,103,322.68,141.73,307.07,190,311.9c38,3.81,63.52,18.47,78.18,25.68,40.58,19.94,107.14,35.58,219.91,12.83A206.61,206.61,0,0,0,428,276.09Zm-25.19,33.12c-1.59,8.88-36.2,12.37-64.87,7.66-32.44-5.34-66.94-22.78-64.86-32.16,2.16-9.72,43.72-11.36,77.52-3.06C373.91,287.37,404.41,300.47,402.84,309.21Z"
+						transform="translate(-14.19 -128.94)"></path>
+				</svg>
+				<span
+					class="text-[clamp(2.5rem,8vw,6.5rem)] font-black leading-[0.9] tracking-[-0.04em]"
+					aria-hidden="true"
+				>
+					ORKAIT<span class="text-signature-soft">.</span>
+				</span>
+			</div>
+			<span class="font-mono text-[11px] uppercase tracking-[0.16em] text-on-tile/70">
+				{FOOTER_STATUS}
+			</span>
 		</div>
+	</div>
+
+	<Container class="py-6">
+		<p class="text-body text-ink-700">&copy; {year} Orkait. All rights reserved.</p>
 	</Container>
 </footer>
+
+<style>
+	.footer-chevron {
+		opacity: 0.18;
+		background-image: repeating-linear-gradient(
+			-43deg,
+			color-mix(in oklab, oklch(0.985 0.006 85) 26%, transparent) 0 7px,
+			transparent 7px 20px
+		);
+	}
+</style>

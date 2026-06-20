@@ -6,9 +6,9 @@ export const PRODUCT_LINES: ProductLine[] = [
 		title: "Rustbox",
 		status: "live",
 		statusLabel: "Live",
-		summary: "Secure execution for untrusted code.",
+		summary: "Kernel-enforced sandboxing for untrusted code.",
 		description:
-			"Rustbox is Orkait's live product for running untrusted workloads with strict isolation, resource controls, and production-minded execution boundaries.",
+			"Rustbox runs untrusted code inside a kernel-enforced sandbox built on Linux namespaces and cgroups, no Docker required. Eight languages, 260+ requests per second, and zero escapes across 22 adversarial tests.",
 		surface: "Secure execution",
 		href: "https://rustbox.orkait.com",
 		ctaLabel: "Open Rustbox",
@@ -31,9 +31,9 @@ export const PRODUCT_LINES: ProductLine[] = [
 		title: "Zen",
 		status: "coming-soon",
 		statusLabel: "Coming soon",
-		summary: "AI-assisted interface creation for rough product ideas.",
+		summary: "Turn a written prompt into interactive, multi-screen UI.",
 		description:
-			"Zen is Orkait's upcoming interface lab for turning rough product intent into usable screens and interactive UI concepts.",
+			"Zen turns a written prompt into interactive, multi-screen UI: mockups and wireframes you can click through, then refine together in real time.",
 		surface: "AI-assisted creation",
 		ctaLabel: "Coming soon",
 		publicRole: "Upcoming AI interface creation product",
@@ -59,9 +59,18 @@ export const OSS_PROJECTS: OSSProject[] = [
 		id: "graphstore",
 		title: "GraphStore",
 		description:
-			"Memory infrastructure for agents: semantic recall, document ingest, and belief tracking.",
+			"Spreading-activation recall, confidence-scored beliefs that expire and get contradicted. No Cypher, no SPARQL - queries that read like sentences.",
 		tags: "Agent Memory, Research Infrastructure",
 		language: "Python",
 		href: "https://github.com/orkait/graphstore",
+	},
+	{
+		id: "hyperstack",
+		title: "Hyperstack",
+		description:
+			"A disciplined engineering harness for AI agents: an MCP server serving real-time ground truth, with adversarial skill gates for modern stacks.",
+		tags: "AI Agents, Developer Tooling",
+		language: "TypeScript",
+		href: "https://github.com/orkait/hyperstack",
 	},
 ];

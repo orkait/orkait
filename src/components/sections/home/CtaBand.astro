@@ -3,12 +3,27 @@ import { routes } from "@/lib/data/nav";
 import { MagneticButton } from "@/components/react/MagneticButton";
 ---
 
-<section class="w-full bg-signature-deep text-on-signature" data-reveal>
+<section class="relative isolate w-full overflow-hidden bg-signature-deep text-on-signature" data-reveal>
+	<svg
+		class="pointer-events-none absolute -right-24 -top-20 -z-10 w-[420px] text-on-signature opacity-[0.1] tablet:w-[560px]"
+		viewBox="0 0 560 560"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.5"
+		aria-hidden="true"
+	>
+		<ellipse cx="280" cy="280" rx="224" ry="118" transform="rotate(18 280 280)"></ellipse>
+		<ellipse cx="280" cy="280" rx="224" ry="118" transform="rotate(78 280 280)"></ellipse>
+		<ellipse cx="280" cy="280" rx="224" ry="118" transform="rotate(138 280 280)"></ellipse>
+		<circle cx="472" cy="244" r="7" fill="currentColor" stroke="none"></circle>
+		<circle cx="108" cy="332" r="7" fill="currentColor" stroke="none"></circle>
+		<circle cx="300" cy="128" r="7" fill="currentColor" stroke="none"></circle>
+	</svg>
 	<div
 		class="mx-auto flex w-full max-w-site flex-col items-center gap-8 px-6 py-24 text-center tablet:px-8 tablet:py-32"
 	>
 		<h2
-			class="max-w-[18ch] text-[clamp(1.875rem,3.5vw,3rem)] font-black leading-[1.05] tracking-[-0.025em]"
+			class="max-w-[18ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em]"
 		>
 			Have something that needs to actually ship?
 		</h2>
