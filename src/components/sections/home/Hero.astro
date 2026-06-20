@@ -15,84 +15,90 @@ const ticker = [
 const loop = [...ticker, ...ticker];
 ---
 
-<div class="w-full" data-reveal>
-	<div class="mx-auto flex max-w-[68rem] flex-col items-center gap-7 px-4 text-center tablet:gap-8">
-		<p class="font-mono text-[13px] uppercase tracking-[0.2em] text-muted-foreground">
-			Product-first AI lab
-		</p>
+<section
+	aria-label="Intro"
+	class="w-full pt-12 pb-20 tablet:pt-16 tablet:pb-28"
+	data-reveal
+>
+	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
+		<div class="mx-auto flex max-w-[68rem] flex-col items-center gap-7 text-center tablet:gap-8">
+			<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
+				Product-first AI lab
+			</p>
 
-		<h1
-			class="text-balance text-foreground"
-			style="font-weight: 900; letter-spacing: -0.035em; line-height: 0.95; font-size: clamp(2.75rem, 7vw, 6rem);"
-		>
-			Applied AI research,<br />shipped as <span class="text-signature-deep"
-				>products</span
-			>.
-		</h1>
-
-		<p class="max-w-[48ch] text-body-lg leading-[30px] text-ink-700">
-			Focused tools for secure execution, software learning, and AI-assisted
-			creation. Rustbox is live.
-		</p>
-
-		<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
-			<a
-				href={rustboxHref}
-				class="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[transform,background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+			<h1
+				class="text-balance text-foreground"
+				style="font-weight: 900; letter-spacing: -0.035em; line-height: 0.95; font-size: clamp(2.75rem, 7vw, 6rem);"
 			>
-				Open Rustbox
-				<svg
-					class="size-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					aria-hidden="true"
+				Applied AI research,<br />shipped as <span class="text-signature-deep"
+					>products</span
+				>.
+			</h1>
+
+			<p class="max-w-[48ch] text-body-lg leading-[30px] text-ink-700">
+				Focused tools for secure execution, software learning, and AI-assisted
+				creation. Rustbox is live.
+			</p>
+
+			<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
+				<a
+					href={rustboxHref}
+					class="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[transform,background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
 				>
-					<path d="M5 12h14M13 6l6 6-6 6"></path>
-				</svg>
-			</a>
+					Open Rustbox
+					<svg
+						class="size-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M5 12h14M13 6l6 6-6 6"></path>
+					</svg>
+				</a>
 
-			<a
-				href={routes.projects}
-				class="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-foreground/20 bg-transparent px-7 text-base font-semibold text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-			>
-				Products &amp; Team
-			</a>
-		</div>
-	</div>
-
-	<div class="mx-auto mt-14 w-full max-w-site px-4 tablet:mt-16 tablet:px-8">
-		<div class="relative h-[clamp(320px,42vh,520px)] w-full overflow-hidden rounded-[24px] bg-tile">
-			<div class="absolute inset-0">
-				<AsciiField client:visible />
-			</div>
-			<div class="pointer-events-none absolute inset-0 flex flex-col justify-between p-7 tablet:p-10">
-				<span class="font-mono text-[12px] uppercase tracking-[0.2em] text-on-tile/70">
-					Secure execution / systems in motion
-				</span>
-				<span class="max-w-[34ch] text-on-tile/85" style="font-weight:700; letter-spacing:-0.02em; line-height:1.05; font-size:clamp(1.25rem,2.4vw,1.875rem);">
-					Untrusted code, run under real constraints.
-				</span>
+				<a
+					href={routes.projects}
+					class="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-foreground/20 bg-transparent px-7 text-base font-semibold text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+				>
+					Products &amp; Team
+				</a>
 			</div>
 		</div>
-	</div>
 
-	<div
-		class="mt-14 w-full overflow-hidden bg-signature py-4 text-on-signature tablet:mt-16"
-		aria-hidden="true"
-	>
-		<div class="marquee-track gap-0">
-			{
-				loop.map((t) => (
-					<span class="flex items-center whitespace-nowrap px-8 font-mono text-[13px] uppercase tracking-[0.18em]">
-						{t}
-						<span class="ml-8 opacity-40">/</span>
+		<div class="mt-14 w-full tablet:mt-16">
+			<div class="relative h-[clamp(280px,38vh,440px)] w-full overflow-hidden rounded-[20px] bg-tile">
+				<div class="absolute inset-0">
+					<AsciiField client:visible />
+				</div>
+				<div class="pointer-events-none absolute inset-0 flex flex-col justify-between p-7 tablet:p-8">
+					<span class="font-mono text-[12px] uppercase tracking-[0.18em] text-on-tile/80">
+						Secure execution / systems in motion
 					</span>
-				))
-			}
+					<span class="max-w-[34ch] text-on-tile" style="font-weight:700; letter-spacing:-0.02em; line-height:1.05; font-size:clamp(1.25rem,2.4vw,1.875rem);">
+						Untrusted code, run under real constraints.
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="mt-14 w-full overflow-hidden rounded-[20px] bg-signature-deep py-4 text-on-signature tablet:mt-16"
+			aria-hidden="true"
+		>
+			<div class="marquee-track gap-0">
+				{
+					loop.map((t) => (
+						<span class="flex items-center whitespace-nowrap px-8 font-mono text-[13px] uppercase tracking-[0.18em]">
+							{t}
+							<span class="ml-8 opacity-40">/</span>
+						</span>
+					))
+				}
+			</div>
 		</div>
 	</div>
-</div>
+</section>

@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/components/layout/Section.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
 import SiteFooter from "@/components/layout/SiteFooter.astro";
 import Hero from "@/components/sections/home/Hero.astro";
@@ -14,25 +13,11 @@ import CtaBand from "@/components/sections/home/CtaBand.astro";
 	<SiteHeader />
 
 	<main>
-		<Section spacing="none" maxWidth="full" gutter={false} class="pt-16 tablet:pt-24">
-			<Hero />
-		</Section>
-
-		<Section spacing="none" maxWidth="full" class="pt-24 tablet:pt-32">
-			<Bento />
-		</Section>
-
-		<Section spacing="none" class="pt-24 tablet:pt-36">
-			<Capabilities />
-		</Section>
-
-		<Section spacing="none" maxWidth="full" gutter={false} class="pt-24 tablet:pt-36">
-			<Proof />
-		</Section>
-
-		<Section spacing="none" maxWidth="full" gutter={false}>
-			<CtaBand />
-		</Section>
+		<Hero />
+		<Bento />
+		<Capabilities />
+		<Proof />
+		<CtaBand />
 	</main>
 
 	<SiteFooter />
