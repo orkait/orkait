@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { useCanHover } from "@/lib/react-hooks/use-can-hover";
 
 interface Props {
 	href: string;
@@ -24,6 +25,8 @@ export function MagneticButton({
 }: Props) {
 	const ref = useRef<HTMLAnchorElement>(null);
 	const reduce = useReducedMotion();
+	const canHover = useCanHover();
+	const active = canHover && !reduce;
 
 	const mvX = useMotionValue(0);
 	const mvY = useMotionValue(0);
@@ -31,7 +34,7 @@ export function MagneticButton({
 	const y = useSpring(mvY, SPRING);
 
 	const onMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-		if (reduce || !ref.current) return;
+		if (!active || !ref.current) return;
 		const r = ref.current.getBoundingClientRect();
 		mvX.set((e.clientX - (r.left + r.width / 2)) * strength);
 		mvY.set((e.clientY - (r.top + r.height / 2)) * strength);
@@ -50,9 +53,9 @@ export function MagneticButton({
 			rel={rel}
 			aria-label={ariaLabel}
 			className={className}
-			style={reduce ? undefined : { x, y }}
-			onMouseMove={onMove}
-			onMouseLeave={reset}
+			style={active ? { x, y } : undefined}
+			onMouseMove={active ? onMove : undefined}
+			onMouseLeave={active ? reset : undefined}
 		>
 			{children}
 		</motion.a>

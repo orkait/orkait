@@ -14,6 +14,6 @@ export type Client = {
 // self-hosted under /public/logos and rendered grayscale + muted in the wall.
 export const CLIENTS: Client[] = [
 	{ name: "Tencent", logo: "/logos/tencent.svg", heightClass: "h-7 tablet:h-8" },
-	{ name: "Kyoto University", logo: "/logos/kyoto-university.svg", heightClass: "h-16 tablet:h-20" },
-	{ name: "IIT Madras", logo: "/logos/iit-madras.svg", heightClass: "h-16 tablet:h-20" },
+	{ name: "Kyoto University", logo: "/logos/kyoto-university.svg", heightClass: "h-11 tablet:h-12" },
+	{ name: "IIT Madras", logo: "/logos/iit-madras.svg", heightClass: "h-11 tablet:h-12" },
 ];

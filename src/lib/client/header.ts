@@ -11,6 +11,11 @@ export function initHeader() {
 	const header = document.querySelector<HTMLElement>("[data-site-header]");
 	if (!header) return;
 
+	// The hero is a dark, full-bleed section the pill floats over near the top.
+	// While the pill overlaps it, the bar wears a smoked dark-glass variant.
+	const hero = document.querySelector<HTMLElement>('section[aria-label="Intro"]');
+	const NAV_BOTTOM = 96; // approx viewport-y of the pill's lower edge
+
 	const REVEAL_NEAR_TOP = 80; // always show within this many px of the top
 	const HIDE_PAST = 160; // only begin hiding once well clear of the header
 	const DELTA = 6; // ignore sub-pixel scroll jitter
@@ -20,6 +25,10 @@ export function initHeader() {
 	const onScroll = () => {
 		const y = window.scrollY;
 		header.toggleAttribute("data-scrolled", y > 24);
+		header.toggleAttribute(
+			"data-over-hero",
+			!!hero && hero.getBoundingClientRect().bottom > NAV_BOTTOM,
+		);
 
 		if (Math.abs(y - lastY) > DELTA) {
 			const goingDown = y > lastY;
