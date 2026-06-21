@@ -1,0 +1,17 @@
+---
+import LogoWall from "@/components/ui/LogoWall.astro";
+import { CLIENTS } from "@/lib/data/clients";
+---
+
+{
+	CLIENTS.length > 0 && (
+		<section class="w-full py-16 tablet:py-20" data-reveal>
+			<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
+				<p class="mb-10 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground tablet:mb-12">
+					Trusted by teams at
+				</p>
+				<LogoWall clients={CLIENTS} />
+			</div>
+		</section>
+	)
+}

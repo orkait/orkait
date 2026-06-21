@@ -186,3 +186,38 @@ export async function handleApply(c: Context<{ Bindings: FormsEnv }>): Promise<R
 
 	return c.json(result, result.success ? 200 : 502);
 }
+
+export type NewsletterPayload = {
+	email: string;
+};
+
+export function parseNewsletter(data: unknown): NewsletterPayload | null {
+	if (typeof data !== 'object' || data === null) return null;
+	const record = data as Record<string, unknown>;
+
+	if (!isValidEmail(record.email)) return null;
+
+	return { email: record.email };
+}
+
+export async function handleNewsletter(c: Context<{ Bindings: FormsEnv }>): Promise<Response> {
+	let body: unknown;
+	try {
+		body = await c.req.json();
+	} catch {
+		return c.json({ success: false, error: 'Invalid request body.' } satisfies FormResult, 400);
+	}
+
+	const parsed = parseNewsletter(body);
+	if (!parsed) {
+		return c.json({ success: false, error: 'Invalid form data.' } satisfies FormResult, 400);
+	}
+
+	const result = await sendResendEmail(c.env, {
+		replyTo: parsed.email,
+		subject: 'New newsletter signup',
+		text: `Newsletter signup: ${parsed.email}`,
+	});
+
+	return c.json(result, result.success ? 200 : 502);
+}

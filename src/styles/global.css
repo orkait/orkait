@@ -205,11 +205,11 @@
     --color-tile: var(--color-ink-950);               /* navy tile */
     --color-on-tile: var(--color-paper-50);           /* text on navy tile */
 
-    /* Canvas (read by AsciiField/GameOfLife via getComputedStyle) */
-    --cv-life-surface: var(--color-signature-deep);   /* game-of-life tile bg */
+    /* Canvas (read by AsciiField/MemoryGraph via getComputedStyle) */
     --cv-field-surface: var(--color-tile);            /* three-body tile bg (navy) */
     --cv-field-trail: var(--color-signature);         /* three-body trails */
-    --cv-cell: var(--color-paper-50);                 /* live cell / body color */
+    --cv-graph-ink: 26, 27, 42;                       /* memory-graph edges/leaf nodes (ink-950 rgb) */
+    --cv-graph-hub: var(--color-signature-deep);      /* memory-graph hub nodes */
 
     /* ------------------------------- */
     /* Semantic Tokens (Light)         */

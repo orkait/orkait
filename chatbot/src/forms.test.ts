@@ -1,6 +1,14 @@
 import { Hono } from 'hono';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { handleApply, handleContact, parseApply, parseContact, type FormsEnv } from './forms';
+import {
+	handleApply,
+	handleContact,
+	handleNewsletter,
+	parseApply,
+	parseContact,
+	parseNewsletter,
+	type FormsEnv,
+} from './forms';
 
 const TEST_ENV: FormsEnv = {
 	RESEND_API_KEY: 'test-key',
@@ -12,6 +20,7 @@ function buildApp() {
 	const app = new Hono<{ Bindings: FormsEnv }>();
 	app.post('/api/contact', (c) => handleContact(c));
 	app.post('/api/apply', (c) => handleApply(c));
+	app.post('/api/newsletter', (c) => handleNewsletter(c));
 	return app;
 }
 
@@ -159,6 +168,54 @@ describe('apply handler', () => {
 			message: 'hi',
 			role: 'Designer',
 		});
+
+		expect(res.status).toBe(400);
+		const fetchMock = fetch as unknown as ReturnType<typeof vi.fn>;
+		expect(fetchMock).not.toHaveBeenCalled();
+	});
+});
+
+describe('parseNewsletter', () => {
+	it('accepts a valid email', () => {
+		expect(parseNewsletter({ email: 'ada@orkait.com' })).toEqual({ email: 'ada@orkait.com' });
+	});
+
+	it('rejects a bad email', () => {
+		expect(parseNewsletter({ email: 'not-an-email' })).toBeNull();
+	});
+
+	it('rejects a missing email', () => {
+		expect(parseNewsletter({})).toBeNull();
+	});
+});
+
+describe('newsletter handler', () => {
+	beforeEach(() => {
+		vi.stubGlobal(
+			'fetch',
+			vi.fn(async () => new Response(JSON.stringify({ id: 'email_1' }), { status: 200 }))
+		);
+	});
+
+	afterEach(() => {
+		vi.unstubAllGlobals();
+	});
+
+	it('calls Resend and returns success for a valid email', async () => {
+		const app = buildApp();
+		const res = await post(app, '/api/newsletter', { email: 'ada@orkait.com' });
+
+		expect(res.status).toBe(200);
+		expect(await res.json()).toEqual({ success: true });
+
+		const fetchMock = fetch as unknown as ReturnType<typeof vi.fn>;
+		expect(fetchMock).toHaveBeenCalledTimes(1);
+		expect(fetchMock.mock.calls[0][0]).toBe('https://api.resend.com/emails');
+	});
+
+	it('returns 400 without calling Resend for an invalid email', async () => {
+		const app = buildApp();
+		const res = await post(app, '/api/newsletter', { email: 'nope' });
 
 		expect(res.status).toBe(400);
 		const fetchMock = fetch as unknown as ReturnType<typeof vi.fn>;
