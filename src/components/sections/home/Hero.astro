@@ -2,49 +2,61 @@
 import { routes } from "@/lib/data/nav";
 import { SplitHeadline } from "@/components/react/SplitHeadline";
 import { MagneticButton } from "@/components/react/MagneticButton";
-import { HeroVisual } from "@/components/react/HeroVisual";
+import { AsciiField } from "@/components/react/AsciiField";
 
 const rustboxHref = "https://rustbox.orkait.com";
 
 const headlineLines = [
-	[{ t: "Applied" }, { t: "AI" }, { t: "research," }],
-	[{ t: "shipped" }, { t: "as" }, { t: "products.", accent: true }],
+	[{ t: "AI" }, { t: "you" }, { t: "don't" }, { t: "have" }, { t: "to" }],
+	[{ t: "take" }, { t: "on" }, { t: "faith.", accent: true }],
 ];
 ---
 
 <section
 	aria-label="Intro"
-	class="w-full pt-12 pb-20 tablet:pt-16 tablet:pb-28"
+	class="relative flex min-h-[82vh] w-full flex-col justify-center overflow-hidden bg-tile pb-24 pt-36 tablet:pb-28 tablet:pt-40"
 	data-reveal
 >
-	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
+	<div class="pointer-events-none absolute inset-0 z-0">
+		<AsciiField client:visible />
+	</div>
+
+	<div
+		class="pointer-events-none absolute inset-0 z-10"
+		style="background: radial-gradient(ellipse 90% 65% at 50% 48%, color-mix(in oklab, var(--color-tile) 72%, transparent) 0%, color-mix(in oklab, var(--color-tile) 22%, transparent) 46%, transparent 72%);"
+	>
+	</div>
+
+	<div class="relative z-20 mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="mx-auto flex max-w-[68rem] flex-col items-center gap-7 text-center tablet:gap-8">
-			<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-muted-foreground">
-				Product-first AI lab
+			<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-on-tile/70">
+				An AI lab that actually ships
 			</p>
 
 			<SplitHeadline
 				client:load
 				lines={headlineLines}
-				className="font-display text-foreground"
+				className="font-display text-on-tile [text-shadow:0_2px_30px_oklch(0.20_0.025_265_/_0.60)]"
+				accentClassName="text-signature-soft italic"
 				style={{
-					fontWeight: 440,
-					letterSpacing: "-0.015em",
-					lineHeight: 1.04,
-					fontSize: "clamp(2.75rem, 7vw, 6rem)",
+					fontWeight: 400,
+					letterSpacing: "-0.01em",
+					lineHeight: 1.06,
+					fontSize: "clamp(3rem, 7.5vw, 6.5rem)",
 				}}
 			/>
 
-			<p class="max-w-[48ch] text-body-lg leading-[30px] text-ink-700">
-				Focused tools for secure execution, software learning, and AI-assisted
-				creation. Rustbox is live today.
+			<p class="max-w-[54ch] text-body-lg leading-[30px] text-on-tile/75">
+				We build AI for the high-stakes moments - untrusted code, grading at
+				scale, agents on the loose - and back every one with proof you can
+				check, not promises. Rustbox is live, and it's just the start.
 			</p>
 
 			<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
 				<MagneticButton
 					client:visible
 					href={rustboxHref}
-					className="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+					className="group inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.20_0.02_265_/_0.14)] transition-[background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
 				>
 					Open Rustbox
 					<svg
@@ -65,19 +77,11 @@ const headlineLines = [
 					client:visible
 					href={routes.projects}
 					strength={0.25}
-					className="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-foreground/20 bg-transparent px-7 text-base font-semibold text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+					className="inline-flex h-12 min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-on-tile/25 bg-transparent px-7 text-base font-semibold text-on-tile transition-colors duration-200 hover:bg-on-tile/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
 				>
 					Products &amp; Team
 				</MagneticButton>
 			</div>
-		</div>
-
-		<div class="mt-14 w-full tablet:mt-16">
-			<HeroVisual
-				client:visible
-				eyebrow="Secure execution / systems in motion"
-				statement="Untrusted code, run under real constraints."
-			/>
 		</div>
 	</div>
 </section>

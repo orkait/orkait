@@ -8,16 +8,17 @@ const BORDER_MARGIN = 0.35; // sim-space distance from wall where repulsion star
 const DT = 0.001;
 const STEPS_PER_FRAME = 8;
 const SOFTENING = 0.02;
-const STROKE_ALPHA = 0.35;
+const TRAIL_ALPHA = 0.6;    // single-pass brightness - trails no longer accumulate
+const FADE_ALPHA = 0.08;    // per-frame trail decay (destination-out) - higher = shorter comet tail
 const BALL_RADIUS = 12;
 const MAX_RENDER_W = 1600;
 const MAX_RENDER_H = 600;
 
 // Navy bento tile palette - canvas sits on an ink-950 surface.
 const SURFACE = "#16172a"; // ink-950
-const GRID_MINOR = "rgba(255,255,255,0.05)";
-const GRID_AXIS = "rgba(255,255,255,0.12)";
-const ORIGIN_DOT = "rgba(255,255,255,0.18)";
+const GRID_MINOR = "rgba(255,255,255,0.04)";
+const GRID_AXIS = "rgba(255,255,255,0.09)";
+const ORIGIN_DOT = "rgba(255,255,255,0.16)";
 const TRAIL = "230,228,218"; // soft paper trails (hue-independent on navy tile)
 const BALL_FILL = "#f5f3ec"; // paper-100 bodies
 
@@ -64,6 +65,7 @@ function cloneBodies(): Body[] {
 export function AsciiField() {
   const containerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const gridRef  = useRef<HTMLCanvasElement>(null);
   const trailRef = useRef<HTMLCanvasElement>(null);
   const ballRef  = useRef<HTMLCanvasElement>(null);
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
@@ -101,19 +103,23 @@ export function AsciiField() {
   useEffect(() => {
     if (!dims) return;
 
+    const gridCanvas  = gridRef.current;
     const trailCanvas = trailRef.current;
     const ballCanvas  = ballRef.current;
-    if (!trailCanvas || !ballCanvas) return;
+    if (!gridCanvas || !trailCanvas || !ballCanvas) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const W = dims.w;
     const H = dims.h;
+    gridCanvas.width   = W;  gridCanvas.height   = H;
     trailCanvas.width  = W;  trailCanvas.height  = H;
     ballCanvas.width   = W;  ballCanvas.height   = H;
 
+    const gridCtx  = gridCanvas.getContext("2d");
     const trailCtx = trailCanvas.getContext("2d");
     const ballCtx  = ballCanvas.getContext("2d");
-    if (!trailCtx || !ballCtx) return;
+    if (!gridCtx || !trailCtx || !ballCtx) return;
+    const grid  = gridCtx;
     const trail = trailCtx;
     const ball  = ballCtx;
 
@@ -127,44 +133,40 @@ export function AsciiField() {
       return { x: CX + p.x * SCALE, y: CY + p.y * SCALE };
     }
 
+    // Static coordinate field - drawn once on its own layer (no per-frame accumulation)
     function drawGrid() {
-      trail.fillStyle = SURFACE;
-      trail.fillRect(0, 0, W, H);
+      grid.fillStyle = SURFACE;
+      grid.fillRect(0, 0, W, H);
 
       const GRID_PX = 40;
 
       // Minor grid - skip lines that land on canvas edges
-      trail.strokeStyle = GRID_MINOR;
-      trail.lineWidth = 1;
+      grid.strokeStyle = GRID_MINOR;
+      grid.lineWidth = 1;
       for (let x = CX % GRID_PX; x < W; x += GRID_PX) {
         if (x < 1 || x > W - 1) continue;
-        trail.beginPath(); trail.moveTo(x, 0); trail.lineTo(x, H); trail.stroke();
+        grid.beginPath(); grid.moveTo(x, 0); grid.lineTo(x, H); grid.stroke();
       }
       for (let y = CY % GRID_PX; y < H; y += GRID_PX) {
         if (y < 1 || y > H - 1) continue;
-        trail.beginPath(); trail.moveTo(0, y); trail.lineTo(W, y); trail.stroke();
+        grid.beginPath(); grid.moveTo(0, y); grid.lineTo(W, y); grid.stroke();
       }
 
       // Axes
-      trail.strokeStyle = GRID_AXIS;
-      trail.lineWidth = 1;
-      trail.beginPath(); trail.moveTo(CX, 0); trail.lineTo(CX, H); trail.stroke();
-      trail.beginPath(); trail.moveTo(0, CY); trail.lineTo(W, CY); trail.stroke();
+      grid.strokeStyle = GRID_AXIS;
+      grid.lineWidth = 1;
+      grid.beginPath(); grid.moveTo(CX, 0); grid.lineTo(CX, H); grid.stroke();
+      grid.beginPath(); grid.moveTo(0, CY); grid.lineTo(W, CY); grid.stroke();
 
       // Origin dot
-      trail.fillStyle = ORIGIN_DOT;
-      trail.beginPath(); trail.arc(CX, CY, 2, 0, Math.PI * 2); trail.fill();
+      grid.fillStyle = ORIGIN_DOT;
+      grid.beginPath(); grid.arc(CX, CY, 2, 0, Math.PI * 2); grid.fill();
     }
 
     function reset() {
       drawGrid();
       return cloneBodies();
     }
-
-    // Set trail style once - never changes
-    trail.strokeStyle = `rgba(${TRAIL},${STROKE_ALPHA})`;
-    trail.lineWidth = 1.5;
-    trail.lineCap = "round";
 
     const bodies = reset();
     let timer: ReturnType<typeof setTimeout> | null = null;
@@ -211,6 +213,15 @@ export function AsciiField() {
         }
       }
 
+      // Decay existing trails toward transparent (static grid shows through), draw fresh on top
+      trail.globalCompositeOperation = "destination-out";
+      trail.fillStyle = `rgba(0,0,0,${FADE_ALPHA})`;
+      trail.fillRect(0, 0, W, H);
+      trail.globalCompositeOperation = "source-over";
+      trail.strokeStyle = `rgba(${TRAIL},${TRAIL_ALPHA})`;
+      trail.lineWidth = 1.5;
+      trail.lineCap = "round";
+
       // One path per body - minimises draw calls
       for (let i = 0; i < 3; i++) {
         const pts = segStarts[i];
@@ -247,6 +258,7 @@ export function AsciiField() {
   return (
     <div ref={containerRef} className="relative h-full w-full">
       <div ref={stageRef} className="absolute inset-0 overflow-hidden">
+        <canvas ref={gridRef}  className="absolute inset-0 block size-full" aria-hidden />
         <canvas ref={trailRef} className="absolute inset-0 block size-full" aria-hidden />
         <canvas ref={ballRef}  className="absolute inset-0 block size-full" aria-hidden />
       </div>

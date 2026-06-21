@@ -34,8 +34,9 @@ const isActive = (href: string) =>
 				headerNav.map((link) => (
 					<a
 						href={link.href}
+						data-nav-link
 						aria-current={isActive(link.href) ? "page" : undefined}
-						class="text-body font-medium text-muted-foreground transition-colors hover:text-signature-deep aria-[current=page]:text-foreground"
+						class="text-body font-medium text-foreground transition-colors hover:text-signature-deep aria-[current=page]:text-signature-deep"
 					>
 						{link.label}
 					</a>
@@ -51,6 +52,7 @@ const isActive = (href: string) =>
 				target="_blank"
 				rel="noopener"
 				class="max-laptop:hidden"
+				data-cta="rustbox"
 			>
 				{headerCtas.rustbox.label}
 			</Button>
@@ -59,11 +61,13 @@ const isActive = (href: string) =>
 				size="lg"
 				href={headerCtas.contact.href}
 				class="mobile:max-tablet:h-11 mobile:max-tablet:px-4 mobile:max-tablet:text-sm"
+				data-cta="contact"
 			>
 				{headerCtas.contact.label}
 			</Button>
 			<button
 				popovertarget="mobile-nav"
+				data-menu-btn
 				class="hidden size-12 items-center justify-center rounded-full text-foreground max-laptop:inline-flex mobile:max-tablet:size-11"
 				aria-label="Open menu"
 			>

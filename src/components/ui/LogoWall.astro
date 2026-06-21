@@ -9,24 +9,32 @@ const { clients } = Astro.props;
 
 // simpleicons CDN colour: ink hue so logos sit on warm paper. rgb(26,27,42).
 const INK_HEX = "1a1b2a";
+
+// Equal-height cells with hairline dividers read as one cohesive trust set
+// even though the marks differ (wide wordmark vs square seals).
+const cell =
+	"flex h-14 items-center justify-center px-8 tablet:h-16 tablet:px-14";
+// Muted monochrome by default; full colour on hover for a moment of life.
+const mark =
+	"max-h-full w-auto grayscale opacity-65 transition duration-300 ease-out hover:opacity-100 hover:grayscale-0";
 ---
 
-<ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-7 tablet:gap-x-16 laptop:gap-x-20">
+<ul class="mx-auto flex max-w-3xl items-stretch justify-center divide-x divide-border/60">
 	{
 		clients.map((c) =>
 			c.logo || c.slug ? (
-				<li class="flex items-center">
+				<li class={cell}>
 					<img
 						src={c.logo ?? `https://cdn.simpleicons.org/${c.slug}/${INK_HEX}`}
 						alt={c.name}
 						loading="lazy"
 						decoding="async"
-						class={`w-auto opacity-90 transition-opacity duration-300 hover:opacity-100 ${c.heightClass ?? "h-9 tablet:h-10"}`}
+						class={`${mark} ${c.heightClass ?? "h-9 tablet:h-10"}`}
 					/>
 				</li>
 			) : (
-				<li class="flex items-center">
-					<span class="text-[clamp(1.125rem,1.7vw,1.5rem)] font-semibold tracking-[-0.01em] text-ink-700 opacity-70 transition-opacity duration-300 hover:opacity-100">
+				<li class={cell}>
+					<span class="text-[clamp(1.125rem,1.7vw,1.5rem)] font-semibold tracking-[-0.01em] text-ink-700 opacity-55 transition-opacity duration-300 hover:opacity-100">
 						{c.name}
 					</span>
 				</li>

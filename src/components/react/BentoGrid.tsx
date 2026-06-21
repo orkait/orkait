@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { MagneticButton } from "./MagneticButton";
+import { useCanHover } from "@/lib/react-hooks/use-can-hover";
 
 const Arrow = ({ className }: { className?: string }) => (
 	<svg
@@ -24,14 +25,16 @@ const RUSTBOX_METRICS: { value: string; label: string }[] = [
 
 export function BentoGrid() {
 	const reduce = useReducedMotion();
+	const canHover = useCanHover();
+	const lift = reduce || !canHover ? undefined : { y: -4 };
 
 	return (
-		<div className="grid grid-cols-1 gap-3 tablet:grid-cols-2 laptop:grid-cols-4 laptop:auto-rows-[180px]">
+		<div className="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-pl-6 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden tablet:mx-0 tablet:grid tablet:grid-cols-2 tablet:overflow-visible tablet:px-0 tablet:pb-0 laptop:grid-cols-4 laptop:auto-rows-[180px]">
 			{/* Rustbox - featured, live, navigates */}
 			<MagneticButton
 				href="https://rustbox.orkait.com"
 				strength={0.18}
-				className="group relative col-span-1 flex min-h-[320px] cursor-pointer flex-col justify-between overflow-hidden rounded-[20px] bg-signature-deep p-7 text-on-signature transition-[box-shadow] duration-300 hover:shadow-[0_24px_48px_oklch(0.20_0.02_265_/_0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:col-span-2 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
+				className="group relative max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[320px] cursor-pointer flex-col justify-between overflow-hidden rounded-[20px] bg-signature-deep p-7 text-on-signature transition-[box-shadow] duration-300 hover:shadow-[0_24px_48px_oklch(0.20_0.02_265_/_0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:col-span-2 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
 			>
 				<div className="flex items-center justify-between">
 					<span className="font-mono text-[11px] uppercase tracking-[0.18em] text-on-signature/80">
@@ -78,8 +81,8 @@ export function BentoGrid() {
 
 			{/* BooleanStack - clay soft, ink text */}
 			<motion.div
-				className="col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] bg-signature-soft p-7 text-foreground tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
-				whileHover={reduce ? undefined : { y: -4 }}
+				className="max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] bg-signature-soft p-7 text-foreground tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
+				whileHover={lift}
 				transition={{ type: "spring", stiffness: 300, damping: 24 }}
 			>
 				<div className="flex items-center justify-between gap-3">
@@ -102,8 +105,8 @@ export function BentoGrid() {
 
 			{/* Zen - navy tile */}
 			<motion.div
-				className="col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] bg-tile p-7 text-on-tile tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
-				whileHover={reduce ? undefined : { y: -4 }}
+				className="max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] bg-tile p-7 text-on-tile tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
+				whileHover={lift}
 				transition={{ type: "spring", stiffness: 300, damping: 24 }}
 			>
 				<div className="flex items-center justify-between gap-3">

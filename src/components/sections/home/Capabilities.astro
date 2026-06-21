@@ -86,11 +86,11 @@ const statusClass: Record<Capability["status"], string> = {
 				/>
 			</div>
 
-			<ul class="flex flex-col gap-4 tablet:gap-5">
+			<ul class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-pl-6 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden tablet:mx-0 tablet:flex-col tablet:gap-5 tablet:overflow-visible tablet:px-0 tablet:pb-0">
 				{
 					capabilities.map((c) => (
-						<li data-reveal>
-							<article class="group flex flex-col gap-5 rounded-[20px] border border-on-tile/15 bg-on-tile/[0.04] p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-on-tile/30 tablet:p-10">
+						<li data-reveal class="max-tablet:w-[85%] max-tablet:shrink-0 max-tablet:snap-start">
+							<article class="group flex h-full flex-col gap-5 rounded-[20px] border border-on-tile/15 bg-on-tile/[0.04] p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-on-tile/30 tablet:p-10">
 								<div class="flex items-center justify-between gap-3">
 									<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/55">
 										{c.surface}

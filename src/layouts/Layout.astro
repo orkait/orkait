@@ -7,12 +7,14 @@ interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
+	chat?: boolean;
 }
 
 const {
 	title,
 	description = siteConfig.description,
 	image = "/og.png",
+	chat = true,
 } = Astro.props;
 
 const fullTitle = title ? `${title} | ${siteConfig.name}` : `${siteConfig.name} - Applied AI research, shipped as products`;
@@ -31,6 +33,13 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 		<link
 			rel="preload"
 			href="/fonts/Satoshi-Variable.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/instrument-serif/instrument-serif-400.woff2"
 			as="font"
 			type="font/woff2"
 			crossorigin
@@ -57,9 +66,30 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1100] focus:rounded-md focus:border focus:border-border focus:bg-background focus:px-4 focus:py-2 focus:font-medium focus:text-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring"
 			>Skip to main content</a
 		>
+		<svg
+			aria-hidden="true"
+			focusable="false"
+			style="position:absolute;width:0;height:0;overflow:hidden"
+		>
+			<defs>
+				<filter
+					id="liquid-glass"
+					x="-35%"
+					y="-35%"
+					width="170%"
+					height="170%"
+					color-interpolation-filters="sRGB"
+				>
+					<feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="17" result="noise" />
+					<feGaussianBlur in="noise" stdDeviation="2.4" result="soft" />
+					<feDisplacementMap in="SourceGraphic" in2="soft" scale="24" xChannelSelector="R" yChannelSelector="G" />
+				</filter>
+			</defs>
+		</svg>
+
 		<slot />
 
-		<ChatWidget client:idle />
+		{chat && <ChatWidget client:idle />}
 
 		<script>
 			import { initSmoothScroll } from "@/lib/client/smoothScroll";
