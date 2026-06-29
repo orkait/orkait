@@ -22,6 +22,12 @@ const headlineLines = [
 	</div>
 
 	<div
+		class="aurora-field pointer-events-none absolute inset-0 z-[5] mix-blend-screen"
+		style="--aurora-opacity: 0.42;"
+	>
+	</div>
+
+	<div
 		class="pointer-events-none absolute inset-0 z-10"
 		style="background: radial-gradient(ellipse 90% 65% at 50% 48%, color-mix(in oklab, var(--color-tile) 72%, transparent) 0%, color-mix(in oklab, var(--color-tile) 22%, transparent) 46%, transparent 72%);"
 	>
@@ -37,12 +43,12 @@ const headlineLines = [
 				client:load
 				lines={headlineLines}
 				className="font-display text-on-tile [text-shadow:0_2px_30px_oklch(0.20_0.025_265_/_0.60)]"
-				accentClassName="text-signature-soft italic"
+				accentClassName="text-signature-soft"
 				style={{
-					fontWeight: 400,
-					letterSpacing: "-0.01em",
-					lineHeight: 1.06,
-					fontSize: "clamp(3rem, 7.5vw, 6.5rem)",
+					fontWeight: 600,
+					letterSpacing: "-0.03em",
+					lineHeight: 1.02,
+					fontSize: "clamp(2.75rem, 7vw, 6rem)",
 				}}
 			/>
 

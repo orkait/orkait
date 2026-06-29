@@ -62,8 +62,9 @@ const statusClass: Record<Capability["status"], string> = {
 };
 ---
 
-<section class="w-full bg-tile text-on-tile py-20 tablet:py-28 laptop:py-32">
-	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
+<section class="relative isolate w-full overflow-hidden bg-tile text-on-tile py-20 tablet:py-28 laptop:py-32">
+	<div class="aurora-field pointer-events-none absolute inset-0 -z-10" style="--aurora-opacity: 0.16;"></div>
+	<div class="relative z-10 mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
 			<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
 				<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-on-tile/55">
@@ -90,7 +91,7 @@ const statusClass: Record<Capability["status"], string> = {
 				{
 					capabilities.map((c) => (
 						<li data-reveal class="max-tablet:w-[85%] max-tablet:shrink-0 max-tablet:snap-start">
-							<article class="group flex h-full flex-col gap-5 rounded-[20px] border border-on-tile/15 bg-on-tile/[0.04] p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-on-tile/30 tablet:p-10">
+							<article class="group flex h-full flex-col gap-5 rounded-[20px] glass-edge border border-on-tile/15 bg-on-tile/[0.04] p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-on-tile/30 tablet:p-10">
 								<div class="flex items-center justify-between gap-3">
 									<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/55">
 										{c.surface}

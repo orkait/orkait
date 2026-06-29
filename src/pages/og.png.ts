@@ -122,7 +122,7 @@ export const GET: APIRoute = async () => {
 		width: WIDTH,
 		height: HEIGHT,
 		fonts: [
-			{ name: "Fraunces", data: serif, weight: 440, style: "normal" },
+			{ name: "Fraunces", data: serif, weight: 400, style: "normal" },
 			{ name: "Space Mono", data: mono, weight: 400, style: "normal" },
 		],
 	});
