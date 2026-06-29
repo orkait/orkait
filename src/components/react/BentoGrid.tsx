@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { MagneticButton } from "./MagneticButton";
 import { useCanHover } from "@/lib/react-hooks/use-can-hover";
 
 const Arrow = ({ className }: { className?: string }) => (
@@ -31,11 +30,21 @@ export function BentoGrid() {
 	return (
 		<div className="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-pl-6 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden tablet:mx-0 tablet:grid tablet:grid-cols-2 tablet:overflow-visible tablet:px-0 tablet:pb-0 laptop:grid-cols-4 laptop:auto-rows-[180px]">
 			{/* Rustbox - featured, live, navigates */}
-			<MagneticButton
+			<a
 				href="https://rustbox.orkait.com"
-				strength={0.18}
-				className="group relative max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[320px] cursor-pointer flex-col justify-between overflow-hidden rounded-[20px] bg-signature-deep p-7 text-on-signature transition-[box-shadow] duration-300 hover:shadow-[0_24px_48px_oklch(0.20_0.02_265_/_0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:col-span-2 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
+				className="group relative max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[20px] glass-edge bg-tile p-7 text-on-tile focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:col-span-2 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
 			>
+				<img
+					src="/products/rustbox.webp"
+					alt=""
+					aria-hidden="true"
+					loading="lazy"
+					className="pointer-events-none absolute inset-0 size-full object-cover object-center"
+				/>
+				<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-tile from-[22%] via-tile/75 to-tile/30" />
+				<div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tile/60 to-transparent to-50%" />
+
+				<div className="relative z-10 flex flex-1 flex-col justify-between">
 				<div className="flex items-center justify-between">
 					<span className="font-mono text-[11px] uppercase tracking-[0.18em] text-on-signature/80">
 						Secure execution
@@ -77,27 +86,29 @@ export function BentoGrid() {
 						<Arrow className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
 					</div>
 				</div>
-			</MagneticButton>
+				</div>
+			</a>
 
 			{/* BooleanStack - clay soft, ink text */}
 			<motion.div
-				className="max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] bg-signature-soft p-7 text-foreground tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
+				data-coming-soon
+				className="max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] glass-edge bg-[oklch(0.29_0.095_12)] p-7 text-on-tile tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
 				whileHover={lift}
 				transition={{ type: "spring", stiffness: 300, damping: 24 }}
 			>
 				<div className="flex items-center justify-between gap-3">
-					<span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">
+					<span className="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/70">
 						Software learning
 					</span>
-					<span className="rounded-full border border-foreground/25 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-foreground/70">
+					<span className="rounded-full border border-on-tile/25 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-on-tile/70">
 						Coming soon
 					</span>
 				</div>
 				<div>
-					<h3 className="text-[clamp(1.75rem,2.8vw,2.25rem)] font-black leading-[1.0] tracking-[-0.02em] text-foreground">
+					<h3 className="text-[clamp(1.75rem,2.8vw,2.25rem)] font-black leading-[1.0] tracking-[-0.02em] text-on-tile">
 						BooleanStack
 					</h3>
-					<p className="mt-3 max-w-[28ch] text-body-lg leading-[26px] text-foreground/80">
+					<p className="mt-3 max-w-[28ch] text-body-lg leading-[26px] text-on-tile/80">
 						Serious practice that rewards depth, not streaks.
 					</p>
 				</div>
@@ -105,7 +116,8 @@ export function BentoGrid() {
 
 			{/* Zen - navy tile */}
 			<motion.div
-				className="max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] bg-tile p-7 text-on-tile tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
+				data-coming-soon
+				className="max-tablet:w-[82%] max-tablet:shrink-0 max-tablet:snap-start col-span-1 flex min-h-[200px] flex-col justify-between rounded-[20px] glass-edge bg-tile p-7 text-on-tile tablet:col-span-1 laptop:row-span-2 laptop:min-h-0 tablet:p-8"
 				whileHover={lift}
 				transition={{ type: "spring", stiffness: 300, damping: 24 }}
 			>
