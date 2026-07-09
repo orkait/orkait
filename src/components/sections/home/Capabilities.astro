@@ -42,28 +42,27 @@ const repos: Repo[] = [
 ];
 ---
 
-<section class="w-full bg-background py-20 tablet:py-28 laptop:py-32">
+<section class="w-full border-t border-border bg-background py-20 tablet:py-28 laptop:py-32">
 	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
-		<div class="rounded-2xl bg-tile px-6 py-16 text-on-tile tablet:px-10 tablet:py-20 laptop:px-14">
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
 			<div class="flex flex-col gap-5 laptop:sticky laptop:top-28 laptop:self-start">
 				<span class="rule-draw" aria-hidden="true"></span>
-				<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-on-tile/55">
+				<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
 					Open source
 				</p>
 				<h2
-					class="max-w-[16ch] font-display text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]"
+					class="max-w-[16ch] font-display text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground"
 				>
 					Don't take us on faith either.
 				</h2>
-				<p class="max-w-[44ch] text-body-lg leading-[30px] text-on-tile/70">
+				<p class="max-w-[44ch] text-body-lg leading-[30px] text-foreground/70">
 					GraphStore and Hyperstack are open on GitHub. Read the code, run the
 					tests.
 				</p>
 
 				<MemoryGraph
 					client:visible
-					tone="dark"
+					tone="light"
 					className="mt-6 hidden h-[clamp(280px,32vh,360px)] w-full laptop:block"
 				/>
 			</div>
@@ -76,38 +75,38 @@ const repos: Repo[] = [
 							target="_blank"
 							rel="noopener noreferrer"
 							data-reveal
-							class="group flex flex-col gap-5 rounded-xl border border-on-tile/10 bg-[oklch(0.19_0_0)] p-7 transition-[transform,border-color] duration-150 ease-out hover:-translate-y-0.5 hover:border-on-tile/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-tile tablet:p-9"
+							class="group flex flex-col gap-5 rounded-xl border border-border bg-card p-7 transition-[transform,border-color] duration-150 ease-out hover:-translate-y-0.5 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:p-9"
 						>
 							<div class="flex flex-wrap items-center justify-between gap-3">
-								<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-on-tile">
+								<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-foreground">
 									{r.repo}
 								</span>
-								<span class="rounded-full border border-on-tile/25 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-on-tile/70">
+								<span class="rounded-full border border-border px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
 									Open source
 								</span>
 							</div>
 
 							<div class="flex flex-col gap-2">
-								<p class="max-w-[46ch] text-body-lg leading-[28px] text-on-tile">
+								<p class="max-w-[46ch] text-body-lg leading-[28px] text-foreground">
 									{r.statement}
 								</p>
-								<p class="max-w-[52ch] text-base leading-[24px] text-on-tile/60">{r.detail}</p>
+								<p class="max-w-[52ch] text-base leading-[24px] text-foreground/65">{r.detail}</p>
 							</div>
 
-							<div class="flex flex-wrap items-end justify-between gap-5 border-t border-on-tile/10 pt-5">
+							<div class="flex flex-wrap items-end justify-between gap-5 border-t border-border pt-5">
 								<dl class="flex flex-wrap gap-x-10 gap-y-3">
 									{r.metrics.map((m) => (
 										<div class="flex flex-col gap-1">
-											<dd class="order-1 font-mono text-[clamp(1.125rem,1.8vw,1.5rem)] font-bold leading-none tracking-[-0.02em] text-signature-soft tabular-nums">
+											<dd class="order-1 font-mono text-[clamp(1.125rem,1.8vw,1.5rem)] font-bold leading-none tracking-[-0.02em] text-foreground tabular-nums">
 												{m.value}
 											</dd>
-											<dt class="order-2 font-mono text-[10px] uppercase tracking-[0.12em] text-on-tile/50">
+											<dt class="order-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
 												{m.label}
 											</dt>
 										</div>
 									))}
 								</dl>
-								<span class="inline-flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-on-tile/85">
+								<span class="inline-flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-foreground/80">
 									View on GitHub
 									<svg
 										class="size-4 transition-transform duration-150 group-hover:translate-x-1"
@@ -129,35 +128,34 @@ const repos: Repo[] = [
 
 				<div
 					data-reveal
-					class="flex flex-col gap-3 rounded-xl border border-dashed border-on-tile/15 p-7 tablet:grid tablet:grid-cols-12 tablet:items-center tablet:gap-6 tablet:p-8"
+					class="flex flex-col gap-3 rounded-xl border border-dashed border-border p-7 tablet:grid tablet:grid-cols-12 tablet:items-center tablet:gap-6 tablet:p-8"
 				>
 					<div class="tablet:col-span-3">
-						<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-on-tile">Orka</span>
+						<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-foreground">Orka</span>
 						<span
-							class="ml-2 rounded-full border border-on-tile/15 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-on-tile/55"
+							class="ml-2 rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground"
 						>
 							Research
 						</span>
 					</div>
 					<div class="tablet:col-span-5">
-						<p class="text-base leading-[24px] text-on-tile/75">
+						<p class="text-base leading-[24px] text-foreground/75">
 							Language-model weights, compressed toward 2 bits.
 						</p>
 					</div>
 					<div class="tablet:col-span-2">
-						<span class="font-mono text-lg font-bold tracking-[-0.02em] text-signature-soft">~2 bit</span>
-						<span class="ml-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-on-tile/50">
+						<span class="font-mono text-lg font-bold tracking-[-0.02em] text-signature-deep">~2 bit</span>
+						<span class="ml-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
 							per weight
 						</span>
 					</div>
 					<div class="tablet:col-span-2 tablet:text-right">
-						<span class="font-mono text-[11px] uppercase leading-[1.6] tracking-[0.1em] text-on-tile/60">
+						<span class="font-mono text-[11px] uppercase leading-[1.6] tracking-[0.1em] text-muted-foreground">
 							Source opens soon
 						</span>
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 </section>

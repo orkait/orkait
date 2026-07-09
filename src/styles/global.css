@@ -222,8 +222,10 @@
     --color-paper-100: oklch(0.952 0.008 88);
     --color-paper-200: oklch(0.922 0.009 85);
 
-    /* BLACK - warm ink */
+    /* BLACK - warm ink. 950 is for text/base; 900 is the DARK OBJECT surface
+       (cards, terminal). Pure-black cards read as holes punched in the paper. */
     --color-ink-950: oklch(0.165 0.008 62);
+    --color-ink-900: oklch(0.215 0.010 62);
     --color-ink-700: oklch(0.42 0.008 62);
     --color-ink-500: oklch(0.56 0.006 62);
     --color-ink-300: oklch(0.78 0.005 62);
@@ -270,10 +272,12 @@
     --color-rose-600: oklch(0.586 0.253 18);
     --color-rose-700: oklch(0.514 0.222 17);
 
-    /* RED - the one and only accent. Black / white / red, nothing else. */
-    --color-red-400: oklch(0.640 0.215 27); /* accent text on black */
-    --color-red-500: oklch(0.560 0.230 27); /* fills, buttons, bands */
-    --color-red-600: oklch(0.490 0.205 27); /* hover / accent text on white */
+    /* RED - the one and only accent. Warm (hue 30) to sit with warm neutrals.
+       Chroma is rationed BY SURFACE AREA: a full card at C 0.20 vibrates and
+       strains the eye, so large fills drop to C 0.155. */
+    --color-red-400: oklch(0.680 0.175 30); /* accent text on dark objects */
+    --color-red-500: oklch(0.545 0.185 30); /* small fills: LIVE, metrics, buttons */
+    --color-red-600: oklch(0.475 0.155 30); /* LARGE surfaces: CTA card, hover */
 
     /* ======================================================= */
     /* SIGNATURE - the ONE block to swap to re-hue everything. */
@@ -289,7 +293,7 @@
     --color-on-signature: var(--color-paper-50);      /* white text on a red fill */
 
     /* Neutral tiles (bento) - hue-independent */
-    --color-tile: var(--color-ink-950);               /* black tile */
+    --color-tile: var(--color-ink-900);               /* dark object surface */
     --color-on-tile: var(--color-paper-50);           /* white text on black tile */
 
     /* Canvas (read by LifeField/MemoryGraph via getComputedStyle) */
@@ -321,6 +325,10 @@
     /* Raised surface on paper (footer, wells). Elevation = surface step. */
     --color-surface: var(--color-paper-100);
     --color-surface-foreground: var(--color-ink-950);
+
+    /* Card: a touch LIGHTER than the canvas so it lifts without a shadow. */
+    --color-card: oklch(0.99 0.004 95);
+    --color-card-foreground: var(--color-ink-950);
 
     --color-accent: var(--color-signature);
     --color-accent-foreground: var(--color-on-signature);
