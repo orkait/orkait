@@ -1,15 +1,172 @@
 ---
-import { BentoGrid } from "@/components/react/BentoGrid";
+// Products: the live product dominates; coming-soon lines are demoted to rows.
+// Pure Astro - no client JS needed here (DESIGN.md 5.4).
+const rustboxMetrics = [
+	{ value: "8", label: "languages" },
+	{ value: "22", label: "adversarial tests" },
+	{ value: "0", label: "sandbox escapes" },
+];
+
+const upcoming = [
+	{
+		name: "BooleanStack",
+		surface: "Software learning",
+		line: "Serious practice that rewards depth, not streaks.",
+		href: "https://booleanstack.com",
+		cta: "booleanstack.com",
+	},
+	{
+		name: "Zen",
+		surface: "Interface creation",
+		line: "Describe a screen. Get a usable one.",
+	},
+];
 ---
 
-<section class="w-full pb-20 pt-10 tablet:pb-28 tablet:pt-12 laptop:pb-32 laptop:pt-14" data-reveal>
+<section class="w-full bg-background py-20 tablet:py-28 laptop:py-32" data-reveal>
 	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
-		<div class="mb-10 max-w-[20ch] tablet:mb-12">
-			<h2 class="font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em] text-foreground">
-				The products
+		<div class="mb-10 flex flex-col gap-3 tablet:mb-14">
+			<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
+				Products
+			</p>
+			<h2
+				class="max-w-[24ch] font-display text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground"
+			>
+				One shipped. Two loading.
 			</h2>
 		</div>
 
-		<BentoGrid client:visible />
+		<a
+			href="https://rustbox.sh"
+			class="group relative flex min-h-[380px] flex-col justify-between overflow-hidden rounded-xl border border-on-tile/10 bg-tile p-7 text-on-tile transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_32px_oklch(0.145_0_0_/_0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:p-10 laptop:min-h-[420px]"
+			data-reveal
+		>
+			<img
+				src="/products/rustbox.webp"
+				alt=""
+				aria-hidden="true"
+				loading="lazy"
+				width="1200"
+				height="800"
+				class="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[48%] object-cover object-left opacity-70 grayscale laptop:block"
+			/>
+			<div
+				class="pointer-events-none absolute inset-y-0 right-0 hidden w-[48%] bg-tile/70 laptop:block"
+			>
+			</div>
+
+			<div class="relative z-10 flex items-center gap-3">
+				<span
+					class="inline-flex items-center gap-1.5 rounded-full bg-signature px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-on-signature"
+				>
+					<span class="size-1.5 rounded-full bg-on-signature"></span>
+					Live
+				</span>
+				<span class="font-mono text-[11px] uppercase tracking-[0.14em] text-on-tile/60">
+					Secure execution
+				</span>
+			</div>
+
+			<div class="relative z-10 mt-8 max-w-[46ch]">
+				<h3
+					class="font-display text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.02] tracking-[-0.02em]"
+				>
+					Rustbox
+				</h3>
+				<p class="mt-3 text-body-lg leading-[28px] text-on-tile/85">
+					Run untrusted code without trusting it.
+				</p>
+				<p class="mt-2 max-w-[44ch] text-base leading-[24px] text-on-tile/65">
+					Kernel-enforced sandboxing on Linux namespaces and cgroups. Single
+					binary, no Docker daemon.
+				</p>
+			</div>
+
+			<div class="relative z-10 mt-8 flex flex-col gap-6">
+				<dl class="flex flex-wrap gap-x-10 gap-y-3 border-t border-on-tile/15 pt-5">
+					{
+						rustboxMetrics.map((m) => (
+							<div class="flex flex-col gap-1">
+								<dd class="order-1 font-mono text-[clamp(1.25rem,2vw,1.625rem)] font-bold leading-none tracking-[-0.02em] text-signature-soft tabular-nums">
+									{m.value}
+								</dd>
+								<dt class="order-2 font-mono text-[10px] uppercase tracking-[0.12em] text-on-tile/55">
+									{m.label}
+								</dt>
+							</div>
+						))
+					}
+				</dl>
+				<span
+					class="inline-flex items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.12em] text-on-tile"
+				>
+					Open Rustbox
+					<svg
+						class="size-4 transition-transform duration-150 group-hover:translate-x-1"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M5 12h14M13 6l6 6-6 6"></path>
+					</svg>
+				</span>
+			</div>
+		</a>
+
+		<ul class="mt-2 divide-y divide-border border-b border-border" data-reveal>
+			{
+				upcoming.map((p) => (
+					<li>
+						<div class="flex flex-col gap-2 py-6 tablet:grid tablet:grid-cols-12 tablet:items-center tablet:gap-6">
+							<div class="tablet:col-span-3">
+								<span class="font-display text-xl font-semibold tracking-[-0.01em] text-foreground">
+									{p.name}
+								</span>
+							</div>
+							<div class="tablet:col-span-3">
+								<span class="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+									{p.surface}
+								</span>
+							</div>
+							<div class="tablet:col-span-4">
+								<span class="text-base leading-[24px] text-foreground/70">{p.line}</span>
+							</div>
+							<div class="tablet:col-span-2 tablet:text-right">
+								{p.href ? (
+									<a
+										href={p.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="inline-flex min-h-[44px] items-center gap-1.5 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-signature-deep transition-colors duration-150 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+									>
+										{p.cta}
+										<svg
+											class="size-3.5"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2.2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											aria-hidden="true"
+										>
+											<path d="M7 17L17 7M9 7h8v8" />
+										</svg>
+									</a>
+								) : (
+									<span class="inline-flex min-h-[44px] items-center rounded-full border border-border px-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
+										Coming soon
+									</span>
+								)}
+							</div>
+						</div>
+					</li>
+				))
+			}
+		</ul>
 	</div>
 </section>

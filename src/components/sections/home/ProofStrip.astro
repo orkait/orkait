@@ -1,0 +1,101 @@
+---
+// Replaces the logo wall. A company with no customer logos proves itself with
+// numbers instead - every value links to the place it can be checked.
+type Fact = {
+	value: string;
+	suffix?: string;
+	label: string;
+	href: string;
+};
+
+const facts: Fact[] = [
+	{
+		value: "8",
+		label: "languages sandboxed",
+		href: "https://rustbox.sh",
+	},
+	{
+		value: "22",
+		label: "adversarial tests, 0 escapes",
+		href: "https://rustbox.sh",
+	},
+	{
+		value: "260",
+		suffix: "+",
+		label: "requests / second",
+		href: "https://rustbox.sh",
+	},
+	{
+		value: "2",
+		label: "repos open source",
+		href: "https://github.com/orkait",
+	},
+];
+---
+
+<section
+	id="proof"
+	aria-label="Proof"
+	class="w-full border-y border-on-tile/10 bg-tile text-on-tile"
+	data-reveal
+>
+	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
+		<ul
+			data-reveal-stagger
+			class="grid grid-cols-2 divide-on-tile/10 max-tablet:gap-px laptop:grid-cols-4 laptop:divide-x"
+		>
+			{
+				facts.map((f) => (
+					<li>
+						<a
+							href={f.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group flex min-h-[44px] flex-col gap-1 px-2 py-8 transition-colors duration-150 hover:bg-on-tile/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-tile laptop:px-8"
+						>
+							<span class="font-mono text-[clamp(1.5rem,2.4vw,2rem)] font-bold leading-none tracking-[-0.02em] text-signature-soft tabular-nums">
+								<span data-count={f.value}>{f.value}</span>{f.suffix}
+							</span>
+							<span class="font-mono text-[11px] uppercase leading-[1.6] tracking-[0.12em] text-on-tile/55 transition-colors duration-150 group-hover:text-on-tile/80">
+								{f.label}
+								<span class="ml-1 inline-block transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<script>
+	// Count-up on first view. setTimeout stepping (no rAF), reduced-motion safe.
+	const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	const els = document.querySelectorAll<HTMLElement>("[data-count]");
+	if (!reduced && els.length) {
+		const io = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (!entry.isIntersecting) continue;
+					io.unobserve(entry.target);
+					const el = entry.target as HTMLElement;
+					const target = Number(el.dataset.count ?? "0");
+					if (!Number.isFinite(target) || target <= 0) continue;
+					const steps = 24;
+					const duration = 650;
+					let step = 0;
+					el.textContent = "0";
+					const tick = () => {
+						step += 1;
+						const eased = 1 - Math.pow(1 - step / steps, 3);
+						el.textContent = String(Math.round(target * eased));
+						if (step < steps) setTimeout(tick, duration / steps);
+					};
+					setTimeout(tick, duration / steps);
+				}
+			},
+			{ threshold: 0.4 },
+		);
+		for (const el of els) io.observe(el);
+	}
+</script>

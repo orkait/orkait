@@ -6,7 +6,7 @@ export function initRevealOnScroll() {
 
 	document.documentElement.classList.add("reveal-ready");
 
-	const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
+	const targets = document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-stagger]");
 	if (!targets.length) return;
 
 	const observer = new IntersectionObserver(

@@ -11,7 +11,7 @@ The lab builds focused products around secure execution, software learning syste
 ### Rustbox
 
 - Status: live
-- URL: https://rustbox.orkait.com
+- URL: https://rustbox.sh
 - Summary: secure execution product for running untrusted code
 - What it does: provides an execution surface for untrusted workloads with strict boundaries, resource controls, and production-minded isolation
 - Why it matters: serious AI and code-running workflows need execution infrastructure that treats isolation and limits as first-order requirements

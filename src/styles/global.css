@@ -197,17 +197,17 @@
     /* Color Primitives (OKLCH, warm)  */
     /* ------------------------------- */
 
-    /* Warm paper neutrals */
-    --color-paper-50: oklch(0.985 0.006 85);
-    --color-paper-100: oklch(0.965 0.008 84);
-    --color-paper-200: oklch(0.935 0.010 82);
+    /* WHITE - neutral, chroma 0 (pure #fff is harsh, so near-white) */
+    --color-paper-50: oklch(0.985 0 0);
+    --color-paper-100: oklch(0.960 0 0);
+    --color-paper-200: oklch(0.925 0 0);
 
-    /* Navy-tinted ink (never pure black) */
-    --color-ink-950: oklch(0.20 0.025 265);
-    --color-ink-700: oklch(0.44 0.020 265);
-    --color-ink-500: oklch(0.58 0.018 265);
-    --color-ink-300: oklch(0.80 0.012 265);
-    --color-ink-200: oklch(0.90 0.008 265);
+    /* BLACK - neutral, chroma 0 (pure #000 is harsh, so near-black) */
+    --color-ink-950: oklch(0.145 0 0);
+    --color-ink-700: oklch(0.40 0 0);
+    --color-ink-500: oklch(0.56 0 0);
+    --color-ink-300: oklch(0.78 0 0);
+    --color-ink-200: oklch(0.89 0 0);
 
     /* ======================================================= */
     /* PRIMITIVE HUE RAMPS (raw color, no meaning)             */
@@ -250,6 +250,11 @@
     --color-rose-600: oklch(0.586 0.253 18);
     --color-rose-700: oklch(0.514 0.222 17);
 
+    /* RED - the one and only accent. Black / white / red, nothing else. */
+    --color-red-400: oklch(0.640 0.215 27); /* accent text on black */
+    --color-red-500: oklch(0.560 0.230 27); /* fills, buttons, bands */
+    --color-red-600: oklch(0.490 0.205 27); /* hover / accent text on white */
+
     /* ======================================================= */
     /* SIGNATURE - the ONE block to swap to re-hue everything. */
     /* Point each role at a primitive ramp above. on-signature */
@@ -257,21 +262,21 @@
     /* (ink for light hues, paper for dark hues).              */
     /* ======================================================= */
 
-    --color-signature: var(--color-rose-500);        /* primary fill: buttons, hero tile */
-    --color-signature-soft: var(--color-rose-300);   /* lighter fill: secondary tile */
-    --color-signature-deep: var(--color-rose-700);   /* deep fill / readable accent text on paper */
-    --color-signature-hover: var(--color-rose-600);  /* hover state for signature fills */
-    --color-on-signature: var(--color-paper-50);       /* text/icon ON a signature fill (ink=light hue, paper=dark hue) */
+    --color-signature: var(--color-red-500);          /* primary fill: buttons, bands */
+    --color-signature-soft: var(--color-red-400);     /* accent text on black */
+    --color-signature-deep: var(--color-red-600);     /* deep fill / accent text on white */
+    --color-signature-hover: var(--color-red-600);    /* hover state for signature fills */
+    --color-on-signature: var(--color-paper-50);      /* white text on a red fill */
 
     /* Neutral tiles (bento) - hue-independent */
-    --color-tile: var(--color-ink-950);               /* navy tile */
-    --color-on-tile: var(--color-paper-50);           /* text on navy tile */
+    --color-tile: var(--color-ink-950);               /* black tile */
+    --color-on-tile: var(--color-paper-50);           /* white text on black tile */
 
     /* Canvas (read by AsciiField/MemoryGraph via getComputedStyle) */
-    --cv-field-surface: var(--color-tile);            /* three-body tile bg (navy) */
-    --cv-field-trail: var(--color-signature);         /* three-body trails */
-    --cv-graph-ink: 26, 27, 42;                       /* memory-graph edges/leaf nodes (ink-950 rgb) */
-    --cv-graph-hub: var(--color-signature-deep);      /* memory-graph hub nodes */
+    --cv-field-surface: var(--color-tile);            /* three-body tile bg (black) */
+    --cv-field-trail: var(--color-signature);         /* three-body trails (red) */
+    --cv-graph-ink: 30, 30, 30;                       /* memory-graph edges/leaf nodes (ink-950 rgb) */
+    --cv-graph-hub: var(--color-signature);           /* memory-graph hub nodes (red) */
 
     /* ------------------------------- */
     /* Semantic Tokens (Light)         */
@@ -281,7 +286,7 @@
     --color-foreground: var(--color-ink-950);
 
     --color-muted: var(--color-paper-200);
-    --color-muted-foreground: oklch(0.55 0.018 265);
+    --color-muted-foreground: oklch(0.50 0 0);
 
     --color-border: var(--color-ink-200);
     --color-input: var(--color-ink-200);
@@ -385,11 +390,14 @@
 
 [data-reveal] {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(16px);
 }
 
 .reveal-ready [data-reveal] {
-    transition: opacity 0.6s var(--ease-emphasized), transform 0.6s var(--ease-emphasized);
+    transition:
+        opacity 0.5s var(--ease-emphasized),
+        transform 0.5s var(--ease-emphasized);
+    transition-delay: var(--reveal-delay, 0s);
 }
 
 [data-reveal].is-visible {
@@ -397,10 +405,36 @@
     transform: none;
 }
 
+/* Orchestrated children: parent carries data-reveal-stagger, children cascade
+   in 60ms apart. GPU-only (opacity + transform). */
+[data-reveal-stagger] > * {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.reveal-ready [data-reveal-stagger] > * {
+    transition:
+        opacity 0.5s var(--ease-emphasized),
+        transform 0.5s var(--ease-emphasized);
+}
+
+[data-reveal-stagger].is-visible > * {
+    opacity: 1;
+    transform: none;
+}
+
+[data-reveal-stagger] > *:nth-child(2) { transition-delay: 60ms; }
+[data-reveal-stagger] > *:nth-child(3) { transition-delay: 120ms; }
+[data-reveal-stagger] > *:nth-child(4) { transition-delay: 180ms; }
+[data-reveal-stagger] > *:nth-child(5) { transition-delay: 240ms; }
+[data-reveal-stagger] > *:nth-child(6) { transition-delay: 300ms; }
+
 @media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
+    [data-reveal],
+    [data-reveal-stagger] > * {
         opacity: 1;
         transform: none;
+        transition: none;
     }
 }
 
@@ -521,13 +555,9 @@ html.lenis body {
             backdrop-filter 0.3s ease;
     }
 
-    /* Liquid-glass specular edge for solid cards - a lit glass rim without true
-       transparency (cards sit on solid backgrounds, so real blur shows nothing). */
+    /* Flat hairline rim for solid cards - no glow, no gradient. */
     .glass-edge {
-        box-shadow:
-            inset 0 1px 0 color-mix(in oklab, white 18%, transparent),
-            inset 3px 4px 16px -10px color-mix(in oklab, white 28%, transparent),
-            inset -3px -5px 18px -12px color-mix(in oklab, white 16%, transparent);
+        box-shadow: inset 0 0 0 1px color-mix(in oklab, white 10%, transparent);
     }
 
     /* Auto-hide header: slides up on scroll-down, glides back on scroll-up
@@ -545,10 +575,8 @@ html.lenis body {
         --glass-tint: 46%;
         --glass-blur: 26px;
         box-shadow:
-            0 10px 30px oklch(0.20 0.025 265 / 0.20),
-            0 2px 6px oklch(0.20 0.025 265 / 0.12),
-            inset 0 1px 1px color-mix(in oklab, white 68%, transparent),
-            inset 0 0 22px color-mix(in oklab, var(--color-background) 30%, transparent);
+            0 10px 30px oklch(0.145 0 0 / 0.20),
+            0 2px 6px oklch(0.145 0 0 / 0.12);
     }
 
     /* Over the dark hero: a firmer LIGHT frost so the bar stays legible without
@@ -558,31 +586,7 @@ html.lenis body {
         --glass-blur: 26px;
     }
 
-    /* Top gloss - light pooling on the upper rim of the glass */
-    .glass::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        pointer-events: none;
-        background: linear-gradient(
-            to bottom,
-            color-mix(in oklab, white 38%, transparent) 0%,
-            color-mix(in oklab, white 8%, transparent) 40%,
-            transparent 62%
-        );
-    }
-    /* Soft liquid specular - light catching the glass edges (gentle, not a border) */
-    .glass::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        pointer-events: none;
-        box-shadow:
-            inset 2px 3px 10px -7px color-mix(in oklab, white 65%, transparent),
-            inset -3px -4px 12px -8px color-mix(in oklab, white 48%, transparent);
-    }
+    /* Flat frosted glass - blur + flat tint only. No gloss gradient, no specular. */
 
     /* Accessibility: drop the glass for users who reduce transparency */
     @media (prefers-reduced-transparency: reduce) {
@@ -613,81 +617,6 @@ html.lenis body {
     animation-play-state: paused;
 }
 
-/* ---------------------------------- */
-/* Aurora glow (coming-soon product cards)  */
-/* ---------------------------------- */
-
-@keyframes card-aurora {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-[data-coming-soon] {
-    background-image:
-        radial-gradient(45% 55% at 22% 28%, color-mix(in oklab, var(--color-signature) 50%, transparent), transparent 70%),
-        radial-gradient(42% 52% at 78% 72%, color-mix(in oklab, currentColor 16%, transparent), transparent 70%),
-        radial-gradient(55% 60% at 60% 22%, color-mix(in oklab, var(--color-signature) 32%, transparent), transparent 72%);
-    background-size: 200% 200%;
-    animation: card-aurora 14s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    [data-coming-soon] {
-        animation: none;
-    }
-}
-
-/* ====================================================================== */
-/* Aurora field - the unifying page theme.                                */
-/* One drifting rose-light system reused across the dark sections (hero   */
-/* ambient, capabilities, CTA). Single accent, low opacity, slow drift -  */
-/* ambient, never competes with content. Reduced-motion safe.            */
-/* ====================================================================== */
-
-@keyframes aurora-drift {
-    0%,
-    100% {
-        background-position: 0% 50%, 100% 50%, 50% 0%;
-    }
-    50% {
-        background-position: 100% 50%, 0% 50%, 50% 100%;
-    }
-}
-
-.aurora-field {
-    background-image:
-        radial-gradient(42% 52% at 18% 32%, color-mix(in oklab, var(--color-signature) 58%, transparent), transparent 70%),
-        radial-gradient(40% 50% at 82% 66%, color-mix(in oklab, var(--color-signature-soft) 40%, transparent), transparent 68%),
-        radial-gradient(54% 58% at 55% 24%, color-mix(in oklab, var(--color-signature) 34%, transparent), transparent 72%);
-    background-size: 200% 200%, 200% 200%, 200% 200%;
-    opacity: var(--aurora-opacity, 0.5);
-    animation: aurora-drift 20s ease-in-out infinite;
-}
-
-/* CTA band: a focused rose aurora glow behind the button over a faint
-   engineered grid (rose light + texture), faded top + bottom so it melts
-   into the Capabilities section above and the footer below - no seam.
-   Swappable live via the dev tweaker. */
-@keyframes cta-grid {
-    to {
-        background-position: 0 -64px, 0 -64px, 0 0;
-    }
-}
-
-[data-cta-bg] {
-    background-image:
-        repeating-linear-gradient(0deg, color-mix(in oklab, currentColor 6%, transparent) 0 1px, transparent 1px 64px),
-        repeating-linear-gradient(90deg, color-mix(in oklab, currentColor 6%, transparent) 0 1px, transparent 1px 64px),
-        radial-gradient(64% 50% at 50% 62%, color-mix(in oklab, var(--color-signature) 56%, transparent), transparent 72%);
-    background-size: 64px 64px, 64px 64px, cover;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
-    animation: cta-grid 7s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .aurora-field,
-    [data-cta-bg] {
-        animation: none;
-    }
-}
+/* No gradients. Three colors: black, white, red. Depth comes from flat
+   surface swaps (black band / white band) and the single red accent -
+   never from a gradient, glow, or tint. */

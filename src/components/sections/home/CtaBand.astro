@@ -1,35 +1,29 @@
 ---
 import { routes } from "@/lib/data/nav";
-import { MagneticButton } from "@/components/react/MagneticButton";
 ---
 
-<section class="relative isolate w-full overflow-hidden bg-tile text-on-tile" data-reveal>
-	<div data-cta-bg class="pointer-events-none absolute inset-0 -z-10"></div>
+<section class="w-full bg-signature-deep text-on-signature" data-reveal>
 	<div
-		class="pointer-events-none absolute inset-0 -z-10"
-		style="background: radial-gradient(60% 80% at 50% 50%, transparent 0%, transparent 38%, color-mix(in oklab, var(--color-tile) 45%, transparent) 100%);"
+		class="mx-auto flex w-full max-w-site flex-col gap-8 px-6 py-24 tablet:px-8 tablet:py-28 laptop:flex-row laptop:items-center laptop:justify-between laptop:gap-16"
 	>
-	</div>
-	<div
-		class="mx-auto flex w-full max-w-site flex-col items-center gap-8 px-6 py-28 text-center tablet:px-8 tablet:py-36"
-	>
-		<h2
-			class="max-w-[18ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em] [text-shadow:0_2px_24px_oklch(0.16_0.02_265_/_0.6)]"
-		>
-			Have a hard problem worth shipping?
-		</h2>
-		<p class="max-w-[46ch] text-body-lg leading-[30px] text-on-tile/80">
-			We take on selective research partnerships when there is a path to a real
-			system.
-		</p>
-		<MagneticButton
-			client:visible
+		<div class="flex max-w-[52ch] flex-col gap-4">
+			<h2
+				class="max-w-[20ch] font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em]"
+			>
+				Have a hard problem worth shipping?
+			</h2>
+			<p class="text-body-lg leading-[30px] text-on-signature/85">
+				We take on selective research partnerships when there is a path to a
+				real system.
+			</p>
+		</div>
+		<a
 			href={routes.contact}
-			className="group inline-flex h-[52px] min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-8 text-base font-bold text-primary-foreground shadow-[0_8px_24px_oklch(0.16_0.02_265_/_0.3)] transition-[background-color] duration-200 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-tile active:scale-[0.98]"
+			class="group inline-flex h-[52px] min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-lg bg-tile px-8 text-base font-bold text-on-tile transition-colors duration-150 hover:bg-tile/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-signature focus-visible:ring-offset-2 focus-visible:ring-offset-signature max-laptop:w-full"
 		>
 			Get in touch
 			<svg
-				class="size-[18px] transition-transform duration-200 group-hover:translate-x-0.5"
+				class="size-[18px] transition-transform duration-150 group-hover:translate-x-0.5"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -40,6 +34,6 @@ import { MagneticButton } from "@/components/react/MagneticButton";
 			>
 				<path d="M5 12h14M13 6l6 6-6 6"></path>
 			</svg>
-		</MagneticButton>
+		</a>
 	</div>
 </section>

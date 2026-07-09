@@ -6,8 +6,8 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
 		ariaLabel: "Products navigation",
 		heading: "Products",
 		links: [
-			{ label: "Rustbox", href: "https://rustbox.orkait.com", isExternal: true },
-			{ label: "BooleanStack", href: routes.projects },
+			{ label: "Rustbox", href: "https://rustbox.sh", isExternal: true },
+			{ label: "BooleanStack", href: "https://booleanstack.com" },
 			{ label: "Zen", href: routes.projects },
 		],
 	},
