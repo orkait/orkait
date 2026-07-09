@@ -35,7 +35,7 @@ export function ChatWidget() {
 							transition={{ duration: 0.2 }}
 							className="pointer-events-auto shadow-2xl"
 						>
-							<div className="w-[427px] h-[615px] min-h-0 overflow-hidden flex flex-col border-none rounded-lg bg-white">
+							<div className="w-[427px] h-[615px] min-h-0 overflow-hidden flex flex-col border-none rounded-lg bg-card">
 								{/* Header */}
 								<div className="bg-primary p-6 flex items-center justify-between text-primary-foreground rounded-t-lg">
 									<div className="flex flex-col">
@@ -72,7 +72,7 @@ export function ChatWidget() {
 												className={cn(
 													"max-w-[80%] p-4 text-[13px] font-medium leading-[1.4]",
 													msg.sender === "bot"
-														? "bg-[#E5E7EB] text-[#444] self-start rounded-tl-lg rounded-tr-lg rounded-br-lg"
+														? "bg-secondary text-foreground/80 self-start rounded-tl-lg rounded-tr-lg rounded-br-lg"
 														: "bg-black text-[#CCC] self-end rounded-tl-lg rounded-tr-lg rounded-bl-lg",
 												)}
 											>
@@ -90,7 +90,7 @@ export function ChatWidget() {
 										))}
 
 										{isLoading && (
-											<div className="bg-[#E5E7EB] text-[#444] self-start p-4 rounded-tl-lg rounded-tr-lg rounded-br-lg flex gap-1">
+											<div className="bg-secondary text-foreground/80 self-start p-4 rounded-tl-lg rounded-tr-lg rounded-br-lg flex gap-1">
 												<span className="w-1 h-1 bg-current rounded-full animate-bounce" />
 												<span className="w-1 h-1 bg-current rounded-full animate-bounce delay-75" />
 												<span className="w-1 h-1 bg-current rounded-full animate-bounce delay-150" />
@@ -100,7 +100,7 @@ export function ChatWidget() {
 								</div>
 
 								{/* Suggestions & input */}
-								<div className="shrink-0 p-4 bg-white border-t border-black/10 flex flex-col gap-3 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+								<div className="shrink-0 p-4 bg-card border-t border-border flex flex-col gap-3 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
 									<div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
 										{SUGGESTIONS.map((tag) => (
 											<button
@@ -125,7 +125,7 @@ export function ChatWidget() {
 										<div className="flex-1 relative">
 											<input
 												placeholder="Type your message here..."
-												className="w-full bg-[#F3F5F6] border-none rounded-md h-[40px] text-[14px] px-4 outline-none placeholder:text-[#AEAEB2]"
+												className="w-full bg-secondary border-none rounded-md h-[40px] text-[14px] px-4 outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-signature"
 												value={input}
 												onChange={(event) => setInput(event.target.value)}
 												onKeyDown={(event) => {
@@ -152,12 +152,15 @@ export function ChatWidget() {
 				</AnimatePresence>
 
 				{/* Toggle button */}
-				<motion.div
-					className="pointer-events-auto size-16 bg-primary rounded-full flex items-center justify-center cursor-pointer shadow-[0_8px_24px_oklch(0.52_0.20_264_/_0.32)] text-primary-foreground relative overflow-hidden"
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
+				<motion.button
+					type="button"
+					aria-label={isOpen ? "Close chat" : "Open chat"}
+					aria-expanded={isOpen}
+					className="pointer-events-auto relative flex size-16 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary text-primary-foreground shadow-[0_10px_28px_-10px_oklch(0.165_0.008_62_/_0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+					whileHover={{ scale: 1.04 }}
+					whileTap={{ scale: 0.96 }}
 					onClick={() => setIsOpen(!isOpen)}
-					transition={{ type: "spring", stiffness: 400, damping: 25 }}
+					transition={{ duration: 0.15, ease: "easeOut" }}
 				>
 					<AnimatePresence mode="wait">
 						{isOpen ? (
@@ -184,7 +187,7 @@ export function ChatWidget() {
 							</motion.div>
 						)}
 					</AnimatePresence>
-				</motion.div>
+				</motion.button>
 			</div>
 		</MotionConfig>
 	);
