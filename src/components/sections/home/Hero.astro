@@ -1,6 +1,6 @@
 ---
 import { SplitHeadline } from "@/components/react/SplitHeadline";
-import { AsciiField } from "@/components/react/AsciiField";
+import { LifeField } from "@/components/react/LifeField";
 
 const rustboxHref = "https://rustbox.sh";
 
@@ -15,13 +15,13 @@ const headlineLines = [
 	class="relative flex w-full flex-col justify-center overflow-hidden bg-background pb-16 pt-32 tablet:pt-36 laptop:min-h-[76dvh] laptop:pb-20"
 	data-reveal
 >
-	<div class="pointer-events-none absolute inset-0 z-0 opacity-[0.55]">
-		<AsciiField client:visible />
-	</div>
+	<!-- Life is texture: masked away from the centre so it never competes with
+	     the headline or the terminal. Cells survive only at the edges. -->
 	<div
-		class="pointer-events-none absolute inset-0 z-10"
-		style="background: color-mix(in oklab, var(--color-background) 62%, transparent);"
+		class="pointer-events-none absolute inset-0 z-0"
+		style="-webkit-mask-image: radial-gradient(115% 85% at 50% 50%, transparent 38%, #000 88%); mask-image: radial-gradient(115% 85% at 50% 50%, transparent 38%, #000 88%);"
 	>
+		<LifeField client:visible />
 	</div>
 
 	<div class="relative z-20 mx-auto w-full max-w-site px-6 tablet:px-8">
