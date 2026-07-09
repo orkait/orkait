@@ -91,34 +91,39 @@ const headlineLines = [
 							<span class="size-2.5 rounded-full bg-on-tile/15"></span>
 							<span class="size-2.5 rounded-full bg-on-tile/15"></span>
 						</span>
-						<span class="text-[11px] uppercase tracking-[0.14em] text-on-tile/45">rustbox · api</span>
-						<span
-							class="inline-flex items-center gap-1.5 rounded-full bg-signature px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-on-signature"
-						>
-							<span class="size-1.5 animate-pulse rounded-full bg-on-signature"></span>
-							Live
+						<span class="text-[11px] uppercase tracking-[0.14em] text-on-tile/45">orkait · verdicts</span>
+						<span class="text-[10px] uppercase tracking-[0.12em] text-on-tile/35" aria-hidden="true">
+							3 surfaces
 						</span>
 					</figcaption>
 					<div class="overflow-x-auto px-4 py-4">
 						<pre
-							class="whitespace-pre text-on-tile/85"><span class="text-on-tile/45"># your agent wrote this code. don't take it on faith.</span>
-<span class="text-on-tile/45">$</span> curl -X POST /api/submit \
-    -H "X-API-Key: rb_live_****" \
-    -d '&#123;"language":"python","code":"&lt;agent_patch&gt;"&#125;'
+							class="whitespace-pre text-on-tile/85"><span class="text-on-tile/45"># every claim below returns a verdict you can check.</span>
 
-<span class="font-bold text-signature-soft">● AC Accepted</span>            <span class="text-on-tile/55">python · normal_exit</span>
+<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent code</span> <span class="inline-flex items-center gap-1.5 rounded-full bg-signature px-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-on-signature">live</span>
+<span class="text-on-tile/45">$</span> curl rustbox.sh/api/submit -d '&#123;"code":"&lt;agent_patch&gt;"&#125;'
+<span class="font-bold text-signature-soft">● AC Accepted</span> <span class="text-on-tile/55">· kernel isolation · syscall trace · exit 0</span>
 
-<span class="text-on-tile/45">isolation</span>   kernel · namespaces + cgroups
-<span class="text-on-tile/45">evidence</span>    syscall trace returned
-<span class="text-on-tile/45">cpu</span>  9.1 ms   <span class="text-on-tile/45">wall</span>  10.0 ms   <span class="text-on-tile/45">exit</span>  0</pre>
+<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">model weights</span>
+<span class="text-on-tile/45">$</span> python -m orka verify model.orka
+<span class="font-bold text-signature-soft">● ~2 bits/weight</span> <span class="text-on-tile/55">· perplexity vs fp16, measured</span>
+
+<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent memory</span>
+<span class="text-on-tile/45">&gt;</span> SIMILAR TO "paris travel" LIMIT 10
+<span class="font-bold text-signature-soft">● 10 memories</span> <span class="text-on-tile/55">· 127 µs · scores attached</span></pre>
 					</div>
 				</figure>
 				<p class="mt-3 font-mono text-[11px] uppercase tracking-[0.12em] text-on-tile/45">
-					Agent code in, kernel verdict out · live at
+					Real commands ·
 					<a
 						href={rustboxHref}
 						class="text-on-tile/70 underline underline-offset-4 transition-colors duration-150 hover:text-on-tile focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature"
 					>rustbox.sh</a>
+					·
+					<a
+						href="https://github.com/orkait"
+						class="text-on-tile/70 underline underline-offset-4 transition-colors duration-150 hover:text-on-tile focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature"
+					>github.com/orkait</a>
 				</p>
 			</div>
 		</div>
