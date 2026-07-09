@@ -12,40 +12,40 @@ const headlineLines = [
 
 <section
 	aria-label="Intro"
-	class="relative flex w-full flex-col justify-center overflow-hidden bg-tile pb-16 pt-32 tablet:pt-36 laptop:min-h-[76dvh] laptop:pb-20"
+	class="relative flex w-full flex-col justify-center overflow-hidden bg-background pb-16 pt-32 tablet:pt-36 laptop:min-h-[76dvh] laptop:pb-20"
 	data-reveal
 >
-	<div class="pointer-events-none absolute inset-0 z-0 opacity-40">
+	<div class="pointer-events-none absolute inset-0 z-0 opacity-[0.55]">
 		<AsciiField client:visible />
 	</div>
 	<div
 		class="pointer-events-none absolute inset-0 z-10"
-		style="background: color-mix(in oklab, var(--color-tile) 55%, transparent);"
+		style="background: color-mix(in oklab, var(--color-background) 62%, transparent);"
 	>
 	</div>
 
 	<div class="relative z-20 mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="grid grid-cols-1 items-center gap-12 laptop:grid-cols-12 laptop:gap-10">
 			<div class="flex flex-col items-start gap-6 text-left laptop:col-span-7">
-				<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-on-tile/60">
+				<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
 					Applied AI research, shipped as products
 				</p>
 
 				<SplitHeadline
 					client:load
 					lines={headlineLines}
-					className="font-display text-on-tile"
-					accentClassName="text-signature-soft"
+					className="font-display text-foreground"
+					accentClassName="text-signature-deep"
 					style={{
-						fontWeight: 600,
-						letterSpacing: "-0.02em",
-						lineHeight: 1.05,
-						fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+						fontWeight: 500,
+						letterSpacing: "-0.045em",
+						lineHeight: 1.0,
+						fontSize: "clamp(2.5rem, 5.6vw, 4.5rem)",
 						textAlign: "left",
 					}}
 				/>
 
-				<p class="max-w-[54ch] text-body-lg leading-[30px] text-on-tile/70">
+				<p class="max-w-[54ch] text-body-lg leading-[30px] text-foreground/70">
 					We build AI for the high-stakes moments - untrusted code, grading at
 					scale, agents on the loose - and back every one with proof you can
 					check, not promises.
@@ -54,7 +54,7 @@ const headlineLines = [
 				<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
 					<a
 						href={rustboxHref}
-						class="group inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground transition-colors duration-150 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
+						class="group inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-7 text-base font-bold text-primary-foreground transition-colors duration-150 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 					>
 						Open Rustbox
 						<svg
@@ -72,16 +72,16 @@ const headlineLines = [
 					</a>
 					<a
 						href="#proof"
-						class="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-lg border border-on-tile/25 px-7 text-base font-semibold text-on-tile transition-colors duration-150 hover:bg-on-tile/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
+						class="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-lg border border-foreground/20 px-7 text-base font-semibold text-foreground transition-colors duration-150 hover:bg-foreground/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 					>
 						See the proof
 					</a>
 				</div>
 			</div>
 
-			<div class="laptop:col-span-5" data-reveal style="--reveal-delay: 0.18s;">
+			<div class="laptop:col-span-5" data-reveal style="--reveal-delay: 0.08s;">
 				<figure
-					class="w-full max-w-[560px] overflow-hidden rounded-xl border border-on-tile/10 bg-[oklch(0.19_0_0)] font-mono text-[12.5px] leading-[1.55] text-on-tile/85 shadow-[0_1px_0_oklch(1_0_0_/_0.04)_inset]"
+					class="w-full max-w-[560px] overflow-hidden rounded-xl bg-tile font-mono text-[12.5px] leading-[1.55] text-on-tile/85 shadow-[0_18px_40px_-24px_oklch(0.165_0.008_62_/_0.45)]"
 				>
 					<figcaption
 						class="flex items-center justify-between border-b border-on-tile/10 px-4 py-2.5"
@@ -96,122 +96,51 @@ const headlineLines = [
 							3 surfaces
 						</span>
 					</figcaption>
-					<div class="overflow-x-auto px-4 pb-1 pt-3" data-terminal>
-						<div data-tl class="pb-1 text-on-tile/45"># every claim below returns a verdict you can check.</div>
+					<div class="overflow-x-auto px-4 pb-1 pt-3">
+						<div class="pb-1 text-on-tile/45"># every claim below returns a verdict you can check.</div>
 
 						<div class="flex flex-col gap-0.5 border-t border-on-tile/[0.07] py-3">
-							<div data-tl class="flex items-center gap-2 pb-1">
+							<div class="flex items-center gap-2 pb-1">
 								<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent code</span>
 								<span class="inline-flex items-center rounded-full bg-signature px-1.5 py-px text-[9px] font-bold uppercase tracking-[0.1em] text-on-signature">live</span>
 								<span class="h-px flex-1 bg-on-tile/[0.07]" aria-hidden="true"></span>
 							</div>
-							<div data-tl><span class="text-on-tile/45">$</span> <span data-type>curl rustbox.sh/api/submit -d '&#123;"code":"&lt;agent_patch&gt;"&#125;'</span></div>
-							<div data-tl data-stamp><span class="font-bold text-signature-soft">● AC Accepted</span> <span class="text-on-tile/55">· kernel isolation · syscall trace · exit 0</span></div>
+							<div><span class="text-on-tile/45">$</span> curl rustbox.sh/api/submit -d '&#123;"code":"&lt;agent_patch&gt;"&#125;'</div>
+							<div><span class="font-bold text-signature-soft">● AC Accepted</span> <span class="text-on-tile/55">· kernel isolation · syscall trace · exit 0</span></div>
 						</div>
 
 						<div class="flex flex-col gap-0.5 border-t border-on-tile/[0.07] py-3">
-							<div data-tl class="flex items-center gap-2 pb-1">
+							<div class="flex items-center gap-2 pb-1">
 								<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">model weights</span>
 								<span class="h-px flex-1 bg-on-tile/[0.07]" aria-hidden="true"></span>
 							</div>
-							<div data-tl><span class="text-on-tile/45">$</span> <span data-type>python -m orka verify model.orka</span></div>
-							<div data-tl data-stamp><span class="font-bold text-signature-soft">● ~2 bits/weight</span> <span class="text-on-tile/55">· perplexity vs fp16, measured</span></div>
+							<div><span class="text-on-tile/45">$</span> python -m orka verify model.orka</div>
+							<div><span class="font-bold text-signature-soft">● ~2 bits/weight</span> <span class="text-on-tile/55">· perplexity vs fp16, measured</span></div>
 						</div>
 
 						<div class="flex flex-col gap-0.5 border-t border-on-tile/[0.07] py-3">
-							<div data-tl class="flex items-center gap-2 pb-1">
+							<div class="flex items-center gap-2 pb-1">
 								<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent memory</span>
 								<span class="h-px flex-1 bg-on-tile/[0.07]" aria-hidden="true"></span>
 							</div>
-							<div data-tl><span class="text-on-tile/45">&gt;</span> <span data-type>SIMILAR TO "paris travel" LIMIT 10</span></div>
-							<div data-tl data-stamp><span class="font-bold text-signature-soft">● 10 memories</span> <span class="text-on-tile/55">· 127 µs · scores attached</span><span class="term-cursor ml-1" data-cursor aria-hidden="true"></span></div>
+							<div><span class="text-on-tile/45">&gt;</span> SIMILAR TO "paris travel" LIMIT 10</div>
+							<div><span class="font-bold text-signature-soft">● 10 memories</span> <span class="text-on-tile/55">· 127 µs · scores attached</span><span class="term-cursor on ml-1" aria-hidden="true"></span></div>
 						</div>
 					</div>
 				</figure>
-				<p class="mt-3 font-mono text-[11px] uppercase tracking-[0.12em] text-on-tile/45">
+				<p class="mt-3 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
 					Real commands ·
 					<a
 						href={rustboxHref}
-						class="text-on-tile/70 underline underline-offset-4 transition-colors duration-150 hover:text-on-tile focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature"
+						class="text-foreground/75 underline underline-offset-4 transition-colors duration-150 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature"
 					>rustbox.sh</a>
 					·
 					<a
 						href="https://github.com/orkait"
-						class="text-on-tile/70 underline underline-offset-4 transition-colors duration-150 hover:text-on-tile focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature"
+						class="text-foreground/75 underline underline-offset-4 transition-colors duration-150 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature"
 					>github.com/orkait</a>
 				</p>
 			</div>
 		</div>
 	</div>
 </section>
-
-<script>
-	// Terminal session player. Commands type, verdicts flush in - like a real
-	// shell. Static HTML stays intact for no-JS / reduced-motion / SEO; this
-	// only orchestrates visibility. setTimeout-driven, IO-gated, plays once.
-	const setupTerminal = () => {
-	const panel = document.querySelector<HTMLElement>("[data-terminal]");
-	const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-	if (panel && !reduced && !panel.dataset.played) {
-		panel.dataset.played = "1";
-		const lines = [...panel.querySelectorAll<HTMLElement>("[data-tl]")];
-		const cursor = panel.querySelector<HTMLElement>("[data-cursor]");
-		const typed = new Map<HTMLElement, string>();
-
-		for (const line of lines) {
-			const t = line.querySelector<HTMLElement>("[data-type]");
-			if (t) {
-				typed.set(line, t.textContent ?? "");
-				t.textContent = "";
-			}
-		}
-		panel.classList.add("term-armed");
-
-		const showLine = (line: HTMLElement) => line.classList.add("tl-on");
-
-		const typeInto = (line: HTMLElement, done: () => void) => {
-			const target = line.querySelector<HTMLElement>("[data-type]");
-			const full = typed.get(line) ?? "";
-			if (!target || !full) return done();
-			showLine(line);
-			let i = 0;
-			const tick = () => {
-				i = Math.min(full.length, i + 2);
-				target.textContent = full.slice(0, i);
-				if (i < full.length) setTimeout(tick, 18);
-				else setTimeout(done, 140);
-			};
-			setTimeout(tick, 60);
-		};
-
-		const play = (idx: number) => {
-			if (idx >= lines.length) {
-				cursor?.classList.add("on");
-				return;
-			}
-			const line = lines[idx];
-			if (typed.has(line)) {
-				typeInto(line, () => play(idx + 1));
-			} else {
-				showLine(line);
-				const pause = line.hasAttribute("data-stamp") ? 320 : 90;
-				setTimeout(() => play(idx + 1), pause);
-			}
-		};
-
-		const io = new IntersectionObserver(
-			(entries) => {
-				if (entries.some((e) => e.isIntersecting)) {
-					io.disconnect();
-					setTimeout(() => play(0), 350);
-				}
-			},
-			{ threshold: 0.4 },
-		);
-		io.observe(panel);
-	}
-	};
-	setupTerminal();
-	document.addEventListener("astro:page-load", setupTerminal);
-</script>

@@ -14,12 +14,12 @@ interface Props {
 
 const container: Variants = {
 	hidden: {},
-	visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+	visible: { transition: { staggerChildren: 0.04, delayChildren: 0.03 } },
 };
 
 const word: Variants = {
 	hidden: { y: "110%" },
-	visible: { y: "0%", transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+	visible: { y: "0%", transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export function SplitHeadline({ lines, className, style, accentClassName = "text-signature-deep" }: Props) {

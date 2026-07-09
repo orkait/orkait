@@ -14,13 +14,14 @@ const BALL_RADIUS = 12;
 const MAX_RENDER_W = 1600;
 const MAX_RENDER_H = 600;
 
-// Navy bento tile palette - canvas sits on an ink-950 surface.
-const SURFACE = "#16172a"; // ink-950
-const GRID_MINOR = "rgba(255,255,255,0.04)";
-const GRID_AXIS = "rgba(255,255,255,0.09)";
-const ORIGIN_DOT = "rgba(255,255,255,0.16)";
-const TRAIL = "230,228,218"; // soft paper trails (hue-independent on navy tile)
-const BALL_FILL = "#f5f3ec"; // paper-100 bodies
+// Warm paper palette - the field sits on the paper-50 hero surface.
+// Ink trails, red bodies: the accent marks the moving parts, nothing else.
+const SURFACE = "#faf9f5"; // paper-50
+const GRID_MINOR = "rgba(32,28,22,0.045)";
+const GRID_AXIS = "rgba(32,28,22,0.08)";
+const ORIGIN_DOT = "rgba(32,28,22,0.14)";
+const TRAIL = "32,28,22"; // warm ink trails
+const BALL_FILL = "#db0016"; // red-500 bodies
 
 type Vec2 = { x: number; y: number };
 type Body = { pos: Vec2; vel: Vec2 };
