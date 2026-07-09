@@ -39,10 +39,11 @@ const upcoming = [
 
 		<a
 			href="https://rustbox.sh"
-			class="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-7 text-card-foreground transition-[transform,border-color] duration-150 ease-out hover:-translate-y-0.5 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:p-10"
+			class="group relative grid grid-cols-1 gap-8 overflow-hidden rounded-xl border border-border bg-card p-7 text-card-foreground transition-[transform,border-color] duration-150 ease-out hover:-translate-y-0.5 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:p-10 laptop:grid-cols-[7fr_5fr] laptop:gap-12"
 			data-reveal
 		>
 
+			<div class="flex flex-col justify-between">
 			<div class="relative z-10 flex items-center gap-3">
 				<span
 					class="inline-flex items-center gap-1.5 rounded-full bg-signature px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-on-signature"
@@ -103,6 +104,20 @@ const upcoming = [
 					</svg>
 				</span>
 			</div>
+			</div>
+
+			<!-- The product itself: a real run in the real UI - request, verdict,
+			     stdout, timings. Framed window, full colour, desktop only. -->
+			<figure class="relative hidden min-h-[360px] overflow-hidden rounded-lg border border-border laptop:block">
+				<img
+					src="/products/rustbox-app.webp"
+					alt="Rustbox terminal: a curl submission returning verdict AC Accepted with stdout 42, CPU time 9.1 ms and exit code 0"
+					width="1046"
+					height="1128"
+					loading="lazy"
+					class="absolute inset-0 h-full w-full object-cover object-top"
+				/>
+			</figure>
 		</a>
 
 		<ul class="mt-2 divide-y divide-border border-b border-border" data-reveal>
