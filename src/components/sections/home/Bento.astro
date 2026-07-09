@@ -26,6 +26,7 @@ const upcoming = [
 <section class="w-full bg-background py-20 tablet:py-28 laptop:py-32" data-reveal>
 	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="mb-10 flex flex-col gap-3 tablet:mb-14">
+			<span class="rule-draw" aria-hidden="true"></span>
 			<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
 				Products
 			</p>
@@ -48,7 +49,7 @@ const upcoming = [
 				loading="lazy"
 				width="1200"
 				height="800"
-				class="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[48%] object-cover object-left opacity-70 grayscale laptop:block"
+				class="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[48%] object-cover object-left opacity-70 grayscale transition-transform duration-300 ease-out group-hover:scale-[1.03] laptop:block"
 			/>
 			<div
 				class="pointer-events-none absolute inset-y-0 right-0 hidden w-[48%] bg-tile/70 laptop:block"

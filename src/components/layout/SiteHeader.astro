@@ -128,4 +128,5 @@ const isActive = (href: string) =>
 <script>
 	import { initHeader } from "@/lib/client/header";
 	initHeader();
+	document.addEventListener("astro:page-load", () => initHeader());
 </script>

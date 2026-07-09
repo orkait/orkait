@@ -70,8 +70,12 @@ const facts: Fact[] = [
 
 <script>
 	// Count-up on first view. setTimeout stepping (no rAF), reduced-motion safe.
+	const setupCounts = () => {
 	const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-	const els = document.querySelectorAll<HTMLElement>("[data-count]");
+	const els = [...document.querySelectorAll<HTMLElement>("[data-count]")].filter(
+		(el) => !el.dataset.armed,
+	);
+	for (const el of els) el.dataset.armed = "1";
 	if (!reduced && els.length) {
 		const io = new IntersectionObserver(
 			(entries) => {
@@ -98,4 +102,7 @@ const facts: Fact[] = [
 		);
 		for (const el of els) io.observe(el);
 	}
+	};
+	setupCounts();
+	document.addEventListener("astro:page-load", setupCounts);
 </script>

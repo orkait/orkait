@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
 import { siteConfig } from "@/lib/site";
 import ChatWidget from "@/components/react/ChatWidget";
 import { TweakPanel } from "@/components/react/TweakPanel";
@@ -48,6 +49,7 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 
 		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
+		<ClientRouter />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={siteConfig.name} />
@@ -76,8 +78,11 @@ const canonical = new URL(Astro.url.pathname, siteConfig.url).href;
 		<script>
 			import { initSmoothScroll } from "@/lib/client/smoothScroll";
 			import { initRevealOnScroll } from "@/lib/client/revealOnScroll";
-			initRevealOnScroll();
+			// Lenis binds document/window once and survives view transitions.
 			initSmoothScroll();
+			// Reveals observe per-page DOM - re-arm after every swap.
+			initRevealOnScroll();
+			document.addEventListener("astro:page-load", () => initRevealOnScroll());
 		</script>
 	</body>
 </html>
