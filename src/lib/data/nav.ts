@@ -22,6 +22,6 @@ export const headerNav: SiteLink[] = [
 ];
 
 export const headerCtas = {
-	rustbox: { label: "Rustbox", href: "https://rustbox.orkait.com" },
+	rustbox: { label: "Rustbox", href: "https://rustbox.sh" },
 	contact: { label: "Contact", href: routes.contact },
 } as const;

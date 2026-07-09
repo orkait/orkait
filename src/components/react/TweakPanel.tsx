@@ -46,6 +46,9 @@ const ACCENTS: { label: string; c: string; soft: string }[] = [
 	{ label: "Violet", c: "#8B5CF6", soft: "#C4B5FD" },
 	{ label: "Amber", c: "#F59E0B", soft: "#FCD34D" },
 	{ label: "Rose", c: "#F43F5E", soft: "#FDA4AF" },
+	{ label: "Red", c: "#DB0016", soft: "#F3413C" },
+	{ label: "Crimson", c: "#C1121F", soft: "#EF4444" },
+	{ label: "Scarlet", c: "#E63329", soft: "#FF6B5E" },
 ];
 
 const loaded = new Set<string>();
@@ -187,13 +190,15 @@ function applyCtaBg(i: number) {
 	ctaEl().textContent = CTA_BGS[i]?.css ?? "";
 }
 
-const KEY = "orkait-dev-tweak";
+// Bump this whenever the baked theme changes. A stale saved config re-applies
+// itself with !important on every load and silently overrides the real theme.
+const KEY = "orkait-dev-tweak-v2-bw-red";
 
 export function TweakPanel() {
 	const [open, setOpen] = useState(false);
 	// Defaults match the baked theme (Outfit / Geist / Space Mono / Rose) so the
 	// dropdowns reflect reality and nothing overrides the real site until you tweak.
-	const [s, setS] = useState<State>({ d: 5, b: 3, m: 3, a: 7, e: 1, c: 1 });
+	const [s, setS] = useState<State>({ d: 5, b: 3, m: 3, a: 8, e: 0, c: 0 });
 	const [copied, setCopied] = useState(false);
 
 	useEffect(() => {

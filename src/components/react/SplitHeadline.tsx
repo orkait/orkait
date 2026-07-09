@@ -19,7 +19,7 @@ const container: Variants = {
 
 const word: Variants = {
 	hidden: { y: "110%" },
-	visible: { y: "0%", transition: { type: "spring", duration: 0.9, bounce: 0.18 } },
+	visible: { y: "0%", transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export function SplitHeadline({ lines, className, style, accentClassName = "text-signature-deep" }: Props) {

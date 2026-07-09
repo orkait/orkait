@@ -10,7 +10,7 @@ export const PRODUCT_LINES: ProductLine[] = [
 		description:
 			"Rustbox runs untrusted code inside a kernel-enforced sandbox built on Linux namespaces and cgroups, no Docker required. Eight languages, 260+ requests per second, and zero escapes across 22 adversarial tests.",
 		surface: "Secure execution",
-		href: "https://rustbox.orkait.com",
+		href: "https://rustbox.sh",
 		ctaLabel: "Open Rustbox",
 		publicRole: "Flagship completed product",
 	},
@@ -23,7 +23,8 @@ export const PRODUCT_LINES: ProductLine[] = [
 		description:
 			"BooleanStack is Orkait's upcoming product for data structures, algorithms, system design, and engineering practice that rewards depth over streaks.",
 		surface: "Software learning systems",
-		ctaLabel: "Coming soon",
+		href: "https://booleanstack.com",
+		ctaLabel: "Visit BooleanStack",
 		publicRole: "Upcoming software learning system",
 	},
 	{
@@ -45,7 +46,7 @@ export const PROJECTS: Project[] = [
 		id: "rustbox",
 		title: "Rustbox",
 		services: "Secure Execution, Systems Infrastructure",
-		href: "https://rustbox.orkait.com",
+		href: "https://rustbox.sh",
 		image: {
 			src: "/data/projects/rustbox-hero.jpeg",
 			width: 960,

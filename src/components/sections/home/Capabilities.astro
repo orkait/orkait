@@ -1,27 +1,22 @@
 ---
 import { MemoryGraph } from "@/components/react/MemoryGraph";
 // The dark "open and under the hood" beat. GraphStore + Hyperstack are open
-// source, Orka is research. No invented metrics. The product lines live in the
-// Bento section, not here, so nothing repeats across the page.
+// source; Orka is research (demoted to a row - no dead links: the orka.py repo
+// stays plain text until it is public). No invented metrics.
 type Metric = { value: string; label: string };
-type Capability = {
-	name: string;
+type Repo = {
+	repo: string;
 	surface: string;
-	status: "Open source" | "Research";
-	href?: string;
-	cta?: string;
 	statement: string;
 	detail: string;
 	metrics: Metric[];
+	href: string;
 };
 
-const capabilities: Capability[] = [
+const repos: Repo[] = [
 	{
-		name: "GraphStore",
+		repo: "orkait/graphstore",
 		surface: "Agent memory",
-		status: "Open source",
-		href: "https://github.com/orkait/graphstore",
-		cta: "View on GitHub",
 		statement: "Agent memory that recalls by meaning, not keywords.",
 		detail:
 			"Six engines behind one readable DSL: columnar numpy storage, HNSW vector search, and a markdown vault built for 24/7 agents.",
@@ -30,13 +25,11 @@ const capabilities: Capability[] = [
 			{ value: "~127µs", label: "semantic recall" },
 			{ value: "Python", label: "library" },
 		],
+		href: "https://github.com/orkait/graphstore",
 	},
 	{
-		name: "Hyperstack",
+		repo: "orkait/hyperstack",
 		surface: "Engineering harness",
-		status: "Open source",
-		href: "https://github.com/orkait/hyperstack",
-		cta: "View on GitHub",
 		statement: "Stop AI agents from shipping plausible-but-wrong code.",
 		detail:
 			"Real-time ground truth for React, Next.js, Motion, React Flow, Echo, Go, Rust, and design tokens, enforced by adversarial gates.",
@@ -44,40 +37,26 @@ const capabilities: Capability[] = [
 			{ value: "21", label: "skill gates" },
 			{ value: "10+", label: "stacks covered" },
 		],
-	},
-	{
-		name: "Orka",
-		surface: "Model compression",
-		status: "Research",
-		statement: "Language-model weights, compressed toward 1 bit.",
-		detail:
-			"Learned codebooks and a hand-written GGML kernel keep reconstruction byte-exact.",
-		metrics: [{ value: "~1 bit", label: "per-weight target" }],
+		href: "https://github.com/orkait/hyperstack",
 	},
 ];
-
-const statusClass: Record<Capability["status"], string> = {
-	"Open source": "border border-on-tile/30 text-on-tile",
-	Research: "border border-on-tile/15 text-on-tile/70",
-};
 ---
 
-<section class="relative isolate w-full overflow-hidden bg-tile text-on-tile py-20 tablet:py-28 laptop:py-32">
-	<div class="aurora-field pointer-events-none absolute inset-0 -z-10" style="--aurora-opacity: 0.16;"></div>
-	<div class="relative z-10 mx-auto w-full max-w-site px-6 tablet:px-8">
+<section class="w-full bg-tile py-20 text-on-tile tablet:py-28 laptop:py-32">
+	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
 		<div class="grid grid-cols-1 gap-12 laptop:grid-cols-[5fr_7fr] laptop:gap-20">
-			<div class="flex flex-col gap-6 laptop:sticky laptop:top-28 laptop:self-start">
-				<p class="font-mono text-[12px] uppercase tracking-[0.18em] text-on-tile/55">
-					Open and under the hood
+			<div class="flex flex-col gap-5 laptop:sticky laptop:top-28 laptop:self-start">
+				<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-on-tile/55">
+					Open source
 				</p>
 				<h2
-					class="max-w-[16ch] font-display text-[clamp(1.875rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.01em]"
+					class="max-w-[16ch] font-display text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]"
 				>
-					We wrote the hard parts ourselves.
+					Don't take us on faith either.
 				</h2>
 				<p class="max-w-[44ch] text-body-lg leading-[30px] text-on-tile/70">
-					GraphStore and Hyperstack are open source. Orka compresses model
-					weights toward 1 bit. Read the code, run the tests.
+					GraphStore and Hyperstack are open on GitHub. Read the code, run the
+					tests.
 				</p>
 
 				<MemoryGraph
@@ -87,76 +66,95 @@ const statusClass: Record<Capability["status"], string> = {
 				/>
 			</div>
 
-			<ul class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-pl-6 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden tablet:mx-0 tablet:flex-col tablet:gap-5 tablet:overflow-visible tablet:px-0 tablet:pb-0">
+			<div class="flex flex-col gap-5">
 				{
-					capabilities.map((c) => (
-						<li data-reveal class="max-tablet:w-[85%] max-tablet:shrink-0 max-tablet:snap-start">
-							<article class="group flex h-full flex-col gap-5 rounded-[20px] glass-edge border border-on-tile/15 bg-on-tile/[0.04] p-8 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-on-tile/30 tablet:p-10">
-								<div class="flex items-center justify-between gap-3">
-									<span class="font-mono text-[11px] uppercase tracking-[0.18em] text-on-tile/55">
-										{c.surface}
-									</span>
-									<span
-										class={`rounded-full px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] ${statusClass[c.status]}`}
+					repos.map((r) => (
+						<a
+							href={r.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							data-reveal
+							class="group flex flex-col gap-5 rounded-xl border border-on-tile/10 bg-[oklch(0.19_0_0)] p-7 transition-[transform,border-color] duration-150 ease-out hover:-translate-y-0.5 hover:border-on-tile/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-tile tablet:p-9"
+						>
+							<div class="flex flex-wrap items-center justify-between gap-3">
+								<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-on-tile">
+									{r.repo}
+								</span>
+								<span class="rounded-full border border-on-tile/25 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-on-tile/70">
+									Open source
+								</span>
+							</div>
+
+							<div class="flex flex-col gap-2">
+								<p class="max-w-[46ch] text-body-lg leading-[28px] text-on-tile">
+									{r.statement}
+								</p>
+								<p class="max-w-[52ch] text-base leading-[24px] text-on-tile/60">{r.detail}</p>
+							</div>
+
+							<div class="flex flex-wrap items-end justify-between gap-5 border-t border-on-tile/10 pt-5">
+								<dl class="flex flex-wrap gap-x-10 gap-y-3">
+									{r.metrics.map((m) => (
+										<div class="flex flex-col gap-1">
+											<dd class="order-1 font-mono text-[clamp(1.125rem,1.8vw,1.5rem)] font-bold leading-none tracking-[-0.02em] text-signature-soft tabular-nums">
+												{m.value}
+											</dd>
+											<dt class="order-2 font-mono text-[10px] uppercase tracking-[0.12em] text-on-tile/50">
+												{m.label}
+											</dt>
+										</div>
+									))}
+								</dl>
+								<span class="inline-flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.12em] text-on-tile/85">
+									View on GitHub
+									<svg
+										class="size-4 transition-transform duration-150 group-hover:translate-x-1"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										aria-hidden="true"
 									>
-										{c.status}
-									</span>
-								</div>
-
-								<div class="flex flex-col gap-2.5">
-									<h3 class="font-display text-[clamp(1.625rem,2.6vw,2.25rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-										{c.name}
-									</h3>
-									<p class="max-w-[46ch] text-body-lg leading-[28px] text-on-tile">
-										{c.statement}
-									</p>
-									<p class="max-w-[52ch] text-base leading-[24px] text-on-tile/65">
-										{c.detail}
-									</p>
-								</div>
-
-								{c.metrics.length > 0 && (
-									<dl class="mt-1 flex flex-wrap gap-x-10 gap-y-4 border-t border-on-tile/12 pt-5">
-										{c.metrics.map((m) => (
-											<div class="flex flex-col gap-0.5">
-												<dt class="order-2 font-mono text-[11px] uppercase tracking-[0.12em] text-on-tile/55">
-													{m.label}
-												</dt>
-												<dd class="order-1 text-[clamp(1.5rem,2.2vw,2rem)] font-black leading-none tracking-[-0.02em] text-signature tabular-nums">
-													{m.value}
-												</dd>
-											</div>
-										))}
-									</dl>
-								)}
-
-								{c.href && (
-									<a
-										href={c.href}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="mt-1 inline-flex w-fit items-center gap-2 font-mono text-[13px] font-bold uppercase tracking-[0.12em] text-on-tile transition-colors hover:text-signature focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile"
-									>
-										{c.cta}
-										<svg
-											class="size-4 transition-transform duration-200 group-hover:translate-x-1"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2.2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											aria-hidden="true"
-										>
-											<path d="M5 12h14M13 6l6 6-6 6" />
-										</svg>
-									</a>
-								)}
-							</article>
-						</li>
+										<path d="M5 12h14M13 6l6 6-6 6" />
+									</svg>
+								</span>
+							</div>
+						</a>
 					))
 				}
-			</ul>
+
+				<div
+					data-reveal
+					class="flex flex-col gap-3 rounded-xl border border-dashed border-on-tile/15 p-7 tablet:grid tablet:grid-cols-12 tablet:items-center tablet:gap-6 tablet:p-8"
+				>
+					<div class="tablet:col-span-3">
+						<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-on-tile">Orka</span>
+						<span
+							class="ml-2 rounded-full border border-on-tile/15 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-on-tile/55"
+						>
+							Research
+						</span>
+					</div>
+					<div class="tablet:col-span-5">
+						<p class="text-base leading-[24px] text-on-tile/75">
+							Language-model weights, compressed toward 2 bits.
+						</p>
+					</div>
+					<div class="tablet:col-span-2">
+						<span class="font-mono text-lg font-bold tracking-[-0.02em] text-signature-soft">~2 bit</span>
+						<span class="ml-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-on-tile/50">
+							per weight
+						</span>
+					</div>
+					<div class="tablet:col-span-2 tablet:text-right">
+						<span class="font-mono text-[11px] uppercase leading-[1.6] tracking-[0.1em] text-on-tile/45">
+							Source opens soon
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

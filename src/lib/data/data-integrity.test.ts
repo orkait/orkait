@@ -103,7 +103,7 @@ describe("product positioning data", () => {
 	it("keeps Rustbox as the only live public product", () => {
 		const liveProducts = PRODUCT_LINES.filter((product) => product.status === "live");
 		expect(liveProducts.map((product) => product.id)).toEqual(["rustbox"]);
-		expect(liveProducts[0]?.href).toBe("https://rustbox.orkait.com");
+		expect(liveProducts[0]?.href).toBe("https://rustbox.sh");
 	});
 
 	it("keeps BooleanStack and Zen as coming soon products", () => {
