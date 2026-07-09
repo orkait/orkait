@@ -81,7 +81,7 @@ const headlineLines = [
 
 			<div class="laptop:col-span-5" data-reveal style="--reveal-delay: 0.18s;">
 				<figure
-					class="w-full max-w-[560px] overflow-hidden rounded-xl border border-on-tile/10 bg-[oklch(0.19_0_0)] font-mono text-[13px] leading-[1.7] text-on-tile/85 shadow-[0_1px_0_oklch(1_0_0_/_0.04)_inset]"
+					class="w-full max-w-[560px] overflow-hidden rounded-xl border border-on-tile/10 bg-[oklch(0.19_0_0)] font-mono text-[12.5px] leading-[1.55] text-on-tile/85 shadow-[0_1px_0_oklch(1_0_0_/_0.04)_inset]"
 				>
 					<figcaption
 						class="flex items-center justify-between border-b border-on-tile/10 px-4 py-2.5"
@@ -96,19 +96,33 @@ const headlineLines = [
 							3 surfaces
 						</span>
 					</figcaption>
-					<div class="overflow-x-auto px-4 py-4" data-terminal>
-						<div class="whitespace-pre text-on-tile/85">
-							<div data-tl><span class="text-on-tile/45"># every claim below returns a verdict you can check.</span></div>
-							<div data-tl>&#8203;</div>
-							<div data-tl><span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent code</span> <span class="inline-flex items-center gap-1.5 rounded-full bg-signature px-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-on-signature">live</span></div>
+					<div class="overflow-x-auto px-4 pb-1 pt-3" data-terminal>
+						<div data-tl class="pb-1 text-on-tile/45"># every claim below returns a verdict you can check.</div>
+
+						<div class="flex flex-col gap-0.5 border-t border-on-tile/[0.07] py-3">
+							<div data-tl class="flex items-center gap-2 pb-1">
+								<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent code</span>
+								<span class="inline-flex items-center rounded-full bg-signature px-1.5 py-px text-[9px] font-bold uppercase tracking-[0.1em] text-on-signature">live</span>
+								<span class="h-px flex-1 bg-on-tile/[0.07]" aria-hidden="true"></span>
+							</div>
 							<div data-tl><span class="text-on-tile/45">$</span> <span data-type>curl rustbox.sh/api/submit -d '&#123;"code":"&lt;agent_patch&gt;"&#125;'</span></div>
 							<div data-tl data-stamp><span class="font-bold text-signature-soft">● AC Accepted</span> <span class="text-on-tile/55">· kernel isolation · syscall trace · exit 0</span></div>
-							<div data-tl>&#8203;</div>
-							<div data-tl><span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">model weights</span></div>
+						</div>
+
+						<div class="flex flex-col gap-0.5 border-t border-on-tile/[0.07] py-3">
+							<div data-tl class="flex items-center gap-2 pb-1">
+								<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">model weights</span>
+								<span class="h-px flex-1 bg-on-tile/[0.07]" aria-hidden="true"></span>
+							</div>
 							<div data-tl><span class="text-on-tile/45">$</span> <span data-type>python -m orka verify model.orka</span></div>
 							<div data-tl data-stamp><span class="font-bold text-signature-soft">● ~2 bits/weight</span> <span class="text-on-tile/55">· perplexity vs fp16, measured</span></div>
-							<div data-tl>&#8203;</div>
-							<div data-tl><span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent memory</span></div>
+						</div>
+
+						<div class="flex flex-col gap-0.5 border-t border-on-tile/[0.07] py-3">
+							<div data-tl class="flex items-center gap-2 pb-1">
+								<span class="text-[10px] uppercase tracking-[0.14em] text-on-tile/40">agent memory</span>
+								<span class="h-px flex-1 bg-on-tile/[0.07]" aria-hidden="true"></span>
+							</div>
 							<div data-tl><span class="text-on-tile/45">&gt;</span> <span data-type>SIMILAR TO "paris travel" LIMIT 10</span></div>
 							<div data-tl data-stamp><span class="font-bold text-signature-soft">● 10 memories</span> <span class="text-on-tile/55">· 127 µs · scores attached</span><span class="term-cursor ml-1" data-cursor aria-hidden="true"></span></div>
 						</div>
