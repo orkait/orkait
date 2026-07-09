@@ -197,17 +197,19 @@
     /* Color Primitives (OKLCH, warm)  */
     /* ------------------------------- */
 
-    /* WHITE - neutral, chroma 0 (pure #fff is harsh, so near-white) */
-    --color-paper-50: oklch(0.985 0 0);
-    --color-paper-100: oklch(0.960 0 0);
-    --color-paper-200: oklch(0.925 0 0);
+    /* PAPER - warm near-white. Measured against anthropic.com (#faf9f5) and
+       mistral.ai (#fbfbf8): research labs sit on warm paper, not cold grey.
+       Neutrals are committed WARM throughout - never mixed with cool. */
+    --color-paper-50: oklch(0.974 0.006 92);
+    --color-paper-100: oklch(0.952 0.008 88);
+    --color-paper-200: oklch(0.922 0.009 85);
 
-    /* BLACK - neutral, chroma 0 (pure #000 is harsh, so near-black) */
-    --color-ink-950: oklch(0.145 0 0);
-    --color-ink-700: oklch(0.40 0 0);
-    --color-ink-500: oklch(0.56 0 0);
-    --color-ink-300: oklch(0.78 0 0);
-    --color-ink-200: oklch(0.89 0 0);
+    /* INK - warm near-black (pure #000 on warm paper reads harsh/disconnected) */
+    --color-ink-950: oklch(0.165 0.008 62);
+    --color-ink-700: oklch(0.42 0.008 62);
+    --color-ink-500: oklch(0.56 0.006 62);
+    --color-ink-300: oklch(0.78 0.005 62);
+    --color-ink-200: oklch(0.89 0.004 62);
 
     /* ======================================================= */
     /* PRIMITIVE HUE RAMPS (raw color, no meaning)             */
@@ -286,7 +288,7 @@
     --color-foreground: var(--color-ink-950);
 
     --color-muted: var(--color-paper-200);
-    --color-muted-foreground: oklch(0.50 0 0);
+    --color-muted-foreground: oklch(0.48 0.008 62);
 
     --color-border: var(--color-ink-200);
     --color-input: var(--color-ink-200);
@@ -390,13 +392,13 @@
 
 [data-reveal] {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(8px);
 }
 
 .reveal-ready [data-reveal] {
     transition:
-        opacity 0.5s var(--ease-emphasized),
-        transform 0.5s var(--ease-emphasized);
+        opacity 0.2s ease-out,
+        transform 0.2s ease-out;
     transition-delay: var(--reveal-delay, 0s);
 }
 
@@ -409,13 +411,13 @@
    in 60ms apart. GPU-only (opacity + transform). */
 [data-reveal-stagger] > * {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(8px);
 }
 
 .reveal-ready [data-reveal-stagger] > * {
     transition:
-        opacity 0.5s var(--ease-emphasized),
-        transform 0.5s var(--ease-emphasized);
+        opacity 0.2s ease-out,
+        transform 0.2s ease-out;
 }
 
 [data-reveal-stagger].is-visible > * {
@@ -423,11 +425,11 @@
     transform: none;
 }
 
-[data-reveal-stagger] > *:nth-child(2) { transition-delay: 60ms; }
-[data-reveal-stagger] > *:nth-child(3) { transition-delay: 120ms; }
-[data-reveal-stagger] > *:nth-child(4) { transition-delay: 180ms; }
-[data-reveal-stagger] > *:nth-child(5) { transition-delay: 240ms; }
-[data-reveal-stagger] > *:nth-child(6) { transition-delay: 300ms; }
+[data-reveal-stagger] > *:nth-child(2) { transition-delay: 40ms; }
+[data-reveal-stagger] > *:nth-child(3) { transition-delay: 80ms; }
+[data-reveal-stagger] > *:nth-child(4) { transition-delay: 120ms; }
+[data-reveal-stagger] > *:nth-child(5) { transition-delay: 160ms; }
+[data-reveal-stagger] > *:nth-child(6) { transition-delay: 200ms; }
 
 @media (prefers-reduced-motion: reduce) {
     [data-reveal],
@@ -441,27 +443,6 @@
 /* ---------------------------------- */
 /* Terminal session player            */
 /* ---------------------------------- */
-
-/* Armed only via JS (motion allowed) - no-JS and reduced-motion keep the
-   static transcript fully visible. */
-.term-armed [data-tl] {
-    opacity: 0;
-}
-
-.term-armed [data-tl].tl-on {
-    opacity: 1;
-}
-
-.term-armed [data-tl][data-stamp] {
-    transform: translateY(3px);
-    transition:
-        opacity 0.18s ease-out,
-        transform 0.18s ease-out;
-}
-
-.term-armed [data-tl][data-stamp].tl-on {
-    transform: none;
-}
 
 @keyframes cursor-blink {
     50% {
