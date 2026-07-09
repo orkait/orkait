@@ -52,7 +52,7 @@ export function NewsletterForm() {
 
 	if (submitted) {
 		return (
-			<p role="status" className="flex h-12 items-center text-base text-on-tile">
+			<p role="status" className="flex h-12 items-center text-base text-foreground">
 				Thanks - you are on the list.
 			</p>
 		);
@@ -71,20 +71,20 @@ export function NewsletterForm() {
 					aria-label="Email address"
 					aria-invalid={message ? "true" : undefined}
 					aria-describedby={message ? "newsletter-error" : undefined}
-					className="h-12 w-full rounded-lg border border-on-tile/25 bg-on-tile/[0.06] px-4 text-base text-on-tile placeholder:text-on-tile/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-tile aria-[invalid=true]:border-signature"
+					className="h-12 w-full rounded-lg border border-foreground/20 bg-background px-4 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-[invalid=true]:border-signature"
 					{...register("email")}
 				/>
 				<button
 					type="submit"
 					disabled={locked}
 					aria-busy={locked}
-					className="inline-flex h-12 shrink-0 items-center rounded-lg bg-signature-deep px-5 text-base font-bold text-on-signature transition-colors hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-tile focus-visible:ring-offset-2 focus-visible:ring-offset-tile disabled:opacity-60 disabled:cursor-not-allowed"
+					className="inline-flex h-12 shrink-0 items-center rounded-lg bg-signature-deep px-5 text-base font-bold text-on-signature transition-colors hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-60 disabled:cursor-not-allowed"
 				>
 					{locked ? "Subscribing..." : "Subscribe"}
 				</button>
 			</div>
 			{message && (
-				<p id="newsletter-error" role="alert" className="text-sm text-on-tile/90">
+				<p id="newsletter-error" role="alert" className="text-sm text-foreground/90">
 					{message}
 				</p>
 			)}
