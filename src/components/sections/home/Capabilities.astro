@@ -1,8 +1,8 @@
 ---
 import { MemoryGraph } from "@/components/react/MemoryGraph";
 // The dark "open and under the hood" beat. GraphStore + Hyperstack are open
-// source; Orka is research (demoted to a row - no dead links: the orka.py repo
-// stays plain text until it is public). No invented metrics.
+// source; Orka is research, now public at github.com/orkait/orka.py.
+// No invented metrics.
 type Metric = { value: string; label: string };
 type Repo = {
 	repo: string;
@@ -126,12 +126,15 @@ const repos: Repo[] = [
 					))
 				}
 
-				<div
+				<a
+					href="https://github.com/orkait/orka.py"
+					target="_blank"
+					rel="noopener noreferrer"
 					data-reveal
-					class="flex flex-col gap-3 rounded-xl border border-dashed border-border p-7 tablet:grid tablet:grid-cols-12 tablet:items-center tablet:gap-6 tablet:p-8"
+					class="group flex flex-col gap-3 rounded-xl border border-dashed border-border p-7 transition-[border-color] duration-150 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background tablet:grid tablet:grid-cols-12 tablet:items-center tablet:gap-6 tablet:p-8"
 				>
 					<div class="tablet:col-span-3">
-						<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-foreground">Orka</span>
+						<span class="font-mono text-[13px] font-bold tracking-[-0.01em] text-foreground">orkait/orka.py</span>
 						<span
 							class="ml-2 rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground"
 						>
@@ -150,11 +153,12 @@ const repos: Repo[] = [
 						</span>
 					</div>
 					<div class="tablet:col-span-2 tablet:text-right">
-						<span class="font-mono text-[11px] uppercase leading-[1.6] tracking-[0.1em] text-muted-foreground">
-							Source opens soon
+						<span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase leading-[1.6] tracking-[0.1em] text-foreground/80">
+							View on GitHub
+							<span class="inline-block transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
 						</span>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>
