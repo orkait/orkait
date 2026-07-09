@@ -2,25 +2,26 @@
 import { routes } from "@/lib/data/nav";
 ---
 
-<section class="w-full bg-background pb-20 tablet:pb-28 laptop:pb-32" data-reveal>
-	<div class="mx-auto w-full max-w-site px-6 tablet:px-8">
+<!-- Typographic close, not a colored slab: paper, hairline, ink headline, one
+     red button. Red is rationed to the action itself (palette red budget). -->
+<section class="w-full border-t border-border bg-background" data-reveal>
 	<div
-		class="flex flex-col gap-8 rounded-2xl bg-signature-deep px-6 py-16 text-on-signature tablet:px-10 tablet:py-20 laptop:flex-row laptop:items-center laptop:justify-between laptop:gap-16 laptop:px-14"
+		class="mx-auto flex w-full max-w-site flex-col gap-8 px-6 py-20 tablet:px-8 tablet:py-24 laptop:flex-row laptop:items-center laptop:justify-between laptop:gap-16"
 	>
 		<div class="flex max-w-[52ch] flex-col gap-4">
 			<h2
-				class="max-w-[20ch] font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em]"
+				class="max-w-[20ch] font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground"
 			>
 				Have a hard problem worth shipping?
 			</h2>
-			<p class="text-body-lg leading-[30px] text-on-signature/85">
+			<p class="text-body-lg leading-[30px] text-foreground/70">
 				We take on selective research partnerships when there is a path to a
 				real system.
 			</p>
 		</div>
 		<a
 			href={routes.contact}
-			class="group inline-flex h-[52px] min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-lg bg-tile px-8 text-base font-bold text-on-tile transition-colors duration-150 hover:bg-tile/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-signature focus-visible:ring-offset-2 focus-visible:ring-offset-signature max-laptop:w-full"
+			class="group inline-flex h-[52px] min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-lg bg-signature px-8 text-base font-bold text-on-signature transition-colors duration-150 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background max-laptop:w-full"
 		>
 			Get in touch
 			<svg
@@ -36,6 +37,5 @@ import { routes } from "@/lib/data/nav";
 				<path d="M5 12h14M13 6l6 6-6 6"></path>
 			</svg>
 		</a>
-	</div>
 	</div>
 </section>
