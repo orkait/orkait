@@ -24,12 +24,19 @@ const GLIDER: [number, number][] = [
 	[2, 2],
 ];
 
-function seed(cols: number, rows: number): Uint8Array<ArrayBuffer> {
+function seed(
+	cols: number,
+	rows: number,
+	density: number,
+	gliders: number,
+): Uint8Array<ArrayBuffer> {
 	const g = new Uint8Array(new ArrayBuffer(cols * rows));
-	for (let i = 0; i < g.length; i++) g[i] = Math.random() < DENSITY ? 1 : 0;
-	for (let n = 0; n < 3; n++) {
-		const ox = Math.floor(Math.random() * (cols - 4));
-		const oy = Math.floor(Math.random() * (rows - 4));
+	for (let i = 0; i < g.length; i++) g[i] = Math.random() < density ? 1 : 0;
+	for (let n = 0; n < gliders; n++) {
+		// on an empty field, start the lone glider in the upper-left quarter so
+		// it has the whole page to travel (the grid wraps toroidally anyway)
+		const ox = 2 + Math.floor(Math.random() * Math.max(1, Math.floor(cols / 4)));
+		const oy = 2 + Math.floor(Math.random() * Math.max(1, Math.floor(rows / 4)));
 		for (const [dx, dy] of GLIDER) g[(oy + dy) * cols + (ox + dx)] = 1;
 	}
 	return g;
@@ -53,7 +60,23 @@ function step(cur: Uint8Array<ArrayBuffer>, next: Uint8Array<ArrayBuffer>, cols:
 	}
 }
 
-export function LifeField() {
+export interface LifeFieldProps {
+	/** initial random fill; 0 = empty board */
+	density?: number;
+	/** gliders seeded onto the board */
+	gliders?: number;
+	/** ink alpha of a live cell */
+	cellAlpha?: number;
+	/** ms per generation */
+	stepMs?: number;
+}
+
+export function LifeField({
+	density = DENSITY,
+	gliders = 3,
+	cellAlpha = CELL_ALPHA,
+	stepMs = STEP_MS,
+}: LifeFieldProps = {}) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -79,7 +102,7 @@ export function LifeField() {
 
 		const draw = () => {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx.fillStyle = `rgba(${ink},${CELL_ALPHA})`;
+			ctx.fillStyle = `rgba(${ink},${cellAlpha})`;
 			for (let y = 0; y < rows; y++) {
 				for (let x = 0; x < cols; x++) {
 					if (!cur[y * cols + x]) continue;
@@ -97,7 +120,7 @@ export function LifeField() {
 			canvas.height = h;
 			cols = Math.ceil(w / CELL);
 			rows = Math.ceil(h / CELL);
-			cur = seed(cols, rows);
+			cur = seed(cols, rows, density, gliders);
 			next = new Uint8Array(new ArrayBuffer(cols * rows));
 			draw();
 		};
@@ -111,7 +134,7 @@ export function LifeField() {
 				next = swap;
 				draw();
 			}
-			timer = setTimeout(tick, STEP_MS);
+			timer = setTimeout(tick, stepMs);
 		};
 
 		resize();
@@ -124,7 +147,7 @@ export function LifeField() {
 				{ threshold: 0 },
 			);
 			io.observe(wrap);
-			timer = setTimeout(tick, STEP_MS);
+			timer = setTimeout(tick, stepMs);
 
 			let rt: ReturnType<typeof setTimeout>;
 			const onResize = () => {
@@ -146,7 +169,7 @@ export function LifeField() {
 			disposed = true;
 			clearTimeout(timer);
 		};
-	}, []);
+	}, [density, gliders, cellAlpha, stepMs]);
 
 	return (
 		<div ref={wrapRef} className="relative h-full w-full">
