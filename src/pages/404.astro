@@ -1,0 +1,80 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import { LifeField } from "@/components/react/LifeField";
+import { routes } from "@/lib/data/nav";
+---
+
+<Layout title="404" description="No page at this address." chat={false}>
+	<SiteHeader overlap />
+
+	<main id="main">
+		<section
+			aria-label="Page not found"
+			class="relative flex min-h-[88dvh] w-full flex-col justify-center overflow-hidden bg-background pb-16 pt-32 tablet:pt-36"
+			data-reveal
+		>
+			<!-- One lone glider crossing an otherwise empty board: rules kept
+			     running, nothing found at this address. Bolder alpha than the hero
+			     texture - here the glider IS the content. -->
+			<div class="pointer-events-none absolute inset-0 z-0">
+				<LifeField client:load density={0} gliders={1} cellAlpha={0.14} stepMs={420} />
+			</div>
+
+			<div class="relative z-10 mx-auto w-full max-w-site px-6 tablet:px-8">
+				<div class="flex max-w-[40rem] flex-col items-start gap-6 text-left">
+					<p class="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
+						Page not found
+					</p>
+
+					<h1
+						class="font-display font-medium text-foreground"
+						style="font-size: clamp(4rem, 12vw, 9rem); line-height: 0.95; letter-spacing: -0.045em;"
+					>
+						404<span class="text-signature-deep">.</span>
+					</h1>
+
+					<p class="font-mono text-[13px] leading-[1.7] text-foreground/80">
+						<span class="font-bold text-signature-deep">● NF Not Found</span>
+						<span class="text-muted-foreground"> · route missing · nothing executed</span>
+					</p>
+
+					<p class="max-w-[46ch] text-body-lg leading-[30px] text-foreground/70">
+						No page at this address. The glider will keep searching; you don't
+						have to.
+					</p>
+
+					<div class="flex flex-col gap-3 pt-1 tablet:flex-row tablet:items-center">
+						<a
+							href={routes.home}
+							class="group inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-lg bg-signature px-7 text-base font-bold text-on-signature transition-colors duration-150 hover:bg-signature-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+						>
+							Back to the lab
+							<svg
+								class="size-[18px] transition-transform duration-150 group-hover:translate-x-0.5"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+							>
+								<path d="M5 12h14M13 6l6 6-6 6"></path>
+							</svg>
+						</a>
+						<a
+							href="https://rustbox.sh"
+							class="inline-flex h-12 min-h-[48px] items-center justify-center gap-2 rounded-lg border border-foreground/20 px-7 text-base font-semibold text-foreground transition-colors duration-150 hover:bg-foreground/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signature focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+						>
+							Open Rustbox
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<SiteFooter />
+</Layout>
